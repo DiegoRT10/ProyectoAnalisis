@@ -15,5 +15,6 @@ public class Kardex {
         System.out.println("Hello World!");
         System.out.println("prueba 1");
         System.out.println("prueba 2");
+        System.out.println("prueba 3");
     }
 }
