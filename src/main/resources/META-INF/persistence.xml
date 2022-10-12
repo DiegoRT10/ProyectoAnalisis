@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="cunori_kardex_jar_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>cunori.kardex.dao.Vendedor</class>
+    <class>cunori.kardex.dao.Cliente</class>
+    <class>cunori.kardex.dao.Persona</class>
+    <class>cunori.kardex.dao.Administrador</class>
+    <class>cunori.kardex.dao.Gerente</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://bq2ilywq58idf92jbdck-mysql.services.clever-cloud.com:3306/bq2ilywq58idf92jbdck?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
+      <property name="javax.persistence.jdbc.user" value="u0xkyyhkaahho5ue"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="wI3PJkDzmBoKnaosy3OQ"/>
+    </properties>
+  </persistence-unit>
+</persistence>
