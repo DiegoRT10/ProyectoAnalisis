@@ -5,6 +5,8 @@
 
 package cunori.kardex;
 
+import cunori.kardex.views.Login;
+
 /**
  *
  * @author Diego Ramos
@@ -12,9 +14,7 @@ package cunori.kardex;
 public class Kardex {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-        System.out.println("prueba 1");
-        System.out.println("prueba 2");
-        System.out.println("prueba 3");
+        Login l = new Login();
+        l.setVisible(true);
     }
 }

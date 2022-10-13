@@ -1,15 +1,17 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package cunori.kardex.dao;
 
 import java.io.Serializable;
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -17,14 +19,14 @@ import javax.persistence.Table;
 
 /**
  *
- * @author hermas
+ * @author Diego Ramos
  */
 @Entity
 @Table(name = "persona")
 @NamedQueries({
     @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p"),
-    @NamedQuery(name = "Persona.findById", query = "SELECT p FROM Persona p WHERE p.personaPK.id = :id"),
-    @NamedQuery(name = "Persona.findByDpi", query = "SELECT p FROM Persona p WHERE p.personaPK.dpi = :dpi"),
+    @NamedQuery(name = "Persona.findById", query = "SELECT p FROM Persona p WHERE p.id = :id"),
+    @NamedQuery(name = "Persona.findByDpi", query = "SELECT p FROM Persona p WHERE p.dpi = :dpi"),
     @NamedQuery(name = "Persona.findByNombre", query = "SELECT p FROM Persona p WHERE p.nombre = :nombre"),
     @NamedQuery(name = "Persona.findByApellidos", query = "SELECT p FROM Persona p WHERE p.apellidos = :apellidos"),
     @NamedQuery(name = "Persona.findByDireccion", query = "SELECT p FROM Persona p WHERE p.direccion = :direccion"),
@@ -33,8 +35,13 @@ import javax.persistence.Table;
 public class Persona implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected PersonaPK personaPK;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
+    @Column(name = "dpi")
+    private String dpi;
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "apellidos")
@@ -57,20 +64,24 @@ public class Persona implements Serializable {
     public Persona() {
     }
 
-    public Persona(PersonaPK personaPK) {
-        this.personaPK = personaPK;
+    public Persona(Integer id) {
+        this.id = id;
     }
 
-    public Persona(int id, String dpi) {
-        this.personaPK = new PersonaPK(id, dpi);
+    public Integer getId() {
+        return id;
     }
 
-    public PersonaPK getPersonaPK() {
-        return personaPK;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setPersonaPK(PersonaPK personaPK) {
-        this.personaPK = personaPK;
+    public String getDpi() {
+        return dpi;
+    }
+
+    public void setDpi(String dpi) {
+        this.dpi = dpi;
     }
 
     public String getNombre() {
@@ -148,7 +159,7 @@ public class Persona implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (personaPK != null ? personaPK.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -159,7 +170,7 @@ public class Persona implements Serializable {
             return false;
         }
         Persona other = (Persona) object;
-        if ((this.personaPK == null && other.personaPK != null) || (this.personaPK != null && !this.personaPK.equals(other.personaPK))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -167,7 +178,7 @@ public class Persona implements Serializable {
 
     @Override
     public String toString() {
-        return "cunori.kardex.dao.Persona[ personaPK=" + personaPK + " ]";
+        return "cunori.kardex.dao.Persona[ id=" + id + " ]";
     }
     
 }

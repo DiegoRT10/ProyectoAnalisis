@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package cunori.kardex.controller;
 
@@ -22,7 +21,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author hermas
+ * @author Diego Ramos
  */
 public class GerenteJpaController implements Serializable {
 
@@ -56,7 +55,7 @@ public class GerenteJpaController implements Serializable {
             em.getTransaction().begin();
             Persona persona = gerente.getPersona();
             if (persona != null) {
-                persona = em.getReference(persona.getClass(), persona.getPersonaPK());
+                persona = em.getReference(persona.getClass(), persona.getId());
                 gerente.setPersona(persona);
             }
             em.persist(gerente);
@@ -99,7 +98,7 @@ public class GerenteJpaController implements Serializable {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
             if (personaNew != null) {
-                personaNew = em.getReference(personaNew.getClass(), personaNew.getPersonaPK());
+                personaNew = em.getReference(personaNew.getClass(), personaNew.getId());
                 gerente.setPersona(personaNew);
             }
             gerente = em.merge(gerente);

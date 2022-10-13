@@ -1,13 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package cunori.kardex.controller;
 
 import cunori.kardex.controller.exceptions.IllegalOrphanException;
 import cunori.kardex.controller.exceptions.NonexistentEntityException;
-import cunori.kardex.controller.exceptions.PreexistingEntityException;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
@@ -18,7 +16,6 @@ import cunori.kardex.dao.Administrador;
 import cunori.kardex.dao.Vendedor;
 import cunori.kardex.dao.Gerente;
 import cunori.kardex.dao.Persona;
-import cunori.kardex.dao.PersonaPK;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -26,7 +23,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author hermas
+ * @author Diego Ramos
  */
 public class PersonaJpaController implements Serializable {
 
@@ -39,10 +36,7 @@ public class PersonaJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Persona persona) throws PreexistingEntityException, Exception {
-        if (persona.getPersonaPK() == null) {
-            persona.setPersonaPK(new PersonaPK());
-        }
+    public void create(Persona persona) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -105,11 +99,6 @@ public class PersonaJpaController implements Serializable {
                 gerente = em.merge(gerente);
             }
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            if (findPersona(persona.getPersonaPK()) != null) {
-                throw new PreexistingEntityException("Persona " + persona + " already exists.", ex);
-            }
-            throw ex;
         } finally {
             if (em != null) {
                 em.close();
@@ -122,7 +111,7 @@ public class PersonaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Persona persistentPersona = em.find(Persona.class, persona.getPersonaPK());
+            Persona persistentPersona = em.find(Persona.class, persona.getId());
             Cliente clienteOld = persistentPersona.getCliente();
             Cliente clienteNew = persona.getCliente();
             Administrador administradorOld = persistentPersona.getAdministrador();
@@ -216,7 +205,7 @@ public class PersonaJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                PersonaPK id = persona.getPersonaPK();
+                Integer id = persona.getId();
                 if (findPersona(id) == null) {
                     throw new NonexistentEntityException("The persona with id " + id + " no longer exists.");
                 }
@@ -229,7 +218,7 @@ public class PersonaJpaController implements Serializable {
         }
     }
 
-    public void destroy(PersonaPK id) throws IllegalOrphanException, NonexistentEntityException {
+    public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -237,7 +226,7 @@ public class PersonaJpaController implements Serializable {
             Persona persona;
             try {
                 persona = em.getReference(Persona.class, id);
-                persona.getPersonaPK();
+                persona.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The persona with id " + id + " no longer exists.", enfe);
             }
@@ -306,7 +295,7 @@ public class PersonaJpaController implements Serializable {
         }
     }
 
-    public Persona findPersona(PersonaPK id) {
+    public Persona findPersona(Integer id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Persona.class, id);
