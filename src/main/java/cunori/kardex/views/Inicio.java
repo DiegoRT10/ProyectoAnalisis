@@ -537,7 +537,7 @@ public class Inicio extends javax.swing.JFrame {
 
         pnlLeft.add(pnlProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 270, 50));
 
-        pnlFondo.add(pnlLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 270, 710));
+        pnlFondo.add(pnlLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 270, 720));
 
         pnlSeccionInicio.setBackground(new java.awt.Color(255, 255, 255));
         pnlSeccionInicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1697,8 +1697,9 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_pnlFacturacionMouseClicked
 
     private void lblConsultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblConsultarMouseClicked
-     opcionesUsuarios opu = new opcionesUsuarios(this, true); 
-     opu.setVisible(true);
+     ListarUsuarios lu = new ListarUsuarios();
+     lu.setVisible(true);
+     this.dispose();
     }//GEN-LAST:event_lblConsultarMouseClicked
 
     private void lblConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblConsultaMouseClicked

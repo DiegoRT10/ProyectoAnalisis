@@ -167,7 +167,7 @@ public class opcionesUsuarios extends javax.swing.JDialog {
         });
         pnlopcionesUsuarios.add(lblVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, 316, 371));
 
-        getContentPane().add(pnlopcionesUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 570));
+        getContentPane().add(pnlopcionesUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 580));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
