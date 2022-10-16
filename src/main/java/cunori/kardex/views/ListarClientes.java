@@ -66,7 +66,7 @@ public class ListarClientes extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(931, 522));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Listado de usuarios ");
+        jLabel1.setText("Listado de Clientes");
 
         txtBuscar.setBackground(new java.awt.Color(129, 164, 220));
         txtBuscar.setToolTipText("Filtrar \"ten en cuenta las mayusculas\"");
@@ -85,18 +85,18 @@ public class ListarClientes extends javax.swing.JFrame {
         tblListarUsuarios.setForeground(new java.awt.Color(0, 0, 0));
         tblListarUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "DPI", "Nombre", "Apellido", "Direccion", "Correo", "Telefono", "Usuario", "NIT", "Contraseña", "Rol"
+                "DPI", "NIT", "Nombre", "Apellidos", "Direccion", "Correo", "Telefono", "Rol"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, true, true, true
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -104,8 +104,6 @@ public class ListarClientes extends javax.swing.JFrame {
             }
         });
         tblListarUsuarios.setGridColor(new java.awt.Color(153, 255, 153));
-        tblListarUsuarios.setRowHeight(20);
-        tblListarUsuarios.setRowMargin(0);
         tblListarUsuarios.setSelectionBackground(new java.awt.Color(255, 255, 204));
         tblListarUsuarios.setSelectionForeground(new java.awt.Color(0, 0, 0));
         tblListarUsuarios.setShowGrid(true);
@@ -121,7 +119,7 @@ public class ListarClientes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 281, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))

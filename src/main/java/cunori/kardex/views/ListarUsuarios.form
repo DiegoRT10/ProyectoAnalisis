@@ -153,13 +153,13 @@
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="10" rowCount="5">
                     <Column editable="false" title="DPI" type="java.lang.Object"/>
-                    <Column editable="true" title="Nombre" type="java.lang.Object"/>
-                    <Column editable="true" title="Apellido" type="java.lang.Object"/>
+                    <Column editable="false" title="NIT" type="java.lang.Object"/>
+                    <Column editable="false" title="Nombre" type="java.lang.Object"/>
+                    <Column editable="false" title="Apellidos" type="java.lang.Object"/>
                     <Column editable="true" title="Direccion" type="java.lang.Object"/>
-                    <Column editable="true" title="Correo" type="java.lang.Object"/>
-                    <Column editable="true" title="Telefono" type="java.lang.Object"/>
-                    <Column editable="true" title="Usuario" type="java.lang.Object"/>
-                    <Column editable="true" title="NIT" type="java.lang.Object"/>
+                    <Column editable="false" title="Correo" type="java.lang.Object"/>
+                    <Column editable="false" title="Telefono" type="java.lang.Object"/>
+                    <Column editable="false" title="Usuario" type="java.lang.Object"/>
                     <Column editable="true" title="Contrase&#xf1;a" type="java.lang.Object"/>
                     <Column editable="true" title="Rol" type="java.lang.Object"/>
                   </Table>
@@ -221,8 +221,6 @@
                 <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="99" green="ff" red="99" type="rgb"/>
                 </Property>
-                <Property name="rowHeight" type="int" value="20"/>
-                <Property name="rowMargin" type="int" value="0"/>
                 <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="ff" red="ff" type="rgb"/>
                 </Property>

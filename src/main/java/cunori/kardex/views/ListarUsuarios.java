@@ -92,11 +92,11 @@ public class ListarUsuarios extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "DPI", "Nombre", "Apellido", "Direccion", "Correo", "Telefono", "Usuario", "NIT", "Contraseña", "Rol"
+                "DPI", "NIT", "Nombre", "Apellidos", "Direccion", "Correo", "Telefono", "Usuario", "Contraseña", "Rol"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, true, true, true
+                false, false, false, false, true, false, false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -104,8 +104,6 @@ public class ListarUsuarios extends javax.swing.JFrame {
             }
         });
         tblListarUsuarios.setGridColor(new java.awt.Color(153, 255, 153));
-        tblListarUsuarios.setRowHeight(20);
-        tblListarUsuarios.setRowMargin(0);
         tblListarUsuarios.setSelectionBackground(new java.awt.Color(255, 255, 204));
         tblListarUsuarios.setSelectionForeground(new java.awt.Color(0, 0, 0));
         tblListarUsuarios.setShowGrid(true);

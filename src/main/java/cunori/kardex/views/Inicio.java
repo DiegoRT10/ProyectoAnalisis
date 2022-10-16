@@ -70,25 +70,6 @@ public class Inicio extends javax.swing.JFrame {
         
 
 //seteando valores a labels inicio productos
-
-
-        //seteando valores a labels inicio cheques 
-        lblInfoCreados.setText(infoCrearCheques);
-        lblInfoSinPledeclarar.setText(infoSinPredeclarar);
-        lblInfoPendiente.setText(infoPendientesCheques);
-        lblInfoPagados.setText(infoPagadoCheques);
-        lblInfoAnulados.setText(infoAnuladoCheques);
-        lblInfoListarCheques.setText(infoListarCheques);
-        lblInfoCobrado.setText(infoCobrado);
-        lblInfoInicio.setText(infoInicio);
-        
-        //seteandoValores Traslado
-        lblInfoTCreado.setText(infoCrearTraslado);
-        lblInfoTDescargado.setText(infoDescargadoTraslado);
-        lblInfoTCargadoVerificado.setText(infoCargadoVerificadoTraslado);
-        lblInfoTRevisadoSistema.setText(infoRevisadoSistemaTraslado);
-        lblInfoTRevisonFisica.setText(infoRevisionFisicaTraslado);
-        lblInfoTEntregado.setText(infoEntregadoTraslado);
         
     }
 
@@ -117,9 +98,11 @@ public class Inicio extends javax.swing.JFrame {
         pnlFacturacion = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         pnlSalirLogin = new javax.swing.JPanel();
-        jLabel64 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         pnlProveedores = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
+        pnlServicios = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
         tpnlContenedor = new javax.swing.JTabbedPane();
         pnlSeccionInicio = new javax.swing.JPanel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -150,97 +133,53 @@ public class Inicio extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        lblInfoSinPledeclarar = new javax.swing.JLabel();
-        lblInfoPendiente = new javax.swing.JLabel();
-        lblInfoCreados = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        lblCreados = new javax.swing.JLabel();
-        lblPendientePago = new javax.swing.JLabel();
-        lblSinPredeclarar = new javax.swing.JLabel();
-        lblInfoListarCheques = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
-        lblListaCheques = new javax.swing.JLabel();
-        lblSiguiente = new javax.swing.JLabel();
+        lblImgConsultar1 = new javax.swing.JLabel();
+        lblInfoConsultar1 = new javax.swing.JLabel();
+        lblTituloConsultar1 = new javax.swing.JLabel();
+        lblConsultar1 = new javax.swing.JLabel();
         pnlSeccionProveedores = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        jLabel45 = new javax.swing.JLabel();
-        jLabel46 = new javax.swing.JLabel();
-        jLabel47 = new javax.swing.JLabel();
-        jLabel48 = new javax.swing.JLabel();
-        lblInfoPagados = new javax.swing.JLabel();
-        lblInfoAnulados = new javax.swing.JLabel();
-        jLabel43 = new javax.swing.JLabel();
-        jLabel44 = new javax.swing.JLabel();
-        lblAtras = new javax.swing.JLabel();
-        lblAnulados = new javax.swing.JLabel();
-        lblPagados = new javax.swing.JLabel();
         pnlTituloSeccionProveedores = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
-        jLabel51 = new javax.swing.JLabel();
-        jLabel49 = new javax.swing.JLabel();
-        lblInfoCobrado = new javax.swing.JLabel();
-        jLabel50 = new javax.swing.JLabel();
-        lblCobrado = new javax.swing.JLabel();
+        lblImgConsultar2 = new javax.swing.JLabel();
+        lblInfoConsultar2 = new javax.swing.JLabel();
+        lblTituloConsultar2 = new javax.swing.JLabel();
+        lblConsultar2 = new javax.swing.JLabel();
         pnlSeccionServicios = new javax.swing.JPanel();
         pnlTituloSeccionServicios = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        lblProveedores = new javax.swing.JLabel();
-        lblRentas = new javax.swing.JLabel();
-        lblSalarios = new javax.swing.JLabel();
+        lblImgVender = new javax.swing.JLabel();
+        lblinfoVender = new javax.swing.JLabel();
+        lblTituloVender = new javax.swing.JLabel();
+        lblVender = new javax.swing.JLabel();
+        lblinfoComprar = new javax.swing.JLabel();
+        lblImgComprar = new javax.swing.JLabel();
+        lblTituloComprar = new javax.swing.JLabel();
+        lblComprar = new javax.swing.JLabel();
         pnlSeccionFacturacion = new javax.swing.JPanel();
-        lblInfoTCreado = new javax.swing.JLabel();
-        lblInfoTDescargado = new javax.swing.JLabel();
-        lblInfoTCargadoVerificado = new javax.swing.JLabel();
-        lblInfoTRevisadoSistema = new javax.swing.JLabel();
-        lblInfoListarCheques2 = new javax.swing.JLabel();
-        jLabel39 = new javax.swing.JLabel();
-        jLabel41 = new javax.swing.JLabel();
-        jLabel42 = new javax.swing.JLabel();
-        jLabel52 = new javax.swing.JLabel();
-        lblInfoCreados2 = new javax.swing.JLabel();
-        lblInfoSinPledeclarar2 = new javax.swing.JLabel();
-        jLabel53 = new javax.swing.JLabel();
-        jLabel54 = new javax.swing.JLabel();
-        lblInfoPendiente2 = new javax.swing.JLabel();
-        jLabel55 = new javax.swing.JLabel();
-        jLabel56 = new javax.swing.JLabel();
-        lblTCargadoVerificado = new javax.swing.JLabel();
-        lblTCreado = new javax.swing.JLabel();
-        lblTDescargado = new javax.swing.JLabel();
-        lblTRevisadoSistema = new javax.swing.JLabel();
-        lblSiguienteT = new javax.swing.JLabel();
         pnlTituloSeccionFacturacion = new javax.swing.JPanel();
         jLabel61 = new javax.swing.JLabel();
         jLabel62 = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
+        lblImgConsulta1 = new javax.swing.JLabel();
+        lblinfoConsulta1 = new javax.swing.JLabel();
+        lblTituloConsulta1 = new javax.swing.JLabel();
+        lblConsulta1 = new javax.swing.JLabel();
+        lblinfoIngreso1 = new javax.swing.JLabel();
+        lblImgIngreso1 = new javax.swing.JLabel();
+        lblTituloIngreso1 = new javax.swing.JLabel();
+        lblIngreso1 = new javax.swing.JLabel();
         pnlSeccionSalir = new javax.swing.JPanel();
-        jLabel57 = new javax.swing.JLabel();
-        jLabel58 = new javax.swing.JLabel();
-        jLabel59 = new javax.swing.JLabel();
-        jLabel60 = new javax.swing.JLabel();
-        lblInfoTRevisonFisica = new javax.swing.JLabel();
-        lblInfoTEntregado = new javax.swing.JLabel();
-        lblTEntregado = new javax.swing.JLabel();
-        lblTRevisionFisica = new javax.swing.JLabel();
-        lblAtrasT = new javax.swing.JLabel();
+        lblImgSalirPrograma = new javax.swing.JLabel();
+        lblImgSalirLogin = new javax.swing.JLabel();
+        lblTituloSalirPrograma = new javax.swing.JLabel();
+        lblTituloSalirLogin = new javax.swing.JLabel();
+        lblSalirLogin = new javax.swing.JLabel();
+        lblSalirPrograma = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -456,7 +395,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        pnlLeft.add(pnlFacturacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 270, 50));
+        pnlLeft.add(pnlFacturacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 270, 50));
 
         pnlSalirLogin.setBackground(new java.awt.Color(129, 164, 220));
         pnlSalirLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -474,10 +413,9 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        jLabel64.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel64.setIcon(new javax.swing.ImageIcon(getClass().getResource("/traslados.png"))); // NOI18N
-        jLabel64.setText(" Salir");
-        jLabel64.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login.png"))); // NOI18N
+        jLabel10.setText("Salir");
 
         javax.swing.GroupLayout pnlSalirLoginLayout = new javax.swing.GroupLayout(pnlSalirLogin);
         pnlSalirLogin.setLayout(pnlSalirLoginLayout);
@@ -485,14 +423,14 @@ public class Inicio extends javax.swing.JFrame {
             pnlSalirLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSalirLoginLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel64, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(136, Short.MAX_VALUE))
         );
         pnlSalirLoginLayout.setVerticalGroup(
             pnlSalirLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSalirLoginLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel64, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -536,6 +474,45 @@ public class Inicio extends javax.swing.JFrame {
         );
 
         pnlLeft.add(pnlProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 270, 50));
+
+        pnlServicios.setBackground(new java.awt.Color(129, 164, 220));
+        pnlServicios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlServicios.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                pnlServiciosMouseMoved(evt);
+            }
+        });
+        pnlServicios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlServiciosMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                pnlServiciosMouseExited(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/traslados.png"))); // NOI18N
+        jLabel9.setText(" Servicios");
+
+        javax.swing.GroupLayout pnlServiciosLayout = new javax.swing.GroupLayout(pnlServicios);
+        pnlServicios.setLayout(pnlServiciosLayout);
+        pnlServiciosLayout.setHorizontalGroup(
+            pnlServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlServiciosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(116, Short.MAX_VALUE))
+        );
+        pnlServiciosLayout.setVerticalGroup(
+            pnlServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlServiciosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        pnlLeft.add(pnlServicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 270, 50));
 
         pnlFondo.add(pnlLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 270, 720));
 
@@ -649,7 +626,7 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel15.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/administradores.png"))); // NOI18N
-        jLabel15.setText("Inventarios");
+        jLabel15.setText("Inventario");
         jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout pnlTituloSeccionInventariosLayout = new javax.swing.GroupLayout(pnlTituloSeccionInventarios);
@@ -779,194 +756,34 @@ public class Inicio extends javax.swing.JFrame {
 
         pnlSeccionClientes.add(pnlTituloSeccionClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 60));
 
-        lblInfoSinPledeclarar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblInfoSinPledeclarar.setForeground(new java.awt.Color(153, 153, 153));
-        lblInfoSinPledeclarar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionClientes.add(lblInfoSinPledeclarar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 190, 140));
+        lblImgConsultar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/listar.png"))); // NOI18N
+        lblImgConsultar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionClientes.add(lblImgConsultar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 290, 140));
 
-        lblInfoPendiente.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblInfoPendiente.setForeground(new java.awt.Color(153, 153, 153));
-        lblInfoPendiente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionClientes.add(lblInfoPendiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 270, 190, 180));
+        lblInfoConsultar1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblInfoConsultar1.setForeground(new java.awt.Color(153, 153, 153));
+        lblInfoConsultar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionClientes.add(lblInfoConsultar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 260, 150));
 
-        lblInfoCreados.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblInfoCreados.setForeground(new java.awt.Color(153, 153, 153));
-        lblInfoCreados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionClientes.add(lblInfoCreados, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 190, 140));
+        lblTituloConsultar1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblTituloConsultar1.setForeground(new java.awt.Color(153, 153, 153));
+        lblTituloConsultar1.setText("Consultar");
+        lblTituloConsultar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionClientes.add(lblTituloConsultar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
 
-        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/advertencia2.png"))); // NOI18N
-        jLabel27.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionClientes.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, 50, 50));
-
-        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/advertencia.png"))); // NOI18N
-        jLabel26.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionClientes.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 130, 50, 50));
-
-        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CrearCheque.png"))); // NOI18N
-        jLabel24.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionClientes.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, 210, 80));
-
-        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CrearCheque.png"))); // NOI18N
-        jLabel23.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionClientes.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 130, 210, 80));
-
-        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CrearCheque.png"))); // NOI18N
-        jLabel22.setText("jLabel22");
-        jLabel22.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionClientes.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 210, 80));
-
-        jLabel19.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel19.setText("Sin predeclarar");
-        jLabel19.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionClientes.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, -1, -1));
-
-        jLabel16.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel16.setText("Crear / Creados");
-        jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionClientes.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, -1, -1));
-
-        jLabel18.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel18.setText("Pendiente de Pago");
-        jLabel18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionClientes.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 220, -1, -1));
-
-        lblCreados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
-        lblCreados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblCreados.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblConsultar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
+        lblConsultar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblConsultar1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblCreadosMouseClicked(evt);
+                lblConsultar1MouseClicked(evt);
             }
         });
-        pnlSeccionClientes.add(lblCreados, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 230, 380));
-
-        lblPendientePago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
-        lblPendientePago.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblPendientePago.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblPendientePagoMouseClicked(evt);
-            }
-        });
-        pnlSeccionClientes.add(lblPendientePago, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 110, 230, 380));
-
-        lblSinPredeclarar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
-        lblSinPredeclarar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblSinPredeclarar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblSinPredeclararMouseClicked(evt);
-            }
-        });
-        pnlSeccionClientes.add(lblSinPredeclarar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 230, 380));
-
-        lblInfoListarCheques.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblInfoListarCheques.setForeground(new java.awt.Color(153, 153, 153));
-        lblInfoListarCheques.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionClientes.add(lblInfoListarCheques, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 190, 140));
-
-        jLabel37.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel37.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel37.setText("Lista Cheques");
-        jLabel37.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionClientes.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
-
-        jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CrearCheque.png"))); // NOI18N
-        jLabel38.setText("jLabel22");
-        jLabel38.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionClientes.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 210, 80));
-
-        lblListaCheques.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
-        lblListaCheques.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblListaCheques.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblListaChequesMouseClicked(evt);
-            }
-        });
-        pnlSeccionClientes.add(lblListaCheques, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 230, 380));
-
-        lblSiguiente.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblSiguiente.setForeground(new java.awt.Color(153, 153, 153));
-        lblSiguiente.setText("Siguiente →");
-        lblSiguiente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblSiguiente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblSiguienteMouseClicked(evt);
-            }
-        });
-        pnlSeccionClientes.add(lblSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 590, -1, -1));
+        pnlSeccionClientes.add(lblConsultar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 316, 371));
 
         tpnlContenedor.addTab("tab4", pnlSeccionClientes);
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/verificado.png"))); // NOI18N
-        jLabel45.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel8.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 50, 50));
-
-        jLabel46.setIcon(new javax.swing.ImageIcon(getClass().getResource("/anulado.png"))); // NOI18N
-        jLabel46.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel8.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 130, 50, 50));
-
-        jLabel47.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel47.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel47.setText("Pagados");
-        jLabel47.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel8.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
-
-        jLabel48.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel48.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel48.setText("Anulados");
-        jLabel48.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel8.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 220, -1, -1));
-
-        lblInfoPagados.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblInfoPagados.setForeground(new java.awt.Color(153, 153, 153));
-        lblInfoPagados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel8.add(lblInfoPagados, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 190, 140));
-
-        lblInfoAnulados.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblInfoAnulados.setForeground(new java.awt.Color(153, 153, 153));
-        lblInfoAnulados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel8.add(lblInfoAnulados, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 270, 190, 140));
-
-        jLabel43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CrearCheque.png"))); // NOI18N
-        jLabel43.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel8.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 210, 80));
-
-        jLabel44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CrearCheque.png"))); // NOI18N
-        jLabel44.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel8.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 130, 210, 80));
-
-        lblAtras.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblAtras.setForeground(new java.awt.Color(153, 153, 153));
-        lblAtras.setText("← Atras");
-        lblAtras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblAtras.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblAtrasMouseClicked(evt);
-            }
-        });
-        jPanel8.add(lblAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 590, -1, -1));
-
-        lblAnulados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
-        lblAnulados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblAnulados.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblAnuladosMouseClicked(evt);
-            }
-        });
-        jPanel8.add(lblAnulados, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 230, 380));
-
-        lblPagados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
-        lblPagados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblPagados.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblPagadosMouseClicked(evt);
-            }
-        });
-        jPanel8.add(lblPagados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 230, 380));
 
         pnlTituloSeccionProveedores.setBackground(new java.awt.Color(255, 255, 255));
         pnlTituloSeccionProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1024,33 +841,29 @@ public class Inicio extends javax.swing.JFrame {
 
         jPanel8.add(pnlTituloSeccionProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 60));
 
-        jLabel51.setIcon(new javax.swing.ImageIcon(getClass().getResource("/verificado.png"))); // NOI18N
-        jLabel51.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel8.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 130, 50, 50));
+        lblImgConsultar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/listar.png"))); // NOI18N
+        lblImgConsultar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel8.add(lblImgConsultar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 290, 140));
 
-        jLabel49.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CrearCheque.png"))); // NOI18N
-        jLabel49.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel8.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 210, 80));
+        lblInfoConsultar2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblInfoConsultar2.setForeground(new java.awt.Color(153, 153, 153));
+        lblInfoConsultar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel8.add(lblInfoConsultar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 260, 150));
 
-        lblInfoCobrado.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblInfoCobrado.setForeground(new java.awt.Color(153, 153, 153));
-        lblInfoCobrado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel8.add(lblInfoCobrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 190, 140));
+        lblTituloConsultar2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblTituloConsultar2.setForeground(new java.awt.Color(153, 153, 153));
+        lblTituloConsultar2.setText("Consultar");
+        lblTituloConsultar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel8.add(lblTituloConsultar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
 
-        jLabel50.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel50.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel50.setText("Cobrado");
-        jLabel50.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel8.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, -1));
-
-        lblCobrado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
-        lblCobrado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblCobrado.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblConsultar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
+        lblConsultar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblConsultar2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblCobradoMouseClicked(evt);
+                lblConsultar2MouseClicked(evt);
             }
         });
-        jPanel8.add(lblCobrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 230, 380));
+        jPanel8.add(lblConsultar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 316, 371));
 
         javax.swing.GroupLayout pnlSeccionProveedoresLayout = new javax.swing.GroupLayout(pnlSeccionProveedores);
         pnlSeccionProveedores.setLayout(pnlSeccionProveedoresLayout);
@@ -1122,196 +935,58 @@ public class Inicio extends javax.swing.JFrame {
 
         pnlSeccionServicios.add(pnlTituloSeccionServicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 60));
 
-        jLabel34.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel34.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel34.setText("Proveedores");
-        jLabel34.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionServicios.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
+        lblImgVender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/listar.png"))); // NOI18N
+        lblImgVender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionServicios.add(lblImgVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 290, 140));
 
-        jLabel35.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel35.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel35.setText("Rentas");
-        jLabel35.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionServicios.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
+        lblinfoVender.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblinfoVender.setForeground(new java.awt.Color(153, 153, 153));
+        lblinfoVender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionServicios.add(lblinfoVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 260, 150));
 
-        jLabel36.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel36.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel36.setText("Salarios");
-        jLabel36.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionServicios.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 290, -1, -1));
+        lblTituloVender.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblTituloVender.setForeground(new java.awt.Color(153, 153, 153));
+        lblTituloVender.setText("Vender");
+        lblTituloVender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionServicios.add(lblTituloVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, -1, -1));
 
-        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proveedor.png"))); // NOI18N
-        jLabel31.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionServicios.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 290, 140));
-
-        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/renta.png"))); // NOI18N
-        jLabel32.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionServicios.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 290, 140));
-
-        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/salario.png"))); // NOI18N
-        jLabel33.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionServicios.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, 290, 140));
-
-        lblProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
-        lblProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblVender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
+        lblVender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblVender.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblProveedoresMouseClicked(evt);
+                lblVenderMouseClicked(evt);
             }
         });
-        pnlSeccionServicios.add(lblProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 122, 316, 371));
+        pnlSeccionServicios.add(lblVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 316, 371));
 
-        lblRentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
-        lblRentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblRentas.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblinfoComprar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblinfoComprar.setForeground(new java.awt.Color(153, 153, 153));
+        lblinfoComprar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionServicios.add(lblinfoComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 350, 260, 150));
+
+        lblImgComprar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/listar.png"))); // NOI18N
+        lblImgComprar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionServicios.add(lblImgComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, 290, 140));
+
+        lblTituloComprar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblTituloComprar.setForeground(new java.awt.Color(153, 153, 153));
+        lblTituloComprar.setText("Comprar");
+        lblTituloComprar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionServicios.add(lblTituloComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, -1, -1));
+
+        lblComprar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
+        lblComprar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblComprar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblRentasMouseClicked(evt);
+                lblComprarMouseClicked(evt);
             }
         });
-        pnlSeccionServicios.add(lblRentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 122, 320, 371));
-
-        lblSalarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
-        lblSalarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblSalarios.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblSalariosMouseClicked(evt);
-            }
-        });
-        pnlSeccionServicios.add(lblSalarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 122, 320, 371));
+        pnlSeccionServicios.add(lblComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, 316, 371));
 
         tpnlContenedor.addTab("tab6", pnlSeccionServicios);
 
         pnlSeccionFacturacion.setBackground(new java.awt.Color(255, 255, 255));
         pnlSeccionFacturacion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblInfoTCreado.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblInfoTCreado.setForeground(new java.awt.Color(153, 153, 153));
-        lblInfoTCreado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionFacturacion.add(lblInfoTCreado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 190, 140));
-
-        lblInfoTDescargado.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblInfoTDescargado.setForeground(new java.awt.Color(153, 153, 153));
-        lblInfoTDescargado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionFacturacion.add(lblInfoTDescargado, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 190, 140));
-
-        lblInfoTCargadoVerificado.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblInfoTCargadoVerificado.setForeground(new java.awt.Color(153, 153, 153));
-        lblInfoTCargadoVerificado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionFacturacion.add(lblInfoTCargadoVerificado, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 190, 140));
-
-        lblInfoTRevisadoSistema.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblInfoTRevisadoSistema.setForeground(new java.awt.Color(153, 153, 153));
-        lblInfoTRevisadoSistema.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionFacturacion.add(lblInfoTRevisadoSistema, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 270, 190, 180));
-
-        lblInfoListarCheques2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblInfoListarCheques2.setForeground(new java.awt.Color(153, 153, 153));
-        lblInfoListarCheques2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionFacturacion.add(lblInfoListarCheques2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 190, 140));
-
-        jLabel39.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel39.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel39.setText("Creado");
-        jLabel39.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionFacturacion.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
-
-        jLabel41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CrearPedido.png"))); // NOI18N
-        jLabel41.setText("jLabel22");
-        jLabel41.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionFacturacion.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 210, 80));
-
-        jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/descargado.png"))); // NOI18N
-        jLabel42.setText("jLabel22");
-        jLabel42.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionFacturacion.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 210, 80));
-
-        jLabel52.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel52.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel52.setText("Descargado");
-        jLabel52.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionFacturacion.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, -1, -1));
-
-        lblInfoCreados2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblInfoCreados2.setForeground(new java.awt.Color(153, 153, 153));
-        lblInfoCreados2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionFacturacion.add(lblInfoCreados2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 190, 140));
-
-        lblInfoSinPledeclarar2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblInfoSinPledeclarar2.setForeground(new java.awt.Color(153, 153, 153));
-        lblInfoSinPledeclarar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionFacturacion.add(lblInfoSinPledeclarar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 190, 140));
-
-        jLabel53.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel53.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel53.setText("Cargado y Verificado");
-        jLabel53.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionFacturacion.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, -1, -1));
-
-        jLabel54.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CargadoVerificado.png"))); // NOI18N
-        jLabel54.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionFacturacion.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, 210, 80));
-
-        lblInfoPendiente2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblInfoPendiente2.setForeground(new java.awt.Color(153, 153, 153));
-        lblInfoPendiente2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionFacturacion.add(lblInfoPendiente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 270, 190, 180));
-
-        jLabel55.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel55.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel55.setText("Revisado por Sistema");
-        jLabel55.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionFacturacion.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 220, -1, -1));
-
-        jLabel56.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RevisadoSistemaT.png"))); // NOI18N
-        jLabel56.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionFacturacion.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 130, 210, 80));
-
-        lblTCargadoVerificado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
-        lblTCargadoVerificado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblTCargadoVerificado.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblTCargadoVerificadoMouseClicked(evt);
-            }
-        });
-        pnlSeccionFacturacion.add(lblTCargadoVerificado, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 230, 380));
-
-        lblTCreado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
-        lblTCreado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblTCreado.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblTCreadoMouseClicked(evt);
-            }
-        });
-        pnlSeccionFacturacion.add(lblTCreado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 230, 380));
-
-        lblTDescargado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
-        lblTDescargado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblTDescargado.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblTDescargadoMouseClicked(evt);
-            }
-        });
-        pnlSeccionFacturacion.add(lblTDescargado, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 230, 380));
-
-        lblTRevisadoSistema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
-        lblTRevisadoSistema.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblTRevisadoSistema.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblTRevisadoSistemaMouseClicked(evt);
-            }
-        });
-        pnlSeccionFacturacion.add(lblTRevisadoSistema, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 110, 230, 380));
-
-        lblSiguienteT.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblSiguienteT.setForeground(new java.awt.Color(153, 153, 153));
-        lblSiguienteT.setText("Siguiente →");
-        lblSiguienteT.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblSiguienteT.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblSiguienteTMouseClicked(evt);
-            }
-        });
-        pnlSeccionFacturacion.add(lblSiguienteT, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 590, -1, -1));
 
         pnlTituloSeccionFacturacion.setBackground(new java.awt.Color(255, 255, 255));
         pnlTituloSeccionFacturacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1367,69 +1042,96 @@ public class Inicio extends javax.swing.JFrame {
 
         pnlSeccionFacturacion.add(pnlTituloSeccionFacturacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 60));
 
+        lblImgConsulta1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/listar.png"))); // NOI18N
+        lblImgConsulta1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionFacturacion.add(lblImgConsulta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 290, 140));
+
+        lblinfoConsulta1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblinfoConsulta1.setForeground(new java.awt.Color(153, 153, 153));
+        lblinfoConsulta1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionFacturacion.add(lblinfoConsulta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 260, 150));
+
+        lblTituloConsulta1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblTituloConsulta1.setForeground(new java.awt.Color(153, 153, 153));
+        lblTituloConsulta1.setText("Consulta");
+        lblTituloConsulta1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionFacturacion.add(lblTituloConsulta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, -1, -1));
+
+        lblConsulta1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
+        lblConsulta1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblConsulta1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblConsulta1MouseClicked(evt);
+            }
+        });
+        pnlSeccionFacturacion.add(lblConsulta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 316, 371));
+
+        lblinfoIngreso1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblinfoIngreso1.setForeground(new java.awt.Color(153, 153, 153));
+        lblinfoIngreso1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionFacturacion.add(lblinfoIngreso1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 350, 260, 150));
+
+        lblImgIngreso1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/listar.png"))); // NOI18N
+        lblImgIngreso1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionFacturacion.add(lblImgIngreso1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, 290, 140));
+
+        lblTituloIngreso1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblTituloIngreso1.setForeground(new java.awt.Color(153, 153, 153));
+        lblTituloIngreso1.setText("Ingreso");
+        lblTituloIngreso1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionFacturacion.add(lblTituloIngreso1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, -1, -1));
+
+        lblIngreso1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
+        lblIngreso1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblIngreso1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblIngreso1MouseClicked(evt);
+            }
+        });
+        pnlSeccionFacturacion.add(lblIngreso1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, 316, 371));
+
         tpnlContenedor.addTab("tab7", pnlSeccionFacturacion);
 
         pnlSeccionSalir.setBackground(new java.awt.Color(255, 255, 255));
         pnlSeccionSalir.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel57.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RevisionFisica.png"))); // NOI18N
-        jLabel57.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionSalir.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 210, 80));
+        lblImgSalirPrograma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RevisionFisica.png"))); // NOI18N
+        lblImgSalirPrograma.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionSalir.add(lblImgSalirPrograma, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 210, 80));
 
-        jLabel58.setIcon(new javax.swing.ImageIcon(getClass().getResource("/entregado.png"))); // NOI18N
-        jLabel58.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionSalir.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 210, 80));
+        lblImgSalirLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/entregado.png"))); // NOI18N
+        lblImgSalirLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionSalir.add(lblImgSalirLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, 210, 80));
 
-        jLabel59.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel59.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel59.setText("Revision Fisica");
-        jLabel59.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionSalir.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+        lblTituloSalirPrograma.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblTituloSalirPrograma.setForeground(new java.awt.Color(153, 153, 153));
+        lblTituloSalirPrograma.setText("Salir del Programa");
+        lblTituloSalirPrograma.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionSalir.add(lblTituloSalirPrograma, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, -1, -1));
 
-        jLabel60.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel60.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel60.setText("Entregado");
-        jLabel60.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionSalir.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, -1));
+        lblTituloSalirLogin.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblTituloSalirLogin.setForeground(new java.awt.Color(153, 153, 153));
+        lblTituloSalirLogin.setText("Salir al Login");
+        lblTituloSalirLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionSalir.add(lblTituloSalirLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 220, -1, -1));
 
-        lblInfoTRevisonFisica.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblInfoTRevisonFisica.setForeground(new java.awt.Color(153, 153, 153));
-        lblInfoTRevisonFisica.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionSalir.add(lblInfoTRevisonFisica, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 190, 140));
-
-        lblInfoTEntregado.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblInfoTEntregado.setForeground(new java.awt.Color(153, 153, 153));
-        lblInfoTEntregado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionSalir.add(lblInfoTEntregado, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 190, 180));
-
-        lblTEntregado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
-        lblTEntregado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblTEntregado.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblSalirLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
+        lblSalirLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblSalirLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblTEntregadoMouseClicked(evt);
+                lblSalirLoginMouseClicked(evt);
             }
         });
-        pnlSeccionSalir.add(lblTEntregado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 230, 380));
+        pnlSeccionSalir.add(lblSalirLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 230, 380));
 
-        lblTRevisionFisica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
-        lblTRevisionFisica.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblTRevisionFisica.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblSalirPrograma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
+        lblSalirPrograma.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblSalirPrograma.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblTRevisionFisicaMouseClicked(evt);
+                lblSalirProgramaMouseClicked(evt);
             }
         });
-        pnlSeccionSalir.add(lblTRevisionFisica, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 230, 380));
-
-        lblAtrasT.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblAtrasT.setForeground(new java.awt.Color(153, 153, 153));
-        lblAtrasT.setText("← Atras");
-        lblAtrasT.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblAtrasT.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblAtrasTMouseClicked(evt);
-            }
-        });
-        pnlSeccionSalir.add(lblAtrasT, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 590, -1, -1));
+        pnlSeccionSalir.add(lblSalirPrograma, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 230, 380));
 
         tpnlContenedor.addTab("tab8", pnlSeccionSalir);
 
@@ -1527,24 +1229,6 @@ public class Inicio extends javax.swing.JFrame {
         pnlClientes.setBackground(new Color(129, 164, 220));
     }//GEN-LAST:event_pnlClientesMouseExited
 
-    private void lblCreadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCreadosMouseClicked
-//        estadoSet = 1;
-//        ListarChequesEstado.titulo="Listado cheques creados";
-//        tpnlContenedor.setSelectedIndex(5);
-    }//GEN-LAST:event_lblCreadosMouseClicked
-
-    private void lblPendientePagoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPendientePagoMouseClicked
-//        estadoSet = 2;
-//        ListarChequesEstado.titulo="Listado cheques pendiente de pago";
-//        tpnlContenedor.setSelectedIndex(5);
-    }//GEN-LAST:event_lblPendientePagoMouseClicked
-
-    private void lblSinPredeclararMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSinPredeclararMouseClicked
-//        ListarChequesEstado.titulo="Listado cheques sin predeclarar";
-//        estadoSet = 1;
-//        tpnlContenedor.setSelectedIndex(5);
-    }//GEN-LAST:event_lblSinPredeclararMouseClicked
-
     private void pnlTituloSeccionServiciosMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTituloSeccionServiciosMouseMoved
         // TODO add your handling code here:
     }//GEN-LAST:event_pnlTituloSeccionServiciosMouseMoved
@@ -1556,57 +1240,6 @@ public class Inicio extends javax.swing.JFrame {
     private void pnlTituloSeccionServiciosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTituloSeccionServiciosMouseExited
         // TODO add your handling code here:
     }//GEN-LAST:event_pnlTituloSeccionServiciosMouseExited
-
-    private void lblProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblProveedoresMouseClicked
-//        ListarChequesEstado.tipo=1;
-//        ListarChequesEstado.estado=estadoSet;
-//        ListarChequesEstado lc2 = new ListarChequesEstado();
-//        ListarChequesEstado lc = new ListarChequesEstado();
-//        lc.setVisible(true);
-//        this.dispose();
-    }//GEN-LAST:event_lblProveedoresMouseClicked
-
-    private void lblRentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRentasMouseClicked
-//        ListarChequesEstado.tipo=2;
-//        ListarChequesEstado.estado=estadoSet;
-//        ListarChequesEstado lc = new ListarChequesEstado();
-//        lc.setVisible(true);
-//        this.dispose();
-    }//GEN-LAST:event_lblRentasMouseClicked
-
-    private void lblSalariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalariosMouseClicked
-//        ListarChequesEstado.tipo=3;
-//        ListarChequesEstado.estado=estadoSet;
-//        ListarChequesEstado lc = new ListarChequesEstado();
-//        lc.setVisible(true);
-//        this.dispose();
-    }//GEN-LAST:event_lblSalariosMouseClicked
-
-    private void lblPagadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPagadosMouseClicked
-//        estadoSet = 3;
-//        ListarChequesEstado.titulo="Listado cheques pagados";
-//        tpnlContenedor.setSelectedIndex(5);
-    }//GEN-LAST:event_lblPagadosMouseClicked
-
-    private void lblAnuladosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnuladosMouseClicked
-//        estadoSet = 5;
-//        ListarChequesEstado.titulo="Listado cheques anulados";
-//        tpnlContenedor.setSelectedIndex(5);
-    }//GEN-LAST:event_lblAnuladosMouseClicked
-
-    private void lblListaChequesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblListaChequesMouseClicked
-//        ListarCheques lc = new ListarCheques();
-//        lc.setVisible(true);
-//        this.dispose();
-    }//GEN-LAST:event_lblListaChequesMouseClicked
-
-    private void lblSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSiguienteMouseClicked
-       tpnlContenedor.setSelectedIndex(4);
-    }//GEN-LAST:event_lblSiguienteMouseClicked
-
-    private void lblAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasMouseClicked
-      tpnlContenedor.setSelectedIndex(3);
-    }//GEN-LAST:event_lblAtrasMouseClicked
 
     private void pnlTituloSeccionProveedoresMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTituloSeccionProveedoresMouseMoved
         // TODO add your handling code here:
@@ -1620,43 +1253,15 @@ public class Inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_pnlTituloSeccionProveedoresMouseExited
 
-    private void lblCobradoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCobradoMouseClicked
-//        estadoSet = 4;
-//        ListarChequesEstado.titulo="Listado cheques cobrados";
-//        tpnlContenedor.setSelectedIndex(5);
-    }//GEN-LAST:event_lblCobradoMouseClicked
+    private void lblSalirProgramaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirProgramaMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_lblSalirProgramaMouseClicked
 
-    private void lblTCreadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTCreadoMouseClicked
-     
-    }//GEN-LAST:event_lblTCreadoMouseClicked
-
-    private void lblTDescargadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTDescargadoMouseClicked
-       
-    }//GEN-LAST:event_lblTDescargadoMouseClicked
-
-    private void lblTCargadoVerificadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTCargadoVerificadoMouseClicked
-      
-    }//GEN-LAST:event_lblTCargadoVerificadoMouseClicked
-
-    private void lblTRevisadoSistemaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTRevisadoSistemaMouseClicked
-     
-    }//GEN-LAST:event_lblTRevisadoSistemaMouseClicked
-
-    private void lblTRevisionFisicaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTRevisionFisicaMouseClicked
-       
-    }//GEN-LAST:event_lblTRevisionFisicaMouseClicked
-
-    private void lblTEntregadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTEntregadoMouseClicked
-       
-    }//GEN-LAST:event_lblTEntregadoMouseClicked
-
-    private void lblSiguienteTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSiguienteTMouseClicked
-        tpnlContenedor.setSelectedIndex(7);
-    }//GEN-LAST:event_lblSiguienteTMouseClicked
-
-    private void lblAtrasTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAtrasTMouseClicked
-        tpnlContenedor.setSelectedIndex(6);
-    }//GEN-LAST:event_lblAtrasTMouseClicked
+    private void lblSalirLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirLoginMouseClicked
+        Login l = new Login();
+        l.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblSalirLoginMouseClicked
 
     private void pnlTituloSeccionFacturacionMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTituloSeccionFacturacionMouseMoved
         // TODO add your handling code here:
@@ -1675,9 +1280,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_pnlSalirLoginMouseMoved
 
     private void pnlSalirLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlSalirLoginMouseClicked
-        Login l = new Login();
-        l.setVisible(true);
-        this.dispose();
+        tpnlContenedor.setSelectedIndex(7);  
     }//GEN-LAST:event_pnlSalirLoginMouseClicked
 
     private void pnlSalirLoginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlSalirLoginMouseExited
@@ -1721,6 +1324,42 @@ public class Inicio extends javax.swing.JFrame {
     private void pnlProveedoresMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlProveedoresMouseMoved
         pnlProveedores.setBackground(new Color(166, 173, 217));
     }//GEN-LAST:event_pnlProveedoresMouseMoved
+
+    private void lblConsultar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblConsultar1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblConsultar1MouseClicked
+
+    private void lblConsultar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblConsultar2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblConsultar2MouseClicked
+
+    private void lblVenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVenderMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblVenderMouseClicked
+
+    private void lblComprarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblComprarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblComprarMouseClicked
+
+    private void lblConsulta1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblConsulta1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblConsulta1MouseClicked
+
+    private void lblIngreso1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIngreso1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblIngreso1MouseClicked
+
+    private void pnlServiciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlServiciosMouseClicked
+        tpnlContenedor.setSelectedIndex(5);
+    }//GEN-LAST:event_pnlServiciosMouseClicked
+
+    private void pnlServiciosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlServiciosMouseExited
+        pnlServicios.setBackground(new Color(129, 164, 220));
+    }//GEN-LAST:event_pnlServiciosMouseExited
+
+    private void pnlServiciosMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlServiciosMouseMoved
+        pnlServicios.setBackground(new Color(166, 173, 217));
+    }//GEN-LAST:event_pnlServiciosMouseMoved
 
     /**
      * @param args the command line arguments
@@ -1767,62 +1406,26 @@ public class Inicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.raven.swing.ImageAvatar imageAvatar1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
-    private javax.swing.JLabel jLabel54;
-    private javax.swing.JLabel jLabel55;
-    private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
-    private javax.swing.JLabel jLabel58;
-    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
-    private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -1831,56 +1434,49 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JLabel lblAnulados;
-    private javax.swing.JLabel lblAtras;
-    private javax.swing.JLabel lblAtrasT;
-    private javax.swing.JLabel lblCobrado;
+    private javax.swing.JLabel lblComprar;
     private javax.swing.JLabel lblConsulta;
+    private javax.swing.JLabel lblConsulta1;
     private javax.swing.JLabel lblConsultar;
-    private javax.swing.JLabel lblCreados;
+    private javax.swing.JLabel lblConsultar1;
+    private javax.swing.JLabel lblConsultar2;
+    private javax.swing.JLabel lblImgComprar;
     private javax.swing.JLabel lblImgConsulta;
+    private javax.swing.JLabel lblImgConsulta1;
     private javax.swing.JLabel lblImgConsultar;
+    private javax.swing.JLabel lblImgConsultar1;
+    private javax.swing.JLabel lblImgConsultar2;
     private javax.swing.JLabel lblImgIngreso;
-    private javax.swing.JLabel lblInfoAnulados;
-    private javax.swing.JLabel lblInfoCobrado;
+    private javax.swing.JLabel lblImgIngreso1;
+    private javax.swing.JLabel lblImgSalirLogin;
+    private javax.swing.JLabel lblImgSalirPrograma;
+    private javax.swing.JLabel lblImgVender;
     private javax.swing.JLabel lblInfoConsultar;
-    private javax.swing.JLabel lblInfoCreados;
-    private javax.swing.JLabel lblInfoCreados2;
+    private javax.swing.JLabel lblInfoConsultar1;
+    private javax.swing.JLabel lblInfoConsultar2;
     private javax.swing.JLabel lblInfoInicio;
-    private javax.swing.JLabel lblInfoListarCheques;
-    private javax.swing.JLabel lblInfoListarCheques2;
-    private javax.swing.JLabel lblInfoPagados;
-    private javax.swing.JLabel lblInfoPendiente;
-    private javax.swing.JLabel lblInfoPendiente2;
-    private javax.swing.JLabel lblInfoSinPledeclarar;
-    private javax.swing.JLabel lblInfoSinPledeclarar2;
-    private javax.swing.JLabel lblInfoTCargadoVerificado;
-    private javax.swing.JLabel lblInfoTCreado;
-    private javax.swing.JLabel lblInfoTDescargado;
-    private javax.swing.JLabel lblInfoTEntregado;
-    private javax.swing.JLabel lblInfoTRevisadoSistema;
-    private javax.swing.JLabel lblInfoTRevisonFisica;
     private javax.swing.JLabel lblIngreso;
-    private javax.swing.JLabel lblListaCheques;
-    private javax.swing.JLabel lblPagados;
-    private javax.swing.JLabel lblPendientePago;
-    private javax.swing.JLabel lblProveedores;
-    private javax.swing.JLabel lblRentas;
-    private javax.swing.JLabel lblSalarios;
-    private javax.swing.JLabel lblSiguiente;
-    private javax.swing.JLabel lblSiguienteT;
-    private javax.swing.JLabel lblSinPredeclarar;
-    private javax.swing.JLabel lblTCargadoVerificado;
-    private javax.swing.JLabel lblTCreado;
-    private javax.swing.JLabel lblTDescargado;
-    private javax.swing.JLabel lblTEntregado;
-    private javax.swing.JLabel lblTRevisadoSistema;
-    private javax.swing.JLabel lblTRevisionFisica;
+    private javax.swing.JLabel lblIngreso1;
+    private javax.swing.JLabel lblSalirLogin;
+    private javax.swing.JLabel lblSalirPrograma;
+    private javax.swing.JLabel lblTituloComprar;
     private javax.swing.JLabel lblTituloConsulta;
+    private javax.swing.JLabel lblTituloConsulta1;
     private javax.swing.JLabel lblTituloConsultar;
+    private javax.swing.JLabel lblTituloConsultar1;
+    private javax.swing.JLabel lblTituloConsultar2;
     private javax.swing.JLabel lblTituloIngreso;
+    private javax.swing.JLabel lblTituloIngreso1;
+    private javax.swing.JLabel lblTituloSalirLogin;
+    private javax.swing.JLabel lblTituloSalirPrograma;
+    private javax.swing.JLabel lblTituloVender;
+    private javax.swing.JLabel lblVender;
+    private javax.swing.JLabel lblinfoComprar;
     private javax.swing.JLabel lblinfoConsulta;
+    private javax.swing.JLabel lblinfoConsulta1;
     private javax.swing.JLabel lblinfoIngreso;
+    private javax.swing.JLabel lblinfoIngreso1;
+    private javax.swing.JLabel lblinfoVender;
     private javax.swing.JPanel pnlClientes;
     private javax.swing.JPanel pnlFacturacion;
     private javax.swing.JPanel pnlFondo;
@@ -1897,6 +1493,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPanel pnlSeccionSalir;
     private javax.swing.JPanel pnlSeccionServicios;
     private javax.swing.JPanel pnlSeccionUsuario;
+    private javax.swing.JPanel pnlServicios;
     private javax.swing.JPanel pnlTituloSeccionClientes;
     private javax.swing.JPanel pnlTituloSeccionFacturacion;
     private javax.swing.JPanel pnlTituloSeccionInventarios;
