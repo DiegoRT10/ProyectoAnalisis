@@ -108,24 +108,24 @@ public class Inicio extends javax.swing.JFrame {
         pnlLeft = new javax.swing.JPanel();
         pnlInicio = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        pnlListaProductos = new javax.swing.JPanel();
+        pnlUsuarios = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        pnlListaAdministradores = new javax.swing.JPanel();
+        pnlInventario = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         imageAvatar1 = new com.raven.swing.ImageAvatar();
-        pnlche = new javax.swing.JPanel();
+        pnlClientes = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        pnlLogin = new javax.swing.JPanel();
-        jLabel64 = new javax.swing.JLabel();
         pnlProveedores = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
+        pnlSalirLogin = new javax.swing.JPanel();
+        jLabel64 = new javax.swing.JLabel();
         tpnlContenedor = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        pnlSeccionInicio = new javax.swing.JPanel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
         lblInfoInicio = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        pnlListaProductos1 = new javax.swing.JPanel();
+        pnlSeccionUsuario = new javax.swing.JPanel();
+        pnlTituloSeccionUsuario = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         lblinfoGerente = new javax.swing.JLabel();
         lblImgGerente = new javax.swing.JLabel();
@@ -140,12 +140,20 @@ public class Inicio extends javax.swing.JFrame {
         lblTituloVendedor = new javax.swing.JLabel();
         lblImgVendedor = new javax.swing.JLabel();
         lblVendedor = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        pnlSeccionInventario = new javax.swing.JPanel();
         jSeparator3 = new javax.swing.JSeparator();
-        pnlListaAdministradores1 = new javax.swing.JPanel();
+        pnlTituloSeccionInventarios = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        pnlCheques1 = new javax.swing.JPanel();
+        lblinfoConsulta = new javax.swing.JLabel();
+        lblImgConsulta = new javax.swing.JLabel();
+        lblTituloConsulta = new javax.swing.JLabel();
+        lblConsulta = new javax.swing.JLabel();
+        lblinfoIngreso = new javax.swing.JLabel();
+        lblImgIngreso = new javax.swing.JLabel();
+        lblTituloIngreso = new javax.swing.JLabel();
+        lblIngreso = new javax.swing.JLabel();
+        pnlSeccionClientes = new javax.swing.JPanel();
+        pnlTituloSeccionClientes = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
@@ -168,7 +176,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel38 = new javax.swing.JLabel();
         lblListaCheques = new javax.swing.JLabel();
         lblSiguiente = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
+        pnlSeccionProveedores = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel45 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
@@ -181,7 +189,7 @@ public class Inicio extends javax.swing.JFrame {
         lblAtras = new javax.swing.JLabel();
         lblAnulados = new javax.swing.JLabel();
         lblPagados = new javax.swing.JLabel();
-        pnlCheques3 = new javax.swing.JPanel();
+        pnlTituloSeccionProveedores = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
@@ -190,8 +198,8 @@ public class Inicio extends javax.swing.JFrame {
         lblInfoCobrado = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
         lblCobrado = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        pnlCheques2 = new javax.swing.JPanel();
+        pnlSeccionServicios = new javax.swing.JPanel();
+        pnlTituloSeccionServicios = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
@@ -204,7 +212,7 @@ public class Inicio extends javax.swing.JFrame {
         lblProveedores = new javax.swing.JLabel();
         lblRentas = new javax.swing.JLabel();
         lblSalarios = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
+        pnlSeccionFacturacion = new javax.swing.JPanel();
         lblInfoTCreado = new javax.swing.JLabel();
         lblInfoTDescargado = new javax.swing.JLabel();
         lblInfoTCargadoVerificado = new javax.swing.JLabel();
@@ -226,11 +234,11 @@ public class Inicio extends javax.swing.JFrame {
         lblTDescargado = new javax.swing.JLabel();
         lblTRevisadoSistema = new javax.swing.JLabel();
         lblSiguienteT = new javax.swing.JLabel();
-        pnlCheques4 = new javax.swing.JPanel();
+        pnlTituloSeccionFacturacion = new javax.swing.JPanel();
         jLabel61 = new javax.swing.JLabel();
         jLabel62 = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
-        jPanel9 = new javax.swing.JPanel();
+        pnlSeccionSalir = new javax.swing.JPanel();
         jLabel57 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
         jLabel59 = new javax.swing.JLabel();
@@ -296,19 +304,19 @@ public class Inicio extends javax.swing.JFrame {
 
         pnlLeft.add(pnlInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 260, 60));
 
-        pnlListaProductos.setBackground(new java.awt.Color(129, 164, 220));
-        pnlListaProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlListaProductos.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        pnlUsuarios.setBackground(new java.awt.Color(129, 164, 220));
+        pnlUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlUsuarios.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                pnlListaProductosMouseMoved(evt);
+                pnlUsuariosMouseMoved(evt);
             }
         });
-        pnlListaProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pnlListaProductosMouseClicked(evt);
+                pnlUsuariosMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                pnlListaProductosMouseExited(evt);
+                pnlUsuariosMouseExited(evt);
             }
         });
 
@@ -317,38 +325,38 @@ public class Inicio extends javax.swing.JFrame {
         jLabel5.setText("  Usuario");
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        javax.swing.GroupLayout pnlListaProductosLayout = new javax.swing.GroupLayout(pnlListaProductos);
-        pnlListaProductos.setLayout(pnlListaProductosLayout);
-        pnlListaProductosLayout.setHorizontalGroup(
-            pnlListaProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlListaProductosLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlUsuariosLayout = new javax.swing.GroupLayout(pnlUsuarios);
+        pnlUsuarios.setLayout(pnlUsuariosLayout);
+        pnlUsuariosLayout.setHorizontalGroup(
+            pnlUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUsuariosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        pnlListaProductosLayout.setVerticalGroup(
-            pnlListaProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlListaProductosLayout.createSequentialGroup()
+        pnlUsuariosLayout.setVerticalGroup(
+            pnlUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUsuariosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        pnlLeft.add(pnlListaProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 260, 60));
+        pnlLeft.add(pnlUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 260, 60));
 
-        pnlListaAdministradores.setBackground(new java.awt.Color(129, 164, 220));
-        pnlListaAdministradores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlListaAdministradores.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        pnlInventario.setBackground(new java.awt.Color(129, 164, 220));
+        pnlInventario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlInventario.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                pnlListaAdministradoresMouseMoved(evt);
+                pnlInventarioMouseMoved(evt);
             }
         });
-        pnlListaAdministradores.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlInventario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pnlListaAdministradoresMouseClicked(evt);
+                pnlInventarioMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                pnlListaAdministradoresMouseExited(evt);
+                pnlInventarioMouseExited(evt);
             }
         });
 
@@ -357,40 +365,40 @@ public class Inicio extends javax.swing.JFrame {
         jLabel6.setText(" Inventario");
         jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        javax.swing.GroupLayout pnlListaAdministradoresLayout = new javax.swing.GroupLayout(pnlListaAdministradores);
-        pnlListaAdministradores.setLayout(pnlListaAdministradoresLayout);
-        pnlListaAdministradoresLayout.setHorizontalGroup(
-            pnlListaAdministradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlListaAdministradoresLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlInventarioLayout = new javax.swing.GroupLayout(pnlInventario);
+        pnlInventario.setLayout(pnlInventarioLayout);
+        pnlInventarioLayout.setHorizontalGroup(
+            pnlInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlInventarioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
         );
-        pnlListaAdministradoresLayout.setVerticalGroup(
-            pnlListaAdministradoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlListaAdministradoresLayout.createSequentialGroup()
+        pnlInventarioLayout.setVerticalGroup(
+            pnlInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlInventarioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        pnlLeft.add(pnlListaAdministradores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 260, 60));
+        pnlLeft.add(pnlInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 260, 60));
 
         imageAvatar1.setGradientColor1(new java.awt.Color(51, 51, 255));
         pnlLeft.add(imageAvatar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 140, 120));
 
-        pnlche.setBackground(new java.awt.Color(129, 164, 220));
-        pnlche.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlche.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        pnlClientes.setBackground(new java.awt.Color(129, 164, 220));
+        pnlClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlClientes.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                pnlcheMouseMoved(evt);
+                pnlClientesMouseMoved(evt);
             }
         });
-        pnlche.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pnlcheMouseClicked(evt);
+                pnlClientesMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                pnlcheMouseExited(evt);
+                pnlClientesMouseExited(evt);
             }
         });
 
@@ -398,63 +406,23 @@ public class Inicio extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cheque.png"))); // NOI18N
         jLabel3.setText(" Clientes");
 
-        javax.swing.GroupLayout pnlcheLayout = new javax.swing.GroupLayout(pnlche);
-        pnlche.setLayout(pnlcheLayout);
-        pnlcheLayout.setHorizontalGroup(
-            pnlcheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlcheLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlClientesLayout = new javax.swing.GroupLayout(pnlClientes);
+        pnlClientes.setLayout(pnlClientesLayout);
+        pnlClientesLayout.setHorizontalGroup(
+            pnlClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlClientesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
         );
-        pnlcheLayout.setVerticalGroup(
-            pnlcheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlcheLayout.createSequentialGroup()
+        pnlClientesLayout.setVerticalGroup(
+            pnlClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlClientesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        pnlLeft.add(pnlche, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 260, 60));
-
-        pnlLogin.setBackground(new java.awt.Color(129, 164, 220));
-        pnlLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlLogin.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                pnlLoginMouseMoved(evt);
-            }
-        });
-        pnlLogin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pnlLoginMouseClicked(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                pnlLoginMouseExited(evt);
-            }
-        });
-
-        jLabel64.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel64.setIcon(new javax.swing.ImageIcon(getClass().getResource("/traslados.png"))); // NOI18N
-        jLabel64.setText(" Salir");
-        jLabel64.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout pnlLoginLayout = new javax.swing.GroupLayout(pnlLogin);
-        pnlLogin.setLayout(pnlLoginLayout);
-        pnlLoginLayout.setHorizontalGroup(
-            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLoginLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel64, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pnlLoginLayout.setVerticalGroup(
-            pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlLoginLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel64, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        pnlLeft.add(pnlLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 650, 260, 60));
+        pnlLeft.add(pnlClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 260, 60));
 
         pnlProveedores.setBackground(new java.awt.Color(129, 164, 220));
         pnlProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -495,42 +463,82 @@ public class Inicio extends javax.swing.JFrame {
 
         pnlLeft.add(pnlProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 260, 50));
 
+        pnlSalirLogin.setBackground(new java.awt.Color(129, 164, 220));
+        pnlSalirLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSalirLogin.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                pnlSalirLoginMouseMoved(evt);
+            }
+        });
+        pnlSalirLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlSalirLoginMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                pnlSalirLoginMouseExited(evt);
+            }
+        });
+
+        jLabel64.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel64.setIcon(new javax.swing.ImageIcon(getClass().getResource("/traslados.png"))); // NOI18N
+        jLabel64.setText(" Salir");
+        jLabel64.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout pnlSalirLoginLayout = new javax.swing.GroupLayout(pnlSalirLogin);
+        pnlSalirLogin.setLayout(pnlSalirLoginLayout);
+        pnlSalirLoginLayout.setHorizontalGroup(
+            pnlSalirLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSalirLoginLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel64, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlSalirLoginLayout.setVerticalGroup(
+            pnlSalirLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSalirLoginLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel64, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        pnlLeft.add(pnlSalirLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 650, 260, 60));
+
         pnlFondo.add(pnlLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 270, 710));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 200, -1));
+        pnlSeccionInicio.setBackground(new java.awt.Color(255, 255, 255));
+        pnlSeccionInicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlSeccionInicio.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 200, -1));
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inicio.png"))); // NOI18N
         jLabel7.setText("  Inicio");
         jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 236, 36));
+        pnlSeccionInicio.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 236, 36));
 
         lblInfoInicio.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         lblInfoInicio.setForeground(new java.awt.Color(153, 153, 153));
         lblInfoInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(lblInfoInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 730, 350));
+        pnlSeccionInicio.add(lblInfoInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 730, 350));
 
-        tpnlContenedor.addTab("tab1", jPanel1);
+        tpnlContenedor.addTab("tab1", pnlSeccionInicio);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlSeccionUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        pnlSeccionUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        pnlSeccionUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlListaProductos1.setBackground(new java.awt.Color(255, 255, 255));
-        pnlListaProductos1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlListaProductos1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        pnlTituloSeccionUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        pnlTituloSeccionUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlTituloSeccionUsuario.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                pnlListaProductos1MouseMoved(evt);
+                pnlTituloSeccionUsuarioMouseMoved(evt);
             }
         });
-        pnlListaProductos1.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlTituloSeccionUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pnlListaProductos1MouseClicked(evt);
+                pnlTituloSeccionUsuarioMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                pnlListaProductos1MouseExited(evt);
+                pnlTituloSeccionUsuarioMouseExited(evt);
             }
         });
 
@@ -539,39 +547,39 @@ public class Inicio extends javax.swing.JFrame {
         jLabel14.setText("  Usuario");
         jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        javax.swing.GroupLayout pnlListaProductos1Layout = new javax.swing.GroupLayout(pnlListaProductos1);
-        pnlListaProductos1.setLayout(pnlListaProductos1Layout);
-        pnlListaProductos1Layout.setHorizontalGroup(
-            pnlListaProductos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlListaProductos1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlTituloSeccionUsuarioLayout = new javax.swing.GroupLayout(pnlTituloSeccionUsuario);
+        pnlTituloSeccionUsuario.setLayout(pnlTituloSeccionUsuarioLayout);
+        pnlTituloSeccionUsuarioLayout.setHorizontalGroup(
+            pnlTituloSeccionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTituloSeccionUsuarioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        pnlListaProductos1Layout.setVerticalGroup(
-            pnlListaProductos1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlListaProductos1Layout.createSequentialGroup()
+        pnlTituloSeccionUsuarioLayout.setVerticalGroup(
+            pnlTituloSeccionUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTituloSeccionUsuarioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jPanel2.add(pnlListaProductos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 60));
+        pnlSeccionUsuario.add(pnlTituloSeccionUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 60));
 
         lblinfoGerente.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblinfoGerente.setForeground(new java.awt.Color(153, 153, 153));
         lblinfoGerente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel2.add(lblinfoGerente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 260, 150));
+        pnlSeccionUsuario.add(lblinfoGerente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 260, 150));
 
         lblImgGerente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/listar.png"))); // NOI18N
         lblImgGerente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel2.add(lblImgGerente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 290, 140));
+        pnlSeccionUsuario.add(lblImgGerente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 290, 140));
 
         lblTituloGerente.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblTituloGerente.setForeground(new java.awt.Color(153, 153, 153));
         lblTituloGerente.setText("Gerente");
         lblTituloGerente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel2.add(lblTituloGerente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
+        pnlSeccionUsuario.add(lblTituloGerente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
 
         lblGerente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
         lblGerente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -580,23 +588,23 @@ public class Inicio extends javax.swing.JFrame {
                 lblGerenteMouseClicked(evt);
             }
         });
-        jPanel2.add(lblGerente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 122, 316, 371));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 200, -1));
+        pnlSeccionUsuario.add(lblGerente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 122, 316, 371));
+        pnlSeccionUsuario.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 200, -1));
 
         lblTituloAdmin.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblTituloAdmin.setForeground(new java.awt.Color(153, 153, 153));
         lblTituloAdmin.setText("Administrador");
         lblTituloAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel2.add(lblTituloAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
+        pnlSeccionUsuario.add(lblTituloAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
 
         lblImgAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/listar.png"))); // NOI18N
         lblImgAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel2.add(lblImgAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 290, 140));
+        pnlSeccionUsuario.add(lblImgAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 290, 140));
 
         lblInfoAdmin.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblInfoAdmin.setForeground(new java.awt.Color(153, 153, 153));
         lblInfoAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel2.add(lblInfoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 260, 150));
+        pnlSeccionUsuario.add(lblInfoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 260, 150));
 
         lblAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
         lblAdministrador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -605,22 +613,22 @@ public class Inicio extends javax.swing.JFrame {
                 lblAdministradorMouseClicked(evt);
             }
         });
-        jPanel2.add(lblAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 316, 371));
+        pnlSeccionUsuario.add(lblAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 316, 371));
 
         lblInfoVendedor.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblInfoVendedor.setForeground(new java.awt.Color(153, 153, 153));
         lblInfoVendedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel2.add(lblInfoVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 320, 260, 150));
+        pnlSeccionUsuario.add(lblInfoVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 320, 260, 150));
 
         lblTituloVendedor.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblTituloVendedor.setForeground(new java.awt.Color(153, 153, 153));
         lblTituloVendedor.setText("Vendedor");
         lblTituloVendedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel2.add(lblTituloVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 290, -1, -1));
+        pnlSeccionUsuario.add(lblTituloVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 290, -1, -1));
 
         lblImgVendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/listar.png"))); // NOI18N
         lblImgVendedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel2.add(lblImgVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 130, 290, 140));
+        pnlSeccionUsuario.add(lblImgVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 130, 290, 140));
 
         lblVendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
         lblVendedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -629,167 +637,215 @@ public class Inicio extends javax.swing.JFrame {
                 lblVendedorMouseClicked(evt);
             }
         });
-        jPanel2.add(lblVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, 316, 371));
+        pnlSeccionUsuario.add(lblVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, 316, 371));
 
-        tpnlContenedor.addTab("tab2", jPanel2);
+        tpnlContenedor.addTab("tab2", pnlSeccionUsuario);
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel3.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 280, 10));
+        pnlSeccionInventario.setBackground(new java.awt.Color(255, 255, 255));
+        pnlSeccionInventario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlSeccionInventario.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 280, 10));
 
-        pnlListaAdministradores1.setBackground(new java.awt.Color(255, 255, 255));
-        pnlListaAdministradores1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlListaAdministradores1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        pnlTituloSeccionInventarios.setBackground(new java.awt.Color(255, 255, 255));
+        pnlTituloSeccionInventarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlTituloSeccionInventarios.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                pnlListaAdministradores1MouseMoved(evt);
+                pnlTituloSeccionInventariosMouseMoved(evt);
             }
         });
-        pnlListaAdministradores1.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlTituloSeccionInventarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pnlListaAdministradores1MouseClicked(evt);
+                pnlTituloSeccionInventariosMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                pnlListaAdministradores1MouseExited(evt);
+                pnlTituloSeccionInventariosMouseExited(evt);
             }
         });
 
         jLabel15.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/administradores.png"))); // NOI18N
-        jLabel15.setText(" Administradores");
+        jLabel15.setText("Inventarios");
         jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        javax.swing.GroupLayout pnlListaAdministradores1Layout = new javax.swing.GroupLayout(pnlListaAdministradores1);
-        pnlListaAdministradores1.setLayout(pnlListaAdministradores1Layout);
-        pnlListaAdministradores1Layout.setHorizontalGroup(
-            pnlListaAdministradores1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlListaAdministradores1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlTituloSeccionInventariosLayout = new javax.swing.GroupLayout(pnlTituloSeccionInventarios);
+        pnlTituloSeccionInventarios.setLayout(pnlTituloSeccionInventariosLayout);
+        pnlTituloSeccionInventariosLayout.setHorizontalGroup(
+            pnlTituloSeccionInventariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTituloSeccionInventariosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
         );
-        pnlListaAdministradores1Layout.setVerticalGroup(
-            pnlListaAdministradores1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlListaAdministradores1Layout.createSequentialGroup()
+        pnlTituloSeccionInventariosLayout.setVerticalGroup(
+            pnlTituloSeccionInventariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTituloSeccionInventariosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jPanel3.add(pnlListaAdministradores1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 60));
+        pnlSeccionInventario.add(pnlTituloSeccionInventarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 60));
 
-        tpnlContenedor.addTab("tab3", jPanel3);
+        lblinfoConsulta.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblinfoConsulta.setForeground(new java.awt.Color(153, 153, 153));
+        lblinfoConsulta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionInventario.add(lblinfoConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 260, 150));
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        lblImgConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/listar.png"))); // NOI18N
+        lblImgConsulta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionInventario.add(lblImgConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 290, 140));
 
-        pnlCheques1.setBackground(new java.awt.Color(255, 255, 255));
-        pnlCheques1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlCheques1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                pnlCheques1MouseMoved(evt);
+        lblTituloConsulta.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblTituloConsulta.setForeground(new java.awt.Color(153, 153, 153));
+        lblTituloConsulta.setText("Consulta");
+        lblTituloConsulta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionInventario.add(lblTituloConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, -1, -1));
+
+        lblConsulta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
+        lblConsulta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblConsulta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblConsultaMouseClicked(evt);
             }
         });
-        pnlCheques1.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlSeccionInventario.add(lblConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 316, 371));
+
+        lblinfoIngreso.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblinfoIngreso.setForeground(new java.awt.Color(153, 153, 153));
+        lblinfoIngreso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionInventario.add(lblinfoIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 350, 260, 150));
+
+        lblImgIngreso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/listar.png"))); // NOI18N
+        lblImgIngreso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionInventario.add(lblImgIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, 290, 140));
+
+        lblTituloIngreso.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblTituloIngreso.setForeground(new java.awt.Color(153, 153, 153));
+        lblTituloIngreso.setText("Ingreso");
+        lblTituloIngreso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionInventario.add(lblTituloIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, -1, -1));
+
+        lblIngreso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
+        lblIngreso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblIngreso.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pnlCheques1MouseClicked(evt);
+                lblIngresoMouseClicked(evt);
+            }
+        });
+        pnlSeccionInventario.add(lblIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, 316, 371));
+
+        tpnlContenedor.addTab("tab3", pnlSeccionInventario);
+
+        pnlSeccionClientes.setBackground(new java.awt.Color(255, 255, 255));
+        pnlSeccionClientes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlTituloSeccionClientes.setBackground(new java.awt.Color(255, 255, 255));
+        pnlTituloSeccionClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlTituloSeccionClientes.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                pnlTituloSeccionClientesMouseMoved(evt);
+            }
+        });
+        pnlTituloSeccionClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlTituloSeccionClientesMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                pnlCheques1MouseExited(evt);
+                pnlTituloSeccionClientesMouseExited(evt);
             }
         });
 
         jLabel17.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cheque.png"))); // NOI18N
-        jLabel17.setText(" Cheques");
+        jLabel17.setText("Clientes");
         jLabel17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel20.setText("jLabel20");
 
-        javax.swing.GroupLayout pnlCheques1Layout = new javax.swing.GroupLayout(pnlCheques1);
-        pnlCheques1.setLayout(pnlCheques1Layout);
-        pnlCheques1Layout.setHorizontalGroup(
-            pnlCheques1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCheques1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlTituloSeccionClientesLayout = new javax.swing.GroupLayout(pnlTituloSeccionClientes);
+        pnlTituloSeccionClientes.setLayout(pnlTituloSeccionClientesLayout);
+        pnlTituloSeccionClientesLayout.setHorizontalGroup(
+            pnlTituloSeccionClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTituloSeccionClientesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlCheques1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlTituloSeccionClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(pnlCheques1Layout.createSequentialGroup()
+                    .addGroup(pnlTituloSeccionClientesLayout.createSequentialGroup()
                         .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 62, Short.MAX_VALUE))))
-            .addGroup(pnlCheques1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlCheques1Layout.createSequentialGroup()
+            .addGroup(pnlTituloSeccionClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlTituloSeccionClientesLayout.createSequentialGroup()
                     .addGap(0, 130, Short.MAX_VALUE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 130, Short.MAX_VALUE)))
         );
-        pnlCheques1Layout.setVerticalGroup(
-            pnlCheques1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCheques1Layout.createSequentialGroup()
+        pnlTituloSeccionClientesLayout.setVerticalGroup(
+            pnlTituloSeccionClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTituloSeccionClientesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                 .addGap(2, 2, 2)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(pnlCheques1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlCheques1Layout.createSequentialGroup()
+            .addGroup(pnlTituloSeccionClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlTituloSeccionClientesLayout.createSequentialGroup()
                     .addGap(0, 30, Short.MAX_VALUE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 30, Short.MAX_VALUE)))
         );
 
-        jPanel4.add(pnlCheques1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 60));
+        pnlSeccionClientes.add(pnlTituloSeccionClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 60));
 
         lblInfoSinPledeclarar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblInfoSinPledeclarar.setForeground(new java.awt.Color(153, 153, 153));
         lblInfoSinPledeclarar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel4.add(lblInfoSinPledeclarar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 190, 140));
+        pnlSeccionClientes.add(lblInfoSinPledeclarar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 190, 140));
 
         lblInfoPendiente.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblInfoPendiente.setForeground(new java.awt.Color(153, 153, 153));
         lblInfoPendiente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel4.add(lblInfoPendiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 270, 190, 180));
+        pnlSeccionClientes.add(lblInfoPendiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 270, 190, 180));
 
         lblInfoCreados.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblInfoCreados.setForeground(new java.awt.Color(153, 153, 153));
         lblInfoCreados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel4.add(lblInfoCreados, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 190, 140));
+        pnlSeccionClientes.add(lblInfoCreados, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 190, 140));
 
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/advertencia2.png"))); // NOI18N
         jLabel27.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel4.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, 50, 50));
+        pnlSeccionClientes.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, 50, 50));
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/advertencia.png"))); // NOI18N
         jLabel26.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel4.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 130, 50, 50));
+        pnlSeccionClientes.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 130, 50, 50));
 
         jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CrearCheque.png"))); // NOI18N
         jLabel24.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel4.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, 210, 80));
+        pnlSeccionClientes.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, 210, 80));
 
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CrearCheque.png"))); // NOI18N
         jLabel23.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel4.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 130, 210, 80));
+        pnlSeccionClientes.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 130, 210, 80));
 
         jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CrearCheque.png"))); // NOI18N
         jLabel22.setText("jLabel22");
         jLabel22.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel4.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 210, 80));
+        pnlSeccionClientes.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 210, 80));
 
         jLabel19.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(153, 153, 153));
         jLabel19.setText("Sin predeclarar");
         jLabel19.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, -1, -1));
+        pnlSeccionClientes.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(153, 153, 153));
         jLabel16.setText("Crear / Creados");
         jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel4.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, -1, -1));
+        pnlSeccionClientes.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(153, 153, 153));
         jLabel18.setText("Pendiente de Pago");
         jLabel18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel4.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 220, -1, -1));
+        pnlSeccionClientes.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 220, -1, -1));
 
         lblCreados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
         lblCreados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -798,7 +854,7 @@ public class Inicio extends javax.swing.JFrame {
                 lblCreadosMouseClicked(evt);
             }
         });
-        jPanel4.add(lblCreados, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 230, 380));
+        pnlSeccionClientes.add(lblCreados, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 230, 380));
 
         lblPendientePago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
         lblPendientePago.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -807,7 +863,7 @@ public class Inicio extends javax.swing.JFrame {
                 lblPendientePagoMouseClicked(evt);
             }
         });
-        jPanel4.add(lblPendientePago, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 110, 230, 380));
+        pnlSeccionClientes.add(lblPendientePago, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 110, 230, 380));
 
         lblSinPredeclarar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
         lblSinPredeclarar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -816,23 +872,23 @@ public class Inicio extends javax.swing.JFrame {
                 lblSinPredeclararMouseClicked(evt);
             }
         });
-        jPanel4.add(lblSinPredeclarar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 230, 380));
+        pnlSeccionClientes.add(lblSinPredeclarar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 230, 380));
 
         lblInfoListarCheques.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblInfoListarCheques.setForeground(new java.awt.Color(153, 153, 153));
         lblInfoListarCheques.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel4.add(lblInfoListarCheques, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 190, 140));
+        pnlSeccionClientes.add(lblInfoListarCheques, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 190, 140));
 
         jLabel37.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel37.setForeground(new java.awt.Color(153, 153, 153));
         jLabel37.setText("Lista Cheques");
         jLabel37.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel4.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
+        pnlSeccionClientes.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
 
         jLabel38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CrearCheque.png"))); // NOI18N
         jLabel38.setText("jLabel22");
         jLabel38.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel4.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 210, 80));
+        pnlSeccionClientes.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 210, 80));
 
         lblListaCheques.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
         lblListaCheques.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -841,7 +897,7 @@ public class Inicio extends javax.swing.JFrame {
                 lblListaChequesMouseClicked(evt);
             }
         });
-        jPanel4.add(lblListaCheques, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 230, 380));
+        pnlSeccionClientes.add(lblListaCheques, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 230, 380));
 
         lblSiguiente.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblSiguiente.setForeground(new java.awt.Color(153, 153, 153));
@@ -852,9 +908,9 @@ public class Inicio extends javax.swing.JFrame {
                 lblSiguienteMouseClicked(evt);
             }
         });
-        jPanel4.add(lblSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 590, -1, -1));
+        pnlSeccionClientes.add(lblSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 590, -1, -1));
 
-        tpnlContenedor.addTab("tab4", jPanel4);
+        tpnlContenedor.addTab("tab4", pnlSeccionClientes);
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -926,61 +982,61 @@ public class Inicio extends javax.swing.JFrame {
         });
         jPanel8.add(lblPagados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 230, 380));
 
-        pnlCheques3.setBackground(new java.awt.Color(255, 255, 255));
-        pnlCheques3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlCheques3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        pnlTituloSeccionProveedores.setBackground(new java.awt.Color(255, 255, 255));
+        pnlTituloSeccionProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlTituloSeccionProveedores.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                pnlCheques3MouseMoved(evt);
+                pnlTituloSeccionProveedoresMouseMoved(evt);
             }
         });
-        pnlCheques3.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlTituloSeccionProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pnlCheques3MouseClicked(evt);
+                pnlTituloSeccionProveedoresMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                pnlCheques3MouseExited(evt);
+                pnlTituloSeccionProveedoresMouseExited(evt);
             }
         });
 
         jLabel21.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cheque.png"))); // NOI18N
-        jLabel21.setText(" Cheques");
+        jLabel21.setText(" Proveedores");
         jLabel21.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel25.setText("jLabel20");
 
-        javax.swing.GroupLayout pnlCheques3Layout = new javax.swing.GroupLayout(pnlCheques3);
-        pnlCheques3.setLayout(pnlCheques3Layout);
-        pnlCheques3Layout.setHorizontalGroup(
-            pnlCheques3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCheques3Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlTituloSeccionProveedoresLayout = new javax.swing.GroupLayout(pnlTituloSeccionProveedores);
+        pnlTituloSeccionProveedores.setLayout(pnlTituloSeccionProveedoresLayout);
+        pnlTituloSeccionProveedoresLayout.setHorizontalGroup(
+            pnlTituloSeccionProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTituloSeccionProveedoresLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlCheques3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlTituloSeccionProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(pnlCheques3Layout.createSequentialGroup()
+                    .addGroup(pnlTituloSeccionProveedoresLayout.createSequentialGroup()
                         .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 62, Short.MAX_VALUE))))
-            .addGroup(pnlCheques3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlCheques3Layout.createSequentialGroup()
+            .addGroup(pnlTituloSeccionProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlTituloSeccionProveedoresLayout.createSequentialGroup()
                     .addGap(0, 130, Short.MAX_VALUE)
                     .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 130, Short.MAX_VALUE)))
         );
-        pnlCheques3Layout.setVerticalGroup(
-            pnlCheques3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCheques3Layout.createSequentialGroup()
+        pnlTituloSeccionProveedoresLayout.setVerticalGroup(
+            pnlTituloSeccionProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTituloSeccionProveedoresLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                 .addGap(2, 2, 2)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(pnlCheques3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlCheques3Layout.createSequentialGroup()
+            .addGroup(pnlTituloSeccionProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlTituloSeccionProveedoresLayout.createSequentialGroup()
                     .addGap(0, 30, Short.MAX_VALUE)
                     .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 30, Short.MAX_VALUE)))
         );
 
-        jPanel8.add(pnlCheques3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 60));
+        jPanel8.add(pnlTituloSeccionProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 60));
 
         jLabel51.setIcon(new javax.swing.ImageIcon(getClass().getResource("/verificado.png"))); // NOI18N
         jLabel51.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1010,105 +1066,105 @@ public class Inicio extends javax.swing.JFrame {
         });
         jPanel8.add(lblCobrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 230, 380));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pnlSeccionProveedoresLayout = new javax.swing.GroupLayout(pnlSeccionProveedores);
+        pnlSeccionProveedores.setLayout(pnlSeccionProveedoresLayout);
+        pnlSeccionProveedoresLayout.setHorizontalGroup(
+            pnlSeccionProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 976, Short.MAX_VALUE)
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlSeccionProveedoresLayout.setVerticalGroup(
+            pnlSeccionProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
         );
 
-        tpnlContenedor.addTab("tab5", jPanel5);
+        tpnlContenedor.addTab("tab5", pnlSeccionProveedores);
 
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlSeccionServicios.setBackground(new java.awt.Color(255, 255, 255));
+        pnlSeccionServicios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlCheques2.setBackground(new java.awt.Color(255, 255, 255));
-        pnlCheques2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlCheques2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        pnlTituloSeccionServicios.setBackground(new java.awt.Color(255, 255, 255));
+        pnlTituloSeccionServicios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlTituloSeccionServicios.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                pnlCheques2MouseMoved(evt);
+                pnlTituloSeccionServiciosMouseMoved(evt);
             }
         });
-        pnlCheques2.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlTituloSeccionServicios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pnlCheques2MouseClicked(evt);
+                pnlTituloSeccionServiciosMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                pnlCheques2MouseExited(evt);
+                pnlTituloSeccionServiciosMouseExited(evt);
             }
         });
 
         jLabel29.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cheque.png"))); // NOI18N
-        jLabel29.setText("Tipo de Cuenta");
+        jLabel29.setText("Servicios");
         jLabel29.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel30.setText("jLabel20");
 
-        javax.swing.GroupLayout pnlCheques2Layout = new javax.swing.GroupLayout(pnlCheques2);
-        pnlCheques2.setLayout(pnlCheques2Layout);
-        pnlCheques2Layout.setHorizontalGroup(
-            pnlCheques2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCheques2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlTituloSeccionServiciosLayout = new javax.swing.GroupLayout(pnlTituloSeccionServicios);
+        pnlTituloSeccionServicios.setLayout(pnlTituloSeccionServiciosLayout);
+        pnlTituloSeccionServiciosLayout.setHorizontalGroup(
+            pnlTituloSeccionServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTituloSeccionServiciosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlCheques2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlTituloSeccionServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
                     .addComponent(jSeparator5)))
-            .addGroup(pnlCheques2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlCheques2Layout.createSequentialGroup()
+            .addGroup(pnlTituloSeccionServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlTituloSeccionServiciosLayout.createSequentialGroup()
                     .addGap(0, 130, Short.MAX_VALUE)
                     .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 130, Short.MAX_VALUE)))
         );
-        pnlCheques2Layout.setVerticalGroup(
-            pnlCheques2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCheques2Layout.createSequentialGroup()
+        pnlTituloSeccionServiciosLayout.setVerticalGroup(
+            pnlTituloSeccionServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTituloSeccionServiciosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                 .addGap(2, 2, 2)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(pnlCheques2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlCheques2Layout.createSequentialGroup()
+            .addGroup(pnlTituloSeccionServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlTituloSeccionServiciosLayout.createSequentialGroup()
                     .addGap(0, 30, Short.MAX_VALUE)
                     .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 30, Short.MAX_VALUE)))
         );
 
-        jPanel6.add(pnlCheques2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 60));
+        pnlSeccionServicios.add(pnlTituloSeccionServicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 60));
 
         jLabel34.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(153, 153, 153));
         jLabel34.setText("Proveedores");
         jLabel34.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel6.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
+        pnlSeccionServicios.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
 
         jLabel35.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel35.setForeground(new java.awt.Color(153, 153, 153));
         jLabel35.setText("Rentas");
         jLabel35.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel6.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
+        pnlSeccionServicios.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
 
         jLabel36.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel36.setForeground(new java.awt.Color(153, 153, 153));
         jLabel36.setText("Salarios");
         jLabel36.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel6.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 290, -1, -1));
+        pnlSeccionServicios.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 290, -1, -1));
 
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proveedor.png"))); // NOI18N
         jLabel31.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel6.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 290, 140));
+        pnlSeccionServicios.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 290, 140));
 
         jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/renta.png"))); // NOI18N
         jLabel32.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel6.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 290, 140));
+        pnlSeccionServicios.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 290, 140));
 
         jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/salario.png"))); // NOI18N
         jLabel33.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel6.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, 290, 140));
+        pnlSeccionServicios.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, 290, 140));
 
         lblProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
         lblProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1117,7 +1173,7 @@ public class Inicio extends javax.swing.JFrame {
                 lblProveedoresMouseClicked(evt);
             }
         });
-        jPanel6.add(lblProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 122, 316, 371));
+        pnlSeccionServicios.add(lblProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 122, 316, 371));
 
         lblRentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
         lblRentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1126,7 +1182,7 @@ public class Inicio extends javax.swing.JFrame {
                 lblRentasMouseClicked(evt);
             }
         });
-        jPanel6.add(lblRentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 122, 320, 371));
+        pnlSeccionServicios.add(lblRentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(318, 122, 320, 371));
 
         lblSalarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
         lblSalarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1135,94 +1191,94 @@ public class Inicio extends javax.swing.JFrame {
                 lblSalariosMouseClicked(evt);
             }
         });
-        jPanel6.add(lblSalarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 122, 320, 371));
+        pnlSeccionServicios.add(lblSalarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 122, 320, 371));
 
-        tpnlContenedor.addTab("tab6", jPanel6);
+        tpnlContenedor.addTab("tab6", pnlSeccionServicios);
 
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlSeccionFacturacion.setBackground(new java.awt.Color(255, 255, 255));
+        pnlSeccionFacturacion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblInfoTCreado.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblInfoTCreado.setForeground(new java.awt.Color(153, 153, 153));
         lblInfoTCreado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel7.add(lblInfoTCreado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 190, 140));
+        pnlSeccionFacturacion.add(lblInfoTCreado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 190, 140));
 
         lblInfoTDescargado.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblInfoTDescargado.setForeground(new java.awt.Color(153, 153, 153));
         lblInfoTDescargado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel7.add(lblInfoTDescargado, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 190, 140));
+        pnlSeccionFacturacion.add(lblInfoTDescargado, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 190, 140));
 
         lblInfoTCargadoVerificado.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblInfoTCargadoVerificado.setForeground(new java.awt.Color(153, 153, 153));
         lblInfoTCargadoVerificado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel7.add(lblInfoTCargadoVerificado, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 190, 140));
+        pnlSeccionFacturacion.add(lblInfoTCargadoVerificado, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 190, 140));
 
         lblInfoTRevisadoSistema.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblInfoTRevisadoSistema.setForeground(new java.awt.Color(153, 153, 153));
         lblInfoTRevisadoSistema.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel7.add(lblInfoTRevisadoSistema, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 270, 190, 180));
+        pnlSeccionFacturacion.add(lblInfoTRevisadoSistema, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 270, 190, 180));
 
         lblInfoListarCheques2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblInfoListarCheques2.setForeground(new java.awt.Color(153, 153, 153));
         lblInfoListarCheques2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel7.add(lblInfoListarCheques2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 190, 140));
+        pnlSeccionFacturacion.add(lblInfoListarCheques2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 190, 140));
 
         jLabel39.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel39.setForeground(new java.awt.Color(153, 153, 153));
         jLabel39.setText("Creado");
         jLabel39.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel7.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
+        pnlSeccionFacturacion.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
 
         jLabel41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CrearPedido.png"))); // NOI18N
         jLabel41.setText("jLabel22");
         jLabel41.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel7.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 210, 80));
+        pnlSeccionFacturacion.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 210, 80));
 
         jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/descargado.png"))); // NOI18N
         jLabel42.setText("jLabel22");
         jLabel42.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel7.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 210, 80));
+        pnlSeccionFacturacion.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 210, 80));
 
         jLabel52.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel52.setForeground(new java.awt.Color(153, 153, 153));
         jLabel52.setText("Descargado");
         jLabel52.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel7.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, -1, -1));
+        pnlSeccionFacturacion.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, -1, -1));
 
         lblInfoCreados2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblInfoCreados2.setForeground(new java.awt.Color(153, 153, 153));
         lblInfoCreados2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel7.add(lblInfoCreados2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 190, 140));
+        pnlSeccionFacturacion.add(lblInfoCreados2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 190, 140));
 
         lblInfoSinPledeclarar2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblInfoSinPledeclarar2.setForeground(new java.awt.Color(153, 153, 153));
         lblInfoSinPledeclarar2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel7.add(lblInfoSinPledeclarar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 190, 140));
+        pnlSeccionFacturacion.add(lblInfoSinPledeclarar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 190, 140));
 
         jLabel53.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel53.setForeground(new java.awt.Color(153, 153, 153));
         jLabel53.setText("Cargado y Verificado");
         jLabel53.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel7.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, -1, -1));
+        pnlSeccionFacturacion.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, -1, -1));
 
         jLabel54.setIcon(new javax.swing.ImageIcon(getClass().getResource("/CargadoVerificado.png"))); // NOI18N
         jLabel54.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel7.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, 210, 80));
+        pnlSeccionFacturacion.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, 210, 80));
 
         lblInfoPendiente2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblInfoPendiente2.setForeground(new java.awt.Color(153, 153, 153));
         lblInfoPendiente2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel7.add(lblInfoPendiente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 270, 190, 180));
+        pnlSeccionFacturacion.add(lblInfoPendiente2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 270, 190, 180));
 
         jLabel55.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel55.setForeground(new java.awt.Color(153, 153, 153));
         jLabel55.setText("Revisado por Sistema");
         jLabel55.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel7.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 220, -1, -1));
+        pnlSeccionFacturacion.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 220, -1, -1));
 
         jLabel56.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RevisadoSistemaT.png"))); // NOI18N
         jLabel56.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel7.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 130, 210, 80));
+        pnlSeccionFacturacion.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 130, 210, 80));
 
         lblTCargadoVerificado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
         lblTCargadoVerificado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1231,7 +1287,7 @@ public class Inicio extends javax.swing.JFrame {
                 lblTCargadoVerificadoMouseClicked(evt);
             }
         });
-        jPanel7.add(lblTCargadoVerificado, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 230, 380));
+        pnlSeccionFacturacion.add(lblTCargadoVerificado, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 230, 380));
 
         lblTCreado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
         lblTCreado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1240,7 +1296,7 @@ public class Inicio extends javax.swing.JFrame {
                 lblTCreadoMouseClicked(evt);
             }
         });
-        jPanel7.add(lblTCreado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 230, 380));
+        pnlSeccionFacturacion.add(lblTCreado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 230, 380));
 
         lblTDescargado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
         lblTDescargado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1249,7 +1305,7 @@ public class Inicio extends javax.swing.JFrame {
                 lblTDescargadoMouseClicked(evt);
             }
         });
-        jPanel7.add(lblTDescargado, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 230, 380));
+        pnlSeccionFacturacion.add(lblTDescargado, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 230, 380));
 
         lblTRevisadoSistema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
         lblTRevisadoSistema.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1258,7 +1314,7 @@ public class Inicio extends javax.swing.JFrame {
                 lblTRevisadoSistemaMouseClicked(evt);
             }
         });
-        jPanel7.add(lblTRevisadoSistema, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 110, 230, 380));
+        pnlSeccionFacturacion.add(lblTRevisadoSistema, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 110, 230, 380));
 
         lblSiguienteT.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblSiguienteT.setForeground(new java.awt.Color(153, 153, 153));
@@ -1269,96 +1325,96 @@ public class Inicio extends javax.swing.JFrame {
                 lblSiguienteTMouseClicked(evt);
             }
         });
-        jPanel7.add(lblSiguienteT, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 590, -1, -1));
+        pnlSeccionFacturacion.add(lblSiguienteT, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 590, -1, -1));
 
-        pnlCheques4.setBackground(new java.awt.Color(255, 255, 255));
-        pnlCheques4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlCheques4.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        pnlTituloSeccionFacturacion.setBackground(new java.awt.Color(255, 255, 255));
+        pnlTituloSeccionFacturacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlTituloSeccionFacturacion.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                pnlCheques4MouseMoved(evt);
+                pnlTituloSeccionFacturacionMouseMoved(evt);
             }
         });
-        pnlCheques4.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlTituloSeccionFacturacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pnlCheques4MouseClicked(evt);
+                pnlTituloSeccionFacturacionMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                pnlCheques4MouseExited(evt);
+                pnlTituloSeccionFacturacionMouseExited(evt);
             }
         });
 
         jLabel61.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel61.setIcon(new javax.swing.ImageIcon(getClass().getResource("/traslados.png"))); // NOI18N
-        jLabel61.setText("Traslados");
+        jLabel61.setText("Facturación");
         jLabel61.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel62.setText("jLabel20");
 
-        javax.swing.GroupLayout pnlCheques4Layout = new javax.swing.GroupLayout(pnlCheques4);
-        pnlCheques4.setLayout(pnlCheques4Layout);
-        pnlCheques4Layout.setHorizontalGroup(
-            pnlCheques4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCheques4Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlTituloSeccionFacturacionLayout = new javax.swing.GroupLayout(pnlTituloSeccionFacturacion);
+        pnlTituloSeccionFacturacion.setLayout(pnlTituloSeccionFacturacionLayout);
+        pnlTituloSeccionFacturacionLayout.setHorizontalGroup(
+            pnlTituloSeccionFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTituloSeccionFacturacionLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlCheques4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlTituloSeccionFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel61, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
                     .addComponent(jSeparator7)))
-            .addGroup(pnlCheques4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlCheques4Layout.createSequentialGroup()
+            .addGroup(pnlTituloSeccionFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlTituloSeccionFacturacionLayout.createSequentialGroup()
                     .addGap(0, 130, Short.MAX_VALUE)
                     .addComponent(jLabel62, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 130, Short.MAX_VALUE)))
         );
-        pnlCheques4Layout.setVerticalGroup(
-            pnlCheques4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCheques4Layout.createSequentialGroup()
+        pnlTituloSeccionFacturacionLayout.setVerticalGroup(
+            pnlTituloSeccionFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTituloSeccionFacturacionLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel61, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                 .addGap(2, 2, 2)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(pnlCheques4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnlCheques4Layout.createSequentialGroup()
+            .addGroup(pnlTituloSeccionFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlTituloSeccionFacturacionLayout.createSequentialGroup()
                     .addGap(0, 30, Short.MAX_VALUE)
                     .addComponent(jLabel62, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 30, Short.MAX_VALUE)))
         );
 
-        jPanel7.add(pnlCheques4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 60));
+        pnlSeccionFacturacion.add(pnlTituloSeccionFacturacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 60));
 
-        tpnlContenedor.addTab("tab7", jPanel7);
+        tpnlContenedor.addTab("tab7", pnlSeccionFacturacion);
 
-        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlSeccionSalir.setBackground(new java.awt.Color(255, 255, 255));
+        pnlSeccionSalir.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel57.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RevisionFisica.png"))); // NOI18N
         jLabel57.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel9.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 210, 80));
+        pnlSeccionSalir.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 210, 80));
 
         jLabel58.setIcon(new javax.swing.ImageIcon(getClass().getResource("/entregado.png"))); // NOI18N
         jLabel58.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel9.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 210, 80));
+        pnlSeccionSalir.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 210, 80));
 
         jLabel59.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel59.setForeground(new java.awt.Color(153, 153, 153));
         jLabel59.setText("Revision Fisica");
         jLabel59.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel9.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
+        pnlSeccionSalir.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
 
         jLabel60.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel60.setForeground(new java.awt.Color(153, 153, 153));
         jLabel60.setText("Entregado");
         jLabel60.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel9.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, -1));
+        pnlSeccionSalir.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, -1));
 
         lblInfoTRevisonFisica.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblInfoTRevisonFisica.setForeground(new java.awt.Color(153, 153, 153));
         lblInfoTRevisonFisica.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel9.add(lblInfoTRevisonFisica, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 190, 140));
+        pnlSeccionSalir.add(lblInfoTRevisonFisica, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 190, 140));
 
         lblInfoTEntregado.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblInfoTEntregado.setForeground(new java.awt.Color(153, 153, 153));
         lblInfoTEntregado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel9.add(lblInfoTEntregado, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 190, 180));
+        pnlSeccionSalir.add(lblInfoTEntregado, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 190, 180));
 
         lblTEntregado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
         lblTEntregado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1367,7 +1423,7 @@ public class Inicio extends javax.swing.JFrame {
                 lblTEntregadoMouseClicked(evt);
             }
         });
-        jPanel9.add(lblTEntregado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 230, 380));
+        pnlSeccionSalir.add(lblTEntregado, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 230, 380));
 
         lblTRevisionFisica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
         lblTRevisionFisica.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1376,7 +1432,7 @@ public class Inicio extends javax.swing.JFrame {
                 lblTRevisionFisicaMouseClicked(evt);
             }
         });
-        jPanel9.add(lblTRevisionFisica, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 230, 380));
+        pnlSeccionSalir.add(lblTRevisionFisica, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 230, 380));
 
         lblAtrasT.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblAtrasT.setForeground(new java.awt.Color(153, 153, 153));
@@ -1387,9 +1443,9 @@ public class Inicio extends javax.swing.JFrame {
                 lblAtrasTMouseClicked(evt);
             }
         });
-        jPanel9.add(lblAtrasT, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 590, -1, -1));
+        pnlSeccionSalir.add(lblAtrasT, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 590, -1, -1));
 
-        tpnlContenedor.addTab("tab8", jPanel9);
+        tpnlContenedor.addTab("tab8", pnlSeccionSalir);
 
         pnlFondo.add(tpnlContenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 970, 650));
         tpnlContenedor.getAccessibleContext().setAccessibleDescription("");
@@ -1413,82 +1469,82 @@ public class Inicio extends javax.swing.JFrame {
 
     }//GEN-LAST:event_pnlInicioMouseExited
 
-    private void pnlListaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlListaProductosMouseClicked
+    private void pnlUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlUsuariosMouseClicked
         tpnlContenedor.setSelectedIndex(1);
-    }//GEN-LAST:event_pnlListaProductosMouseClicked
+    }//GEN-LAST:event_pnlUsuariosMouseClicked
 
-    private void pnlListaProductosMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlListaProductosMouseMoved
-        pnlListaProductos.setBackground(new Color(166, 173, 217));
-    }//GEN-LAST:event_pnlListaProductosMouseMoved
+    private void pnlUsuariosMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlUsuariosMouseMoved
+        pnlUsuarios.setBackground(new Color(166, 173, 217));
+    }//GEN-LAST:event_pnlUsuariosMouseMoved
 
-    private void pnlListaProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlListaProductosMouseExited
-        pnlListaProductos.setBackground(new Color(129, 164, 220));
-    }//GEN-LAST:event_pnlListaProductosMouseExited
+    private void pnlUsuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlUsuariosMouseExited
+        pnlUsuarios.setBackground(new Color(129, 164, 220));
+    }//GEN-LAST:event_pnlUsuariosMouseExited
 
-    private void pnlListaAdministradoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlListaAdministradoresMouseClicked
+    private void pnlInventarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlInventarioMouseClicked
         tpnlContenedor.setSelectedIndex(2);
-    }//GEN-LAST:event_pnlListaAdministradoresMouseClicked
+    }//GEN-LAST:event_pnlInventarioMouseClicked
 
-    private void pnlListaAdministradoresMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlListaAdministradoresMouseMoved
-        pnlListaAdministradores.setBackground(new Color(166, 173, 217));
-    }//GEN-LAST:event_pnlListaAdministradoresMouseMoved
+    private void pnlInventarioMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlInventarioMouseMoved
+        pnlInventario.setBackground(new Color(166, 173, 217));
+    }//GEN-LAST:event_pnlInventarioMouseMoved
 
-    private void pnlListaAdministradoresMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlListaAdministradoresMouseExited
-        pnlListaAdministradores.setBackground(new Color(129, 164, 220));
-    }//GEN-LAST:event_pnlListaAdministradoresMouseExited
+    private void pnlInventarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlInventarioMouseExited
+        pnlInventario.setBackground(new Color(129, 164, 220));
+    }//GEN-LAST:event_pnlInventarioMouseExited
 
     private void lblGerenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGerenteMouseClicked
    
 
     }//GEN-LAST:event_lblGerenteMouseClicked
 
-    private void pnlListaProductos1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlListaProductos1MouseMoved
+    private void pnlTituloSeccionUsuarioMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTituloSeccionUsuarioMouseMoved
         pnlInicio.setBackground(new Color(166, 173, 217));
-    }//GEN-LAST:event_pnlListaProductos1MouseMoved
+    }//GEN-LAST:event_pnlTituloSeccionUsuarioMouseMoved
 
-    private void pnlListaProductos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlListaProductos1MouseClicked
+    private void pnlTituloSeccionUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTituloSeccionUsuarioMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_pnlListaProductos1MouseClicked
+    }//GEN-LAST:event_pnlTituloSeccionUsuarioMouseClicked
 
-    private void pnlListaProductos1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlListaProductos1MouseExited
+    private void pnlTituloSeccionUsuarioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTituloSeccionUsuarioMouseExited
         pnlInicio.setBackground(new Color(129, 164, 220));
-    }//GEN-LAST:event_pnlListaProductos1MouseExited
+    }//GEN-LAST:event_pnlTituloSeccionUsuarioMouseExited
 
-    private void pnlListaAdministradores1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlListaAdministradores1MouseMoved
+    private void pnlTituloSeccionInventariosMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTituloSeccionInventariosMouseMoved
         // TODO add your handling code here:
-    }//GEN-LAST:event_pnlListaAdministradores1MouseMoved
+    }//GEN-LAST:event_pnlTituloSeccionInventariosMouseMoved
 
-    private void pnlListaAdministradores1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlListaAdministradores1MouseClicked
+    private void pnlTituloSeccionInventariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTituloSeccionInventariosMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_pnlListaAdministradores1MouseClicked
+    }//GEN-LAST:event_pnlTituloSeccionInventariosMouseClicked
 
-    private void pnlListaAdministradores1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlListaAdministradores1MouseExited
+    private void pnlTituloSeccionInventariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTituloSeccionInventariosMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_pnlListaAdministradores1MouseExited
+    }//GEN-LAST:event_pnlTituloSeccionInventariosMouseExited
 
-    private void pnlCheques1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCheques1MouseMoved
+    private void pnlTituloSeccionClientesMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTituloSeccionClientesMouseMoved
 
-    }//GEN-LAST:event_pnlCheques1MouseMoved
+    }//GEN-LAST:event_pnlTituloSeccionClientesMouseMoved
 
-    private void pnlCheques1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCheques1MouseClicked
+    private void pnlTituloSeccionClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTituloSeccionClientesMouseClicked
 
-    }//GEN-LAST:event_pnlCheques1MouseClicked
+    }//GEN-LAST:event_pnlTituloSeccionClientesMouseClicked
 
-    private void pnlCheques1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCheques1MouseExited
+    private void pnlTituloSeccionClientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTituloSeccionClientesMouseExited
 
-    }//GEN-LAST:event_pnlCheques1MouseExited
+    }//GEN-LAST:event_pnlTituloSeccionClientesMouseExited
 
-    private void pnlcheMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlcheMouseClicked
+    private void pnlClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlClientesMouseClicked
         tpnlContenedor.setSelectedIndex(3);
-    }//GEN-LAST:event_pnlcheMouseClicked
+    }//GEN-LAST:event_pnlClientesMouseClicked
 
-    private void pnlcheMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlcheMouseMoved
-        pnlche.setBackground(new Color(166, 173, 217));
-    }//GEN-LAST:event_pnlcheMouseMoved
+    private void pnlClientesMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlClientesMouseMoved
+        pnlClientes.setBackground(new Color(166, 173, 217));
+    }//GEN-LAST:event_pnlClientesMouseMoved
 
-    private void pnlcheMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlcheMouseExited
-        pnlche.setBackground(new Color(129, 164, 220));
-    }//GEN-LAST:event_pnlcheMouseExited
+    private void pnlClientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlClientesMouseExited
+        pnlClientes.setBackground(new Color(129, 164, 220));
+    }//GEN-LAST:event_pnlClientesMouseExited
 
     private void lblCreadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCreadosMouseClicked
 //        estadoSet = 1;
@@ -1508,17 +1564,17 @@ public class Inicio extends javax.swing.JFrame {
 //        tpnlContenedor.setSelectedIndex(5);
     }//GEN-LAST:event_lblSinPredeclararMouseClicked
 
-    private void pnlCheques2MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCheques2MouseMoved
+    private void pnlTituloSeccionServiciosMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTituloSeccionServiciosMouseMoved
         // TODO add your handling code here:
-    }//GEN-LAST:event_pnlCheques2MouseMoved
+    }//GEN-LAST:event_pnlTituloSeccionServiciosMouseMoved
 
-    private void pnlCheques2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCheques2MouseClicked
+    private void pnlTituloSeccionServiciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTituloSeccionServiciosMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_pnlCheques2MouseClicked
+    }//GEN-LAST:event_pnlTituloSeccionServiciosMouseClicked
 
-    private void pnlCheques2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCheques2MouseExited
+    private void pnlTituloSeccionServiciosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTituloSeccionServiciosMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_pnlCheques2MouseExited
+    }//GEN-LAST:event_pnlTituloSeccionServiciosMouseExited
 
     private void lblProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblProveedoresMouseClicked
 //        ListarChequesEstado.tipo=1;
@@ -1571,17 +1627,17 @@ public class Inicio extends javax.swing.JFrame {
       tpnlContenedor.setSelectedIndex(3);
     }//GEN-LAST:event_lblAtrasMouseClicked
 
-    private void pnlCheques3MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCheques3MouseMoved
+    private void pnlTituloSeccionProveedoresMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTituloSeccionProveedoresMouseMoved
         // TODO add your handling code here:
-    }//GEN-LAST:event_pnlCheques3MouseMoved
+    }//GEN-LAST:event_pnlTituloSeccionProveedoresMouseMoved
 
-    private void pnlCheques3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCheques3MouseClicked
+    private void pnlTituloSeccionProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTituloSeccionProveedoresMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_pnlCheques3MouseClicked
+    }//GEN-LAST:event_pnlTituloSeccionProveedoresMouseClicked
 
-    private void pnlCheques3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCheques3MouseExited
+    private void pnlTituloSeccionProveedoresMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTituloSeccionProveedoresMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_pnlCheques3MouseExited
+    }//GEN-LAST:event_pnlTituloSeccionProveedoresMouseExited
 
     private void lblCobradoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCobradoMouseClicked
 //        estadoSet = 4;
@@ -1621,31 +1677,31 @@ public class Inicio extends javax.swing.JFrame {
         tpnlContenedor.setSelectedIndex(6);
     }//GEN-LAST:event_lblAtrasTMouseClicked
 
-    private void pnlCheques4MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCheques4MouseMoved
+    private void pnlTituloSeccionFacturacionMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTituloSeccionFacturacionMouseMoved
         // TODO add your handling code here:
-    }//GEN-LAST:event_pnlCheques4MouseMoved
+    }//GEN-LAST:event_pnlTituloSeccionFacturacionMouseMoved
 
-    private void pnlCheques4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCheques4MouseClicked
+    private void pnlTituloSeccionFacturacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTituloSeccionFacturacionMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_pnlCheques4MouseClicked
+    }//GEN-LAST:event_pnlTituloSeccionFacturacionMouseClicked
 
-    private void pnlCheques4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlCheques4MouseExited
+    private void pnlTituloSeccionFacturacionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTituloSeccionFacturacionMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_pnlCheques4MouseExited
+    }//GEN-LAST:event_pnlTituloSeccionFacturacionMouseExited
 
-    private void pnlLoginMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLoginMouseMoved
-        pnlLogin.setBackground(new Color(166, 173, 217));
-    }//GEN-LAST:event_pnlLoginMouseMoved
+    private void pnlSalirLoginMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlSalirLoginMouseMoved
+        pnlSalirLogin.setBackground(new Color(166, 173, 217));
+    }//GEN-LAST:event_pnlSalirLoginMouseMoved
 
-    private void pnlLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLoginMouseClicked
+    private void pnlSalirLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlSalirLoginMouseClicked
         Login l = new Login();
         l.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_pnlLoginMouseClicked
+    }//GEN-LAST:event_pnlSalirLoginMouseClicked
 
-    private void pnlLoginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlLoginMouseExited
-     pnlLogin.setBackground(new Color(129, 164, 220));
-    }//GEN-LAST:event_pnlLoginMouseExited
+    private void pnlSalirLoginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlSalirLoginMouseExited
+     pnlSalirLogin.setBackground(new Color(129, 164, 220));
+    }//GEN-LAST:event_pnlSalirLoginMouseExited
 
     private void pnlProveedoresMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlProveedoresMouseExited
        pnlProveedores.setBackground(new Color(129, 164, 220));
@@ -1656,7 +1712,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_pnlProveedoresMouseMoved
 
     private void pnlProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlProveedoresMouseClicked
-       
+     tpnlContenedor.setSelectedIndex(4);   
     }//GEN-LAST:event_pnlProveedoresMouseClicked
 
     private void lblAdministradorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAdministradorMouseClicked
@@ -1666,6 +1722,14 @@ public class Inicio extends javax.swing.JFrame {
     private void lblVendedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVendedorMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_lblVendedorMouseClicked
+
+    private void lblConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblConsultaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblConsultaMouseClicked
+
+    private void lblIngresoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIngresoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblIngresoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1767,15 +1831,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -1788,10 +1844,13 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel lblAtras;
     private javax.swing.JLabel lblAtrasT;
     private javax.swing.JLabel lblCobrado;
+    private javax.swing.JLabel lblConsulta;
     private javax.swing.JLabel lblCreados;
     private javax.swing.JLabel lblGerente;
     private javax.swing.JLabel lblImgAdmin;
+    private javax.swing.JLabel lblImgConsulta;
     private javax.swing.JLabel lblImgGerente;
+    private javax.swing.JLabel lblImgIngreso;
     private javax.swing.JLabel lblImgVendedor;
     private javax.swing.JLabel lblInfoAdmin;
     private javax.swing.JLabel lblInfoAnulados;
@@ -1813,6 +1872,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel lblInfoTRevisadoSistema;
     private javax.swing.JLabel lblInfoTRevisonFisica;
     private javax.swing.JLabel lblInfoVendedor;
+    private javax.swing.JLabel lblIngreso;
     private javax.swing.JLabel lblListaCheques;
     private javax.swing.JLabel lblPagados;
     private javax.swing.JLabel lblPendientePago;
@@ -1829,24 +1889,36 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel lblTRevisadoSistema;
     private javax.swing.JLabel lblTRevisionFisica;
     private javax.swing.JLabel lblTituloAdmin;
+    private javax.swing.JLabel lblTituloConsulta;
     private javax.swing.JLabel lblTituloGerente;
+    private javax.swing.JLabel lblTituloIngreso;
     private javax.swing.JLabel lblTituloVendedor;
     private javax.swing.JLabel lblVendedor;
+    private javax.swing.JLabel lblinfoConsulta;
     private javax.swing.JLabel lblinfoGerente;
-    private javax.swing.JPanel pnlCheques1;
-    private javax.swing.JPanel pnlCheques2;
-    private javax.swing.JPanel pnlCheques3;
-    private javax.swing.JPanel pnlCheques4;
+    private javax.swing.JLabel lblinfoIngreso;
+    private javax.swing.JPanel pnlClientes;
     private javax.swing.JPanel pnlFondo;
     private javax.swing.JPanel pnlInicio;
+    private javax.swing.JPanel pnlInventario;
     private javax.swing.JPanel pnlLeft;
-    private javax.swing.JPanel pnlListaAdministradores;
-    private javax.swing.JPanel pnlListaAdministradores1;
-    private javax.swing.JPanel pnlListaProductos;
-    private javax.swing.JPanel pnlListaProductos1;
-    private javax.swing.JPanel pnlLogin;
     private javax.swing.JPanel pnlProveedores;
-    private javax.swing.JPanel pnlche;
+    private javax.swing.JPanel pnlSalirLogin;
+    private javax.swing.JPanel pnlSeccionClientes;
+    private javax.swing.JPanel pnlSeccionFacturacion;
+    private javax.swing.JPanel pnlSeccionInicio;
+    private javax.swing.JPanel pnlSeccionInventario;
+    private javax.swing.JPanel pnlSeccionProveedores;
+    private javax.swing.JPanel pnlSeccionSalir;
+    private javax.swing.JPanel pnlSeccionServicios;
+    private javax.swing.JPanel pnlSeccionUsuario;
+    private javax.swing.JPanel pnlTituloSeccionClientes;
+    private javax.swing.JPanel pnlTituloSeccionFacturacion;
+    private javax.swing.JPanel pnlTituloSeccionInventarios;
+    private javax.swing.JPanel pnlTituloSeccionProveedores;
+    private javax.swing.JPanel pnlTituloSeccionServicios;
+    private javax.swing.JPanel pnlTituloSeccionUsuario;
+    private javax.swing.JPanel pnlUsuarios;
     private javax.swing.JTabbedPane tpnlContenedor;
     // End of variables declaration//GEN-END:variables
 }

@@ -19,9 +19,6 @@
             <artifactId>timingframework</artifactId>
             <version>1.0</version>
         </dependency>
-
-
-      
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>org.eclipse.persistence.core</artifactId>
