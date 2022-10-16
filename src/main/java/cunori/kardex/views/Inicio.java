@@ -1326,11 +1326,16 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_pnlProveedoresMouseMoved
 
     private void lblConsultar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblConsultar1MouseClicked
-        // TODO add your handling code here:
+        ListarClientes lc = new ListarClientes();
+        lc.setVisible(true);
+        this.dispose();
+                
     }//GEN-LAST:event_lblConsultar1MouseClicked
 
     private void lblConsultar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblConsultar2MouseClicked
-        // TODO add your handling code here:
+        ListarProveedores lp = new ListarProveedores();
+        lp.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_lblConsultar2MouseClicked
 
     private void lblVenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVenderMouseClicked
