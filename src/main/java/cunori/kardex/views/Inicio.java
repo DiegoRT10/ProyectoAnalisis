@@ -70,7 +70,6 @@ public class Inicio extends javax.swing.JFrame {
         
 
 //seteando valores a labels inicio productos
-        lblinfoGerente.setText(infoListarProducto);
 
 
         //seteando valores a labels inicio cheques 
@@ -115,10 +114,12 @@ public class Inicio extends javax.swing.JFrame {
         imageAvatar1 = new com.raven.swing.ImageAvatar();
         pnlClientes = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        pnlProveedores = new javax.swing.JPanel();
+        pnlFacturacion = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         pnlSalirLogin = new javax.swing.JPanel();
         jLabel64 = new javax.swing.JLabel();
+        pnlProveedores = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
         tpnlContenedor = new javax.swing.JTabbedPane();
         pnlSeccionInicio = new javax.swing.JPanel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -127,19 +128,11 @@ public class Inicio extends javax.swing.JFrame {
         pnlSeccionUsuario = new javax.swing.JPanel();
         pnlTituloSeccionUsuario = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        lblinfoGerente = new javax.swing.JLabel();
-        lblImgGerente = new javax.swing.JLabel();
-        lblTituloGerente = new javax.swing.JLabel();
-        lblGerente = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        lblTituloAdmin = new javax.swing.JLabel();
-        lblImgAdmin = new javax.swing.JLabel();
-        lblInfoAdmin = new javax.swing.JLabel();
-        lblAdministrador = new javax.swing.JLabel();
-        lblInfoVendedor = new javax.swing.JLabel();
-        lblTituloVendedor = new javax.swing.JLabel();
-        lblImgVendedor = new javax.swing.JLabel();
-        lblVendedor = new javax.swing.JLabel();
+        lblTituloConsultar = new javax.swing.JLabel();
+        lblImgConsultar = new javax.swing.JLabel();
+        lblInfoConsultar = new javax.swing.JLabel();
+        lblConsultar = new javax.swing.JLabel();
         pnlSeccionInventario = new javax.swing.JPanel();
         jSeparator3 = new javax.swing.JSeparator();
         pnlTituloSeccionInventarios = new javax.swing.JPanel();
@@ -291,8 +284,8 @@ public class Inicio extends javax.swing.JFrame {
             pnlInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlInicioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         pnlInicioLayout.setVerticalGroup(
             pnlInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,7 +295,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        pnlLeft.add(pnlInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 260, 60));
+        pnlLeft.add(pnlInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 270, 60));
 
         pnlUsuarios.setBackground(new java.awt.Color(129, 164, 220));
         pnlUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -322,7 +315,7 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/administradores.png"))); // NOI18N
-        jLabel5.setText("  Usuario");
+        jLabel5.setText(" Usuarios");
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout pnlUsuariosLayout = new javax.swing.GroupLayout(pnlUsuarios);
@@ -331,8 +324,8 @@ public class Inicio extends javax.swing.JFrame {
             pnlUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlUsuariosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         pnlUsuariosLayout.setVerticalGroup(
             pnlUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -342,7 +335,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        pnlLeft.add(pnlUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 260, 60));
+        pnlLeft.add(pnlUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 270, 60));
 
         pnlInventario.setBackground(new java.awt.Color(129, 164, 220));
         pnlInventario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -362,7 +355,7 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ListaProductos.png"))); // NOI18N
-        jLabel6.setText(" Inventario");
+        jLabel6.setText("  Inventario");
         jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout pnlInventarioLayout = new javax.swing.GroupLayout(pnlInventario);
@@ -371,7 +364,8 @@ public class Inicio extends javax.swing.JFrame {
             pnlInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlInventarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         pnlInventarioLayout.setVerticalGroup(
             pnlInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,7 +375,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        pnlLeft.add(pnlInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 260, 60));
+        pnlLeft.add(pnlInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 270, 60));
 
         imageAvatar1.setGradientColor1(new java.awt.Color(51, 51, 255));
         pnlLeft.add(imageAvatar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 140, 120));
@@ -410,58 +404,59 @@ public class Inicio extends javax.swing.JFrame {
         pnlClientes.setLayout(pnlClientesLayout);
         pnlClientesLayout.setHorizontalGroup(
             pnlClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlClientesLayout.createSequentialGroup()
+            .addGroup(pnlClientesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         pnlClientesLayout.setVerticalGroup(
             pnlClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlClientesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pnlLeft.add(pnlClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 260, 60));
+        pnlLeft.add(pnlClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 270, 50));
 
-        pnlProveedores.setBackground(new java.awt.Color(129, 164, 220));
-        pnlProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlProveedores.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        pnlFacturacion.setBackground(new java.awt.Color(129, 164, 220));
+        pnlFacturacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlFacturacion.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
-                pnlProveedoresMouseMoved(evt);
+                pnlFacturacionMouseMoved(evt);
             }
         });
-        pnlProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
+        pnlFacturacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pnlProveedoresMouseClicked(evt);
+                pnlFacturacionMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                pnlProveedoresMouseExited(evt);
+                pnlFacturacionMouseExited(evt);
             }
         });
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/administradores.png"))); // NOI18N
-        jLabel11.setText("  Proveedores");
+        jLabel11.setText(" Facturación");
 
-        javax.swing.GroupLayout pnlProveedoresLayout = new javax.swing.GroupLayout(pnlProveedores);
-        pnlProveedores.setLayout(pnlProveedoresLayout);
-        pnlProveedoresLayout.setHorizontalGroup(
-            pnlProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlProveedoresLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlFacturacionLayout = new javax.swing.GroupLayout(pnlFacturacion);
+        pnlFacturacion.setLayout(pnlFacturacionLayout);
+        pnlFacturacionLayout.setHorizontalGroup(
+            pnlFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFacturacionLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel11)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
-        pnlProveedoresLayout.setVerticalGroup(
-            pnlProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlProveedoresLayout.createSequentialGroup()
+        pnlFacturacionLayout.setVerticalGroup(
+            pnlFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFacturacionLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        pnlLeft.add(pnlProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 260, 50));
+        pnlLeft.add(pnlFacturacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 270, 50));
 
         pnlSalirLogin.setBackground(new java.awt.Color(129, 164, 220));
         pnlSalirLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -502,6 +497,45 @@ public class Inicio extends javax.swing.JFrame {
         );
 
         pnlLeft.add(pnlSalirLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 650, 260, 60));
+
+        pnlProveedores.setBackground(new java.awt.Color(129, 164, 220));
+        pnlProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlProveedores.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                pnlProveedoresMouseMoved(evt);
+            }
+        });
+        pnlProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlProveedoresMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                pnlProveedoresMouseExited(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ListaProductos.png"))); // NOI18N
+        jLabel8.setText("  Proveedores");
+
+        javax.swing.GroupLayout pnlProveedoresLayout = new javax.swing.GroupLayout(pnlProveedores);
+        pnlProveedores.setLayout(pnlProveedoresLayout);
+        pnlProveedoresLayout.setHorizontalGroup(
+            pnlProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlProveedoresLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(55, Short.MAX_VALUE))
+        );
+        pnlProveedoresLayout.setVerticalGroup(
+            pnlProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlProveedoresLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pnlLeft.add(pnlProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 270, 50));
 
         pnlFondo.add(pnlLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 270, 710));
 
@@ -565,79 +599,31 @@ public class Inicio extends javax.swing.JFrame {
         );
 
         pnlSeccionUsuario.add(pnlTituloSeccionUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 60));
-
-        lblinfoGerente.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblinfoGerente.setForeground(new java.awt.Color(153, 153, 153));
-        lblinfoGerente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionUsuario.add(lblinfoGerente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 260, 150));
-
-        lblImgGerente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/listar.png"))); // NOI18N
-        lblImgGerente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionUsuario.add(lblImgGerente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 290, 140));
-
-        lblTituloGerente.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblTituloGerente.setForeground(new java.awt.Color(153, 153, 153));
-        lblTituloGerente.setText("Gerente");
-        lblTituloGerente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionUsuario.add(lblTituloGerente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
-
-        lblGerente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
-        lblGerente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblGerente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblGerenteMouseClicked(evt);
-            }
-        });
-        pnlSeccionUsuario.add(lblGerente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 122, 316, 371));
         pnlSeccionUsuario.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 200, -1));
 
-        lblTituloAdmin.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblTituloAdmin.setForeground(new java.awt.Color(153, 153, 153));
-        lblTituloAdmin.setText("Administrador");
-        lblTituloAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionUsuario.add(lblTituloAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
+        lblTituloConsultar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblTituloConsultar.setForeground(new java.awt.Color(153, 153, 153));
+        lblTituloConsultar.setText("Consultar");
+        lblTituloConsultar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionUsuario.add(lblTituloConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
 
-        lblImgAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/listar.png"))); // NOI18N
-        lblImgAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionUsuario.add(lblImgAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 290, 140));
+        lblImgConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/listar.png"))); // NOI18N
+        lblImgConsultar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionUsuario.add(lblImgConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 290, 140));
 
-        lblInfoAdmin.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblInfoAdmin.setForeground(new java.awt.Color(153, 153, 153));
-        lblInfoAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionUsuario.add(lblInfoAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 260, 150));
+        lblInfoConsultar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblInfoConsultar.setForeground(new java.awt.Color(153, 153, 153));
+        lblInfoConsultar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionUsuario.add(lblInfoConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 260, 150));
 
-        lblAdministrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
-        lblAdministrador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblAdministrador.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
+        lblConsultar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblConsultar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblAdministradorMouseClicked(evt);
+                lblConsultarMouseClicked(evt);
             }
         });
-        pnlSeccionUsuario.add(lblAdministrador, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 316, 371));
-
-        lblInfoVendedor.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblInfoVendedor.setForeground(new java.awt.Color(153, 153, 153));
-        lblInfoVendedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionUsuario.add(lblInfoVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 320, 260, 150));
-
-        lblTituloVendedor.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblTituloVendedor.setForeground(new java.awt.Color(153, 153, 153));
-        lblTituloVendedor.setText("Vendedor");
-        lblTituloVendedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionUsuario.add(lblTituloVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 290, -1, -1));
-
-        lblImgVendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/listar.png"))); // NOI18N
-        lblImgVendedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionUsuario.add(lblImgVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 130, 290, 140));
-
-        lblVendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
-        lblVendedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblVendedor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblVendedorMouseClicked(evt);
-            }
-        });
-        pnlSeccionUsuario.add(lblVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 130, 316, 371));
+        pnlSeccionUsuario.add(lblConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 316, 371));
 
         tpnlContenedor.addTab("tab2", pnlSeccionUsuario);
 
@@ -1493,11 +1479,6 @@ public class Inicio extends javax.swing.JFrame {
         pnlInventario.setBackground(new Color(129, 164, 220));
     }//GEN-LAST:event_pnlInventarioMouseExited
 
-    private void lblGerenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGerenteMouseClicked
-   
-
-    }//GEN-LAST:event_lblGerenteMouseClicked
-
     private void pnlTituloSeccionUsuarioMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlTituloSeccionUsuarioMouseMoved
         pnlInicio.setBackground(new Color(166, 173, 217));
     }//GEN-LAST:event_pnlTituloSeccionUsuarioMouseMoved
@@ -1703,25 +1684,22 @@ public class Inicio extends javax.swing.JFrame {
      pnlSalirLogin.setBackground(new Color(129, 164, 220));
     }//GEN-LAST:event_pnlSalirLoginMouseExited
 
-    private void pnlProveedoresMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlProveedoresMouseExited
-       pnlProveedores.setBackground(new Color(129, 164, 220));
-    }//GEN-LAST:event_pnlProveedoresMouseExited
+    private void pnlFacturacionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlFacturacionMouseExited
+       pnlFacturacion.setBackground(new Color(129, 164, 220));
+    }//GEN-LAST:event_pnlFacturacionMouseExited
 
-    private void pnlProveedoresMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlProveedoresMouseMoved
-      pnlProveedores.setBackground(new Color(166, 173, 217));
-    }//GEN-LAST:event_pnlProveedoresMouseMoved
+    private void pnlFacturacionMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlFacturacionMouseMoved
+      pnlFacturacion.setBackground(new Color(166, 173, 217));
+    }//GEN-LAST:event_pnlFacturacionMouseMoved
 
-    private void pnlProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlProveedoresMouseClicked
-     tpnlContenedor.setSelectedIndex(4);   
-    }//GEN-LAST:event_pnlProveedoresMouseClicked
+    private void pnlFacturacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlFacturacionMouseClicked
+     tpnlContenedor.setSelectedIndex(6);   
+    }//GEN-LAST:event_pnlFacturacionMouseClicked
 
-    private void lblAdministradorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAdministradorMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblAdministradorMouseClicked
-
-    private void lblVendedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVendedorMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblVendedorMouseClicked
+    private void lblConsultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblConsultarMouseClicked
+     opcionesUsuarios opu = new opcionesUsuarios(this, true); 
+     opu.setVisible(true);
+    }//GEN-LAST:event_lblConsultarMouseClicked
 
     private void lblConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblConsultaMouseClicked
         // TODO add your handling code here:
@@ -1730,6 +1708,18 @@ public class Inicio extends javax.swing.JFrame {
     private void lblIngresoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIngresoMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_lblIngresoMouseClicked
+
+    private void pnlProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlProveedoresMouseClicked
+        tpnlContenedor.setSelectedIndex(4);
+    }//GEN-LAST:event_pnlProveedoresMouseClicked
+
+    private void pnlProveedoresMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlProveedoresMouseExited
+        pnlProveedores.setBackground(new Color(129, 164, 220));
+    }//GEN-LAST:event_pnlProveedoresMouseExited
+
+    private void pnlProveedoresMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlProveedoresMouseMoved
+        pnlProveedores.setBackground(new Color(166, 173, 217));
+    }//GEN-LAST:event_pnlProveedoresMouseMoved
 
     /**
      * @param args the command line arguments
@@ -1831,6 +1821,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -1839,22 +1830,19 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JLabel lblAdministrador;
     private javax.swing.JLabel lblAnulados;
     private javax.swing.JLabel lblAtras;
     private javax.swing.JLabel lblAtrasT;
     private javax.swing.JLabel lblCobrado;
     private javax.swing.JLabel lblConsulta;
+    private javax.swing.JLabel lblConsultar;
     private javax.swing.JLabel lblCreados;
-    private javax.swing.JLabel lblGerente;
-    private javax.swing.JLabel lblImgAdmin;
     private javax.swing.JLabel lblImgConsulta;
-    private javax.swing.JLabel lblImgGerente;
+    private javax.swing.JLabel lblImgConsultar;
     private javax.swing.JLabel lblImgIngreso;
-    private javax.swing.JLabel lblImgVendedor;
-    private javax.swing.JLabel lblInfoAdmin;
     private javax.swing.JLabel lblInfoAnulados;
     private javax.swing.JLabel lblInfoCobrado;
+    private javax.swing.JLabel lblInfoConsultar;
     private javax.swing.JLabel lblInfoCreados;
     private javax.swing.JLabel lblInfoCreados2;
     private javax.swing.JLabel lblInfoInicio;
@@ -1871,7 +1859,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel lblInfoTEntregado;
     private javax.swing.JLabel lblInfoTRevisadoSistema;
     private javax.swing.JLabel lblInfoTRevisonFisica;
-    private javax.swing.JLabel lblInfoVendedor;
     private javax.swing.JLabel lblIngreso;
     private javax.swing.JLabel lblListaCheques;
     private javax.swing.JLabel lblPagados;
@@ -1888,16 +1875,13 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel lblTEntregado;
     private javax.swing.JLabel lblTRevisadoSistema;
     private javax.swing.JLabel lblTRevisionFisica;
-    private javax.swing.JLabel lblTituloAdmin;
     private javax.swing.JLabel lblTituloConsulta;
-    private javax.swing.JLabel lblTituloGerente;
+    private javax.swing.JLabel lblTituloConsultar;
     private javax.swing.JLabel lblTituloIngreso;
-    private javax.swing.JLabel lblTituloVendedor;
-    private javax.swing.JLabel lblVendedor;
     private javax.swing.JLabel lblinfoConsulta;
-    private javax.swing.JLabel lblinfoGerente;
     private javax.swing.JLabel lblinfoIngreso;
     private javax.swing.JPanel pnlClientes;
+    private javax.swing.JPanel pnlFacturacion;
     private javax.swing.JPanel pnlFondo;
     private javax.swing.JPanel pnlInicio;
     private javax.swing.JPanel pnlInventario;
