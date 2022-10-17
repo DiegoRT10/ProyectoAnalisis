@@ -16,7 +16,7 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Diego Ramos
  */
-public class ListarClientes extends javax.swing.JFrame {
+public class ListarInventario extends javax.swing.JFrame {
 
    
     public static TableRowSorter<DefaultTableModel> sorter;
@@ -27,7 +27,7 @@ public class ListarClientes extends javax.swing.JFrame {
     /**
      * Creates new form ListarCreadosCheques
      */
-    public ListarClientes() {
+    public ListarInventario() {
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
@@ -56,8 +56,8 @@ public class ListarClientes extends javax.swing.JFrame {
         pnlLeft = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        btnCrear = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
+        btnCrear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,7 +65,7 @@ public class ListarClientes extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(931, 522));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Listado de Clientes");
+        jLabel1.setText("Inventario");
 
         txtBuscar.setBackground(new java.awt.Color(129, 164, 220));
         txtBuscar.setToolTipText("Filtrar \"ten en cuenta las mayusculas\"");
@@ -84,18 +84,18 @@ public class ListarClientes extends javax.swing.JFrame {
         tblListarUsuarios.setForeground(new java.awt.Color(0, 0, 0));
         tblListarUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "DPI", "NIT", "Nombre", "Apellidos", "Direccion", "Correo", "Telefono", "Rol"
+                "Código", "Nombre", "Categoría", "Marca", "Unidad", "Peso Neto", "Fecha de Ingreso", "Precio de Compra", "Precio de Venta", "Impuesto", "Cantidad"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -118,7 +118,7 @@ public class ListarClientes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 391, Short.MAX_VALUE)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -163,17 +163,6 @@ public class ListarClientes extends javax.swing.JFrame {
             }
         });
 
-        btnCrear.setBackground(new java.awt.Color(129, 164, 220));
-        btnCrear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AgregarCheque.png"))); // NOI18N
-        btnCrear.setToolTipText("Crear");
-        btnCrear.setBorder(null);
-        btnCrear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCrear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCrearActionPerformed(evt);
-            }
-        });
-
         btnEditar.setBackground(new java.awt.Color(129, 164, 220));
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/editarCheque.png"))); // NOI18N
         btnEditar.setToolTipText("Editar");
@@ -185,28 +174,41 @@ public class ListarClientes extends javax.swing.JFrame {
             }
         });
 
+        btnCrear.setBackground(new java.awt.Color(129, 164, 220));
+        btnCrear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AgregarCheque.png"))); // NOI18N
+        btnCrear.setToolTipText("Crear");
+        btnCrear.setBorder(null);
+        btnCrear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlLeftLayout = new javax.swing.GroupLayout(pnlLeft);
         pnlLeft.setLayout(pnlLeftLayout);
         pnlLeftLayout.setHorizontalGroup(
             pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlLeftLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEliminar))
+                    .addGroup(pnlLeftLayout.createSequentialGroup()
+                        .addComponent(btnEliminar)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnCrear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlLeftLayout.setVerticalGroup(
             pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLeftLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEliminar)
+                .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(btnEliminar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -241,20 +243,20 @@ public class ListarClientes extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtBuscarKeyReleased
 
-    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-    FormCliente fc = new FormCliente();
-        fc.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnCrearActionPerformed
-
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
 
         
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-      
+     
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+        //FormProducto fp = new FormProducto();
+        //fp.setVisible(true);
+        //this.dispose();
+    }//GEN-LAST:event_btnCrearActionPerformed
 
     
 
@@ -275,13 +277,13 @@ public class ListarClientes extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListarClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListarClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListarClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListarClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -319,7 +321,7 @@ public class ListarClientes extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListarClientes().setVisible(true);
+                new ListarInventario().setVisible(true);
             }
         });
     }
