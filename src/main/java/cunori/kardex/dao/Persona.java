@@ -6,15 +6,11 @@ package cunori.kardex.dao;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -27,52 +23,79 @@ import javax.persistence.Table;
     @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p"),
     @NamedQuery(name = "Persona.findById", query = "SELECT p FROM Persona p WHERE p.id = :id"),
     @NamedQuery(name = "Persona.findByDpi", query = "SELECT p FROM Persona p WHERE p.dpi = :dpi"),
+    @NamedQuery(name = "Persona.findByNit", query = "SELECT p FROM Persona p WHERE p.nit = :nit"),
     @NamedQuery(name = "Persona.findByNombre", query = "SELECT p FROM Persona p WHERE p.nombre = :nombre"),
     @NamedQuery(name = "Persona.findByApellidos", query = "SELECT p FROM Persona p WHERE p.apellidos = :apellidos"),
     @NamedQuery(name = "Persona.findByDireccion", query = "SELECT p FROM Persona p WHERE p.direccion = :direccion"),
     @NamedQuery(name = "Persona.findByCorreo", query = "SELECT p FROM Persona p WHERE p.correo = :correo"),
-    @NamedQuery(name = "Persona.findByTelefono", query = "SELECT p FROM Persona p WHERE p.telefono = :telefono")})
+    @NamedQuery(name = "Persona.findByTelefono", query = "SELECT p FROM Persona p WHERE p.telefono = :telefono"),
+    @NamedQuery(name = "Persona.findByUsuario", query = "SELECT p FROM Persona p WHERE p.usuario = :usuario"),
+    @NamedQuery(name = "Persona.findByContrasena", query = "SELECT p FROM Persona p WHERE p.contrasena = :contrasena"),
+    @NamedQuery(name = "Persona.findByRol", query = "SELECT p FROM Persona p WHERE p.rol = :rol")})
 public class Persona implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    private Integer id;
+    private String id;
+    @Basic(optional = false)
     @Column(name = "dpi")
     private String dpi;
+    @Basic(optional = false)
+    @Column(name = "nit")
+    private String nit;
+    @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
+    @Basic(optional = false)
     @Column(name = "apellidos")
     private String apellidos;
+    @Basic(optional = false)
     @Column(name = "direccion")
     private String direccion;
+    @Basic(optional = false)
     @Column(name = "correo")
     private String correo;
+    @Basic(optional = false)
     @Column(name = "telefono")
     private String telefono;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona")
-    private Cliente cliente;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona")
-    private Administrador administrador;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona")
-    private Vendedor vendedor;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona")
-    private Gerente gerente;
+    @Basic(optional = false)
+    @Column(name = "usuario")
+    private String usuario;
+    @Basic(optional = false)
+    @Column(name = "contrasena")
+    private String contrasena;
+    @Basic(optional = false)
+    @Column(name = "rol")
+    private int rol;
 
     public Persona() {
     }
 
-    public Persona(Integer id) {
+    public Persona(String id) {
         this.id = id;
     }
 
-    public Integer getId() {
+    public Persona(String id, String dpi, String nit, String nombre, String apellidos, String direccion, String correo, String telefono, String usuario, String contrasena, int rol) {
+        this.id = id;
+        this.dpi = dpi;
+        this.nit = nit;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.direccion = direccion;
+        this.correo = correo;
+        this.telefono = telefono;
+        this.usuario = usuario;
+        this.contrasena = contrasena;
+        this.rol = rol;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -82,6 +105,14 @@ public class Persona implements Serializable {
 
     public void setDpi(String dpi) {
         this.dpi = dpi;
+    }
+
+    public String getNit() {
+        return nit;
+    }
+
+    public void setNit(String nit) {
+        this.nit = nit;
     }
 
     public String getNombre() {
@@ -124,36 +155,28 @@ public class Persona implements Serializable {
         this.telefono = telefono;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
-    public Administrador getAdministrador() {
-        return administrador;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setAdministrador(Administrador administrador) {
-        this.administrador = administrador;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
-    public Vendedor getVendedor() {
-        return vendedor;
+    public int getRol() {
+        return rol;
     }
 
-    public void setVendedor(Vendedor vendedor) {
-        this.vendedor = vendedor;
-    }
-
-    public Gerente getGerente() {
-        return gerente;
-    }
-
-    public void setGerente(Gerente gerente) {
-        this.gerente = gerente;
+    public void setRol(int rol) {
+        this.rol = rol;
     }
 
     @Override

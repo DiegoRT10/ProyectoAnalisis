@@ -4,10 +4,17 @@
  */
 package cunori.kardex.views;
 
+
+import cunori.kardex.controller.PersonaJpaController;
+import cunori.kardex.dao.Persona;
 import java.awt.Font;
+import java.util.List;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import javax.swing.table.TableRowSorter;
 
@@ -18,7 +25,9 @@ import javax.swing.table.TableRowSorter;
  */
 public class ListarUsuarios extends javax.swing.JFrame {
 
-   
+   EntityManagerFactory emf;
+    PersonaJpaController PersonaEntityManager;
+    
     public static TableRowSorter<DefaultTableModel> sorter;
 
 
@@ -34,8 +43,12 @@ public class ListarUsuarios extends javax.swing.JFrame {
         //this.setExtendedState(MAXIMIZED_BOTH);
         tblListarUsuarios.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
 
+         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
         
-
+        PersonaEntityManager = new PersonaJpaController(emf);
+        
+        //listar los usuarios 
+        ListarUsuarios();
     }
 
     /**
@@ -275,7 +288,33 @@ public class ListarUsuarios extends javax.swing.JFrame {
      
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void ListarUsuarios(){
+   DefaultTableModel model = (DefaultTableModel) tblListarUsuarios.getModel();
+    List<Persona> usuario = PersonaEntityManager.findPersonaEntities();
+    model.setRowCount(0); //eliminar filas existentes
+    tblListarUsuarios.setDefaultRenderer(Object.class, new Render());
     
+    for(Persona p : usuario){
+        String rol="";
+        switch(p.getRol()) {
+            case 0 -> rol="Gerente";
+            case 1 -> rol="Administrador";
+            case 2 -> rol="Vendedor";
+        }
+        Object newRow[] = {p.getDpi(),p.getNit(),p.getNombre(),p.getApellidos(),p.getDireccion(),p.getCorreo(),p.getTelefono(),p.getUsuario(),p.getContrasena(),rol};
+        model.addRow(newRow);
+    }
+    
+     //DPI agrandar
+        TableColumn columna = tblListarUsuarios.getColumnModel().getColumn(0);
+        //columna.setMaxWidth(20);
+        columna.setMinWidth(0);
+        columna.setPreferredWidth(150);
+        tblListarUsuarios.doLayout();
+    
+        
+    
+    }
 
     /**
      * @param args the command line arguments
@@ -342,3 +381,4 @@ public class ListarUsuarios extends javax.swing.JFrame {
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
+

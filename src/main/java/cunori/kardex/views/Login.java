@@ -7,8 +7,10 @@ package cunori.kardex.views;
 
 
 
-import cunori.kardex.controller.GerenteJpaController;
-import cunori.kardex.dao.Gerente;
+
+
+import cunori.kardex.controller.PersonaJpaController;
+import cunori.kardex.dao.Persona;
 import java.awt.event.KeyEvent;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -27,7 +29,7 @@ public class Login extends javax.swing.JFrame {
      */
     
     EntityManagerFactory emf;
-    GerenteJpaController GerenteEntityManager;
+    PersonaJpaController PersonaEntityManager;
     public Login() {
         initComponents(); 
         
@@ -37,7 +39,7 @@ public class Login extends javax.swing.JFrame {
         
         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
         
-        GerenteEntityManager = new GerenteJpaController(emf);
+        PersonaEntityManager = new PersonaJpaController(emf);
        
     }
 
@@ -217,8 +219,7 @@ public class Login extends javax.swing.JFrame {
     
     public boolean ComprobarUsuario(String user, String pasword){
     
-     Gerente usuario =  GerenteEntityManager.findGerente(1);
-//     Gerente usuario2 =  GerenteEntityManager.findGerente(2);
+     Persona usuario =  PersonaEntityManager.findPersona("77d830a4-ae16-4a87-bb3e-d854e93e7b58");
      
      if(user.equals(usuario.getUsuario())&& usuario.getContrasena().equals(Hash.sha1(pasword))){
      return true;
