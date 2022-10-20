@@ -6,9 +6,12 @@ package cunori.kardex.views;
 
 
 import cunori.kardex.controller.PersonaJpaController;
+import cunori.kardex.controller.exceptions.NonexistentEntityException;
 import cunori.kardex.dao.Persona;
 import java.awt.Font;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
@@ -282,14 +285,21 @@ public class ListarUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+    int fila = tblListarUsuarios.getSelectedRow();
+    if(fila != -1){
     FormEditarUsuario feu = new FormEditarUsuario();
     feu.setVisible(true);
     setDatosUsuario();
     this.dispose();
+    }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
+        
+    
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-     
+        if(DeleteUsuario()){
+            ListarUsuarios();
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void ListarUsuarios(){
@@ -329,7 +339,7 @@ public class ListarUsuarios extends javax.swing.JFrame {
     
     public  void setDatosUsuario(){
     int fila = tblListarUsuarios.getSelectedRow();
-    if(fila != -1){
+   
 
     String dpi = (String) tblListarUsuarios.getValueAt(fila,0);
     String nit = (String) tblListarUsuarios.getValueAt(fila,1);
@@ -344,11 +354,27 @@ public class ListarUsuarios extends javax.swing.JFrame {
     String id = (String) tblListarUsuarios.getValueAt(fila,10);
     
     FormEditarUsuario.setDatosUsuario(dpi,nit,nombre,apellido,direccion,correo,telefono,usuario,contrasena,rol,id);
-    }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
+   
     
     }
     
-
+    private boolean DeleteUsuario(){
+        int fila = tblListarUsuarios.getSelectedRow();
+    if(fila != -1){
+    String id = (String) tblListarUsuarios.getValueAt(fila,10);
+    
+            try {
+                PersonaEntityManager.destroy(id);
+                 JOptionPane.showMessageDialog(null, "El usuario se ha eliminado correctamente");
+                return true;
+            } catch (NonexistentEntityException ex) {
+                //Logger.getLogger(ListarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Error, no se puede eliminar");
+                return false;
+            }
+    }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
+     return false;
+    }
     /**
      * @param args the command line arguments
      */
