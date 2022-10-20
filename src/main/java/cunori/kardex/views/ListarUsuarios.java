@@ -12,6 +12,7 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -27,6 +28,7 @@ public class ListarUsuarios extends javax.swing.JFrame {
 
    EntityManagerFactory emf;
     PersonaJpaController PersonaEntityManager;
+   
     
     public static TableRowSorter<DefaultTableModel> sorter;
 
@@ -98,18 +100,18 @@ public class ListarUsuarios extends javax.swing.JFrame {
         tblListarUsuarios.setForeground(new java.awt.Color(0, 0, 0));
         tblListarUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "DPI", "NIT", "Nombre", "Apellidos", "Direccion", "Correo", "Telefono", "Usuario", "Contraseña", "Rol"
+                "DPI", "NIT", "Nombre", "Apellidos", "Direccion", "Correo", "Telefono", "Usuario", "Contraseña", "Rol", "id"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false, false, false, true, true
+                false, false, false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -280,8 +282,10 @@ public class ListarUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-
-        
+    FormEditarUsuario feu = new FormEditarUsuario();
+    feu.setVisible(true);
+    setDatosUsuario();
+    this.dispose();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -301,7 +305,7 @@ public class ListarUsuarios extends javax.swing.JFrame {
             case 1 -> rol="Administrador";
             case 2 -> rol="Vendedor";
         }
-        Object newRow[] = {p.getDpi(),p.getNit(),p.getNombre(),p.getApellidos(),p.getDireccion(),p.getCorreo(),p.getTelefono(),p.getUsuario(),p.getContrasena(),rol};
+        Object newRow[] = {p.getDpi(),p.getNit(),p.getNombre(),p.getApellidos(),p.getDireccion(),p.getCorreo(),p.getTelefono(),p.getUsuario(),p.getContrasena(),rol,p.getId()};
         model.addRow(newRow);
     }
     
@@ -311,11 +315,38 @@ public class ListarUsuarios extends javax.swing.JFrame {
         columna.setMinWidth(0);
         columna.setPreferredWidth(150);
         tblListarUsuarios.doLayout();
+        
+        //Ocultar id
+        TableColumn columna2 = tblListarUsuarios.getColumnModel().getColumn(10);
+        columna2.setMaxWidth(0);
+        columna2.setMinWidth(0);
+        columna2.setPreferredWidth(0);
+        tblListarUsuarios.doLayout();
     
         
     
     }
     
+    public  void setDatosUsuario(){
+    int fila = tblListarUsuarios.getSelectedRow();
+    if(fila != -1){
+
+    String dpi = (String) tblListarUsuarios.getValueAt(fila,0);
+    String nit = (String) tblListarUsuarios.getValueAt(fila,1);
+    String nombre = (String) tblListarUsuarios.getValueAt(fila,2);
+    String apellido = (String) tblListarUsuarios.getValueAt(fila,3);
+    String direccion = (String) tblListarUsuarios.getValueAt(fila,4);
+    String correo = (String) tblListarUsuarios.getValueAt(fila,5); 
+    String telefono = (String) tblListarUsuarios.getValueAt(fila,6);
+    String usuario = (String) tblListarUsuarios.getValueAt(fila,7); 
+    String contrasena = (String) tblListarUsuarios.getValueAt(fila,8);
+    String rol = (String) tblListarUsuarios.getValueAt(fila,9);
+    String id = (String) tblListarUsuarios.getValueAt(fila,10);
+    
+    FormEditarUsuario.setDatosUsuario(dpi,nit,nombre,apellido,direccion,correo,telefono,usuario,contrasena,rol,id);
+    }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
+    
+    }
     
 
     /**
