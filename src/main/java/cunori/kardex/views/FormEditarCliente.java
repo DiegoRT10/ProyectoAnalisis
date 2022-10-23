@@ -15,9 +15,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-
 import javax.swing.table.DefaultTableModel;
-
 import javax.swing.table.TableRowSorter;
 
 /**
@@ -29,15 +27,8 @@ public class FormEditarCliente extends javax.swing.JFrame {
     EntityManagerFactory emf;
     PersonaJpaController PersonaEntityManager;
     public static String idB ="";
-    //---------------Datos a importar usuario-------------------------
-
-    
-    
     public static TableRowSorter<DefaultTableModel> sorter;
 
-    /**
-     * Creates new form ListarCreadosCheques
-     */
     public FormEditarCliente() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -45,9 +36,7 @@ public class FormEditarCliente extends javax.swing.JFrame {
         //this.setExtendedState(MAXIMIZED_BOTH);
 
         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
-
         PersonaEntityManager = new PersonaJpaController(emf);
-       
     }
 
     /**
@@ -90,7 +79,7 @@ public class FormEditarCliente extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(931, 522));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Datos a editar cliente");
+        jLabel1.setText("Datos a editar del Cliente");
 
         lblCodin.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         lblCodin.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -168,38 +157,35 @@ public class FormEditarCliente extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCodin3)
+                            .addComponent(lblCodin1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblCodin2, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblCodin3)
-                                    .addComponent(lblCodin1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblCodin2, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblCodin5)
-                                    .addComponent(lblCodin4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtCorreo)
-                                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblCodin8)
-                                    .addComponent(lblCodin))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtDPI, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)
-                                    .addComponent(txtNIT)))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblCodin5)
+                            .addComponent(lblCodin4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtCorreo)
+                            .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblCodin8)
+                            .addComponent(lblCodin))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtDPI, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)
+                            .addComponent(txtNIT)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(lblCodin9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbxRol, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -332,13 +318,13 @@ public class FormEditarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if (EditarUsuario()) {
-            JOptionPane.showMessageDialog(null, "El usuario " + txtNombre.getText() + " se edito correctamente");
+        if (EditarCliente()) {
+            JOptionPane.showMessageDialog(null, "El Cliente " + txtNombre.getText() + " se editó correctamente");
             ListarClientes lc = new ListarClientes();
             lc.setVisible(true);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "No se pudo editar el usuario");
+            JOptionPane.showMessageDialog(null, "No se pudo editar el Cliente");
         }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -353,14 +339,12 @@ public class FormEditarCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxRolActionPerformed
 
-   
-
     private Boolean Vacio() {
         return txtDPI.getText().isEmpty()
                 && txtNIT.getText().isEmpty();
     }
     
-    private Boolean EditarUsuario(){
+    private Boolean EditarCliente(){
     if (!Vacio()) {
             Persona p = new Persona();
             p.setId(idB);
@@ -381,18 +365,13 @@ public class FormEditarCliente extends javax.swing.JFrame {
             } catch (Exception ex) {
 //            Logger.getLogger(FormUsuario.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Datos repetidos o mal ingresados");
-
                 return false;
             }
-
         } else {
             JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
         }
-
         return false;
     }
-    
-   
     
     public static void setDatosCliente(String dpi,String nit,String nombre,String apellido,String direccion,String correo,String telefono,String usuario,String contrasena,String rol, String id){
     txtDPI.setText(dpi);

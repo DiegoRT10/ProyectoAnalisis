@@ -15,9 +15,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-
 import javax.swing.table.DefaultTableModel;
-
 import javax.swing.table.TableRowSorter;
 
 /**
@@ -30,9 +28,6 @@ public class FormCrearProveedor extends javax.swing.JFrame {
     PersonaJpaController PersonaEntityManager;
     public static TableRowSorter<DefaultTableModel> sorter;
 
-    /**
-     * Creates new form ListarCreadosCheques
-     */
     public FormCrearProveedor() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -40,9 +35,7 @@ public class FormCrearProveedor extends javax.swing.JFrame {
         //this.setExtendedState(MAXIMIZED_BOTH);
 
         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
-
         PersonaEntityManager = new PersonaJpaController(emf);
-
     }
 
     /**
@@ -83,7 +76,7 @@ public class FormCrearProveedor extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(931, 522));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Datos Usuario");
+        jLabel1.setText("Datos del Proveedor");
 
         lblCodin.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         lblCodin.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -157,7 +150,6 @@ public class FormCrearProveedor extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
                                 .addComponent(lblCodin9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbxRol, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -175,7 +167,7 @@ public class FormCrearProveedor extends javax.swing.JFrame {
                                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblCodin1)
@@ -314,13 +306,13 @@ public class FormCrearProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if (CrearUsuario()) {
-            JOptionPane.showMessageDialog(null, "El usuario " + txtNombre.getText() + " se creo correctamente");
+        if (CrearProveedor()) {
+            JOptionPane.showMessageDialog(null, "El Proveedor " + txtNombre.getText() + " se creó correctamente");
             ListarProveedores lp = new ListarProveedores();
             lp.setVisible(true);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "No se pudo crear el usuario");
+            JOptionPane.showMessageDialog(null, "No se pudo crear el Proveedor");
         }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -335,7 +327,7 @@ public class FormCrearProveedor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxRolActionPerformed
 
-    private Boolean CrearUsuario() {
+    private Boolean CrearProveedor() {
 
         if (!Vacio()) {
             String id = UUID.randomUUID().toString();
@@ -401,14 +393,6 @@ public class FormCrearProveedor extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FormCrearProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

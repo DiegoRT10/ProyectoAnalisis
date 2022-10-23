@@ -15,9 +15,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-
 import javax.swing.table.DefaultTableModel;
-
 import javax.swing.table.TableRowSorter;
 
 /**
@@ -30,9 +28,6 @@ public class FormCrearCliente extends javax.swing.JFrame {
     PersonaJpaController PersonaEntityManager;
     public static TableRowSorter<DefaultTableModel> sorter;
 
-    /**
-     * Creates new form ListarCreadosCheques
-     */
     public FormCrearCliente() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -85,7 +80,7 @@ public class FormCrearCliente extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(931, 522));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Datos Usuario");
+        jLabel1.setText("Datos del Cliente");
 
         lblCodin.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         lblCodin.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -170,7 +165,7 @@ public class FormCrearCliente extends javax.swing.JFrame {
                         .addComponent(cbxRol, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,13 +322,13 @@ public class FormCrearCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if (CrearUsuario()) {
-            JOptionPane.showMessageDialog(null, "El usuario " + txtNombre.getText() + " se creo correctamente");
+        if (CrearCliente()) {
+            JOptionPane.showMessageDialog(null, "El Cliente " + txtNombre.getText() + " "+ txtApellidos.getText() +" se creó correctamente");
             ListarClientes lc = new ListarClientes();
             lc.setVisible(true);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "No se pudo crear el usuario");
+            JOptionPane.showMessageDialog(null, "No se pudo crear el Cliente");
         }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -348,7 +343,7 @@ public class FormCrearCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxRolActionPerformed
 
-    private Boolean CrearUsuario() {
+    private Boolean CrearCliente() {
 
         if (!Vacio()) {
             String id = UUID.randomUUID().toString();

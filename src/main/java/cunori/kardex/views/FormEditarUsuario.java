@@ -15,9 +15,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-
 import javax.swing.table.DefaultTableModel;
-
 import javax.swing.table.TableRowSorter;
 
 /**
@@ -29,15 +27,8 @@ public class FormEditarUsuario extends javax.swing.JFrame {
     EntityManagerFactory emf;
     PersonaJpaController PersonaEntityManager;
     public static String idB ="";
-    //---------------Datos a importar usuario-------------------------
-
-    
-    
     public static TableRowSorter<DefaultTableModel> sorter;
 
-    /**
-     * Creates new form ListarCreadosCheques
-     */
     public FormEditarUsuario() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -45,9 +36,7 @@ public class FormEditarUsuario extends javax.swing.JFrame {
         //this.setExtendedState(MAXIMIZED_BOTH);
 
         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
-
         PersonaEntityManager = new PersonaJpaController(emf);
-       
     }
 
     /**
@@ -94,7 +83,7 @@ public class FormEditarUsuario extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(931, 522));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Datos Usuario");
+        jLabel1.setText("Datos del Usuario");
 
         lblCodin.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         lblCodin.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -198,7 +187,7 @@ public class FormEditarUsuario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
@@ -386,12 +375,12 @@ public class FormEditarUsuario extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (EditarUsuario()) {
-            JOptionPane.showMessageDialog(null, "El usuario " + txtNombre.getText() + " se edito correctamente");
+            JOptionPane.showMessageDialog(null, "El Usuario " + txtNombre.getText() + " se editó correctamente");
             ListarUsuarios lu = new ListarUsuarios();
             lu.setVisible(true);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "No se pudo editar el usuario");
+            JOptionPane.showMessageDialog(null, "No se pudo editar el Usuario");
         }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -405,8 +394,6 @@ public class FormEditarUsuario extends javax.swing.JFrame {
     private void txtContrasenaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtContrasenaMouseClicked
        txtContrasena.setText("");
     }//GEN-LAST:event_txtContrasenaMouseClicked
-
-   
 
     private Boolean Vacio() {
         return txtDPI.getText().isEmpty()
@@ -434,18 +421,13 @@ public class FormEditarUsuario extends javax.swing.JFrame {
             } catch (Exception ex) {
 //            Logger.getLogger(FormUsuario.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Datos repetidos o mal ingresados");
-
                 return false;
             }
-
         } else {
             JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
         }
-
         return false;
     }
-    
-   
     
     public static void setDatosUsuario(String dpi,String nit,String nombre,String apellido,String direccion,String correo,String telefono,String usuario,String contrasena,String rol, String id){
     txtDPI.setText(dpi);

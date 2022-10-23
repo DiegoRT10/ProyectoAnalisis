@@ -16,10 +16,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-
 import javax.swing.table.TableRowSorter;
 
 
@@ -29,18 +27,10 @@ import javax.swing.table.TableRowSorter;
  */
 public class ListarClientes extends javax.swing.JFrame {
 
-   EntityManagerFactory emf;
+    EntityManagerFactory emf;
     PersonaJpaController PersonaEntityManager;
-   
-    
     public static TableRowSorter<DefaultTableModel> sorter;
 
-
-
-
-    /**
-     * Creates new form ListarCreadosCheques
-     */
     public ListarClientes() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -48,12 +38,10 @@ public class ListarClientes extends javax.swing.JFrame {
         //this.setExtendedState(MAXIMIZED_BOTH);
         tblListarClientes.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
 
-         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
-        
+        emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
         PersonaEntityManager = new PersonaJpaController(emf);
         
-        //listar los usuarios 
-        ListarUsuarios();
+        ListarClientes();
     }
 
     /**
@@ -84,7 +72,7 @@ public class ListarClientes extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(931, 522));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Listado de clientes ");
+        jLabel1.setText("Listado de Clientes ");
 
         txtBuscar.setBackground(new java.awt.Color(129, 164, 220));
         txtBuscar.setToolTipText("Filtrar \"ten en cuenta las mayusculas\"");
@@ -137,7 +125,7 @@ public class ListarClientes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 289, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 304, Short.MAX_VALUE)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -289,7 +277,7 @@ public class ListarClientes extends javax.swing.JFrame {
     if(fila != -1){
     FormEditarCliente fec = new FormEditarCliente();
     fec.setVisible(true);
-    setDatosUsuario();
+    setDatosCliente();
     this.dispose();
     }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
         
@@ -297,18 +285,18 @@ public class ListarClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if(DeleteUsuario()){
-            ListarUsuarios();
+        if(DeleteCliente()){
+            ListarClientes();
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void ListarUsuarios(){
+    private void ListarClientes(){
    DefaultTableModel model = (DefaultTableModel) tblListarClientes.getModel();
-    List<Persona> usuario = PersonaEntityManager.findPersonaEntities();
+    List<Persona> cliente = PersonaEntityManager.findPersonaEntities();
     model.setRowCount(0); //eliminar filas existentes
     tblListarClientes.setDefaultRenderer(Object.class, new Render());
     
-    for(Persona p : usuario){
+    for(Persona p : cliente){
         if(p.getRol()==3){
         Object newRow[] = {p.getDpi(),p.getNit(),p.getNombre(),p.getApellidos(),p.getDireccion(),p.getCorreo(),p.getTelefono(),p.getUsuario(),p.getContrasena(),"Cliente",p.getId()};
         model.addRow(newRow);
@@ -348,7 +336,7 @@ public class ListarClientes extends javax.swing.JFrame {
     
     }
     
-    public  void setDatosUsuario(){
+    public  void setDatosCliente(){
     int fila = tblListarClientes.getSelectedRow();
    
 
@@ -369,14 +357,14 @@ public class ListarClientes extends javax.swing.JFrame {
     
     }
     
-    private boolean DeleteUsuario(){
+    private boolean DeleteCliente(){
         int fila = tblListarClientes.getSelectedRow();
     if(fila != -1){
     String id = (String) tblListarClientes.getValueAt(fila,10);
     
             try {
                 PersonaEntityManager.destroy(id);
-                 JOptionPane.showMessageDialog(null, "El usuario se ha eliminado correctamente");
+                 JOptionPane.showMessageDialog(null, "El Cliente se ha eliminado correctamente");
                 return true;
             } catch (NonexistentEntityException ex) {
                 //Logger.getLogger(ListarUsuarios.class.getName()).log(Level.SEVERE, null, ex);

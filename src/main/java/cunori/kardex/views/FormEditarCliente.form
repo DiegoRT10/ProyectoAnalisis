@@ -46,49 +46,44 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblCodin3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblCodin1" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblCodin2" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txtNombre" min="-2" pref="817" max="-2" attributes="0"/>
-                                      <Component id="txtDireccion" min="-2" pref="817" max="-2" attributes="0"/>
-                                      <Component id="txtApellidos" min="-2" pref="817" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="lblCodin5" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblCodin4" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtCorreo" max="32767" attributes="0"/>
-                                      <Component id="txtTelefono" alignment="0" min="-2" pref="817" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="lblCodin8" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblCodin" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtDPI" pref="817" max="32767" attributes="0"/>
-                                      <Component id="txtNIT" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblCodin3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCodin1" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCodin2" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txtNombre" min="-2" pref="817" max="-2" attributes="0"/>
+                              <Component id="txtDireccion" min="-2" pref="817" max="-2" attributes="0"/>
+                              <Component id="txtApellidos" min="-2" pref="817" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="lblCodin5" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCodin4" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="txtCorreo" max="32767" attributes="0"/>
+                              <Component id="txtTelefono" alignment="0" min="-2" pref="817" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="lblCodin8" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblCodin" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="txtDPI" pref="817" max="32767" attributes="0"/>
+                              <Component id="txtNIT" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
                           <Component id="lblCodin9" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="cbxRol" min="-2" pref="817" max="-2" attributes="0"/>
@@ -154,7 +149,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Datos a editar cliente"/>
+            <Property name="text" type="java.lang.String" value="Datos a editar del Cliente"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCodin">

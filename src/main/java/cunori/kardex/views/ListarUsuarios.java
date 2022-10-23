@@ -84,7 +84,7 @@ public class ListarUsuarios extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(931, 522));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Listado de usuarios ");
+        jLabel1.setText("Listado de Usuarios");
 
         txtBuscar.setBackground(new java.awt.Color(129, 164, 220));
         txtBuscar.setToolTipText("Filtrar \"ten en cuenta las mayusculas\"");
@@ -137,7 +137,7 @@ public class ListarUsuarios extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 281, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 303, Short.MAX_VALUE)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -309,6 +309,7 @@ public class ListarUsuarios extends javax.swing.JFrame {
     tblListarUsuarios.setDefaultRenderer(Object.class, new Render());
     
     for(Persona p : usuario){
+        if(p.getRol() == 0 || p.getRol() == 1 || p.getRol() == 2){
         String rol="";
         switch(p.getRol()) {
             case 0 -> rol="Gerente";
@@ -317,6 +318,7 @@ public class ListarUsuarios extends javax.swing.JFrame {
         }
         Object newRow[] = {p.getDpi(),p.getNit(),p.getNombre(),p.getApellidos(),p.getDireccion(),p.getCorreo(),p.getTelefono(),p.getUsuario(),p.getContrasena(),rol,p.getId()};
         model.addRow(newRow);
+        }
     }
     
      //DPI agrandar

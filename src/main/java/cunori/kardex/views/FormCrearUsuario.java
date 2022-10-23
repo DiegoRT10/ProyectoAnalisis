@@ -15,9 +15,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-
 import javax.swing.table.DefaultTableModel;
-
 import javax.swing.table.TableRowSorter;
 
 /**
@@ -30,9 +28,6 @@ public class FormCrearUsuario extends javax.swing.JFrame {
     PersonaJpaController PersonaEntityManager;
     public static TableRowSorter<DefaultTableModel> sorter;
 
-    /**
-     * Creates new form ListarCreadosCheques
-     */
     public FormCrearUsuario() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -40,9 +35,7 @@ public class FormCrearUsuario extends javax.swing.JFrame {
         //this.setExtendedState(MAXIMIZED_BOTH);
 
         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
-
         PersonaEntityManager = new PersonaJpaController(emf);
-
     }
 
     /**
@@ -89,7 +82,7 @@ public class FormCrearUsuario extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(931, 522));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Datos Usuario");
+        jLabel1.setText("Datos del Usuario");
 
         lblCodin.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         lblCodin.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -188,7 +181,7 @@ public class FormCrearUsuario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
@@ -376,12 +369,12 @@ public class FormCrearUsuario extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (CrearUsuario()) {
-            JOptionPane.showMessageDialog(null, "El usuario " + txtNombre.getText() + " se creo correctamente");
+            JOptionPane.showMessageDialog(null, "El Usuario " + txtUsuario.getText() + " se creó correctamente");
             ListarUsuarios lu = new ListarUsuarios();
             lu.setVisible(true);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "No se pudo crear el usuario");
+            JOptionPane.showMessageDialog(null, "No se pudo crear el Usuario");
         }
 
     }//GEN-LAST:event_btnGuardarActionPerformed

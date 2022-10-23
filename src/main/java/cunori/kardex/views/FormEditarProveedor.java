@@ -15,9 +15,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-
 import javax.swing.table.DefaultTableModel;
-
 import javax.swing.table.TableRowSorter;
 
 /**
@@ -29,15 +27,8 @@ public class FormEditarProveedor extends javax.swing.JFrame {
     EntityManagerFactory emf;
     PersonaJpaController PersonaEntityManager;
     public static String idB ="";
-    //---------------Datos a importar usuario-------------------------
-
-    
-    
     public static TableRowSorter<DefaultTableModel> sorter;
 
-    /**
-     * Creates new form ListarCreadosCheques
-     */
     public FormEditarProveedor() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -45,9 +36,7 @@ public class FormEditarProveedor extends javax.swing.JFrame {
         //this.setExtendedState(MAXIMIZED_BOTH);
 
         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
-
         PersonaEntityManager = new PersonaJpaController(emf);
-       
     }
 
     /**
@@ -88,7 +77,7 @@ public class FormEditarProveedor extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(931, 522));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Datos a editar cliente");
+        jLabel1.setText("Datos a editar del Proveedor");
 
         lblCodin.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         lblCodin.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -318,13 +307,13 @@ public class FormEditarProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if (EditarUsuario()) {
-            JOptionPane.showMessageDialog(null, "El usuario " + txtNombre.getText() + " se edito correctamente");
+        if (EditarProveedor()) {
+            JOptionPane.showMessageDialog(null, "El Proveedor " + txtNombre.getText() + " se editó correctamente");
             ListarProveedores lu = new ListarProveedores();
             lu.setVisible(true);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "No se pudo editar el usuario");
+            JOptionPane.showMessageDialog(null, "No se pudo editar el Proveedor");
         }
 
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -339,14 +328,12 @@ public class FormEditarProveedor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxRolActionPerformed
 
-   
-
     private Boolean Vacio() {
         return txtDPI.getText().isEmpty()
                 && txtNIT.getText().isEmpty();
     }
     
-    private Boolean EditarUsuario(){
+    private Boolean EditarProveedor(){
     if (!Vacio()) {
             Persona p = new Persona();
             p.setId(idB);
@@ -370,15 +357,11 @@ public class FormEditarProveedor extends javax.swing.JFrame {
 
                 return false;
             }
-
         } else {
             JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
         }
-
         return false;
     }
-    
-   
     
     public static void setDatosProveedor(String dpi,String nit,String nombre,String apellido,String direccion,String correo,String telefono,String usuario,String contrasena,String rol, String id){
     txtDPI.setText(dpi);

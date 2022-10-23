@@ -10,10 +10,6 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JScrollBar;
 import javax.swing.JTabbedPane;
-//import salom.moduloproducto.views.cheque.ListarCheques;
-//import salom.moduloproducto.views.cheque.ListarChequesEstado;
-
-
 
 /**
  *
@@ -22,19 +18,12 @@ import javax.swing.JTabbedPane;
 public class Inicio extends javax.swing.JFrame {
     Integer estadoSet;
     
-    /**
-     * Creates new form InicioProducto
-     */
     public Inicio() {
         initComponents();
         getContentPane().setBackground(new Color(0, 255, 51));
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
-//        pnlListaAdministradores.setVisible(false);
-//        pnlche.setVisible(false);
-//        pnlLeft.add(pnlTraslados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 260, 60));
-       
-        
+
         tpnlContenedor.setEnabledAt(0, false);
         tpnlContenedor.setEnabledAt(1, false);
         tpnlContenedor.setEnabledAt(2, false);
@@ -1331,13 +1320,6 @@ public class Inicio extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
