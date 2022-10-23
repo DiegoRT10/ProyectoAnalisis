@@ -4,10 +4,21 @@
  */
 package cunori.kardex.views;
 
+
+import cunori.kardex.controller.PersonaJpaController;
+import cunori.kardex.controller.exceptions.NonexistentEntityException;
+import cunori.kardex.dao.Persona;
 import java.awt.Font;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import javax.swing.table.TableRowSorter;
 
@@ -18,7 +29,10 @@ import javax.swing.table.TableRowSorter;
  */
 public class ListarClientes extends javax.swing.JFrame {
 
+   EntityManagerFactory emf;
+    PersonaJpaController PersonaEntityManager;
    
+    
     public static TableRowSorter<DefaultTableModel> sorter;
 
 
@@ -32,10 +46,14 @@ public class ListarClientes extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
         //this.setExtendedState(MAXIMIZED_BOTH);
-        tblListarUsuarios.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
+        tblListarClientes.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
 
+         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
         
-
+        PersonaEntityManager = new PersonaJpaController(emf);
+        
+        //listar los usuarios 
+        ListarUsuarios();
     }
 
     /**
@@ -52,9 +70,10 @@ public class ListarClientes extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblListarUsuarios = new javax.swing.JTable();
+        tblListarClientes = new javax.swing.JTable();
         pnlLeft = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JButton();
+        btnImprimir = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnCrear = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
@@ -65,7 +84,7 @@ public class ListarClientes extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(931, 522));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Listado de Clientes");
+        jLabel1.setText("Listado de clientes ");
 
         txtBuscar.setBackground(new java.awt.Color(129, 164, 220));
         txtBuscar.setToolTipText("Filtrar \"ten en cuenta las mayusculas\"");
@@ -78,36 +97,36 @@ public class ListarClientes extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscar.png"))); // NOI18N
 
-        tblListarUsuarios.setBackground(new java.awt.Color(255, 255, 255));
-        tblListarUsuarios.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 153, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 102, 255)));
-        tblListarUsuarios.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        tblListarUsuarios.setForeground(new java.awt.Color(0, 0, 0));
-        tblListarUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+        tblListarClientes.setBackground(new java.awt.Color(255, 255, 255));
+        tblListarClientes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 153, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 102, 255)));
+        tblListarClientes.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        tblListarClientes.setForeground(new java.awt.Color(0, 0, 0));
+        tblListarClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "DPI", "NIT", "Nombre", "Apellidos", "Direccion", "Correo", "Telefono", "Rol"
+                "DPI", "NIT", "Nombre", "Apellidos", "Direccion", "Correo", "Telefono", "Usuario", "Contraseña", "Rol", "id"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tblListarUsuarios.setGridColor(new java.awt.Color(153, 255, 153));
-        tblListarUsuarios.setSelectionBackground(new java.awt.Color(255, 255, 204));
-        tblListarUsuarios.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        tblListarUsuarios.setShowGrid(true);
-        tblListarUsuarios.setShowVerticalLines(false);
-        jScrollPane1.setViewportView(tblListarUsuarios);
+        tblListarClientes.setGridColor(new java.awt.Color(153, 255, 153));
+        tblListarClientes.setSelectionBackground(new java.awt.Color(255, 255, 204));
+        tblListarClientes.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        tblListarClientes.setShowGrid(true);
+        tblListarClientes.setShowVerticalLines(false);
+        jScrollPane1.setViewportView(tblListarClientes);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -118,7 +137,7 @@ public class ListarClientes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 289, Short.MAX_VALUE)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -135,7 +154,7 @@ public class ListarClientes extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
                 .addGap(6, 6, 6))
         );
 
@@ -149,6 +168,16 @@ public class ListarClientes extends javax.swing.JFrame {
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegresarActionPerformed(evt);
+            }
+        });
+
+        btnImprimir.setBackground(new java.awt.Color(129, 164, 220));
+        btnImprimir.setToolTipText("Imprimir");
+        btnImprimir.setBorder(null);
+        btnImprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
             }
         });
 
@@ -194,14 +223,17 @@ public class ListarClientes extends javax.swing.JFrame {
                 .addGroup(pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEliminar))
+                    .addComponent(btnEliminar)
+                    .addComponent(btnImprimir))
                 .addContainerGap())
             .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlLeftLayout.setVerticalGroup(
             pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLeftLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(82, Short.MAX_VALUE)
+                .addComponent(btnImprimir)
+                .addGap(214, 214, 214)
                 .addComponent(btnEliminar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -241,23 +273,119 @@ public class ListarClientes extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtBuscarKeyReleased
 
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        
+    }//GEN-LAST:event_btnImprimirActionPerformed
+
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-    FormCliente fc = new FormCliente();
-        fc.setVisible(true);
-        this.dispose();
+       FormCrearCliente fc = new FormCrearCliente();
+       fc.setVisible(true);
+       this.dispose();
+               
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-
+    int fila = tblListarClientes.getSelectedRow();
+    if(fila != -1){
+    FormEditarCliente fec = new FormEditarCliente();
+    fec.setVisible(true);
+    setDatosUsuario();
+    this.dispose();
+    }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
         
+    
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-      
+        if(DeleteUsuario()){
+            ListarUsuarios();
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void ListarUsuarios(){
+   DefaultTableModel model = (DefaultTableModel) tblListarClientes.getModel();
+    List<Persona> usuario = PersonaEntityManager.findPersonaEntities();
+    model.setRowCount(0); //eliminar filas existentes
+    tblListarClientes.setDefaultRenderer(Object.class, new Render());
     
+    for(Persona p : usuario){
+        if(p.getRol()==3){
+        Object newRow[] = {p.getDpi(),p.getNit(),p.getNombre(),p.getApellidos(),p.getDireccion(),p.getCorreo(),p.getTelefono(),p.getUsuario(),p.getContrasena(),"Cliente",p.getId()};
+        model.addRow(newRow);
+        }
+        
+    }
+    
+     //DPI agrandar
+        TableColumn columna = tblListarClientes.getColumnModel().getColumn(0);
+        //columna.setMaxWidth(20);
+        columna.setMinWidth(0);
+        columna.setPreferredWidth(150);
+        tblListarClientes.doLayout();
+        
+        //Ocultar id
+        TableColumn columna2 = tblListarClientes.getColumnModel().getColumn(10);
+        columna2.setMaxWidth(0);
+        columna2.setMinWidth(0);
+        columna2.setPreferredWidth(0);
+        tblListarClientes.doLayout();
+        
+        //Ocultar usuario
+        TableColumn columna3 = tblListarClientes.getColumnModel().getColumn(7);
+        columna3.setMaxWidth(0);
+        columna3.setMinWidth(0);
+        columna3.setPreferredWidth(0);
+        tblListarClientes.doLayout();
+        
+        //Ocultar contraseña
+        TableColumn columna4 = tblListarClientes.getColumnModel().getColumn(8);
+        columna4.setMaxWidth(0);
+        columna4.setMinWidth(0);
+        columna4.setPreferredWidth(0);
+        tblListarClientes.doLayout();
+    
+        
+    
+    }
+    
+    public  void setDatosUsuario(){
+    int fila = tblListarClientes.getSelectedRow();
+   
 
+    String dpi = (String) tblListarClientes.getValueAt(fila,0);
+    String nit = (String) tblListarClientes.getValueAt(fila,1);
+    String nombre = (String) tblListarClientes.getValueAt(fila,2);
+    String apellido = (String) tblListarClientes.getValueAt(fila,3);
+    String direccion = (String) tblListarClientes.getValueAt(fila,4);
+    String correo = (String) tblListarClientes.getValueAt(fila,5); 
+    String telefono = (String) tblListarClientes.getValueAt(fila,6);
+    String usuario = (String) tblListarClientes.getValueAt(fila,7); 
+    String contrasena = (String) tblListarClientes.getValueAt(fila,8);
+    String rol = (String) tblListarClientes.getValueAt(fila,9);
+    String id = (String) tblListarClientes.getValueAt(fila,10);
+    
+    FormEditarCliente.setDatosCliente(dpi,nit,nombre,apellido,direccion,correo,telefono,usuario,contrasena,rol,id);
+   
+    
+    }
+    
+    private boolean DeleteUsuario(){
+        int fila = tblListarClientes.getSelectedRow();
+    if(fila != -1){
+    String id = (String) tblListarClientes.getValueAt(fila,10);
+    
+            try {
+                PersonaEntityManager.destroy(id);
+                 JOptionPane.showMessageDialog(null, "El usuario se ha eliminado correctamente");
+                return true;
+            } catch (NonexistentEntityException ex) {
+                //Logger.getLogger(ListarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Error, no se puede eliminar");
+                return false;
+            }
+    }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
+     return false;
+    }
     /**
      * @param args the command line arguments
      */
@@ -285,36 +413,7 @@ public class ListarClientes extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+     
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -328,13 +427,15 @@ public class ListarClientes extends javax.swing.JFrame {
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel pnlLeft;
-    public static javax.swing.JTable tblListarUsuarios;
+    public static javax.swing.JTable tblListarClientes;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
+

@@ -278,7 +278,7 @@ public class ListarUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnImprimirActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-       FormUsuario fu = new FormUsuario();
+       FormCrearUsuario fu = new FormCrearUsuario();
        fu.setVisible(true);
        this.dispose();
                

@@ -4,10 +4,21 @@
  */
 package cunori.kardex.views;
 
+
+import cunori.kardex.controller.PersonaJpaController;
+import cunori.kardex.controller.exceptions.NonexistentEntityException;
+import cunori.kardex.dao.Persona;
 import java.awt.Font;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import javax.swing.table.TableRowSorter;
 
@@ -18,7 +29,10 @@ import javax.swing.table.TableRowSorter;
  */
 public class ListarProveedores extends javax.swing.JFrame {
 
+   EntityManagerFactory emf;
+    PersonaJpaController PersonaEntityManager;
    
+    
     public static TableRowSorter<DefaultTableModel> sorter;
 
 
@@ -32,10 +46,14 @@ public class ListarProveedores extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
         //this.setExtendedState(MAXIMIZED_BOTH);
-        tblListarUsuarios.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
+        tblListarProveedores.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
 
+         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
         
-
+        PersonaEntityManager = new PersonaJpaController(emf);
+        
+        //listar los usuarios 
+        ListarUsuarios();
     }
 
     /**
@@ -52,7 +70,7 @@ public class ListarProveedores extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblListarUsuarios = new javax.swing.JTable();
+        tblListarProveedores = new javax.swing.JTable();
         pnlLeft = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JButton();
         btnImprimir = new javax.swing.JButton();
@@ -61,13 +79,12 @@ public class ListarProveedores extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(129, 164, 220));
         jPanel1.setPreferredSize(new java.awt.Dimension(931, 522));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Listado de Proveedores");
+        jLabel1.setText("Listado de usuarios ");
 
         txtBuscar.setBackground(new java.awt.Color(129, 164, 220));
         txtBuscar.setToolTipText("Filtrar \"ten en cuenta las mayusculas\"");
@@ -80,36 +97,36 @@ public class ListarProveedores extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscar.png"))); // NOI18N
 
-        tblListarUsuarios.setBackground(new java.awt.Color(255, 255, 255));
-        tblListarUsuarios.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 153, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 102, 255)));
-        tblListarUsuarios.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        tblListarUsuarios.setForeground(new java.awt.Color(0, 0, 0));
-        tblListarUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+        tblListarProveedores.setBackground(new java.awt.Color(255, 255, 255));
+        tblListarProveedores.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 153, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 102, 255)));
+        tblListarProveedores.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        tblListarProveedores.setForeground(new java.awt.Color(0, 0, 0));
+        tblListarProveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "NIT", "Nombre", "Direccion", "Correo", "Telefono", "Rol"
+                "DPI", "NIT", "Nombre", "Apellidos", "Direccion", "Correo", "Telefono", "Usuario", "Contraseña", "Rol", "id"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tblListarUsuarios.setGridColor(new java.awt.Color(153, 255, 153));
-        tblListarUsuarios.setSelectionBackground(new java.awt.Color(255, 255, 204));
-        tblListarUsuarios.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        tblListarUsuarios.setShowGrid(true);
-        tblListarUsuarios.setShowVerticalLines(false);
-        jScrollPane1.setViewportView(tblListarUsuarios);
+        tblListarProveedores.setGridColor(new java.awt.Color(153, 255, 153));
+        tblListarProveedores.setSelectionBackground(new java.awt.Color(255, 255, 204));
+        tblListarProveedores.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        tblListarProveedores.setShowGrid(true);
+        tblListarProveedores.setShowVerticalLines(false);
+        jScrollPane1.setViewportView(tblListarProveedores);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -120,7 +137,7 @@ public class ListarProveedores extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 253, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 281, Short.MAX_VALUE)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -140,8 +157,6 @@ public class ListarProveedores extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
                 .addGap(6, 6, 6))
         );
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 0, 872, -1));
 
         pnlLeft.setBackground(new java.awt.Color(129, 164, 220));
 
@@ -229,15 +244,28 @@ public class ListarProveedores extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(pnlLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 522));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 872, Short.MAX_VALUE))
+            .addComponent(pnlLeft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlLeft, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-Inicio i = new Inicio();
+       Inicio i = new Inicio();
        i.setVisible(true);
-       this.dispose();       
+       this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
@@ -250,23 +278,113 @@ Inicio i = new Inicio();
     }//GEN-LAST:event_btnImprimirActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-       FormProveedor fp = new FormProveedor();
-        fp.setVisible(true);
-        this.dispose();
-
+       FormCrearProveedor fcp = new FormCrearProveedor();
+       fcp.setVisible(true);
+       this.dispose();
+               
     }//GEN-LAST:event_btnCrearActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-
+    int fila = tblListarProveedores.getSelectedRow();
+    if(fila != -1){
+    FormEditarProveedor fep = new FormEditarProveedor();
+    fep.setVisible(true);
+    setDatosUsuario();
+    this.dispose();
+    }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
         
+    
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-      
+        if(DeleteUsuario()){
+            ListarUsuarios();
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void ListarUsuarios(){
+   DefaultTableModel model = (DefaultTableModel) tblListarProveedores.getModel();
+    List<Persona> usuario = PersonaEntityManager.findPersonaEntities();
+    model.setRowCount(0); //eliminar filas existentes
+    tblListarProveedores.setDefaultRenderer(Object.class, new Render());
     
+    for(Persona p : usuario){
+        if(p.getRol()==4){
+        Object newRow[] = {p.getDpi(),p.getNit(),p.getNombre(),p.getApellidos(),p.getDireccion(),p.getCorreo(),p.getTelefono(),p.getUsuario(),p.getContrasena(),"Proveedores",p.getId()};
+        model.addRow(newRow);
+        }
+        
+    }
+    
+     //DPI agrandar
+        TableColumn columna = tblListarProveedores.getColumnModel().getColumn(0);
+        //columna.setMaxWidth(20);
+        columna.setMinWidth(0);
+        columna.setPreferredWidth(150);
+        tblListarProveedores.doLayout();
+        
+        //Ocultar id
+        TableColumn columna2 = tblListarProveedores.getColumnModel().getColumn(10);
+        columna2.setMaxWidth(0);
+        columna2.setMinWidth(0);
+        columna2.setPreferredWidth(0);
+        tblListarProveedores.doLayout();
+        
+        //Ocultar usuario
+        TableColumn columna3 = tblListarProveedores.getColumnModel().getColumn(7);
+        columna3.setMaxWidth(0);
+        columna3.setMinWidth(0);
+        columna3.setPreferredWidth(0);
+        tblListarProveedores.doLayout();
+        
+        //Ocultar contraseña
+        TableColumn columna4 = tblListarProveedores.getColumnModel().getColumn(8);
+        columna4.setMaxWidth(0);
+        columna4.setMinWidth(0);
+        columna4.setPreferredWidth(0);
+        tblListarProveedores.doLayout();
+        
+    
+    }
+    
+    public  void setDatosUsuario(){
+    int fila = tblListarProveedores.getSelectedRow();
+   
 
+    String dpi = (String) tblListarProveedores.getValueAt(fila,0);
+    String nit = (String) tblListarProveedores.getValueAt(fila,1);
+    String nombre = (String) tblListarProveedores.getValueAt(fila,2);
+    String apellido = (String) tblListarProveedores.getValueAt(fila,3);
+    String direccion = (String) tblListarProveedores.getValueAt(fila,4);
+    String correo = (String) tblListarProveedores.getValueAt(fila,5); 
+    String telefono = (String) tblListarProveedores.getValueAt(fila,6);
+    String usuario = (String) tblListarProveedores.getValueAt(fila,7); 
+    String contrasena = (String) tblListarProveedores.getValueAt(fila,8);
+    String rol = (String) tblListarProveedores.getValueAt(fila,9);
+    String id = (String) tblListarProveedores.getValueAt(fila,10);
+    
+    FormEditarProveedor.setDatosProveedor(dpi,nit,nombre,apellido,direccion,correo,telefono,usuario,contrasena,rol,id);
+   
+    
+    }
+    
+    private boolean DeleteUsuario(){
+        int fila = tblListarProveedores.getSelectedRow();
+    if(fila != -1){
+    String id = (String) tblListarProveedores.getValueAt(fila,10);
+    
+            try {
+                PersonaEntityManager.destroy(id);
+                 JOptionPane.showMessageDialog(null, "El usuario se ha eliminado correctamente");
+                return true;
+            } catch (NonexistentEntityException ex) {
+                //Logger.getLogger(ListarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Error, no se puede eliminar");
+                return false;
+            }
+    }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
+     return false;
+    }
     /**
      * @param args the command line arguments
      */
@@ -294,36 +412,7 @@ Inicio i = new Inicio();
         }
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+     
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -344,7 +433,8 @@ Inicio i = new Inicio();
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel pnlLeft;
-    public static javax.swing.JTable tblListarUsuarios;
+    public static javax.swing.JTable tblListarProveedores;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
+
