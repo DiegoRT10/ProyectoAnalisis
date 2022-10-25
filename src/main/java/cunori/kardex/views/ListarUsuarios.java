@@ -114,19 +114,33 @@ public class ListarUsuarios extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tblListarUsuarios.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         tblListarUsuarios.setGridColor(new java.awt.Color(153, 255, 153));
         tblListarUsuarios.setSelectionBackground(new java.awt.Color(255, 255, 204));
         tblListarUsuarios.setSelectionForeground(new java.awt.Color(0, 0, 0));
         tblListarUsuarios.setShowGrid(true);
         tblListarUsuarios.setShowVerticalLines(false);
         jScrollPane1.setViewportView(tblListarUsuarios);
+        if (tblListarUsuarios.getColumnModel().getColumnCount() > 0) {
+            tblListarUsuarios.getColumnModel().getColumn(0).setPreferredWidth(150);
+            tblListarUsuarios.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tblListarUsuarios.getColumnModel().getColumn(2).setPreferredWidth(150);
+            tblListarUsuarios.getColumnModel().getColumn(3).setPreferredWidth(150);
+            tblListarUsuarios.getColumnModel().getColumn(4).setPreferredWidth(200);
+            tblListarUsuarios.getColumnModel().getColumn(5).setPreferredWidth(200);
+            tblListarUsuarios.getColumnModel().getColumn(6).setPreferredWidth(150);
+            tblListarUsuarios.getColumnModel().getColumn(7).setPreferredWidth(150);
+            tblListarUsuarios.getColumnModel().getColumn(8).setPreferredWidth(400);
+            tblListarUsuarios.getColumnModel().getColumn(9).setPreferredWidth(150);
+            tblListarUsuarios.getColumnModel().getColumn(10).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

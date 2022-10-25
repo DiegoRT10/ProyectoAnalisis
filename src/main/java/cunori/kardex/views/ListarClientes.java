@@ -102,19 +102,34 @@ public class ListarClientes extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tblListarClientes.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         tblListarClientes.setGridColor(new java.awt.Color(153, 255, 153));
         tblListarClientes.setSelectionBackground(new java.awt.Color(255, 255, 204));
         tblListarClientes.setSelectionForeground(new java.awt.Color(0, 0, 0));
         tblListarClientes.setShowGrid(true);
         tblListarClientes.setShowVerticalLines(false);
         jScrollPane1.setViewportView(tblListarClientes);
+        if (tblListarClientes.getColumnModel().getColumnCount() > 0) {
+            tblListarClientes.getColumnModel().getColumn(0).setPreferredWidth(150);
+            tblListarClientes.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tblListarClientes.getColumnModel().getColumn(2).setPreferredWidth(150);
+            tblListarClientes.getColumnModel().getColumn(3).setPreferredWidth(150);
+            tblListarClientes.getColumnModel().getColumn(4).setPreferredWidth(200);
+            tblListarClientes.getColumnModel().getColumn(5).setPreferredWidth(200);
+            tblListarClientes.getColumnModel().getColumn(6).setPreferredWidth(150);
+            tblListarClientes.getColumnModel().getColumn(7).setResizable(false);
+            tblListarClientes.getColumnModel().getColumn(8).setResizable(false);
+            tblListarClientes.getColumnModel().getColumn(9).setResizable(false);
+            tblListarClientes.getColumnModel().getColumn(9).setPreferredWidth(150);
+            tblListarClientes.getColumnModel().getColumn(10).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -142,8 +157,8 @@ public class ListarClientes extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
-                .addGap(6, 6, 6))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pnlLeft.setBackground(new java.awt.Color(129, 164, 220));
@@ -219,7 +234,7 @@ public class ListarClientes extends javax.swing.JFrame {
         pnlLeftLayout.setVerticalGroup(
             pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLeftLayout.createSequentialGroup()
-                .addContainerGap(82, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnImprimir)
                 .addGap(214, 214, 214)
                 .addComponent(btnEliminar)

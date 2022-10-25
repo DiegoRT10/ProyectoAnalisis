@@ -104,12 +104,25 @@ public class ListarInventario extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblListarProductos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         tblListarProductos.setGridColor(new java.awt.Color(153, 255, 153));
         tblListarProductos.setSelectionBackground(new java.awt.Color(255, 255, 204));
         tblListarProductos.setSelectionForeground(new java.awt.Color(0, 0, 0));
         tblListarProductos.setShowGrid(true);
         tblListarProductos.setShowVerticalLines(false);
         jScrollPane1.setViewportView(tblListarProductos);
+        if (tblListarProductos.getColumnModel().getColumnCount() > 0) {
+            tblListarProductos.getColumnModel().getColumn(0).setPreferredWidth(200);
+            tblListarProductos.getColumnModel().getColumn(1).setPreferredWidth(300);
+            tblListarProductos.getColumnModel().getColumn(2).setPreferredWidth(300);
+            tblListarProductos.getColumnModel().getColumn(3).setPreferredWidth(300);
+            tblListarProductos.getColumnModel().getColumn(4).setPreferredWidth(150);
+            tblListarProductos.getColumnModel().getColumn(5).setPreferredWidth(150);
+            tblListarProductos.getColumnModel().getColumn(6).setPreferredWidth(180);
+            tblListarProductos.getColumnModel().getColumn(7).setPreferredWidth(180);
+            tblListarProductos.getColumnModel().getColumn(8).setPreferredWidth(180);
+            tblListarProductos.getColumnModel().getColumn(9).setPreferredWidth(100);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -120,11 +133,11 @@ public class ListarInventario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 373, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -137,8 +150,8 @@ public class ListarInventario extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
         );
 
         pnlLeft.setBackground(new java.awt.Color(129, 164, 220));

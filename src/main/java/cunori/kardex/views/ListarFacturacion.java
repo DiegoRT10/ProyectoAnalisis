@@ -101,12 +101,26 @@ public class ListarFacturacion extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblListarUsuarios.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         tblListarUsuarios.setGridColor(new java.awt.Color(153, 255, 153));
         tblListarUsuarios.setSelectionBackground(new java.awt.Color(255, 255, 204));
         tblListarUsuarios.setSelectionForeground(new java.awt.Color(0, 0, 0));
         tblListarUsuarios.setShowGrid(true);
         tblListarUsuarios.setShowVerticalLines(false);
         jScrollPane1.setViewportView(tblListarUsuarios);
+        if (tblListarUsuarios.getColumnModel().getColumnCount() > 0) {
+            tblListarUsuarios.getColumnModel().getColumn(0).setPreferredWidth(150);
+            tblListarUsuarios.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tblListarUsuarios.getColumnModel().getColumn(2).setPreferredWidth(200);
+            tblListarUsuarios.getColumnModel().getColumn(3).setPreferredWidth(200);
+            tblListarUsuarios.getColumnModel().getColumn(4).setPreferredWidth(150);
+            tblListarUsuarios.getColumnModel().getColumn(5).setPreferredWidth(200);
+            tblListarUsuarios.getColumnModel().getColumn(6).setPreferredWidth(200);
+            tblListarUsuarios.getColumnModel().getColumn(7).setPreferredWidth(250);
+            tblListarUsuarios.getColumnModel().getColumn(8).setPreferredWidth(250);
+            tblListarUsuarios.getColumnModel().getColumn(9).setPreferredWidth(150);
+            tblListarUsuarios.getColumnModel().getColumn(10).setPreferredWidth(100);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

@@ -102,7 +102,7 @@ public class ListarProveedores extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, true
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -115,6 +115,19 @@ public class ListarProveedores extends javax.swing.JFrame {
         tblListarProveedores.setShowGrid(true);
         tblListarProveedores.setShowVerticalLines(false);
         jScrollPane1.setViewportView(tblListarProveedores);
+        if (tblListarProveedores.getColumnModel().getColumnCount() > 0) {
+            tblListarProveedores.getColumnModel().getColumn(0).setPreferredWidth(150);
+            tblListarProveedores.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tblListarProveedores.getColumnModel().getColumn(2).setPreferredWidth(150);
+            tblListarProveedores.getColumnModel().getColumn(3).setResizable(false);
+            tblListarProveedores.getColumnModel().getColumn(4).setPreferredWidth(200);
+            tblListarProveedores.getColumnModel().getColumn(5).setPreferredWidth(200);
+            tblListarProveedores.getColumnModel().getColumn(6).setPreferredWidth(150);
+            tblListarProveedores.getColumnModel().getColumn(7).setResizable(false);
+            tblListarProveedores.getColumnModel().getColumn(8).setResizable(false);
+            tblListarProveedores.getColumnModel().getColumn(9).setPreferredWidth(150);
+            tblListarProveedores.getColumnModel().getColumn(10).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -302,21 +315,20 @@ public class ListarProveedores extends javax.swing.JFrame {
         model.addRow(newRow);
         }
         
-    }
-    
-     //DPI agrandar
-        TableColumn columna = tblListarProveedores.getColumnModel().getColumn(0);
-        //columna.setMaxWidth(20);
-        columna.setMinWidth(0);
-        columna.setPreferredWidth(150);
-        tblListarProveedores.doLayout();
-        
+    }   
         //Ocultar id
         TableColumn columna2 = tblListarProveedores.getColumnModel().getColumn(10);
         columna2.setMaxWidth(0);
         columna2.setMinWidth(0);
         columna2.setPreferredWidth(0);
         tblListarProveedores.doLayout();
+        
+        //Ocultar apellidos
+        TableColumn columna5 = tblListarProveedores.getColumnModel().getColumn(3);
+        columna5.setMaxWidth(0);
+        columna5.setMinWidth(0);
+        columna5.setPreferredWidth(0);
+        tblListarProveedores.doLayout();        
         
         //Ocultar usuario
         TableColumn columna3 = tblListarProveedores.getColumnModel().getColumn(7);
