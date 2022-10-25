@@ -4,8 +4,8 @@
  */
 package cunori.kardex.views;
 
-import cunori.kardex.controller.PersonaJpaController;
-import cunori.kardex.dao.Persona;
+import cunori.kardex.controller.UsuarioJpaController;
+import cunori.kardex.dao.Usuario;
 import cunori.kardex.encrypt.Hash;
 import java.awt.Font;
 import java.util.UUID;
@@ -25,7 +25,7 @@ import javax.swing.table.TableRowSorter;
 public class FormCrearUsuario extends javax.swing.JFrame {
 
     EntityManagerFactory emf;
-    PersonaJpaController PersonaEntityManager;
+    UsuarioJpaController UsuarioEntityManager;
     public static TableRowSorter<DefaultTableModel> sorter;
 
     public FormCrearUsuario() {
@@ -35,7 +35,7 @@ public class FormCrearUsuario extends javax.swing.JFrame {
         //this.setExtendedState(MAXIMIZED_BOTH);
 
         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
-        PersonaEntityManager = new PersonaJpaController(emf);
+        UsuarioEntityManager = new UsuarioJpaController(emf);
     }
 
     /**
@@ -388,7 +388,7 @@ public class FormCrearUsuario extends javax.swing.JFrame {
     private Boolean CrearUsuario() {
 
         if (!Vacio()) {
-            Persona p = new Persona();
+            Usuario p = new Usuario();
             p.setId(UUID.randomUUID().toString());
             p.setDpi(txtDPI.getText());
             p.setNit(txtNIT.getText());
@@ -399,10 +399,11 @@ public class FormCrearUsuario extends javax.swing.JFrame {
             p.setTelefono(txtTelefono.getText());
             p.setUsuario(txtUsuario.getText());
             p.setContrasena(Hash.sha1(txtContrasena.getText()));
-            p.setRol(cbxRol.getSelectedIndex());
+            Integer cbx =cbxRol.getSelectedIndex();
+            p.setRol(cbx.toString());
 
             try {
-                PersonaEntityManager.create(p);
+                UsuarioEntityManager.create(p);
                 return true;
             } catch (Exception ex) {
 //            Logger.getLogger(FormUsuario.class.getName()).log(Level.SEVERE, null, ex);

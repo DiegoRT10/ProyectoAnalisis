@@ -82,15 +82,9 @@
                                   <Component id="txtNombre" min="-2" pref="817" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="lblCodin8" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblCodin" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="lblCodin8" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtDPI" pref="817" max="32767" attributes="0"/>
-                                      <Component id="txtNIT" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="txtNIT" min="-2" pref="817" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -104,12 +98,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblCodin" alignment="3" max="32767" attributes="0"/>
-                      <Component id="txtDPI" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblCodin8" alignment="3" max="32767" attributes="0"/>
                       <Component id="txtNIT" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -152,38 +141,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Datos a editar del Proveedor"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblCodin">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="24" style="0"/>
-            </Property>
-            <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="DPI:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtDPI">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="dc" green="a4" red="81" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="24" style="0"/>
-            </Property>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
-                <BevelBorder>
-                  <Color PropertyName="highlightOuter" blue="ff" green="99" red="0" type="rgb"/>
-                  <Color PropertyName="highlightInner" blue="ff" green="33" red="33" type="rgb"/>
-                  <Color PropertyName="shadowOuter" blue="ff" green="cc" red="33" type="rgb"/>
-                  <Color PropertyName="shadowInner" blue="ff" green="99" red="33" type="rgb"/>
-                </BevelBorder>
-              </Border>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
-          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCodin1">
           <Properties>

@@ -5,9 +5,11 @@
 package cunori.kardex.views;
 
 
-import cunori.kardex.controller.PersonaJpaController;
+
+import cunori.kardex.controller.ClienteJpaController;
+import cunori.kardex.controller.exceptions.IllegalOrphanException;
 import cunori.kardex.controller.exceptions.NonexistentEntityException;
-import cunori.kardex.dao.Persona;
+import cunori.kardex.dao.Cliente;
 import java.awt.Font;
 import java.util.List;
 import java.util.logging.Level;
@@ -28,7 +30,7 @@ import javax.swing.table.TableRowSorter;
 public class ListarClientes extends javax.swing.JFrame {
 
     EntityManagerFactory emf;
-    PersonaJpaController PersonaEntityManager;
+    ClienteJpaController ClienteEntityManager;
     public static TableRowSorter<DefaultTableModel> sorter;
 
     public ListarClientes() {
@@ -39,7 +41,7 @@ public class ListarClientes extends javax.swing.JFrame {
         tblListarClientes.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
 
         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
-        PersonaEntityManager = new PersonaJpaController(emf);
+        ClienteEntityManager = new ClienteJpaController(emf);
         
         ListarClientes();
     }
@@ -91,18 +93,18 @@ public class ListarClientes extends javax.swing.JFrame {
         tblListarClientes.setForeground(new java.awt.Color(0, 0, 0));
         tblListarClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "DPI", "NIT", "Nombre", "Apellidos", "Direccion", "Correo", "Telefono", "Usuario", "Contraseña", "Rol", "id"
+                "DPI", "NIT", "Nombre", "Apellidos", "Direccion", "Correo", "Telefono", "id"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -125,10 +127,6 @@ public class ListarClientes extends javax.swing.JFrame {
             tblListarClientes.getColumnModel().getColumn(5).setPreferredWidth(200);
             tblListarClientes.getColumnModel().getColumn(6).setPreferredWidth(150);
             tblListarClientes.getColumnModel().getColumn(7).setResizable(false);
-            tblListarClientes.getColumnModel().getColumn(8).setResizable(false);
-            tblListarClientes.getColumnModel().getColumn(9).setResizable(false);
-            tblListarClientes.getColumnModel().getColumn(9).setPreferredWidth(150);
-            tblListarClientes.getColumnModel().getColumn(10).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -307,47 +305,27 @@ public class ListarClientes extends javax.swing.JFrame {
 
     private void ListarClientes(){
    DefaultTableModel model = (DefaultTableModel) tblListarClientes.getModel();
-    List<Persona> cliente = PersonaEntityManager.findPersonaEntities();
+    List<Cliente> cliente = ClienteEntityManager.findClienteEntities();
     model.setRowCount(0); //eliminar filas existentes
     tblListarClientes.setDefaultRenderer(Object.class, new Render());
     
-    for(Persona p : cliente){
-        if(p.getRol()==3){
-        Object newRow[] = {p.getDpi(),p.getNit(),p.getNombre(),p.getApellidos(),p.getDireccion(),p.getCorreo(),p.getTelefono(),p.getUsuario(),p.getContrasena(),"Cliente",p.getId()};
+    for(Cliente p : cliente){
+       
+        Object newRow[] = {p.getDpi(),p.getNit(),p.getNombre(),p.getApellidos(),p.getDireccion(),p.getCorreo(),p.getTelefono(),p.getId()};
         model.addRow(newRow);
-        }
+        
         
     }
     
-     //DPI agrandar
-        TableColumn columna = tblListarClientes.getColumnModel().getColumn(0);
-        //columna.setMaxWidth(20);
-        columna.setMinWidth(0);
-        columna.setPreferredWidth(150);
-        tblListarClientes.doLayout();
-        
+     
         //Ocultar id
-        TableColumn columna2 = tblListarClientes.getColumnModel().getColumn(10);
+        TableColumn columna2 = tblListarClientes.getColumnModel().getColumn(7);
         columna2.setMaxWidth(0);
         columna2.setMinWidth(0);
         columna2.setPreferredWidth(0);
         tblListarClientes.doLayout();
         
-        //Ocultar usuario
-        TableColumn columna3 = tblListarClientes.getColumnModel().getColumn(7);
-        columna3.setMaxWidth(0);
-        columna3.setMinWidth(0);
-        columna3.setPreferredWidth(0);
-        tblListarClientes.doLayout();
-        
-        //Ocultar contraseña
-        TableColumn columna4 = tblListarClientes.getColumnModel().getColumn(8);
-        columna4.setMaxWidth(0);
-        columna4.setMinWidth(0);
-        columna4.setPreferredWidth(0);
-        tblListarClientes.doLayout();
-    
-        
+           
     
     }
     
@@ -367,7 +345,7 @@ public class ListarClientes extends javax.swing.JFrame {
     String rol = (String) tblListarClientes.getValueAt(fila,9);
     String id = (String) tblListarClientes.getValueAt(fila,10);
     
-    FormEditarCliente.setDatosCliente(dpi,nit,nombre,apellido,direccion,correo,telefono,usuario,contrasena,rol,id);
+    FormEditarCliente.setDatosCliente(dpi,nit,nombre,apellido,direccion,correo,telefono,id);
    
     
     }
@@ -377,15 +355,21 @@ public class ListarClientes extends javax.swing.JFrame {
     if(fila != -1){
     String id = (String) tblListarClientes.getValueAt(fila,10);
     
+            
             try {
-                PersonaEntityManager.destroy(id);
-                 JOptionPane.showMessageDialog(null, "El Cliente se ha eliminado correctamente");
+                ClienteEntityManager.destroy(id);
+                JOptionPane.showMessageDialog(null, "El Cliente se ha eliminado correctamente");
                 return true;
-            } catch (NonexistentEntityException ex) {
-                //Logger.getLogger(ListarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, "Error, no se puede eliminar");
+            } catch (IllegalOrphanException | NonexistentEntityException ex) {
+                //Logger.getLogger(ListarClientes.class.getName()).log(Level.SEVERE, null, ex);
+                 JOptionPane.showMessageDialog(null, "Error, no se puede eliminar");
                 return false;
             }
+                 
+            
+                
+               
+            
     }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
      return false;
     }

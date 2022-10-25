@@ -4,8 +4,7 @@
  */
 package cunori.kardex.views;
 
-import cunori.kardex.controller.ProductosJpaController;
-import cunori.kardex.dao.Productos;
+
 import java.awt.Font;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -23,7 +22,7 @@ import javax.swing.table.TableRowSorter;
 public class ListarInventario extends javax.swing.JFrame {
 
    EntityManagerFactory emf;
-   ProductosJpaController ProductosEntityManager;
+//   ProductosJpaController ProductosEntityManager;
     public static TableRowSorter<DefaultTableModel> sorter;
 
 
@@ -32,12 +31,12 @@ public class ListarInventario extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
         //this.setExtendedState(MAXIMIZED_BOTH);
-        tblListarProductos.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
-
-        emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
-        ProductosEntityManager = new ProductosJpaController(emf);
-        
-        ListarProductos();
+//        tblListarProductos.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
+//
+//        emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
+//        ProductosEntityManager = new ProductosJpaController(emf);
+//        
+//        ListarProductos();
     }
 
     /**
@@ -273,20 +272,20 @@ public class ListarInventario extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCrearActionPerformed
 
-    private void ListarProductos(){
-    DefaultTableModel model = (DefaultTableModel) tblListarProductos.getModel();
-    List<Productos> producto = ProductosEntityManager.findProductosEntities();
-    model.setRowCount(0); //eliminar filas existentes
-    tblListarProductos.setDefaultRenderer(Object.class, new Render());
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
-    
-    for(Productos p : producto){
-        
-        Object newRow[] = {p.getCodigo(),p.getNombre(),p.getCategoria(),p.getMarca(),p.getUnidad(),p.getPesoNeto(),sdf.format(p.getFechaIngreso()),p.getPrecioCompra(),p.getPrecioVenta(),p.getCantidad()};
-        model.addRow(newRow);
-        
-    } 
-    }
+//    private void ListarProductos(){
+//    DefaultTableModel model = (DefaultTableModel) tblListarProductos.getModel();
+//    List<Productos> producto = ProductosEntityManager.findProductosEntities();
+//    model.setRowCount(0); //eliminar filas existentes
+//    tblListarProductos.setDefaultRenderer(Object.class, new Render());
+//    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
+//    
+//    for(Productos p : producto){
+//        
+//        Object newRow[] = {p.getCodigo(),p.getNombre(),p.getCategoria(),p.getMarca(),p.getUnidad(),p.getPesoNeto(),sdf.format(p.getFechaIngreso()),p.getPrecioCompra(),p.getPrecioVenta(),p.getCantidad()};
+//        model.addRow(newRow);
+//        
+//    } 
+//    }
     /**
      * @param args the command line arguments
      */

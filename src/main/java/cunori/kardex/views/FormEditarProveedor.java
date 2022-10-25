@@ -4,8 +4,9 @@
  */
 package cunori.kardex.views;
 
-import cunori.kardex.controller.PersonaJpaController;
-import cunori.kardex.dao.Persona;
+
+import cunori.kardex.controller.ProveedorJpaController;
+import cunori.kardex.dao.Proveedor;
 import cunori.kardex.encrypt.Hash;
 import java.awt.Font;
 import java.util.UUID;
@@ -25,7 +26,7 @@ import javax.swing.table.TableRowSorter;
 public class FormEditarProveedor extends javax.swing.JFrame {
 
     EntityManagerFactory emf;
-    PersonaJpaController PersonaEntityManager;
+    ProveedorJpaController ProveedorEntityManager;
     public static String idB ="";
     public static TableRowSorter<DefaultTableModel> sorter;
 
@@ -36,7 +37,7 @@ public class FormEditarProveedor extends javax.swing.JFrame {
         //this.setExtendedState(MAXIMIZED_BOTH);
 
         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
-        PersonaEntityManager = new PersonaJpaController(emf);
+        ProveedorEntityManager = new ProveedorJpaController(emf);
     }
 
     /**
@@ -50,8 +51,6 @@ public class FormEditarProveedor extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        lblCodin = new javax.swing.JLabel();
-        txtDPI = new javax.swing.JTextField();
         lblCodin1 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtDireccion = new javax.swing.JTextField();
@@ -78,14 +77,6 @@ public class FormEditarProveedor extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("Datos a editar del Proveedor");
-
-        lblCodin.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        lblCodin.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCodin.setText("DPI:");
-
-        txtDPI.setBackground(new java.awt.Color(129, 164, 220));
-        txtDPI.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        txtDPI.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 153, 255)));
 
         lblCodin1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         lblCodin1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -175,13 +166,9 @@ public class FormEditarProveedor extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblCodin8)
-                                    .addComponent(lblCodin))
+                                .addComponent(lblCodin8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtDPI, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)
-                                    .addComponent(txtNIT))))))
+                                .addComponent(txtNIT, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(99, 99, 99))
         );
         jPanel1Layout.setVerticalGroup(
@@ -189,11 +176,7 @@ public class FormEditarProveedor extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1)
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCodin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtDPI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(81, 81, 81)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCodin8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtNIT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -329,27 +312,22 @@ public class FormEditarProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_cbxRolActionPerformed
 
     private Boolean Vacio() {
-        return txtDPI.getText().isEmpty()
-                && txtNIT.getText().isEmpty();
+        return txtNIT.getText().isEmpty()
+        && txtNombre.getText().isEmpty();
     }
     
     private Boolean EditarProveedor(){
     if (!Vacio()) {
-            Persona p = new Persona();
+            Proveedor p = new Proveedor();
             p.setId(idB);
-            p.setDpi(txtDPI.getText());
             p.setNit(txtNIT.getText());
             p.setNombre(txtNombre.getText());
-            p.setApellidos(idB);
             p.setDireccion(txtDireccion.getText());
             p.setCorreo(txtCorreo.getText());
             p.setTelefono(txtTelefono.getText());
-            p.setUsuario(idB);
-            p.setContrasena(idB);
-            p.setRol(4);//el 4 es el rol de proveedor
 
             try {
-                PersonaEntityManager.edit(p);
+                ProveedorEntityManager.edit(p);
                 return true;
             } catch (Exception ex) {
 //            Logger.getLogger(FormUsuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -363,14 +341,13 @@ public class FormEditarProveedor extends javax.swing.JFrame {
         return false;
     }
     
-    public static void setDatosProveedor(String dpi,String nit,String nombre,String apellido,String direccion,String correo,String telefono,String usuario,String contrasena,String rol, String id){
-    txtDPI.setText(dpi);
+    public static void setDatosProveedor(String nit,String nombre,String direccion,String correo,String telefono, String id){
+
     txtNIT.setText(nit);
     txtNombre.setText(nombre);
     txtDireccion.setText(direccion);
     txtCorreo.setText(correo);
     txtTelefono.setText(telefono);
-    cbxRol.setSelectedItem(rol);
     idB = id;
        
     }
@@ -425,7 +402,6 @@ public class FormEditarProveedor extends javax.swing.JFrame {
     public static javax.swing.JComboBox<String> cbxRol;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblCodin;
     private javax.swing.JLabel lblCodin1;
     private javax.swing.JLabel lblCodin3;
     private javax.swing.JLabel lblCodin4;
@@ -434,7 +410,6 @@ public class FormEditarProveedor extends javax.swing.JFrame {
     private javax.swing.JLabel lblCodin9;
     private javax.swing.JPanel pnlLeft;
     public static javax.swing.JTextField txtCorreo;
-    public static javax.swing.JTextField txtDPI;
     public static javax.swing.JTextField txtDireccion;
     public static javax.swing.JTextField txtNIT;
     public static javax.swing.JTextField txtNombre;

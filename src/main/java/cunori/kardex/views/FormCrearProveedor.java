@@ -4,8 +4,8 @@
  */
 package cunori.kardex.views;
 
-import cunori.kardex.controller.PersonaJpaController;
-import cunori.kardex.dao.Persona;
+import cunori.kardex.controller.ProveedorJpaController;
+import cunori.kardex.dao.Proveedor;
 import cunori.kardex.encrypt.Hash;
 import java.awt.Font;
 import java.util.UUID;
@@ -25,7 +25,7 @@ import javax.swing.table.TableRowSorter;
 public class FormCrearProveedor extends javax.swing.JFrame {
 
     EntityManagerFactory emf;
-    PersonaJpaController PersonaEntityManager;
+    ProveedorJpaController ProveedorEntityManager;
     public static TableRowSorter<DefaultTableModel> sorter;
 
     public FormCrearProveedor() {
@@ -35,7 +35,7 @@ public class FormCrearProveedor extends javax.swing.JFrame {
         //this.setExtendedState(MAXIMIZED_BOTH);
 
         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
-        PersonaEntityManager = new PersonaJpaController(emf);
+        ProveedorEntityManager = new ProveedorJpaController(emf);
     }
 
     /**
@@ -331,21 +331,17 @@ public class FormCrearProveedor extends javax.swing.JFrame {
 
         if (!Vacio()) {
             String id = UUID.randomUUID().toString();
-            Persona p = new Persona();
+            Proveedor p = new Proveedor();
             p.setId(id);
-            p.setDpi(txtDPI.getText());
             p.setNit(txtNIT.getText());
             p.setNombre(txtNombre.getText());
-            p.setApellidos(id);
             p.setDireccion(txtDireccion.getText());
             p.setCorreo(txtCorreo.getText());
             p.setTelefono(txtTelefono.getText());
-            p.setUsuario(id);
-            p.setContrasena(id);
-            p.setRol(4); //rol de usuario 4 es proveedor
+            
 
             try {
-                PersonaEntityManager.create(p);
+                ProveedorEntityManager.create(p);
                 return true;
             } catch (Exception ex) {
 //            Logger.getLogger(FormUsuario.class.getName()).log(Level.SEVERE, null, ex);

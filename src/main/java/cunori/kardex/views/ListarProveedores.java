@@ -5,9 +5,11 @@
 package cunori.kardex.views;
 
 
-import cunori.kardex.controller.PersonaJpaController;
+
+import cunori.kardex.controller.ProveedorJpaController;
 import cunori.kardex.controller.exceptions.NonexistentEntityException;
-import cunori.kardex.dao.Persona;
+import cunori.kardex.dao.Proveedor;
+
 import java.awt.Font;
 import java.util.List;
 import java.util.logging.Level;
@@ -28,7 +30,7 @@ import javax.swing.table.TableRowSorter;
 public class ListarProveedores extends javax.swing.JFrame {
 
     EntityManagerFactory emf;
-    PersonaJpaController PersonaEntityManager;
+    ProveedorJpaController ProveedorEntityManager;
     public static TableRowSorter<DefaultTableModel> sorter;
 
     public ListarProveedores() {
@@ -39,7 +41,7 @@ public class ListarProveedores extends javax.swing.JFrame {
         tblListarProveedores.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
 
         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
-        PersonaEntityManager = new PersonaJpaController(emf);
+        ProveedorEntityManager = new ProveedorJpaController(emf);
         
         ListarUsuarios();
     }
@@ -91,18 +93,18 @@ public class ListarProveedores extends javax.swing.JFrame {
         tblListarProveedores.setForeground(new java.awt.Color(0, 0, 0));
         tblListarProveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "DPI", "NIT", "Nombre", "Apellidos", "Direccion", "Correo", "Telefono", "Usuario", "Contraseña", "Rol", "id"
+                "NIT", "Nombre", "Direccion", "Correo", "Telefono", "id"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -116,17 +118,12 @@ public class ListarProveedores extends javax.swing.JFrame {
         tblListarProveedores.setShowVerticalLines(false);
         jScrollPane1.setViewportView(tblListarProveedores);
         if (tblListarProveedores.getColumnModel().getColumnCount() > 0) {
-            tblListarProveedores.getColumnModel().getColumn(0).setPreferredWidth(150);
-            tblListarProveedores.getColumnModel().getColumn(1).setPreferredWidth(100);
-            tblListarProveedores.getColumnModel().getColumn(2).setPreferredWidth(150);
-            tblListarProveedores.getColumnModel().getColumn(3).setResizable(false);
-            tblListarProveedores.getColumnModel().getColumn(4).setPreferredWidth(200);
-            tblListarProveedores.getColumnModel().getColumn(5).setPreferredWidth(200);
-            tblListarProveedores.getColumnModel().getColumn(6).setPreferredWidth(150);
-            tblListarProveedores.getColumnModel().getColumn(7).setResizable(false);
-            tblListarProveedores.getColumnModel().getColumn(8).setResizable(false);
-            tblListarProveedores.getColumnModel().getColumn(9).setPreferredWidth(150);
-            tblListarProveedores.getColumnModel().getColumn(10).setResizable(false);
+            tblListarProveedores.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tblListarProveedores.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tblListarProveedores.getColumnModel().getColumn(2).setPreferredWidth(200);
+            tblListarProveedores.getColumnModel().getColumn(3).setPreferredWidth(200);
+            tblListarProveedores.getColumnModel().getColumn(4).setPreferredWidth(150);
+            tblListarProveedores.getColumnModel().getColumn(5).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -305,43 +302,22 @@ public class ListarProveedores extends javax.swing.JFrame {
 
     private void ListarUsuarios(){
    DefaultTableModel model = (DefaultTableModel) tblListarProveedores.getModel();
-    List<Persona> usuario = PersonaEntityManager.findPersonaEntities();
+    List<Proveedor> usuario = ProveedorEntityManager.findProveedorEntities();
     model.setRowCount(0); //eliminar filas existentes
     tblListarProveedores.setDefaultRenderer(Object.class, new Render());
     
-    for(Persona p : usuario){
-        if(p.getRol()==4){
-        Object newRow[] = {p.getDpi(),p.getNit(),p.getNombre(),p.getApellidos(),p.getDireccion(),p.getCorreo(),p.getTelefono(),p.getUsuario(),p.getContrasena(),"Proveedores",p.getId()};
+    for(Proveedor p : usuario){
+        
+        Object newRow[] = {p.getNit(),p.getNombre(),p.getDireccion(),p.getCorreo(),p.getTelefono(),p.getId()};
         model.addRow(newRow);
-        }
+        
         
     }   
         //Ocultar id
-        TableColumn columna2 = tblListarProveedores.getColumnModel().getColumn(10);
+        TableColumn columna2 = tblListarProveedores.getColumnModel().getColumn(5);
         columna2.setMaxWidth(0);
         columna2.setMinWidth(0);
         columna2.setPreferredWidth(0);
-        tblListarProveedores.doLayout();
-        
-        //Ocultar apellidos
-        TableColumn columna5 = tblListarProveedores.getColumnModel().getColumn(3);
-        columna5.setMaxWidth(0);
-        columna5.setMinWidth(0);
-        columna5.setPreferredWidth(0);
-        tblListarProveedores.doLayout();        
-        
-        //Ocultar usuario
-        TableColumn columna3 = tblListarProveedores.getColumnModel().getColumn(7);
-        columna3.setMaxWidth(0);
-        columna3.setMinWidth(0);
-        columna3.setPreferredWidth(0);
-        tblListarProveedores.doLayout();
-        
-        //Ocultar contraseña
-        TableColumn columna4 = tblListarProveedores.getColumnModel().getColumn(8);
-        columna4.setMaxWidth(0);
-        columna4.setMinWidth(0);
-        columna4.setPreferredWidth(0);
         tblListarProveedores.doLayout();
         
     
@@ -351,19 +327,15 @@ public class ListarProveedores extends javax.swing.JFrame {
     int fila = tblListarProveedores.getSelectedRow();
    
 
-    String dpi = (String) tblListarProveedores.getValueAt(fila,0);
-    String nit = (String) tblListarProveedores.getValueAt(fila,1);
-    String nombre = (String) tblListarProveedores.getValueAt(fila,2);
-    String apellido = (String) tblListarProveedores.getValueAt(fila,3);
-    String direccion = (String) tblListarProveedores.getValueAt(fila,4);
-    String correo = (String) tblListarProveedores.getValueAt(fila,5); 
-    String telefono = (String) tblListarProveedores.getValueAt(fila,6);
-    String usuario = (String) tblListarProveedores.getValueAt(fila,7); 
-    String contrasena = (String) tblListarProveedores.getValueAt(fila,8);
-    String rol = (String) tblListarProveedores.getValueAt(fila,9);
-    String id = (String) tblListarProveedores.getValueAt(fila,10);
     
-    FormEditarProveedor.setDatosProveedor(dpi,nit,nombre,apellido,direccion,correo,telefono,usuario,contrasena,rol,id);
+    String nit = (String) tblListarProveedores.getValueAt(fila,0);
+    String nombre = (String) tblListarProveedores.getValueAt(fila,1);
+    String direccion = (String) tblListarProveedores.getValueAt(fila,2);
+    String correo = (String) tblListarProveedores.getValueAt(fila,3); 
+    String telefono = (String) tblListarProveedores.getValueAt(fila,4);
+    String id = (String) tblListarProveedores.getValueAt(fila,5);
+    
+    FormEditarProveedor.setDatosProveedor(nit,nombre,direccion,correo,telefono,id);
    
     
     }
@@ -374,7 +346,7 @@ public class ListarProveedores extends javax.swing.JFrame {
     String id = (String) tblListarProveedores.getValueAt(fila,10);
     
             try {
-                PersonaEntityManager.destroy(id);
+                ProveedorEntityManager.destroy(id);
                  JOptionPane.showMessageDialog(null, "El Proveedor se ha eliminado correctamente");
                 return true;
             } catch (NonexistentEntityException ex) {

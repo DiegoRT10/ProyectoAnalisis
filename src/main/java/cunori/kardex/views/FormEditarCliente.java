@@ -4,8 +4,9 @@
  */
 package cunori.kardex.views;
 
-import cunori.kardex.controller.PersonaJpaController;
-import cunori.kardex.dao.Persona;
+
+import cunori.kardex.controller.ClienteJpaController;
+import cunori.kardex.dao.Cliente;
 import cunori.kardex.encrypt.Hash;
 import java.awt.Font;
 import java.util.UUID;
@@ -25,7 +26,7 @@ import javax.swing.table.TableRowSorter;
 public class FormEditarCliente extends javax.swing.JFrame {
 
     EntityManagerFactory emf;
-    PersonaJpaController PersonaEntityManager;
+    ClienteJpaController ClienteEntityManager;
     public static String idB ="";
     public static TableRowSorter<DefaultTableModel> sorter;
 
@@ -36,7 +37,7 @@ public class FormEditarCliente extends javax.swing.JFrame {
         //this.setExtendedState(MAXIMIZED_BOTH);
 
         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
-        PersonaEntityManager = new PersonaJpaController(emf);
+        ClienteEntityManager = new ClienteJpaController(emf);
     }
 
     /**
@@ -346,7 +347,7 @@ public class FormEditarCliente extends javax.swing.JFrame {
     
     private Boolean EditarCliente(){
     if (!Vacio()) {
-            Persona p = new Persona();
+            Cliente p = new Cliente();
             p.setId(idB);
             p.setDpi(txtDPI.getText());
             p.setNit(txtNIT.getText());
@@ -355,12 +356,9 @@ public class FormEditarCliente extends javax.swing.JFrame {
             p.setDireccion(txtDireccion.getText());
             p.setCorreo(txtCorreo.getText());
             p.setTelefono(txtTelefono.getText());
-            p.setUsuario(idB);
-            p.setContrasena(idB);
-            p.setRol(3);//el 3 es el rol de cliente
 
             try {
-                PersonaEntityManager.edit(p);
+                ClienteEntityManager.edit(p);
                 return true;
             } catch (Exception ex) {
 //            Logger.getLogger(FormUsuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -373,7 +371,7 @@ public class FormEditarCliente extends javax.swing.JFrame {
         return false;
     }
     
-    public static void setDatosCliente(String dpi,String nit,String nombre,String apellido,String direccion,String correo,String telefono,String usuario,String contrasena,String rol, String id){
+    public static void setDatosCliente(String dpi,String nit,String nombre,String apellido,String direccion,String correo,String telefono,String id){
     txtDPI.setText(dpi);
     txtNIT.setText(nit);
     txtNombre.setText(nombre);
@@ -381,7 +379,6 @@ public class FormEditarCliente extends javax.swing.JFrame {
     txtDireccion.setText(direccion);
     txtCorreo.setText(correo);
     txtTelefono.setText(telefono);
-    cbxRol.setSelectedItem(rol);
     idB = id;
        
     }
