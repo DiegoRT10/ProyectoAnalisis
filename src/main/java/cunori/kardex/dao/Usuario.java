@@ -5,12 +5,15 @@
 package cunori.kardex.dao;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -18,21 +21,21 @@ import javax.persistence.Table;
  * @author Diego Ramos
  */
 @Entity
-@Table(name = "persona")
+@Table(name = "Usuario")
 @NamedQueries({
-    @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p"),
-    @NamedQuery(name = "Persona.findById", query = "SELECT p FROM Persona p WHERE p.id = :id"),
-    @NamedQuery(name = "Persona.findByDpi", query = "SELECT p FROM Persona p WHERE p.dpi = :dpi"),
-    @NamedQuery(name = "Persona.findByNit", query = "SELECT p FROM Persona p WHERE p.nit = :nit"),
-    @NamedQuery(name = "Persona.findByNombre", query = "SELECT p FROM Persona p WHERE p.nombre = :nombre"),
-    @NamedQuery(name = "Persona.findByApellidos", query = "SELECT p FROM Persona p WHERE p.apellidos = :apellidos"),
-    @NamedQuery(name = "Persona.findByDireccion", query = "SELECT p FROM Persona p WHERE p.direccion = :direccion"),
-    @NamedQuery(name = "Persona.findByCorreo", query = "SELECT p FROM Persona p WHERE p.correo = :correo"),
-    @NamedQuery(name = "Persona.findByTelefono", query = "SELECT p FROM Persona p WHERE p.telefono = :telefono"),
-    @NamedQuery(name = "Persona.findByUsuario", query = "SELECT p FROM Persona p WHERE p.usuario = :usuario"),
-    @NamedQuery(name = "Persona.findByContrasena", query = "SELECT p FROM Persona p WHERE p.contrasena = :contrasena"),
-    @NamedQuery(name = "Persona.findByRol", query = "SELECT p FROM Persona p WHERE p.rol = :rol")})
-public class Persona implements Serializable {
+    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
+    @NamedQuery(name = "Usuario.findById", query = "SELECT u FROM Usuario u WHERE u.id = :id"),
+    @NamedQuery(name = "Usuario.findByDpi", query = "SELECT u FROM Usuario u WHERE u.dpi = :dpi"),
+    @NamedQuery(name = "Usuario.findByNit", query = "SELECT u FROM Usuario u WHERE u.nit = :nit"),
+    @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre"),
+    @NamedQuery(name = "Usuario.findByApellidos", query = "SELECT u FROM Usuario u WHERE u.apellidos = :apellidos"),
+    @NamedQuery(name = "Usuario.findByDireccion", query = "SELECT u FROM Usuario u WHERE u.direccion = :direccion"),
+    @NamedQuery(name = "Usuario.findByCorreo", query = "SELECT u FROM Usuario u WHERE u.correo = :correo"),
+    @NamedQuery(name = "Usuario.findByTelefono", query = "SELECT u FROM Usuario u WHERE u.telefono = :telefono"),
+    @NamedQuery(name = "Usuario.findByUsuario", query = "SELECT u FROM Usuario u WHERE u.usuario = :usuario"),
+    @NamedQuery(name = "Usuario.findByContrasena", query = "SELECT u FROM Usuario u WHERE u.contrasena = :contrasena"),
+    @NamedQuery(name = "Usuario.findByRol", query = "SELECT u FROM Usuario u WHERE u.rol = :rol")})
+public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -68,16 +71,18 @@ public class Persona implements Serializable {
     private String contrasena;
     @Basic(optional = false)
     @Column(name = "rol")
-    private int rol;
+    private String rol;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendedor")
+    private Collection<Venta> ventaCollection;
 
-    public Persona() {
+    public Usuario() {
     }
 
-    public Persona(String id) {
+    public Usuario(String id) {
         this.id = id;
     }
 
-    public Persona(String id, String dpi, String nit, String nombre, String apellidos, String direccion, String correo, String telefono, String usuario, String contrasena, int rol) {
+    public Usuario(String id, String dpi, String nit, String nombre, String apellidos, String direccion, String correo, String telefono, String usuario, String contrasena, String rol) {
         this.id = id;
         this.dpi = dpi;
         this.nit = nit;
@@ -171,12 +176,20 @@ public class Persona implements Serializable {
         this.contrasena = contrasena;
     }
 
-    public int getRol() {
+    public String getRol() {
         return rol;
     }
 
-    public void setRol(int rol) {
+    public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    public Collection<Venta> getVentaCollection() {
+        return ventaCollection;
+    }
+
+    public void setVentaCollection(Collection<Venta> ventaCollection) {
+        this.ventaCollection = ventaCollection;
     }
 
     @Override
@@ -189,10 +202,10 @@ public class Persona implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Persona)) {
+        if (!(object instanceof Usuario)) {
             return false;
         }
-        Persona other = (Persona) object;
+        Usuario other = (Usuario) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -201,7 +214,7 @@ public class Persona implements Serializable {
 
     @Override
     public String toString() {
-        return "cunori.kardex.dao.Persona[ id=" + id + " ]";
+        return "cunori.kardex.dao.Usuario[ id=" + id + " ]";
     }
     
 }

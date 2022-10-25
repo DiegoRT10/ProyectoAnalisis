@@ -5,9 +5,12 @@
 package cunori.kardex.views;
 
 
-import cunori.kardex.controller.PersonaJpaController;
+
+import cunori.kardex.controller.UsuarioJpaController;
+import cunori.kardex.controller.exceptions.IllegalOrphanException;
 import cunori.kardex.controller.exceptions.NonexistentEntityException;
-import cunori.kardex.dao.Persona;
+import cunori.kardex.dao.Usuario;
+
 import java.awt.Font;
 import java.util.List;
 import java.util.logging.Level;
@@ -30,7 +33,7 @@ import javax.swing.table.TableRowSorter;
 public class ListarUsuarios extends javax.swing.JFrame {
 
    EntityManagerFactory emf;
-    PersonaJpaController PersonaEntityManager;
+    UsuarioJpaController UsuarioEntityManager;
    
     
     public static TableRowSorter<DefaultTableModel> sorter;
@@ -50,7 +53,7 @@ public class ListarUsuarios extends javax.swing.JFrame {
 
          emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
         
-        PersonaEntityManager = new PersonaJpaController(emf);
+        UsuarioEntityManager = new UsuarioJpaController(emf);
         
         //listar los usuarios 
         ListarUsuarios();
@@ -318,21 +321,21 @@ public class ListarUsuarios extends javax.swing.JFrame {
 
     private void ListarUsuarios(){
    DefaultTableModel model = (DefaultTableModel) tblListarUsuarios.getModel();
-    List<Persona> usuario = PersonaEntityManager.findPersonaEntities();
+    List<Usuario> usuario = UsuarioEntityManager.findUsuarioEntities();
     model.setRowCount(0); //eliminar filas existentes
     tblListarUsuarios.setDefaultRenderer(Object.class, new Render());
     
-    for(Persona p : usuario){
-        if(p.getRol() == 0 || p.getRol() == 1 || p.getRol() == 2){
+    for(Usuario p : usuario){
+        
         String rol="";
-        switch(p.getRol()) {
+        switch(Integer.parseInt(p.getRol())) {
             case 0 -> rol="Gerente";
             case 1 -> rol="Administrador";
             case 2 -> rol="Vendedor";
         }
         Object newRow[] = {p.getDpi(),p.getNit(),p.getNombre(),p.getApellidos(),p.getDireccion(),p.getCorreo(),p.getTelefono(),p.getUsuario(),p.getContrasena(),rol,p.getId()};
         model.addRow(newRow);
-        }
+        
     }
     
      //DPI agrandar
@@ -379,15 +382,19 @@ public class ListarUsuarios extends javax.swing.JFrame {
     if(fila != -1){
     String id = (String) tblListarUsuarios.getValueAt(fila,10);
     
+            
             try {
-                PersonaEntityManager.destroy(id);
-                 JOptionPane.showMessageDialog(null, "El usuario se ha eliminado correctamente");
+                UsuarioEntityManager.destroy(id);
+                JOptionPane.showMessageDialog(null, "El usuario se ha eliminado correctamente");
                 return true;
-            } catch (NonexistentEntityException ex) {
+            } catch (IllegalOrphanException | NonexistentEntityException ex) {
                 //Logger.getLogger(ListarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Error, no se puede eliminar");
                 return false;
             }
+            //Logger.getLogger(ListarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+
+            
     }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
      return false;
     }
