@@ -4,7 +4,13 @@
  */
 package cunori.kardex.views;
 
+import cunori.kardex.controller.ProductosJpaController;
+import cunori.kardex.dao.Productos;
 import java.awt.Font;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -16,7 +22,8 @@ import javax.swing.table.TableRowSorter;
  */
 public class ListarInventario extends javax.swing.JFrame {
 
-   
+   EntityManagerFactory emf;
+   ProductosJpaController ProductosEntityManager;
     public static TableRowSorter<DefaultTableModel> sorter;
 
 
@@ -25,10 +32,12 @@ public class ListarInventario extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
         //this.setExtendedState(MAXIMIZED_BOTH);
-        tblListarUsuarios.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
+        tblListarProductos.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
 
+        emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
+        ProductosEntityManager = new ProductosJpaController(emf);
         
-
+        ListarProductos();
     }
 
     /**
@@ -45,7 +54,7 @@ public class ListarInventario extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblListarUsuarios = new javax.swing.JTable();
+        tblListarProductos = new javax.swing.JTable();
         pnlLeft = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
@@ -71,36 +80,36 @@ public class ListarInventario extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscar.png"))); // NOI18N
 
-        tblListarUsuarios.setBackground(new java.awt.Color(255, 255, 255));
-        tblListarUsuarios.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 153, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 102, 255)));
-        tblListarUsuarios.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        tblListarUsuarios.setForeground(new java.awt.Color(0, 0, 0));
-        tblListarUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+        tblListarProductos.setBackground(new java.awt.Color(255, 255, 255));
+        tblListarProductos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 153, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 102, 255)));
+        tblListarProductos.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        tblListarProductos.setForeground(new java.awt.Color(0, 0, 0));
+        tblListarProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Código", "Nombre", "Categoría", "Marca", "Unidad", "Peso Neto", "Fecha de Ingreso", "Precio de Compra", "Precio de Venta", "Impuesto", "Cantidad"
+                "Código", "Nombre", "Categoría", "Marca", "Unidad", "Peso Neto", "Fecha de Ingreso", "Precio de Compra", "Precio de Venta", "Cantidad"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, true, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tblListarUsuarios.setGridColor(new java.awt.Color(153, 255, 153));
-        tblListarUsuarios.setSelectionBackground(new java.awt.Color(255, 255, 204));
-        tblListarUsuarios.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        tblListarUsuarios.setShowGrid(true);
-        tblListarUsuarios.setShowVerticalLines(false);
-        jScrollPane1.setViewportView(tblListarUsuarios);
+        tblListarProductos.setGridColor(new java.awt.Color(153, 255, 153));
+        tblListarProductos.setSelectionBackground(new java.awt.Color(255, 255, 204));
+        tblListarProductos.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        tblListarProductos.setShowGrid(true);
+        tblListarProductos.setShowVerticalLines(false);
+        jScrollPane1.setViewportView(tblListarProductos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -111,7 +120,7 @@ public class ListarInventario extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 391, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 373, Short.MAX_VALUE)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -127,8 +136,8 @@ public class ListarInventario extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6))
         );
 
@@ -251,8 +260,20 @@ public class ListarInventario extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCrearActionPerformed
 
+    private void ListarProductos(){
+    DefaultTableModel model = (DefaultTableModel) tblListarProductos.getModel();
+    List<Productos> producto = ProductosEntityManager.findProductosEntities();
+    model.setRowCount(0); //eliminar filas existentes
+    tblListarProductos.setDefaultRenderer(Object.class, new Render());
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
     
-
+    for(Productos p : producto){
+        
+        Object newRow[] = {p.getCodigo(),p.getNombre(),p.getCategoria(),p.getMarca(),p.getUnidad(),p.getPesoNeto(),sdf.format(p.getFechaIngreso()),p.getPrecioCompra(),p.getPrecioVenta(),p.getCantidad()};
+        model.addRow(newRow);
+        
+    } 
+    }
     /**
      * @param args the command line arguments
      */
@@ -296,7 +317,7 @@ public class ListarInventario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel pnlLeft;
-    public static javax.swing.JTable tblListarUsuarios;
+    public static javax.swing.JTable tblListarProductos;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

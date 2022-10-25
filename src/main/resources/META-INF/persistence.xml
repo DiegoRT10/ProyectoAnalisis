@@ -7,6 +7,7 @@
     <class>cunori.kardex.dao.Persona</class>
     <class>cunori.kardex.dao.Administrador</class>
     <class>cunori.kardex.dao.Gerente</class>
+    <class>cunori.kardex.dao.Productos</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://bq2ilywq58idf92jbdck-mysql.services.clever-cloud.com:3306/bq2ilywq58idf92jbdck?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="u0xkyyhkaahho5ue"/>
