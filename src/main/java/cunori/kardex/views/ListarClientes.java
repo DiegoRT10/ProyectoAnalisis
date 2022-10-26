@@ -340,10 +340,7 @@ public class ListarClientes extends javax.swing.JFrame {
     String direccion = (String) tblListarClientes.getValueAt(fila,4);
     String correo = (String) tblListarClientes.getValueAt(fila,5); 
     String telefono = (String) tblListarClientes.getValueAt(fila,6);
-    String usuario = (String) tblListarClientes.getValueAt(fila,7); 
-    String contrasena = (String) tblListarClientes.getValueAt(fila,8);
-    String rol = (String) tblListarClientes.getValueAt(fila,9);
-    String id = (String) tblListarClientes.getValueAt(fila,10);
+    String id = (String) tblListarClientes.getValueAt(fila,7);
     
     FormEditarCliente.setDatosCliente(dpi,nit,nombre,apellido,direccion,correo,telefono,id);
    
@@ -353,14 +350,14 @@ public class ListarClientes extends javax.swing.JFrame {
     private boolean DeleteCliente(){
         int fila = tblListarClientes.getSelectedRow();
     if(fila != -1){
-    String id = (String) tblListarClientes.getValueAt(fila,10);
+    String id = (String) tblListarClientes.getValueAt(fila,7);
     
             
             try {
                 ClienteEntityManager.destroy(id);
                 JOptionPane.showMessageDialog(null, "El Cliente se ha eliminado correctamente");
                 return true;
-            } catch (IllegalOrphanException | NonexistentEntityException ex) {
+            } catch (NonexistentEntityException ex) {
                 //Logger.getLogger(ListarClientes.class.getName()).log(Level.SEVERE, null, ex);
                  JOptionPane.showMessageDialog(null, "Error, no se puede eliminar");
                 return false;

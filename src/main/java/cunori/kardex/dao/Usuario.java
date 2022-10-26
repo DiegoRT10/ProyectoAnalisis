@@ -72,8 +72,8 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "rol")
     private String rol;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendedor")
-    private Collection<Venta> ventaCollection;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendedor")
+//    private Collection<Venta> ventaCollection;
 
     public Usuario() {
     }
@@ -184,13 +184,13 @@ public class Usuario implements Serializable {
         this.rol = rol;
     }
 
-    public Collection<Venta> getVentaCollection() {
-        return ventaCollection;
-    }
-
-    public void setVentaCollection(Collection<Venta> ventaCollection) {
-        this.ventaCollection = ventaCollection;
-    }
+//    public Collection<Venta> getVentaCollection() {
+//        return ventaCollection;
+//    }
+//
+//    public void setVentaCollection(Collection<Venta> ventaCollection) {
+//        this.ventaCollection = ventaCollection;
+//    }
 
     @Override
     public int hashCode() {

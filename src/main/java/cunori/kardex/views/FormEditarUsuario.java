@@ -418,21 +418,37 @@ public class FormEditarUsuario extends javax.swing.JFrame {
             Integer cbx = cbxRol.getSelectedIndex();
             System.out.println("cbx "+cbx);
             p.setRol(cbx.toString());
+            
+            System.out.println("id: "+p.getId());
+            System.out.println("dpi: "+p.getDpi());
+            System.out.println("nit: "+p.getNit());
+            System.out.println("nombre: "+p.getNombre());
+            System.out.println("apellido: "+p.getApellidos());
+            System.out.println("direccion: "+p.getDireccion());
+            System.out.println("correo: "+p.getCorreo());
+            System.out.println("correo: "+p.getCorreo());
+            System.out.println("telefono: "+p.getTelefono());
+            System.out.println("usuario: "+p.getUsuario());
+            System.out.println("contrasena: "+p.getContrasena());
             System.out.println("cbx obj "+p.getRol());
 
            
+       
         try {
             UsuarioEntityManager.edit(p);
-             return true;
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(FormEditarUsuario.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Datos repetidos o mal ingresados");
+            JOptionPane.showMessageDialog(null, "Datos1 repetidos o mal ingresados");
                 return false;
         } catch (Exception ex) {
             Logger.getLogger(FormEditarUsuario.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Datos repetidos o mal ingresados");
+            JOptionPane.showMessageDialog(null, "Datos2 repetidos o mal ingresados");
                 return false;
         }
+             return true;
+       
+        
+        
                
            
 

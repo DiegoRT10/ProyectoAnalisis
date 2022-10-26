@@ -343,7 +343,7 @@ public class ListarProveedores extends javax.swing.JFrame {
     private boolean DeleteUsuario(){
         int fila = tblListarProveedores.getSelectedRow();
     if(fila != -1){
-    String id = (String) tblListarProveedores.getValueAt(fila,10);
+    String id = (String) tblListarProveedores.getValueAt(fila,5);
     
             try {
                 ProveedorEntityManager.destroy(id);

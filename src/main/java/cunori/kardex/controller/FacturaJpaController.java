@@ -6,17 +6,15 @@ package cunori.kardex.controller;
 
 import cunori.kardex.controller.exceptions.NonexistentEntityException;
 import cunori.kardex.controller.exceptions.PreexistingEntityException;
+import cunori.kardex.dao.Factura;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import cunori.kardex.dao.Compra;
-import cunori.kardex.dao.Factura;
-import cunori.kardex.dao.Venta;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 /**
  *
@@ -38,25 +36,7 @@ public class FacturaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Compra detalleCompra = factura.getDetalleCompra();
-            if (detalleCompra != null) {
-                detalleCompra = em.getReference(detalleCompra.getClass(), detalleCompra.getId());
-                factura.setDetalleCompra(detalleCompra);
-            }
-            Venta detalleVenta = factura.getDetalleVenta();
-            if (detalleVenta != null) {
-                detalleVenta = em.getReference(detalleVenta.getClass(), detalleVenta.getId());
-                factura.setDetalleVenta(detalleVenta);
-            }
             em.persist(factura);
-            if (detalleCompra != null) {
-                detalleCompra.getFacturaCollection().add(factura);
-                detalleCompra = em.merge(detalleCompra);
-            }
-            if (detalleVenta != null) {
-                detalleVenta.getFacturaCollection().add(factura);
-                detalleVenta = em.merge(detalleVenta);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             if (findFactura(factura.getNoSerie()) != null) {
@@ -75,36 +55,7 @@ public class FacturaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Factura persistentFactura = em.find(Factura.class, factura.getNoSerie());
-            Compra detalleCompraOld = persistentFactura.getDetalleCompra();
-            Compra detalleCompraNew = factura.getDetalleCompra();
-            Venta detalleVentaOld = persistentFactura.getDetalleVenta();
-            Venta detalleVentaNew = factura.getDetalleVenta();
-            if (detalleCompraNew != null) {
-                detalleCompraNew = em.getReference(detalleCompraNew.getClass(), detalleCompraNew.getId());
-                factura.setDetalleCompra(detalleCompraNew);
-            }
-            if (detalleVentaNew != null) {
-                detalleVentaNew = em.getReference(detalleVentaNew.getClass(), detalleVentaNew.getId());
-                factura.setDetalleVenta(detalleVentaNew);
-            }
             factura = em.merge(factura);
-            if (detalleCompraOld != null && !detalleCompraOld.equals(detalleCompraNew)) {
-                detalleCompraOld.getFacturaCollection().remove(factura);
-                detalleCompraOld = em.merge(detalleCompraOld);
-            }
-            if (detalleCompraNew != null && !detalleCompraNew.equals(detalleCompraOld)) {
-                detalleCompraNew.getFacturaCollection().add(factura);
-                detalleCompraNew = em.merge(detalleCompraNew);
-            }
-            if (detalleVentaOld != null && !detalleVentaOld.equals(detalleVentaNew)) {
-                detalleVentaOld.getFacturaCollection().remove(factura);
-                detalleVentaOld = em.merge(detalleVentaOld);
-            }
-            if (detalleVentaNew != null && !detalleVentaNew.equals(detalleVentaOld)) {
-                detalleVentaNew.getFacturaCollection().add(factura);
-                detalleVentaNew = em.merge(detalleVentaNew);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -133,16 +84,6 @@ public class FacturaJpaController implements Serializable {
                 factura.getNoSerie();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The factura with id " + id + " no longer exists.", enfe);
-            }
-            Compra detalleCompra = factura.getDetalleCompra();
-            if (detalleCompra != null) {
-                detalleCompra.getFacturaCollection().remove(factura);
-                detalleCompra = em.merge(detalleCompra);
-            }
-            Venta detalleVenta = factura.getDetalleVenta();
-            if (detalleVenta != null) {
-                detalleVenta.getFacturaCollection().remove(factura);
-                detalleVenta = em.merge(detalleVenta);
             }
             em.remove(factura);
             em.getTransaction().commit();

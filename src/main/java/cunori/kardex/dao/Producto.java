@@ -68,8 +68,8 @@ public class Producto implements Serializable {
     private int cantidad;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
     private Collection<Venta> ventaCollection;
-    @OneToMany(mappedBy = "producto")
-    private Collection<Compra> compraCollection;
+//    @OneToMany(mappedBy = "producto")
+//    private Collection<Compra> compraCollection;
 
     public Producto() {
     }
@@ -170,13 +170,13 @@ public class Producto implements Serializable {
         this.ventaCollection = ventaCollection;
     }
 
-    public Collection<Compra> getCompraCollection() {
-        return compraCollection;
-    }
-
-    public void setCompraCollection(Collection<Compra> compraCollection) {
-        this.compraCollection = compraCollection;
-    }
+//    public Collection<Compra> getCompraCollection() {
+//        return compraCollection;
+//    }
+//
+//    public void setCompraCollection(Collection<Compra> compraCollection) {
+//        this.compraCollection = compraCollection;
+//    }
 
     @Override
     public int hashCode() {

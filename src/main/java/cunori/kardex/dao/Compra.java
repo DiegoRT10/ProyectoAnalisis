@@ -52,8 +52,8 @@ public class Compra implements Serializable {
     @JoinColumn(name = "proveedor", referencedColumnName = "id")
     @ManyToOne
     private Proveedor proveedor;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "detalleCompra")
-    private Collection<Factura> facturaCollection;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "detalleCompra")
+//    private Collection<Factura> facturaCollection;
 
     public Compra() {
     }
@@ -102,13 +102,13 @@ public class Compra implements Serializable {
         this.proveedor = proveedor;
     }
 
-    public Collection<Factura> getFacturaCollection() {
-        return facturaCollection;
-    }
-
-    public void setFacturaCollection(Collection<Factura> facturaCollection) {
-        this.facturaCollection = facturaCollection;
-    }
+//    public Collection<Factura> getFacturaCollection() {
+//        return facturaCollection;
+//    }
+//
+//    public void setFacturaCollection(Collection<Factura> facturaCollection) {
+//        this.facturaCollection = facturaCollection;
+//    }
 
     @Override
     public int hashCode() {

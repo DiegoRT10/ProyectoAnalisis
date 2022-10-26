@@ -4,21 +4,17 @@
  */
 package cunori.kardex.controller;
 
-import cunori.kardex.controller.exceptions.IllegalOrphanException;
 import cunori.kardex.controller.exceptions.NonexistentEntityException;
 import cunori.kardex.controller.exceptions.PreexistingEntityException;
 import cunori.kardex.dao.Usuario;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import cunori.kardex.dao.Venta;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 /**
  *
@@ -36,29 +32,11 @@ public class UsuarioJpaController implements Serializable {
     }
 
     public void create(Usuario usuario) throws PreexistingEntityException, Exception {
-        if (usuario.getVentaCollection() == null) {
-            usuario.setVentaCollection(new ArrayList<Venta>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Collection<Venta> attachedVentaCollection = new ArrayList<Venta>();
-            for (Venta ventaCollectionVentaToAttach : usuario.getVentaCollection()) {
-                ventaCollectionVentaToAttach = em.getReference(ventaCollectionVentaToAttach.getClass(), ventaCollectionVentaToAttach.getId());
-                attachedVentaCollection.add(ventaCollectionVentaToAttach);
-            }
-            usuario.setVentaCollection(attachedVentaCollection);
             em.persist(usuario);
-            for (Venta ventaCollectionVenta : usuario.getVentaCollection()) {
-                Usuario oldVendedorOfVentaCollectionVenta = ventaCollectionVenta.getVendedor();
-                ventaCollectionVenta.setVendedor(usuario);
-                ventaCollectionVenta = em.merge(ventaCollectionVenta);
-                if (oldVendedorOfVentaCollectionVenta != null) {
-                    oldVendedorOfVentaCollectionVenta.getVentaCollection().remove(ventaCollectionVenta);
-                    oldVendedorOfVentaCollectionVenta = em.merge(oldVendedorOfVentaCollectionVenta);
-                }
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             if (findUsuario(usuario.getId()) != null) {
@@ -72,45 +50,12 @@ public class UsuarioJpaController implements Serializable {
         }
     }
 
-    public void edit(Usuario usuario) throws IllegalOrphanException, NonexistentEntityException, Exception {
+    public void edit(Usuario usuario) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Usuario persistentUsuario = em.find(Usuario.class, usuario.getId());
-            Collection<Venta> ventaCollectionOld = persistentUsuario.getVentaCollection();
-            Collection<Venta> ventaCollectionNew = usuario.getVentaCollection();
-            List<String> illegalOrphanMessages = null;
-            for (Venta ventaCollectionOldVenta : ventaCollectionOld) {
-                if (!ventaCollectionNew.contains(ventaCollectionOldVenta)) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("You must retain Venta " + ventaCollectionOldVenta + " since its vendedor field is not nullable.");
-                }
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
-            }
-            Collection<Venta> attachedVentaCollectionNew = new ArrayList<Venta>();
-            for (Venta ventaCollectionNewVentaToAttach : ventaCollectionNew) {
-                ventaCollectionNewVentaToAttach = em.getReference(ventaCollectionNewVentaToAttach.getClass(), ventaCollectionNewVentaToAttach.getId());
-                attachedVentaCollectionNew.add(ventaCollectionNewVentaToAttach);
-            }
-            ventaCollectionNew = attachedVentaCollectionNew;
-            usuario.setVentaCollection(ventaCollectionNew);
             usuario = em.merge(usuario);
-            for (Venta ventaCollectionNewVenta : ventaCollectionNew) {
-                if (!ventaCollectionOld.contains(ventaCollectionNewVenta)) {
-                    Usuario oldVendedorOfVentaCollectionNewVenta = ventaCollectionNewVenta.getVendedor();
-                    ventaCollectionNewVenta.setVendedor(usuario);
-                    ventaCollectionNewVenta = em.merge(ventaCollectionNewVenta);
-                    if (oldVendedorOfVentaCollectionNewVenta != null && !oldVendedorOfVentaCollectionNewVenta.equals(usuario)) {
-                        oldVendedorOfVentaCollectionNewVenta.getVentaCollection().remove(ventaCollectionNewVenta);
-                        oldVendedorOfVentaCollectionNewVenta = em.merge(oldVendedorOfVentaCollectionNewVenta);
-                    }
-                }
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -128,7 +73,7 @@ public class UsuarioJpaController implements Serializable {
         }
     }
 
-    public void destroy(String id) throws IllegalOrphanException, NonexistentEntityException {
+    public void destroy(String id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -139,17 +84,6 @@ public class UsuarioJpaController implements Serializable {
                 usuario.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The usuario with id " + id + " no longer exists.", enfe);
-            }
-            List<String> illegalOrphanMessages = null;
-            Collection<Venta> ventaCollectionOrphanCheck = usuario.getVentaCollection();
-            for (Venta ventaCollectionOrphanCheckVenta : ventaCollectionOrphanCheck) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This Usuario (" + usuario + ") cannot be destroyed since the Venta " + ventaCollectionOrphanCheckVenta + " in its ventaCollection field has a non-nullable vendedor field.");
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
             }
             em.remove(usuario);
             em.getTransaction().commit();

@@ -53,8 +53,8 @@ public class Venta implements Serializable {
     @JoinColumn(name = "vendedor", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Usuario vendedor;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "detalleVenta")
-    private Collection<Factura> facturaCollection;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "detalleVenta")
+//    private Collection<Factura> facturaCollection;
 
     public Venta() {
     }
@@ -117,13 +117,13 @@ public class Venta implements Serializable {
         this.vendedor = vendedor;
     }
 
-    public Collection<Factura> getFacturaCollection() {
-        return facturaCollection;
-    }
-
-    public void setFacturaCollection(Collection<Factura> facturaCollection) {
-        this.facturaCollection = facturaCollection;
-    }
+//    public Collection<Factura> getFacturaCollection() {
+//        return facturaCollection;
+//    }
+//
+//    public void setFacturaCollection(Collection<Factura> facturaCollection) {
+//        this.facturaCollection = facturaCollection;
+//    }
 
     @Override
     public int hashCode() {

@@ -51,8 +51,8 @@ public class Proveedor implements Serializable {
     @Basic(optional = false)
     @Column(name = "telefono")
     private String telefono;
-    @OneToMany(mappedBy = "proveedor")
-    private Collection<Compra> compraCollection;
+//    @OneToMany(mappedBy = "proveedor")
+//    private Collection<Compra> compraCollection;
 
     public Proveedor() {
     }
@@ -118,13 +118,13 @@ public class Proveedor implements Serializable {
         this.telefono = telefono;
     }
 
-    public Collection<Compra> getCompraCollection() {
-        return compraCollection;
-    }
-
-    public void setCompraCollection(Collection<Compra> compraCollection) {
-        this.compraCollection = compraCollection;
-    }
+//    public Collection<Compra> getCompraCollection() {
+//        return compraCollection;
+//    }
+//
+//    public void setCompraCollection(Collection<Compra> compraCollection) {
+//        this.compraCollection = compraCollection;
+//    }
 
     @Override
     public int hashCode() {

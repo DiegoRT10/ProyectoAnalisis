@@ -168,7 +168,7 @@ public class Inicio extends javax.swing.JFrame {
 
         pnlFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logoCorp.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo_1.png"))); // NOI18N
         pnlFondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 0, 190, 90));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/head.jpg"))); // NOI18N

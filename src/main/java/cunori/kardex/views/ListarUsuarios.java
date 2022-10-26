@@ -387,7 +387,7 @@ public class ListarUsuarios extends javax.swing.JFrame {
                 UsuarioEntityManager.destroy(id);
                 JOptionPane.showMessageDialog(null, "El usuario se ha eliminado correctamente");
                 return true;
-            } catch (IllegalOrphanException | NonexistentEntityException ex) {
+            } catch (NonexistentEntityException ex) {
                 //Logger.getLogger(ListarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Error, no se puede eliminar");
                 return false;

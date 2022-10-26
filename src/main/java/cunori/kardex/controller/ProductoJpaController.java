@@ -7,6 +7,7 @@ package cunori.kardex.controller;
 import cunori.kardex.controller.exceptions.IllegalOrphanException;
 import cunori.kardex.controller.exceptions.NonexistentEntityException;
 import cunori.kardex.controller.exceptions.PreexistingEntityException;
+import cunori.kardex.dao.Producto;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
@@ -15,8 +16,6 @@ import javax.persistence.criteria.Root;
 import cunori.kardex.dao.Venta;
 import java.util.ArrayList;
 import java.util.Collection;
-import cunori.kardex.dao.Compra;
-import cunori.kardex.dao.Producto;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -40,9 +39,6 @@ public class ProductoJpaController implements Serializable {
         if (producto.getVentaCollection() == null) {
             producto.setVentaCollection(new ArrayList<Venta>());
         }
-        if (producto.getCompraCollection() == null) {
-            producto.setCompraCollection(new ArrayList<Compra>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -53,12 +49,6 @@ public class ProductoJpaController implements Serializable {
                 attachedVentaCollection.add(ventaCollectionVentaToAttach);
             }
             producto.setVentaCollection(attachedVentaCollection);
-            Collection<Compra> attachedCompraCollection = new ArrayList<Compra>();
-            for (Compra compraCollectionCompraToAttach : producto.getCompraCollection()) {
-                compraCollectionCompraToAttach = em.getReference(compraCollectionCompraToAttach.getClass(), compraCollectionCompraToAttach.getId());
-                attachedCompraCollection.add(compraCollectionCompraToAttach);
-            }
-            producto.setCompraCollection(attachedCompraCollection);
             em.persist(producto);
             for (Venta ventaCollectionVenta : producto.getVentaCollection()) {
                 Producto oldProductoOfVentaCollectionVenta = ventaCollectionVenta.getProducto();
@@ -67,15 +57,6 @@ public class ProductoJpaController implements Serializable {
                 if (oldProductoOfVentaCollectionVenta != null) {
                     oldProductoOfVentaCollectionVenta.getVentaCollection().remove(ventaCollectionVenta);
                     oldProductoOfVentaCollectionVenta = em.merge(oldProductoOfVentaCollectionVenta);
-                }
-            }
-            for (Compra compraCollectionCompra : producto.getCompraCollection()) {
-                Producto oldProductoOfCompraCollectionCompra = compraCollectionCompra.getProducto();
-                compraCollectionCompra.setProducto(producto);
-                compraCollectionCompra = em.merge(compraCollectionCompra);
-                if (oldProductoOfCompraCollectionCompra != null) {
-                    oldProductoOfCompraCollectionCompra.getCompraCollection().remove(compraCollectionCompra);
-                    oldProductoOfCompraCollectionCompra = em.merge(oldProductoOfCompraCollectionCompra);
                 }
             }
             em.getTransaction().commit();
@@ -99,8 +80,6 @@ public class ProductoJpaController implements Serializable {
             Producto persistentProducto = em.find(Producto.class, producto.getCodigo());
             Collection<Venta> ventaCollectionOld = persistentProducto.getVentaCollection();
             Collection<Venta> ventaCollectionNew = producto.getVentaCollection();
-            Collection<Compra> compraCollectionOld = persistentProducto.getCompraCollection();
-            Collection<Compra> compraCollectionNew = producto.getCompraCollection();
             List<String> illegalOrphanMessages = null;
             for (Venta ventaCollectionOldVenta : ventaCollectionOld) {
                 if (!ventaCollectionNew.contains(ventaCollectionOldVenta)) {
@@ -120,13 +99,6 @@ public class ProductoJpaController implements Serializable {
             }
             ventaCollectionNew = attachedVentaCollectionNew;
             producto.setVentaCollection(ventaCollectionNew);
-            Collection<Compra> attachedCompraCollectionNew = new ArrayList<Compra>();
-            for (Compra compraCollectionNewCompraToAttach : compraCollectionNew) {
-                compraCollectionNewCompraToAttach = em.getReference(compraCollectionNewCompraToAttach.getClass(), compraCollectionNewCompraToAttach.getId());
-                attachedCompraCollectionNew.add(compraCollectionNewCompraToAttach);
-            }
-            compraCollectionNew = attachedCompraCollectionNew;
-            producto.setCompraCollection(compraCollectionNew);
             producto = em.merge(producto);
             for (Venta ventaCollectionNewVenta : ventaCollectionNew) {
                 if (!ventaCollectionOld.contains(ventaCollectionNewVenta)) {
@@ -136,23 +108,6 @@ public class ProductoJpaController implements Serializable {
                     if (oldProductoOfVentaCollectionNewVenta != null && !oldProductoOfVentaCollectionNewVenta.equals(producto)) {
                         oldProductoOfVentaCollectionNewVenta.getVentaCollection().remove(ventaCollectionNewVenta);
                         oldProductoOfVentaCollectionNewVenta = em.merge(oldProductoOfVentaCollectionNewVenta);
-                    }
-                }
-            }
-            for (Compra compraCollectionOldCompra : compraCollectionOld) {
-                if (!compraCollectionNew.contains(compraCollectionOldCompra)) {
-                    compraCollectionOldCompra.setProducto(null);
-                    compraCollectionOldCompra = em.merge(compraCollectionOldCompra);
-                }
-            }
-            for (Compra compraCollectionNewCompra : compraCollectionNew) {
-                if (!compraCollectionOld.contains(compraCollectionNewCompra)) {
-                    Producto oldProductoOfCompraCollectionNewCompra = compraCollectionNewCompra.getProducto();
-                    compraCollectionNewCompra.setProducto(producto);
-                    compraCollectionNewCompra = em.merge(compraCollectionNewCompra);
-                    if (oldProductoOfCompraCollectionNewCompra != null && !oldProductoOfCompraCollectionNewCompra.equals(producto)) {
-                        oldProductoOfCompraCollectionNewCompra.getCompraCollection().remove(compraCollectionNewCompra);
-                        oldProductoOfCompraCollectionNewCompra = em.merge(oldProductoOfCompraCollectionNewCompra);
                     }
                 }
             }
@@ -195,11 +150,6 @@ public class ProductoJpaController implements Serializable {
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
-            }
-            Collection<Compra> compraCollection = producto.getCompraCollection();
-            for (Compra compraCollectionCompra : compraCollection) {
-                compraCollectionCompra.setProducto(null);
-                compraCollectionCompra = em.merge(compraCollectionCompra);
             }
             em.remove(producto);
             em.getTransaction().commit();
