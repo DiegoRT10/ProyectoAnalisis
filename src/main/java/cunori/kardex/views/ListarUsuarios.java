@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package cunori.kardex.views;
 
 
@@ -10,7 +6,6 @@ import cunori.kardex.controller.UsuarioJpaController;
 import cunori.kardex.controller.exceptions.IllegalOrphanException;
 import cunori.kardex.controller.exceptions.NonexistentEntityException;
 import cunori.kardex.dao.Usuario;
-
 import java.awt.Font;
 import java.util.List;
 import java.util.logging.Level;
@@ -19,27 +14,21 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-
 import javax.swing.table.TableRowSorter;
 
 
 /**
  *
  * @author Diego Ramos
+ * @author Hermas Ramirez
  */
 public class ListarUsuarios extends javax.swing.JFrame {
 
-   EntityManagerFactory emf;
+    EntityManagerFactory emf;
     UsuarioJpaController UsuarioEntityManager;
-   
-    
     public static TableRowSorter<DefaultTableModel> sorter;
-
-
-
 
     /**
      * Creates new form ListarCreadosCheques
@@ -51,7 +40,7 @@ public class ListarUsuarios extends javax.swing.JFrame {
         //this.setExtendedState(MAXIMIZED_BOTH);
         tblListarUsuarios.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
 
-         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
+        emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
         
         UsuarioEntityManager = new UsuarioJpaController(emf);
         
@@ -320,7 +309,7 @@ public class ListarUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void ListarUsuarios(){
-   DefaultTableModel model = (DefaultTableModel) tblListarUsuarios.getModel();
+    DefaultTableModel model = (DefaultTableModel) tblListarUsuarios.getModel();
     List<Usuario> usuario = UsuarioEntityManager.findUsuarioEntities();
     model.setRowCount(0); //eliminar filas existentes
     tblListarUsuarios.setDefaultRenderer(Object.class, new Render());
@@ -337,29 +326,17 @@ public class ListarUsuarios extends javax.swing.JFrame {
         model.addRow(newRow);
         
     }
-    
-     //DPI agrandar
-        TableColumn columna = tblListarUsuarios.getColumnModel().getColumn(0);
-        //columna.setMaxWidth(20);
-        columna.setMinWidth(0);
-        columna.setPreferredWidth(150);
-        tblListarUsuarios.doLayout();
-        
         //Ocultar id
         TableColumn columna2 = tblListarUsuarios.getColumnModel().getColumn(10);
         columna2.setMaxWidth(0);
         columna2.setMinWidth(0);
         columna2.setPreferredWidth(0);
         tblListarUsuarios.doLayout();
-    
-        
-    
     }
     
     public  void setDatosUsuario(){
     int fila = tblListarUsuarios.getSelectedRow();
    
-
     String dpi = (String) tblListarUsuarios.getValueAt(fila,0);
     String nit = (String) tblListarUsuarios.getValueAt(fila,1);
     String nombre = (String) tblListarUsuarios.getValueAt(fila,2);
@@ -372,17 +349,14 @@ public class ListarUsuarios extends javax.swing.JFrame {
     String rol = (String) tblListarUsuarios.getValueAt(fila,9);
     String id = (String) tblListarUsuarios.getValueAt(fila,10);
     
-    FormEditarUsuario.setDatosUsuario(dpi,nit,nombre,apellido,direccion,correo,telefono,usuario,contrasena,rol,id);
-   
-    
+    FormEditarUsuario.setDatosUsuario(dpi,nit,nombre,apellido,direccion,correo,telefono,usuario,contrasena,rol,id);  
     }
     
     private boolean DeleteUsuario(){
         int fila = tblListarUsuarios.getSelectedRow();
-    if(fila != -1){
-    String id = (String) tblListarUsuarios.getValueAt(fila,10);
+        if(fila != -1){
+        String id = (String) tblListarUsuarios.getValueAt(fila,10);
     
-            
             try {
                 UsuarioEntityManager.destroy(id);
                 JOptionPane.showMessageDialog(null, "El usuario se ha eliminado correctamente");
@@ -393,10 +367,8 @@ public class ListarUsuarios extends javax.swing.JFrame {
                 return false;
             }
             //Logger.getLogger(ListarUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-
-            
-    }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
-     return false;
+        }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
+         return false;
     }
     /**
      * @param args the command line arguments

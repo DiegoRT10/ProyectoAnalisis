@@ -1,14 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cunori.kardex.views;
-
-
-
-
-
 
 import cunori.kardex.controller.UsuarioJpaController;
 import cunori.kardex.dao.Usuario;
@@ -22,29 +12,22 @@ import cunori.kardex.encrypt.Hash;
 /**
  *
  * @author Diego Ramos
+ * @author Hermas Ramirez
  */
 public class Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Login
-     */
-    
     EntityManagerFactory emf;
     UsuarioJpaController UsuarioEntityManager;
+    
     public Login() {
         initComponents(); 
-        
-        
         this.setLocationRelativeTo(null);
         //setIconImage(new ImageIcon(getClass().getResource("/META-INF/logo.png")).getImage());
         
         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
-        
         UsuarioEntityManager = new UsuarioJpaController(emf);
        
     }
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -127,7 +110,7 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtContraseña, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -174,7 +157,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 814, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,24 +192,19 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInicioKeyTyped
 
     private void txtContraseñaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseñaKeyTyped
-        char cTeclaPrecionada=evt.getKeyChar();
-        
-        if(cTeclaPrecionada==KeyEvent.VK_ENTER){
-            
+        char cTeclaPresionada=evt.getKeyChar();
+        if(cTeclaPresionada==KeyEvent.VK_ENTER){
             btnInicio.doClick();
         }
     }//GEN-LAST:event_txtContraseñaKeyTyped
 
-    
     public boolean ComprobarUsuario(String user, String pasword){
     
      Usuario usuario =  UsuarioEntityManager.findUsuario("77d830a4-ae16-4a87-bb3e-d854e93e7b58");
-     
      if(user.equals(usuario.getUsuario())&& usuario.getContrasena().equals(Hash.sha1(pasword))){
      return true;
      }else{JOptionPane.showMessageDialog(null,"No se encontro el usuario");
      return false;}
-    
     }
     
     /**
@@ -254,9 +232,6 @@ public class Login extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

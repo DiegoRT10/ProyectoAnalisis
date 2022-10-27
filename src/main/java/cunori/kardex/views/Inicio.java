@@ -1,11 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package cunori.kardex.views;
 
-//import salom.moduloproducto.views.cheque.CrearCheque;
-//import salom.moduloproducto.views.cheque.AnuladoCheque;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JScrollBar;
@@ -14,6 +8,7 @@ import javax.swing.JTabbedPane;
 /**
  *
  * @author Diego Ramos
+ * @author Hermas Ramirez
  */
 public class Inicio extends javax.swing.JFrame {
     Integer estadoSet;
@@ -56,9 +51,6 @@ public class Inicio extends javax.swing.JFrame {
         String infoRevisadoSistemaTraslado = "<html><body>En este seccion podras visualizar aquellos traslados verificados y autorizados por el gerente de logistica (Marlin)</body></html>";
         String infoRevisionFisicaTraslado = "<html><body>En esta seccion podras visualizar aquellos traslados que ya fueron revisados fisicamente</body></html>";
         String infoEntregadoTraslado = "<html><body>En esta seccion podras visualizar aquellos traslados que ya fueron entregados a las distintas farmacias</body></html>";
-        
-
-//seteando valores a labels inicio productos
         
     }
 
@@ -1028,11 +1020,11 @@ public class Inicio extends javax.swing.JFrame {
         pnlSeccionSalir.setBackground(new java.awt.Color(255, 255, 255));
         pnlSeccionSalir.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblImgSalirPrograma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/RevisionFisica.png"))); // NOI18N
+        lblImgSalirPrograma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/listar.png"))); // NOI18N
         lblImgSalirPrograma.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionSalir.add(lblImgSalirPrograma, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 210, 80));
+        pnlSeccionSalir.add(lblImgSalirPrograma, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 200, 80));
 
-        lblImgSalirLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/entregado.png"))); // NOI18N
+        lblImgSalirLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/listar.png"))); // NOI18N
         lblImgSalirLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnlSeccionSalir.add(lblImgSalirLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, 210, 80));
 
@@ -1274,7 +1266,9 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_lblVenderMouseClicked
 
     private void lblComprarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblComprarMouseClicked
-        // TODO add your handling code here:
+        FormCrearCompra cmp = new FormCrearCompra();
+        cmp.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_lblComprarMouseClicked
 
     private void lblConsulta1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblConsulta1MouseClicked
@@ -1320,8 +1314,6 @@ public class Inicio extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

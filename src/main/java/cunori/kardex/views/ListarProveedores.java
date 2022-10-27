@@ -1,15 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package cunori.kardex.views;
-
-
 
 import cunori.kardex.controller.ProveedorJpaController;
 import cunori.kardex.controller.exceptions.NonexistentEntityException;
 import cunori.kardex.dao.Proveedor;
-
 import java.awt.Font;
 import java.util.List;
 import java.util.logging.Level;
@@ -26,6 +19,7 @@ import javax.swing.table.TableRowSorter;
 /**
  *
  * @author Diego Ramos
+ * @author Hermas Ramirez
  */
 public class ListarProveedores extends javax.swing.JFrame {
 
@@ -301,17 +295,14 @@ public class ListarProveedores extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void ListarUsuarios(){
-   DefaultTableModel model = (DefaultTableModel) tblListarProveedores.getModel();
+    DefaultTableModel model = (DefaultTableModel) tblListarProveedores.getModel();
     List<Proveedor> usuario = ProveedorEntityManager.findProveedorEntities();
     model.setRowCount(0); //eliminar filas existentes
     tblListarProveedores.setDefaultRenderer(Object.class, new Render());
     
     for(Proveedor p : usuario){
-        
         Object newRow[] = {p.getNit(),p.getNombre(),p.getDireccion(),p.getCorreo(),p.getTelefono(),p.getId()};
         model.addRow(newRow);
-        
-        
     }   
         //Ocultar id
         TableColumn columna2 = tblListarProveedores.getColumnModel().getColumn(5);
@@ -319,15 +310,11 @@ public class ListarProveedores extends javax.swing.JFrame {
         columna2.setMinWidth(0);
         columna2.setPreferredWidth(0);
         tblListarProveedores.doLayout();
-        
-    
     }
     
     public  void setDatosUsuario(){
     int fila = tblListarProveedores.getSelectedRow();
-   
 
-    
     String nit = (String) tblListarProveedores.getValueAt(fila,0);
     String nombre = (String) tblListarProveedores.getValueAt(fila,1);
     String direccion = (String) tblListarProveedores.getValueAt(fila,2);
@@ -336,14 +323,12 @@ public class ListarProveedores extends javax.swing.JFrame {
     String id = (String) tblListarProveedores.getValueAt(fila,5);
     
     FormEditarProveedor.setDatosProveedor(nit,nombre,direccion,correo,telefono,id);
-   
-    
     }
     
     private boolean DeleteUsuario(){
         int fila = tblListarProveedores.getSelectedRow();
-    if(fila != -1){
-    String id = (String) tblListarProveedores.getValueAt(fila,5);
+        if(fila != -1){
+        String id = (String) tblListarProveedores.getValueAt(fila,5);
     
             try {
                 ProveedorEntityManager.destroy(id);
@@ -354,8 +339,8 @@ public class ListarProveedores extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Error, no se puede eliminar");
                 return false;
             }
-    }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
-     return false;
+        }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
+         return false;
     }
     /**
      * @param args the command line arguments
@@ -382,10 +367,6 @@ public class ListarProveedores extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ListarProveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-     
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

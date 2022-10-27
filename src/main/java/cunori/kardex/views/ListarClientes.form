@@ -25,7 +25,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace min="71" pref="71" max="-2" attributes="0"/>
-              <Component id="jPanel1" pref="872" max="32767" attributes="0"/>
+              <Component id="jPanel1" pref="1192" max="32767" attributes="0"/>
           </Group>
           <Component id="pnlLeft" min="-2" max="-2" attributes="0"/>
       </Group>
@@ -56,7 +56,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="304" max="32767" attributes="0"/>
+                          <EmptySpace pref="624" max="32767" attributes="0"/>
                           <Component id="txtBuscar" min="-2" pref="328" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel2" min="-2" pref="45" max="-2" attributes="0"/>

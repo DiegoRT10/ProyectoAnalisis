@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package cunori.kardex.views;
 
 import cunori.kardex.controller.ProveedorJpaController;
@@ -21,6 +17,7 @@ import javax.swing.table.TableRowSorter;
 /**
  *
  * @author Diego Ramos
+ * @author Hermas Ramirez
  */
 public class FormCrearProveedor extends javax.swing.JFrame {
 
@@ -310,7 +307,6 @@ public class FormCrearProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_cbxRolActionPerformed
 
     private Boolean CrearProveedor() {
-
         if (!Vacio()) {
             String id = UUID.randomUUID().toString();
             Proveedor p = new Proveedor();
@@ -321,27 +317,23 @@ public class FormCrearProveedor extends javax.swing.JFrame {
             p.setCorreo(txtCorreo.getText());
             p.setTelefono(txtTelefono.getText());
             
-
             try {
                 ProveedorEntityManager.create(p);
                 return true;
             } catch (Exception ex) {
 //            Logger.getLogger(FormUsuario.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Datos repetidos o mal ingresados");
-
                 return false;
             }
-
         } else {
             JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
         }
-
         return false;
-
     }
 
     private Boolean Vacio() {
-        return  txtNIT.getText().isEmpty();
+        return txtNIT.getText().isEmpty() && txtNombre.getText().isEmpty() && txtDireccion.getText().isEmpty()
+                && txtCorreo.getText().isEmpty() && txtTelefono.getText().isEmpty();
     }
 
     /**

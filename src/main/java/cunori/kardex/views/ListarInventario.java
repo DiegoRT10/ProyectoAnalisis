@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package cunori.kardex.views;
 
 
@@ -18,13 +14,13 @@ import javax.swing.table.TableRowSorter;
 /**
  *
  * @author Diego Ramos
+ * @author Hermas Ramirez
  */
 public class ListarInventario extends javax.swing.JFrame {
 
    EntityManagerFactory emf;
 //   ProductosJpaController ProductosEntityManager;
     public static TableRowSorter<DefaultTableModel> sorter;
-
 
     public ListarInventario() {
         initComponents();

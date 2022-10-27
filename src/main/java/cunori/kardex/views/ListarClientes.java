@@ -1,10 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package cunori.kardex.views;
-
-
 
 import cunori.kardex.controller.ClienteJpaController;
 import cunori.kardex.controller.exceptions.IllegalOrphanException;
@@ -22,11 +16,12 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 
-
 /**
  *
  * @author Diego Ramos
+ * @author Hermas Ramirez
  */
+
 public class ListarClientes extends javax.swing.JFrame {
 
     EntityManagerFactory emf;
@@ -138,7 +133,7 @@ public class ListarClientes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 304, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 624, Short.MAX_VALUE)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -251,7 +246,7 @@ public class ListarClientes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(71, 71, 71)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 872, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1192, Short.MAX_VALUE))
             .addComponent(pnlLeft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
@@ -293,7 +288,6 @@ public class ListarClientes extends javax.swing.JFrame {
     setDatosCliente();
     this.dispose();
     }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
-        
     
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -304,34 +298,25 @@ public class ListarClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void ListarClientes(){
-   DefaultTableModel model = (DefaultTableModel) tblListarClientes.getModel();
+    DefaultTableModel model = (DefaultTableModel) tblListarClientes.getModel();
     List<Cliente> cliente = ClienteEntityManager.findClienteEntities();
     model.setRowCount(0); //eliminar filas existentes
     tblListarClientes.setDefaultRenderer(Object.class, new Render());
     
     for(Cliente p : cliente){
-       
         Object newRow[] = {p.getDpi(),p.getNit(),p.getNombre(),p.getApellidos(),p.getDireccion(),p.getCorreo(),p.getTelefono(),p.getId()};
         model.addRow(newRow);
-        
-        
     }
-    
-     
         //Ocultar id
         TableColumn columna2 = tblListarClientes.getColumnModel().getColumn(7);
         columna2.setMaxWidth(0);
         columna2.setMinWidth(0);
         columna2.setPreferredWidth(0);
         tblListarClientes.doLayout();
-        
-           
-    
     }
     
     public  void setDatosCliente(){
     int fila = tblListarClientes.getSelectedRow();
-   
 
     String dpi = (String) tblListarClientes.getValueAt(fila,0);
     String nit = (String) tblListarClientes.getValueAt(fila,1);
@@ -343,16 +328,13 @@ public class ListarClientes extends javax.swing.JFrame {
     String id = (String) tblListarClientes.getValueAt(fila,7);
     
     FormEditarCliente.setDatosCliente(dpi,nit,nombre,apellido,direccion,correo,telefono,id);
-   
-    
     }
     
     private boolean DeleteCliente(){
         int fila = tblListarClientes.getSelectedRow();
-    if(fila != -1){
-    String id = (String) tblListarClientes.getValueAt(fila,7);
-    
-            
+        if(fila != -1){
+        String id = (String) tblListarClientes.getValueAt(fila,7);
+
             try {
                 ClienteEntityManager.destroy(id);
                 JOptionPane.showMessageDialog(null, "El Cliente se ha eliminado correctamente");
@@ -362,13 +344,9 @@ public class ListarClientes extends javax.swing.JFrame {
                  JOptionPane.showMessageDialog(null, "Error, no se puede eliminar");
                 return false;
             }
-                 
-            
-                
-               
-            
-    }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
-     return false;
+
+        }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
+         return false;
     }
     /**
      * @param args the command line arguments
@@ -395,10 +373,6 @@ public class ListarClientes extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ListarClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-     
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

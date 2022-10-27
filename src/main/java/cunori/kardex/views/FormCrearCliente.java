@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package cunori.kardex.views;
 
 import cunori.kardex.controller.ClienteJpaController;
@@ -21,6 +17,7 @@ import javax.swing.table.TableRowSorter;
 /**
  *
  * @author Diego Ramos
+ * @author Hermas Ramirez
  */
 public class FormCrearCliente extends javax.swing.JFrame {
 
@@ -35,9 +32,7 @@ public class FormCrearCliente extends javax.swing.JFrame {
         //this.setExtendedState(MAXIMIZED_BOTH);
 
         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
-
         ClienteEntityManager = new ClienteJpaController(emf);
-
     }
 
     /**
@@ -344,7 +339,6 @@ public class FormCrearCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_cbxRolActionPerformed
 
     private Boolean CrearCliente() {
-
         if (!Vacio()) {
             String id = UUID.randomUUID().toString();
             Cliente p = new Cliente();
@@ -363,23 +357,19 @@ public class FormCrearCliente extends javax.swing.JFrame {
             } catch (Exception ex) {
 //            Logger.getLogger(FormUsuario.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Datos repetidos o mal ingresados");
-
                 return false;
             }
-
         } else {
             JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
         }
-
         return false;
-
     }
 
     private Boolean Vacio() {
-        return txtDPI.getText().isEmpty()
-                && txtNIT.getText().isEmpty();
+        return txtDPI.getText().isEmpty() && txtNIT.getText().isEmpty() && txtNombre.getText().isEmpty()
+                && txtApellidos.getText().isEmpty() && txtDireccion.getText().isEmpty() 
+                && txtCorreo.getText().isEmpty() && txtTelefono.getText().isEmpty();
     }
-
     /**
      * @param args the command line arguments
      */
@@ -405,12 +395,6 @@ public class FormCrearCliente extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FormCrearCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

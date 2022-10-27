@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package cunori.kardex.views;
 
 
@@ -23,6 +19,7 @@ import javax.swing.table.TableRowSorter;
 /**
  *
  * @author Diego Ramos
+ * @author Hermas Ramirez
  */
 public class FormEditarUsuario extends javax.swing.JFrame {
 
@@ -398,8 +395,9 @@ public class FormEditarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtContrasenaMouseClicked
 
     private Boolean Vacio() {
-        return txtDPI.getText().isEmpty()
-                && txtNIT.getText().isEmpty();
+        return txtDPI.getText().isEmpty() && txtNIT.getText().isEmpty() && txtNombre.getText().isEmpty()
+                && txtApellidos.getText().isEmpty() && txtDireccion.getText().isEmpty() && txtCorreo.getText().isEmpty()
+                && txtTelefono.getText().isEmpty() && txtUsuario.getText().isEmpty() && txtContrasena.getText().isEmpty();
     }
     
     private Boolean EditarUsuario(){
@@ -416,24 +414,8 @@ public class FormEditarUsuario extends javax.swing.JFrame {
             p.setUsuario(txtUsuario.getText());
             p.setContrasena(Hash.sha1(txtContrasena.getText()));
             Integer cbx = cbxRol.getSelectedIndex();
-            System.out.println("cbx "+cbx);
             p.setRol(cbx.toString());
             
-            System.out.println("id: "+p.getId());
-            System.out.println("dpi: "+p.getDpi());
-            System.out.println("nit: "+p.getNit());
-            System.out.println("nombre: "+p.getNombre());
-            System.out.println("apellido: "+p.getApellidos());
-            System.out.println("direccion: "+p.getDireccion());
-            System.out.println("correo: "+p.getCorreo());
-            System.out.println("correo: "+p.getCorreo());
-            System.out.println("telefono: "+p.getTelefono());
-            System.out.println("usuario: "+p.getUsuario());
-            System.out.println("contrasena: "+p.getContrasena());
-            System.out.println("cbx obj "+p.getRol());
-
-           
-       
         try {
             UsuarioEntityManager.edit(p);
         } catch (NonexistentEntityException ex) {
@@ -445,15 +427,7 @@ public class FormEditarUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Datos2 repetidos o mal ingresados");
                 return false;
         }
-             return true;
-       
-        
-        
-               
-           
-
-                
-            
+        return true;
         } else {
             JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
         }
@@ -499,10 +473,6 @@ public class FormEditarUsuario extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FormEditarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

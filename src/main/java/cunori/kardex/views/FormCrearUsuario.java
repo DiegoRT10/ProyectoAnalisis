@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package cunori.kardex.views;
 
 import cunori.kardex.controller.UsuarioJpaController;
@@ -21,6 +17,7 @@ import javax.swing.table.TableRowSorter;
 /**
  *
  * @author Diego Ramos
+ * @author Hermas Ramirez
  */
 public class FormCrearUsuario extends javax.swing.JFrame {
 
@@ -386,7 +383,6 @@ public class FormCrearUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private Boolean CrearUsuario() {
-
         if (!Vacio()) {
             Usuario p = new Usuario();
             p.setId(UUID.randomUUID().toString());
@@ -408,21 +404,18 @@ public class FormCrearUsuario extends javax.swing.JFrame {
             } catch (Exception ex) {
 //            Logger.getLogger(FormUsuario.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Datos repetidos o mal ingresados");
-
                 return false;
             }
-
         } else {
             JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
         }
-
         return false;
-
     }
 
     private Boolean Vacio() {
-        return txtDPI.getText().isEmpty()
-                && txtNIT.getText().isEmpty();
+        return txtDPI.getText().isEmpty() && txtNIT.getText().isEmpty() && txtNombre.getText().isEmpty() 
+                && txtApellidos.getText().isEmpty() && txtDireccion.getText().isEmpty() && txtCorreo.getText().isEmpty()
+                && txtTelefono.getText().isEmpty() && txtUsuario.getText().isEmpty() && txtContrasena.getText().isEmpty();
     }
 
     /**

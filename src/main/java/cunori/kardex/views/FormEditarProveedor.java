@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package cunori.kardex.views;
 
 
@@ -22,6 +18,7 @@ import javax.swing.table.TableRowSorter;
 /**
  *
  * @author Diego Ramos
+ * @author Hermas Ramirez
  */
 public class FormEditarProveedor extends javax.swing.JFrame {
 
@@ -312,8 +309,8 @@ public class FormEditarProveedor extends javax.swing.JFrame {
     }//GEN-LAST:event_cbxRolActionPerformed
 
     private Boolean Vacio() {
-        return txtNIT.getText().isEmpty()
-        && txtNombre.getText().isEmpty();
+        return txtNIT.getText().isEmpty() && txtNombre.getText().isEmpty() && txtDireccion.getText().isEmpty()
+                && txtCorreo.getText().isEmpty() && txtTelefono.getText().isEmpty();
     }
     
     private Boolean EditarProveedor(){
@@ -332,7 +329,6 @@ public class FormEditarProveedor extends javax.swing.JFrame {
             } catch (Exception ex) {
 //            Logger.getLogger(FormUsuario.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Datos repetidos o mal ingresados");
-
                 return false;
             }
         } else {
@@ -376,16 +372,6 @@ public class FormEditarProveedor extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(FormEditarProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

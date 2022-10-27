@@ -1,28 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package cunori.kardex.views;
 
 import java.awt.Font;
 import javax.swing.ImageIcon;
-
 import javax.swing.table.DefaultTableModel;
-
 import javax.swing.table.TableRowSorter;
 
 
 /**
  *
  * @author Diego Ramos
+ * @author Hermas Ramirez
  */
-public class ListarFacturacion extends javax.swing.JFrame {
 
+public class ListarFacturacion extends javax.swing.JFrame {
    
     public static TableRowSorter<DefaultTableModel> sorter;
-
-
-
 
     /**
      * Creates new form ListarCreadosCheques
@@ -33,9 +25,6 @@ public class ListarFacturacion extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
         //this.setExtendedState(MAXIMIZED_BOTH);
         tblListarUsuarios.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
-
-        
-
     }
 
     /**
@@ -251,9 +240,6 @@ public class ListarFacturacion extends javax.swing.JFrame {
         //fp.setVisible(true);
         //this.dispose();
     }//GEN-LAST:event_btnCrearActionPerformed
-
-    
-
     /**
      * @param args the command line arguments
      */
@@ -279,48 +265,6 @@ public class ListarFacturacion extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ListarFacturacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
