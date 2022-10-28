@@ -57,6 +57,8 @@ public class ListarInventario extends javax.swing.JFrame {
         btnCrear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1230, 712));
+        setPreferredSize(new java.awt.Dimension(1230, 712));
 
         jPanel1.setBackground(new java.awt.Color(129, 164, 220));
         jPanel1.setPreferredSize(new java.awt.Dimension(931, 522));
@@ -73,7 +75,7 @@ public class ListarInventario extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buscar.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0buscar.png"))); // NOI18N
 
         tblListarProductos.setBackground(new java.awt.Color(255, 255, 255));
         tblListarProductos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 153, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 102, 255)));
@@ -81,18 +83,18 @@ public class ListarInventario extends javax.swing.JFrame {
         tblListarProductos.setForeground(new java.awt.Color(0, 0, 0));
         tblListarProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Código", "Nombre", "Categoría", "Marca", "Unidad", "Peso Neto", "Fecha de Ingreso", "Precio de Compra", "Precio de Venta", "Cantidad"
+                "Código", "Nombre", "Categoría", "Marca", "Unidad", "Peso Neto", "Precio Compra", "Precio Venta", "Stock"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -115,8 +117,7 @@ public class ListarInventario extends javax.swing.JFrame {
             tblListarProductos.getColumnModel().getColumn(5).setPreferredWidth(150);
             tblListarProductos.getColumnModel().getColumn(6).setPreferredWidth(180);
             tblListarProductos.getColumnModel().getColumn(7).setPreferredWidth(180);
-            tblListarProductos.getColumnModel().getColumn(8).setPreferredWidth(180);
-            tblListarProductos.getColumnModel().getColumn(9).setPreferredWidth(100);
+            tblListarProductos.getColumnModel().getColumn(8).setPreferredWidth(100);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -152,7 +153,7 @@ public class ListarInventario extends javax.swing.JFrame {
         pnlLeft.setBackground(new java.awt.Color(129, 164, 220));
 
         btnRegresar.setBackground(new java.awt.Color(129, 164, 220));
-        btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/regresar.png"))); // NOI18N
+        btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0undo_111005.png"))); // NOI18N
         btnRegresar.setToolTipText("Regresar");
         btnRegresar.setBorder(null);
         btnRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -164,7 +165,7 @@ public class ListarInventario extends javax.swing.JFrame {
 
         btnEliminar.setBackground(new java.awt.Color(129, 164, 220));
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/anular.png"))); // NOI18N
-        btnEliminar.setToolTipText("Anular");
+        btnEliminar.setToolTipText("Eliminar");
         btnEliminar.setBorder(null);
         btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {

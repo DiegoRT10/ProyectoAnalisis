@@ -1,6 +1,11 @@
 package cunori.kardex.views;
 
+
 import java.awt.Font;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -11,20 +16,23 @@ import javax.swing.table.TableRowSorter;
  * @author Diego Ramos
  * @author Hermas Ramirez
  */
+public class KardexPEPS extends javax.swing.JFrame {
 
-public class ListarFacturacion extends javax.swing.JFrame {
-   
+   EntityManagerFactory emf;
+//   ProductosJpaController ProductosEntityManager;
     public static TableRowSorter<DefaultTableModel> sorter;
 
-    /**
-     * Creates new form ListarCreadosCheques
-     */
-    public ListarFacturacion() {
+    public KardexPEPS() {
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
         //this.setExtendedState(MAXIMIZED_BOTH);
-        tblListarUsuarios.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
+//        tblListarProductos.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
+//
+//        emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
+//        ProductosEntityManager = new ProductosJpaController(emf);
+//        
+//        ListarProductos();
     }
 
     /**
@@ -41,20 +49,21 @@ public class ListarFacturacion extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblListarUsuarios = new javax.swing.JTable();
+        tblKardex = new javax.swing.JTable();
         pnlLeft = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnCrear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1230, 712));
-        setPreferredSize(new java.awt.Dimension(1230, 712));
 
         jPanel1.setBackground(new java.awt.Color(129, 164, 220));
         jPanel1.setPreferredSize(new java.awt.Dimension(931, 522));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Lista de Facturas");
+        jLabel1.setText("KARDEX PEPS");
 
         txtBuscar.setBackground(new java.awt.Color(129, 164, 220));
         txtBuscar.setToolTipText("Filtrar \"ten en cuenta las mayusculas\"");
@@ -67,48 +76,50 @@ public class ListarFacturacion extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0buscar.png"))); // NOI18N
 
-        tblListarUsuarios.setBackground(new java.awt.Color(255, 255, 255));
-        tblListarUsuarios.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 153, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 102, 255)));
-        tblListarUsuarios.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        tblListarUsuarios.setForeground(new java.awt.Color(0, 0, 0));
-        tblListarUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+        tblKardex.setBackground(new java.awt.Color(255, 255, 255));
+        tblKardex.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 153, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 102, 255)));
+        tblKardex.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        tblKardex.setForeground(new java.awt.Color(0, 0, 0));
+        tblKardex.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "No. Serie", "Tipo de Facturación", "Nombre del Negocio", "Dirección", "Teléfono", "Vendedor", "Cliente", "Fecha de Emisión", "Descuento", "Total"
+                "Id", "Fecha", "Id Usuario", "Codigo Producto", "Nombre Producto", "Proveedor", "Unidad", "Tipo Movimiento", "Precio Unitario", "Cantidad", "Total", "Saldo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tblListarUsuarios.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        tblListarUsuarios.setGridColor(new java.awt.Color(153, 255, 153));
-        tblListarUsuarios.setSelectionBackground(new java.awt.Color(255, 255, 204));
-        tblListarUsuarios.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        tblListarUsuarios.setShowGrid(true);
-        tblListarUsuarios.setShowVerticalLines(false);
-        jScrollPane1.setViewportView(tblListarUsuarios);
-        if (tblListarUsuarios.getColumnModel().getColumnCount() > 0) {
-            tblListarUsuarios.getColumnModel().getColumn(0).setPreferredWidth(150);
-            tblListarUsuarios.getColumnModel().getColumn(1).setPreferredWidth(200);
-            tblListarUsuarios.getColumnModel().getColumn(2).setPreferredWidth(200);
-            tblListarUsuarios.getColumnModel().getColumn(3).setPreferredWidth(200);
-            tblListarUsuarios.getColumnModel().getColumn(4).setPreferredWidth(150);
-            tblListarUsuarios.getColumnModel().getColumn(5).setPreferredWidth(200);
-            tblListarUsuarios.getColumnModel().getColumn(6).setPreferredWidth(200);
-            tblListarUsuarios.getColumnModel().getColumn(7).setPreferredWidth(250);
-            tblListarUsuarios.getColumnModel().getColumn(8).setPreferredWidth(150);
-            tblListarUsuarios.getColumnModel().getColumn(9).setPreferredWidth(100);
+        tblKardex.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tblKardex.setGridColor(new java.awt.Color(153, 255, 153));
+        tblKardex.setSelectionBackground(new java.awt.Color(255, 255, 204));
+        tblKardex.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        tblKardex.setShowGrid(true);
+        tblKardex.setShowVerticalLines(false);
+        jScrollPane1.setViewportView(tblKardex);
+        if (tblKardex.getColumnModel().getColumnCount() > 0) {
+            tblKardex.getColumnModel().getColumn(0).setPreferredWidth(200);
+            tblKardex.getColumnModel().getColumn(1).setPreferredWidth(300);
+            tblKardex.getColumnModel().getColumn(2).setPreferredWidth(300);
+            tblKardex.getColumnModel().getColumn(3).setPreferredWidth(150);
+            tblKardex.getColumnModel().getColumn(4).setPreferredWidth(300);
+            tblKardex.getColumnModel().getColumn(5).setPreferredWidth(150);
+            tblKardex.getColumnModel().getColumn(6).setPreferredWidth(180);
+            tblKardex.getColumnModel().getColumn(7).setPreferredWidth(250);
+            tblKardex.getColumnModel().getColumn(8).setPreferredWidth(200);
+            tblKardex.getColumnModel().getColumn(9).setPreferredWidth(100);
+            tblKardex.getColumnModel().getColumn(10).setPreferredWidth(150);
+            tblKardex.getColumnModel().getColumn(11).setPreferredWidth(150);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -120,11 +131,11 @@ public class ListarFacturacion extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 327, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -136,9 +147,9 @@ public class ListarFacturacion extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
-                .addGap(6, 6, 6))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
         );
 
         pnlLeft.setBackground(new java.awt.Color(129, 164, 220));
@@ -156,7 +167,7 @@ public class ListarFacturacion extends javax.swing.JFrame {
 
         btnEliminar.setBackground(new java.awt.Color(129, 164, 220));
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/anular.png"))); // NOI18N
-        btnEliminar.setToolTipText("Anular");
+        btnEliminar.setToolTipText("Eliminar");
         btnEliminar.setBorder(null);
         btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -165,23 +176,51 @@ public class ListarFacturacion extends javax.swing.JFrame {
             }
         });
 
+        btnEditar.setBackground(new java.awt.Color(129, 164, 220));
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/editarCheque.png"))); // NOI18N
+        btnEditar.setToolTipText("Editar");
+        btnEditar.setBorder(null);
+        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        btnCrear.setBackground(new java.awt.Color(129, 164, 220));
+        btnCrear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AgregarCheque.png"))); // NOI18N
+        btnCrear.setToolTipText("Crear");
+        btnCrear.setBorder(null);
+        btnCrear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlLeftLayout = new javax.swing.GroupLayout(pnlLeft);
         pnlLeft.setLayout(pnlLeftLayout);
         pnlLeftLayout.setHorizontalGroup(
             pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlLeftLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlLeftLayout.createSequentialGroup()
                         .addComponent(btnEliminar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnCrear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlLeftLayout.setVerticalGroup(
             pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLeftLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(btnEliminar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -217,9 +256,35 @@ public class ListarFacturacion extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtBuscarKeyReleased
 
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+
+        
+    }//GEN-LAST:event_btnEditarActionPerformed
+
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
      
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+        FormProducto fp = new FormProducto();
+        fp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCrearActionPerformed
+
+//    private void ListarProductos(){
+//    DefaultTableModel model = (DefaultTableModel) tblListarProductos.getModel();
+//    List<Productos> producto = ProductosEntityManager.findProductosEntities();
+//    model.setRowCount(0); //eliminar filas existentes
+//    tblListarProductos.setDefaultRenderer(Object.class, new Render());
+//    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
+//    
+//    for(Productos p : producto){
+//        
+//        Object newRow[] = {p.getCodigo(),p.getNombre(),p.getCategoria(),p.getMarca(),p.getUnidad(),p.getPesoNeto(),sdf.format(p.getFechaIngreso()),p.getPrecioCompra(),p.getPrecioVenta(),p.getCantidad()};
+//        model.addRow(newRow);
+//        
+//    } 
+//    }
     /**
      * @param args the command line arguments
      */
@@ -237,23 +302,25 @@ public class ListarFacturacion extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListarFacturacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KardexPEPS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListarFacturacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KardexPEPS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListarFacturacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KardexPEPS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListarFacturacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KardexPEPS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListarFacturacion().setVisible(true);
+                new KardexPEPS().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCrear;
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
@@ -261,7 +328,7 @@ public class ListarFacturacion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel pnlLeft;
-    public static javax.swing.JTable tblListarUsuarios;
+    public static javax.swing.JTable tblKardex;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

@@ -137,6 +137,10 @@ public class Inicio extends javax.swing.JFrame {
         lblImgComprar = new javax.swing.JLabel();
         lblTituloComprar = new javax.swing.JLabel();
         lblComprar = new javax.swing.JLabel();
+        lblinfoKardex = new javax.swing.JLabel();
+        lblTituloKardex = new javax.swing.JLabel();
+        lblImgKardex = new javax.swing.JLabel();
+        lblKardex = new javax.swing.JLabel();
         pnlSeccionFacturacion = new javax.swing.JPanel();
         pnlTituloSeccionFacturacion = new javax.swing.JPanel();
         jLabel61 = new javax.swing.JLabel();
@@ -155,8 +159,7 @@ public class Inicio extends javax.swing.JFrame {
         lblSalirPrograma = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setMinimumSize(new java.awt.Dimension(1230, 712));
 
         pnlFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -186,7 +189,7 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inicio.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0home_icon-icons.com_73532.png"))); // NOI18N
         jLabel4.setText("  Inicio");
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
@@ -203,7 +206,7 @@ public class Inicio extends javax.swing.JFrame {
             pnlInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlInicioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -226,8 +229,8 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/administradores.png"))); // NOI18N
-        jLabel5.setText(" Usuarios");
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0users_icon-icons.com_73540.png"))); // NOI18N
+        jLabel5.setText("  Usuarios");
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout pnlUsuariosLayout = new javax.swing.GroupLayout(pnlUsuarios);
@@ -243,7 +246,7 @@ public class Inicio extends javax.swing.JFrame {
             pnlUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlUsuariosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -266,7 +269,7 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ListaProductos.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0list_products_84195.png"))); // NOI18N
         jLabel6.setText("  Inventario");
         jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
@@ -283,7 +286,7 @@ public class Inicio extends javax.swing.JFrame {
             pnlInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlInventarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -309,8 +312,8 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cheque.png"))); // NOI18N
-        jLabel3.setText(" Clientes");
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0clients_users_icon_123774.png"))); // NOI18N
+        jLabel3.setText("  Clientes");
 
         javax.swing.GroupLayout pnlClientesLayout = new javax.swing.GroupLayout(pnlClientes);
         pnlClientes.setLayout(pnlClientesLayout);
@@ -326,7 +329,7 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(pnlClientesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pnlLeft.add(pnlClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 270, 50));
@@ -348,8 +351,8 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/administradores.png"))); // NOI18N
-        jLabel11.setText(" Facturación");
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0facturas_icon_188468.png"))); // NOI18N
+        jLabel11.setText("  Facturación");
 
         javax.swing.GroupLayout pnlFacturacionLayout = new javax.swing.GroupLayout(pnlFacturacion);
         pnlFacturacion.setLayout(pnlFacturacionLayout);
@@ -358,13 +361,13 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(pnlFacturacionLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel11)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         pnlFacturacionLayout.setVerticalGroup(
             pnlFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFacturacionLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -387,8 +390,8 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login.png"))); // NOI18N
-        jLabel10.setText("Salir");
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0logout_3622.png"))); // NOI18N
+        jLabel10.setText(" Salir");
 
         javax.swing.GroupLayout pnlSalirLoginLayout = new javax.swing.GroupLayout(pnlSalirLogin);
         pnlSalirLogin.setLayout(pnlSalirLoginLayout);
@@ -426,7 +429,7 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ListaProductos.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0proveedores_icon_152059.png"))); // NOI18N
         jLabel8.setText("  Proveedores");
 
         javax.swing.GroupLayout pnlProveedoresLayout = new javax.swing.GroupLayout(pnlProveedores);
@@ -443,7 +446,7 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(pnlProveedoresLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         pnlLeft.add(pnlProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 270, 50));
@@ -465,8 +468,8 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/traslados.png"))); // NOI18N
-        jLabel9.setText(" Servicios");
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0services_97606.png"))); // NOI18N
+        jLabel9.setText("  Servicios");
 
         javax.swing.GroupLayout pnlServiciosLayout = new javax.swing.GroupLayout(pnlServicios);
         pnlServicios.setLayout(pnlServiciosLayout);
@@ -474,14 +477,14 @@ public class Inicio extends javax.swing.JFrame {
             pnlServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlServiciosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         pnlServiciosLayout.setVerticalGroup(
             pnlServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlServiciosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -494,7 +497,7 @@ public class Inicio extends javax.swing.JFrame {
         pnlSeccionInicio.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 200, -1));
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inicio.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0home_icon-icons.com_73532.png"))); // NOI18N
         jLabel7.setText("  Inicio");
         jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnlSeccionInicio.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 236, 36));
@@ -527,8 +530,8 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/administradores.png"))); // NOI18N
-        jLabel14.setText("  Usuario");
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0users_icon-icons.com_73540.png"))); // NOI18N
+        jLabel14.setText("  Usuarios");
         jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout pnlTituloSeccionUsuarioLayout = new javax.swing.GroupLayout(pnlTituloSeccionUsuario);
@@ -598,7 +601,7 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jLabel15.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/administradores.png"))); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0list_products_84195.png"))); // NOI18N
         jLabel15.setText("Inventario");
         jLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
@@ -666,7 +669,7 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jLabel17.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cheque.png"))); // NOI18N
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0clients_users_icon_123774.png"))); // NOI18N
         jLabel17.setText("Clientes");
         jLabel17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
@@ -751,7 +754,7 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jLabel21.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cheque.png"))); // NOI18N
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0proveedores_icon_152059.png"))); // NOI18N
         jLabel21.setText(" Proveedores");
         jLabel21.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
@@ -818,7 +821,7 @@ public class Inicio extends javax.swing.JFrame {
         pnlSeccionProveedores.setLayout(pnlSeccionProveedoresLayout);
         pnlSeccionProveedoresLayout.setHorizontalGroup(
             pnlSeccionProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 976, Short.MAX_VALUE)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
         );
         pnlSeccionProveedoresLayout.setVerticalGroup(
             pnlSeccionProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -847,7 +850,7 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jLabel29.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cheque.png"))); // NOI18N
+        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0services_97606.png"))); // NOI18N
         jLabel29.setText("Servicios");
         jLabel29.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
@@ -886,18 +889,18 @@ public class Inicio extends javax.swing.JFrame {
 
         lblImgVender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/listar.png"))); // NOI18N
         lblImgVender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionServicios.add(lblImgVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 290, 140));
+        pnlSeccionServicios.add(lblImgVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 240, 110));
 
         lblinfoVender.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblinfoVender.setForeground(new java.awt.Color(153, 153, 153));
         lblinfoVender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionServicios.add(lblinfoVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 260, 150));
+        pnlSeccionServicios.add(lblinfoVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 210, 160));
 
         lblTituloVender.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblTituloVender.setForeground(new java.awt.Color(153, 153, 153));
         lblTituloVender.setText("Vender");
         lblTituloVender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionServicios.add(lblTituloVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, -1, -1));
+        pnlSeccionServicios.add(lblTituloVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 90, -1));
 
         lblVender.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
         lblVender.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -906,22 +909,22 @@ public class Inicio extends javax.swing.JFrame {
                 lblVenderMouseClicked(evt);
             }
         });
-        pnlSeccionServicios.add(lblVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 316, 371));
+        pnlSeccionServicios.add(lblVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 270, 340));
 
         lblinfoComprar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblinfoComprar.setForeground(new java.awt.Color(153, 153, 153));
         lblinfoComprar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionServicios.add(lblinfoComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 350, 260, 150));
+        pnlSeccionServicios.add(lblinfoComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 310, 210, 160));
 
         lblImgComprar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/listar.png"))); // NOI18N
         lblImgComprar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionServicios.add(lblImgComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 160, 290, 140));
+        pnlSeccionServicios.add(lblImgComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 240, 110));
 
         lblTituloComprar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblTituloComprar.setForeground(new java.awt.Color(153, 153, 153));
         lblTituloComprar.setText("Comprar");
         lblTituloComprar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnlSeccionServicios.add(lblTituloComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, -1, -1));
+        pnlSeccionServicios.add(lblTituloComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 100, -1));
 
         lblComprar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
         lblComprar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -930,7 +933,31 @@ public class Inicio extends javax.swing.JFrame {
                 lblComprarMouseClicked(evt);
             }
         });
-        pnlSeccionServicios.add(lblComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 150, 316, 371));
+        pnlSeccionServicios.add(lblComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, 270, 340));
+
+        lblinfoKardex.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblinfoKardex.setForeground(new java.awt.Color(153, 153, 153));
+        lblinfoKardex.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionServicios.add(lblinfoKardex, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 310, 210, 160));
+
+        lblTituloKardex.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblTituloKardex.setForeground(new java.awt.Color(153, 153, 153));
+        lblTituloKardex.setText("Kardex");
+        lblTituloKardex.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionServicios.add(lblTituloKardex, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 280, 100, -1));
+
+        lblImgKardex.setIcon(new javax.swing.ImageIcon(getClass().getResource("/listar.png"))); // NOI18N
+        lblImgKardex.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        pnlSeccionServicios.add(lblImgKardex, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 160, 240, 110));
+
+        lblKardex.setIcon(new javax.swing.ImageIcon(getClass().getResource("/separador.png"))); // NOI18N
+        lblKardex.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblKardex.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblKardexMouseClicked(evt);
+            }
+        });
+        pnlSeccionServicios.add(lblKardex, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 150, 270, 340));
 
         tpnlContenedor.addTab("tab6", pnlSeccionServicios);
 
@@ -954,7 +981,7 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         jLabel61.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel61.setIcon(new javax.swing.ImageIcon(getClass().getResource("/traslados.png"))); // NOI18N
+        jLabel61.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0facturas_icon_188468.png"))); // NOI18N
         jLabel61.setText("Facturación");
         jLabel61.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
@@ -1063,7 +1090,16 @@ public class Inicio extends javax.swing.JFrame {
         pnlFondo.add(tpnlContenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 970, 650));
         tpnlContenedor.getAccessibleContext().setAccessibleDescription("");
 
-        getContentPane().add(pnlFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 712));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1262,12 +1298,14 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_lblConsultar2MouseClicked
 
     private void lblVenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVenderMouseClicked
-        // TODO add your handling code here:
+        FormCrearVenta cV = new FormCrearVenta();
+        cV.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_lblVenderMouseClicked
 
     private void lblComprarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblComprarMouseClicked
-        FormCrearCompra cmp = new FormCrearCompra();
-        cmp.setVisible(true);
+        FormCrearCompra cC = new FormCrearCompra();
+        cC.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblComprarMouseClicked
 
@@ -1288,6 +1326,12 @@ public class Inicio extends javax.swing.JFrame {
     private void pnlServiciosMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlServiciosMouseMoved
         pnlServicios.setBackground(new Color(166, 173, 217));
     }//GEN-LAST:event_pnlServiciosMouseMoved
+
+    private void lblKardexMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblKardexMouseClicked
+        KardexPEPS kp = new KardexPEPS();
+        kp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblKardexMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1365,6 +1409,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel lblImgConsultar;
     private javax.swing.JLabel lblImgConsultar1;
     private javax.swing.JLabel lblImgConsultar2;
+    private javax.swing.JLabel lblImgKardex;
     private javax.swing.JLabel lblImgSalirLogin;
     private javax.swing.JLabel lblImgSalirPrograma;
     private javax.swing.JLabel lblImgVender;
@@ -1372,6 +1417,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel lblInfoConsultar1;
     private javax.swing.JLabel lblInfoConsultar2;
     private javax.swing.JLabel lblInfoInicio;
+    private javax.swing.JLabel lblKardex;
     private javax.swing.JLabel lblSalirLogin;
     private javax.swing.JLabel lblSalirPrograma;
     private javax.swing.JLabel lblTituloComprar;
@@ -1380,6 +1426,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel lblTituloConsultar;
     private javax.swing.JLabel lblTituloConsultar1;
     private javax.swing.JLabel lblTituloConsultar2;
+    private javax.swing.JLabel lblTituloKardex;
     private javax.swing.JLabel lblTituloSalirLogin;
     private javax.swing.JLabel lblTituloSalirPrograma;
     private javax.swing.JLabel lblTituloVender;
@@ -1387,6 +1434,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel lblinfoComprar;
     private javax.swing.JLabel lblinfoConsulta;
     private javax.swing.JLabel lblinfoConsulta1;
+    private javax.swing.JLabel lblinfoKardex;
     private javax.swing.JLabel lblinfoVender;
     private javax.swing.JPanel pnlClientes;
     private javax.swing.JPanel pnlFacturacion;
