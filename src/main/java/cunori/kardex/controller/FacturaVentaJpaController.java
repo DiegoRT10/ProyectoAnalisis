@@ -6,7 +6,7 @@ package cunori.kardex.controller;
 
 import cunori.kardex.controller.exceptions.NonexistentEntityException;
 import cunori.kardex.controller.exceptions.PreexistingEntityException;
-import cunori.kardex.dao.Factura;
+import cunori.kardex.dao.FacturaVenta;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -20,9 +20,9 @@ import javax.persistence.criteria.Root;
  *
  * @author Diego Ramos
  */
-public class FacturaJpaController implements Serializable {
+public class FacturaVentaJpaController implements Serializable {
 
-    public FacturaJpaController(EntityManagerFactory emf) {
+    public FacturaVentaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,16 +31,16 @@ public class FacturaJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Factura factura) throws PreexistingEntityException, Exception {
+    public void create(FacturaVenta facturaVenta) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(factura);
+            em.persist(facturaVenta);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findFactura(factura.getNoSerie()) != null) {
-                throw new PreexistingEntityException("Factura " + factura + " already exists.", ex);
+            if (findFacturaVenta(facturaVenta.getNoSerie()) != null) {
+                throw new PreexistingEntityException("FacturaVenta " + facturaVenta + " already exists.", ex);
             }
             throw ex;
         } finally {
@@ -50,19 +50,19 @@ public class FacturaJpaController implements Serializable {
         }
     }
 
-    public void edit(Factura factura) throws NonexistentEntityException, Exception {
+    public void edit(FacturaVenta facturaVenta) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            factura = em.merge(factura);
+            facturaVenta = em.merge(facturaVenta);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                String id = factura.getNoSerie();
-                if (findFactura(id) == null) {
-                    throw new NonexistentEntityException("The factura with id " + id + " no longer exists.");
+                String id = facturaVenta.getNoSerie();
+                if (findFacturaVenta(id) == null) {
+                    throw new NonexistentEntityException("The facturaVenta with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -78,14 +78,14 @@ public class FacturaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Factura factura;
+            FacturaVenta facturaVenta;
             try {
-                factura = em.getReference(Factura.class, id);
-                factura.getNoSerie();
+                facturaVenta = em.getReference(FacturaVenta.class, id);
+                facturaVenta.getNoSerie();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The factura with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The facturaVenta with id " + id + " no longer exists.", enfe);
             }
-            em.remove(factura);
+            em.remove(facturaVenta);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -94,19 +94,19 @@ public class FacturaJpaController implements Serializable {
         }
     }
 
-    public List<Factura> findFacturaEntities() {
-        return findFacturaEntities(true, -1, -1);
+    public List<FacturaVenta> findFacturaVentaEntities() {
+        return findFacturaVentaEntities(true, -1, -1);
     }
 
-    public List<Factura> findFacturaEntities(int maxResults, int firstResult) {
-        return findFacturaEntities(false, maxResults, firstResult);
+    public List<FacturaVenta> findFacturaVentaEntities(int maxResults, int firstResult) {
+        return findFacturaVentaEntities(false, maxResults, firstResult);
     }
 
-    private List<Factura> findFacturaEntities(boolean all, int maxResults, int firstResult) {
+    private List<FacturaVenta> findFacturaVentaEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Factura.class));
+            cq.select(cq.from(FacturaVenta.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -118,20 +118,20 @@ public class FacturaJpaController implements Serializable {
         }
     }
 
-    public Factura findFactura(String id) {
+    public FacturaVenta findFacturaVenta(String id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Factura.class, id);
+            return em.find(FacturaVenta.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getFacturaCount() {
+    public int getFacturaVentaCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Factura> rt = cq.from(Factura.class);
+            Root<FacturaVenta> rt = cq.from(FacturaVenta.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

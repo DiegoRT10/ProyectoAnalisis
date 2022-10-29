@@ -6,15 +6,16 @@ package cunori.kardex.dao;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,18 +25,18 @@ import javax.persistence.TemporalType;
  * @author Diego Ramos
  */
 @Entity
-@Table(name = "Factura")
+@Table(name = "FacturaVenta")
 @NamedQueries({
-    @NamedQuery(name = "Factura.findAll", query = "SELECT f FROM Factura f"),
-    @NamedQuery(name = "Factura.findByNoSerie", query = "SELECT f FROM Factura f WHERE f.noSerie = :noSerie"),
-    @NamedQuery(name = "Factura.findByNombreNegocio", query = "SELECT f FROM Factura f WHERE f.nombreNegocio = :nombreNegocio"),
-    @NamedQuery(name = "Factura.findByTipo", query = "SELECT f FROM Factura f WHERE f.tipo = :tipo"),
-    @NamedQuery(name = "Factura.findByDireccionNegocio", query = "SELECT f FROM Factura f WHERE f.direccionNegocio = :direccionNegocio"),
-    @NamedQuery(name = "Factura.findByTelefonoNegocio", query = "SELECT f FROM Factura f WHERE f.telefonoNegocio = :telefonoNegocio"),
-    @NamedQuery(name = "Factura.findByFechaEmision", query = "SELECT f FROM Factura f WHERE f.fechaEmision = :fechaEmision"),
-    @NamedQuery(name = "Factura.findByDescuento", query = "SELECT f FROM Factura f WHERE f.descuento = :descuento"),
-    @NamedQuery(name = "Factura.findByTotal", query = "SELECT f FROM Factura f WHERE f.total = :total")})
-public class Factura implements Serializable {
+    @NamedQuery(name = "FacturaVenta.findAll", query = "SELECT f FROM FacturaVenta f"),
+    @NamedQuery(name = "FacturaVenta.findByNoSerie", query = "SELECT f FROM FacturaVenta f WHERE f.noSerie = :noSerie"),
+    @NamedQuery(name = "FacturaVenta.findByTipo", query = "SELECT f FROM FacturaVenta f WHERE f.tipo = :tipo"),
+    @NamedQuery(name = "FacturaVenta.findByNombreNegocio", query = "SELECT f FROM FacturaVenta f WHERE f.nombreNegocio = :nombreNegocio"),
+    @NamedQuery(name = "FacturaVenta.findByDireccionNegocio", query = "SELECT f FROM FacturaVenta f WHERE f.direccionNegocio = :direccionNegocio"),
+    @NamedQuery(name = "FacturaVenta.findByTelefonoNegocio", query = "SELECT f FROM FacturaVenta f WHERE f.telefonoNegocio = :telefonoNegocio"),
+    @NamedQuery(name = "FacturaVenta.findByFechaEmision", query = "SELECT f FROM FacturaVenta f WHERE f.fechaEmision = :fechaEmision"),
+    @NamedQuery(name = "FacturaVenta.findByIdCliente", query = "SELECT f FROM FacturaVenta f WHERE f.idCliente = :idCliente"),
+    @NamedQuery(name = "FacturaVenta.findByDescuento", query = "SELECT f FROM FacturaVenta f WHERE f.descuento = :descuento")})
+public class FacturaVenta implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,11 +44,11 @@ public class Factura implements Serializable {
     @Column(name = "noSerie")
     private String noSerie;
     @Basic(optional = false)
-    @Column(name = "nombreNegocio")
-    private String nombreNegocio;
-    @Basic(optional = false)
     @Column(name = "tipo")
     private String tipo;
+    @Basic(optional = false)
+    @Column(name = "nombreNegocio")
+    private String nombreNegocio;
     @Basic(optional = false)
     @Column(name = "direccionNegocio")
     private String direccionNegocio;
@@ -58,36 +59,32 @@ public class Factura implements Serializable {
     @Column(name = "fechaEmision")
     @Temporal(TemporalType.DATE)
     private Date fechaEmision;
+    @Basic(optional = false)
+    @Column(name = "idCliente")
+    private String idCliente;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @Column(name = "descuento")
     private BigDecimal descuento;
-    @Basic(optional = false)
-    @Column(name = "total")
-    private BigDecimal total;
-    @JoinColumn(name = "detalleCompra", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Compra detalleCompra;
-    @JoinColumn(name = "detalleVenta", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Venta detalleVenta;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFactura")
+//    private Collection<Venta> ventaCollection;
 
-    public Factura() {
+    public FacturaVenta() {
     }
 
-    public Factura(String noSerie) {
+    public FacturaVenta(String noSerie) {
         this.noSerie = noSerie;
     }
 
-    public Factura(String noSerie, String nombreNegocio, String tipo, String direccionNegocio, String telefonoNegocio, Date fechaEmision, BigDecimal descuento, BigDecimal total) {
+    public FacturaVenta(String noSerie, String tipo, String nombreNegocio, String direccionNegocio, String telefonoNegocio, Date fechaEmision, String idCliente, BigDecimal descuento) {
         this.noSerie = noSerie;
-        this.nombreNegocio = nombreNegocio;
         this.tipo = tipo;
+        this.nombreNegocio = nombreNegocio;
         this.direccionNegocio = direccionNegocio;
         this.telefonoNegocio = telefonoNegocio;
         this.fechaEmision = fechaEmision;
+        this.idCliente = idCliente;
         this.descuento = descuento;
-        this.total = total;
     }
 
     public String getNoSerie() {
@@ -98,20 +95,20 @@ public class Factura implements Serializable {
         this.noSerie = noSerie;
     }
 
-    public String getNombreNegocio() {
-        return nombreNegocio;
-    }
-
-    public void setNombreNegocio(String nombreNegocio) {
-        this.nombreNegocio = nombreNegocio;
-    }
-
     public String getTipo() {
         return tipo;
     }
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getNombreNegocio() {
+        return nombreNegocio;
+    }
+
+    public void setNombreNegocio(String nombreNegocio) {
+        this.nombreNegocio = nombreNegocio;
     }
 
     public String getDireccionNegocio() {
@@ -138,6 +135,14 @@ public class Factura implements Serializable {
         this.fechaEmision = fechaEmision;
     }
 
+    public String getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(String idCliente) {
+        this.idCliente = idCliente;
+    }
+
     public BigDecimal getDescuento() {
         return descuento;
     }
@@ -146,29 +151,13 @@ public class Factura implements Serializable {
         this.descuento = descuento;
     }
 
-    public BigDecimal getTotal() {
-        return total;
-    }
-
-    public void setTotal(BigDecimal total) {
-        this.total = total;
-    }
-
-    public Compra getDetalleCompra() {
-        return detalleCompra;
-    }
-
-    public void setDetalleCompra(Compra detalleCompra) {
-        this.detalleCompra = detalleCompra;
-    }
-
-    public Venta getDetalleVenta() {
-        return detalleVenta;
-    }
-
-    public void setDetalleVenta(Venta detalleVenta) {
-        this.detalleVenta = detalleVenta;
-    }
+//    public Collection<Venta> getVentaCollection() {
+//        return ventaCollection;
+//    }
+//
+//    public void setVentaCollection(Collection<Venta> ventaCollection) {
+//        this.ventaCollection = ventaCollection;
+//    }
 
     @Override
     public int hashCode() {
@@ -180,10 +169,10 @@ public class Factura implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Factura)) {
+        if (!(object instanceof FacturaVenta)) {
             return false;
         }
-        Factura other = (Factura) object;
+        FacturaVenta other = (FacturaVenta) object;
         if ((this.noSerie == null && other.noSerie != null) || (this.noSerie != null && !this.noSerie.equals(other.noSerie))) {
             return false;
         }
@@ -192,7 +181,7 @@ public class Factura implements Serializable {
 
     @Override
     public String toString() {
-        return "cunori.kardex.dao.Factura[ noSerie=" + noSerie + " ]";
+        return "cunori.kardex.dao.FacturaVenta[ noSerie=" + noSerie + " ]";
     }
     
 }

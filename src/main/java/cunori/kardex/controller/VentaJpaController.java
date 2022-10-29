@@ -4,6 +4,7 @@
  */
 package cunori.kardex.controller;
 
+import cunori.kardex.controller.exceptions.IllegalOrphanException;
 import cunori.kardex.controller.exceptions.NonexistentEntityException;
 import cunori.kardex.controller.exceptions.PreexistingEntityException;
 import java.io.Serializable;
@@ -11,7 +12,10 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import cunori.kardex.dao.Producto;
+import cunori.kardex.dao.DetalleVenta;
+import java.util.ArrayList;
+import java.util.Collection;
+import cunori.kardex.dao.KardexPEPS;
 import cunori.kardex.dao.Venta;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -33,19 +37,46 @@ public class VentaJpaController implements Serializable {
     }
 
     public void create(Venta venta) throws PreexistingEntityException, Exception {
+        if (venta.getDetalleVentaCollection() == null) {
+            venta.setDetalleVentaCollection(new ArrayList<DetalleVenta>());
+        }
+        if (venta.getKardexPEPSCollection() == null) {
+            venta.setKardexPEPSCollection(new ArrayList<KardexPEPS>());
+        }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Producto producto = venta.getProducto();
-            if (producto != null) {
-                producto = em.getReference(producto.getClass(), producto.getCodigo());
-                venta.setProducto(producto);
+            Collection<DetalleVenta> attachedDetalleVentaCollection = new ArrayList<DetalleVenta>();
+            for (DetalleVenta detalleVentaCollectionDetalleVentaToAttach : venta.getDetalleVentaCollection()) {
+                detalleVentaCollectionDetalleVentaToAttach = em.getReference(detalleVentaCollectionDetalleVentaToAttach.getClass(), detalleVentaCollectionDetalleVentaToAttach.getId());
+                attachedDetalleVentaCollection.add(detalleVentaCollectionDetalleVentaToAttach);
             }
+            venta.setDetalleVentaCollection(attachedDetalleVentaCollection);
+            Collection<KardexPEPS> attachedKardexPEPSCollection = new ArrayList<KardexPEPS>();
+            for (KardexPEPS kardexPEPSCollectionKardexPEPSToAttach : venta.getKardexPEPSCollection()) {
+                kardexPEPSCollectionKardexPEPSToAttach = em.getReference(kardexPEPSCollectionKardexPEPSToAttach.getClass(), kardexPEPSCollectionKardexPEPSToAttach.getId());
+                attachedKardexPEPSCollection.add(kardexPEPSCollectionKardexPEPSToAttach);
+            }
+            venta.setKardexPEPSCollection(attachedKardexPEPSCollection);
             em.persist(venta);
-            if (producto != null) {
-                producto.getVentaCollection().add(venta);
-                producto = em.merge(producto);
+            for (DetalleVenta detalleVentaCollectionDetalleVenta : venta.getDetalleVentaCollection()) {
+                Venta oldIdVentaOfDetalleVentaCollectionDetalleVenta = detalleVentaCollectionDetalleVenta.getIdVenta();
+                detalleVentaCollectionDetalleVenta.setIdVenta(venta);
+                detalleVentaCollectionDetalleVenta = em.merge(detalleVentaCollectionDetalleVenta);
+                if (oldIdVentaOfDetalleVentaCollectionDetalleVenta != null) {
+                    oldIdVentaOfDetalleVentaCollectionDetalleVenta.getDetalleVentaCollection().remove(detalleVentaCollectionDetalleVenta);
+                    oldIdVentaOfDetalleVentaCollectionDetalleVenta = em.merge(oldIdVentaOfDetalleVentaCollectionDetalleVenta);
+                }
+            }
+            for (KardexPEPS kardexPEPSCollectionKardexPEPS : venta.getKardexPEPSCollection()) {
+                Venta oldIdVentaOfKardexPEPSCollectionKardexPEPS = kardexPEPSCollectionKardexPEPS.getIdVenta();
+                kardexPEPSCollectionKardexPEPS.setIdVenta(venta);
+                kardexPEPSCollectionKardexPEPS = em.merge(kardexPEPSCollectionKardexPEPS);
+                if (oldIdVentaOfKardexPEPSCollectionKardexPEPS != null) {
+                    oldIdVentaOfKardexPEPSCollectionKardexPEPS.getKardexPEPSCollection().remove(kardexPEPSCollectionKardexPEPS);
+                    oldIdVentaOfKardexPEPSCollectionKardexPEPS = em.merge(oldIdVentaOfKardexPEPSCollectionKardexPEPS);
+                }
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
@@ -60,26 +91,72 @@ public class VentaJpaController implements Serializable {
         }
     }
 
-    public void edit(Venta venta) throws NonexistentEntityException, Exception {
+    public void edit(Venta venta) throws IllegalOrphanException, NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
             Venta persistentVenta = em.find(Venta.class, venta.getId());
-            Producto productoOld = persistentVenta.getProducto();
-            Producto productoNew = venta.getProducto();
-            if (productoNew != null) {
-                productoNew = em.getReference(productoNew.getClass(), productoNew.getCodigo());
-                venta.setProducto(productoNew);
+            Collection<DetalleVenta> detalleVentaCollectionOld = persistentVenta.getDetalleVentaCollection();
+            Collection<DetalleVenta> detalleVentaCollectionNew = venta.getDetalleVentaCollection();
+            Collection<KardexPEPS> kardexPEPSCollectionOld = persistentVenta.getKardexPEPSCollection();
+            Collection<KardexPEPS> kardexPEPSCollectionNew = venta.getKardexPEPSCollection();
+            List<String> illegalOrphanMessages = null;
+            for (DetalleVenta detalleVentaCollectionOldDetalleVenta : detalleVentaCollectionOld) {
+                if (!detalleVentaCollectionNew.contains(detalleVentaCollectionOldDetalleVenta)) {
+                    if (illegalOrphanMessages == null) {
+                        illegalOrphanMessages = new ArrayList<String>();
+                    }
+                    illegalOrphanMessages.add("You must retain DetalleVenta " + detalleVentaCollectionOldDetalleVenta + " since its idVenta field is not nullable.");
+                }
             }
+            for (KardexPEPS kardexPEPSCollectionOldKardexPEPS : kardexPEPSCollectionOld) {
+                if (!kardexPEPSCollectionNew.contains(kardexPEPSCollectionOldKardexPEPS)) {
+                    if (illegalOrphanMessages == null) {
+                        illegalOrphanMessages = new ArrayList<String>();
+                    }
+                    illegalOrphanMessages.add("You must retain KardexPEPS " + kardexPEPSCollectionOldKardexPEPS + " since its idVenta field is not nullable.");
+                }
+            }
+            if (illegalOrphanMessages != null) {
+                throw new IllegalOrphanException(illegalOrphanMessages);
+            }
+            Collection<DetalleVenta> attachedDetalleVentaCollectionNew = new ArrayList<DetalleVenta>();
+            for (DetalleVenta detalleVentaCollectionNewDetalleVentaToAttach : detalleVentaCollectionNew) {
+                detalleVentaCollectionNewDetalleVentaToAttach = em.getReference(detalleVentaCollectionNewDetalleVentaToAttach.getClass(), detalleVentaCollectionNewDetalleVentaToAttach.getId());
+                attachedDetalleVentaCollectionNew.add(detalleVentaCollectionNewDetalleVentaToAttach);
+            }
+            detalleVentaCollectionNew = attachedDetalleVentaCollectionNew;
+            venta.setDetalleVentaCollection(detalleVentaCollectionNew);
+            Collection<KardexPEPS> attachedKardexPEPSCollectionNew = new ArrayList<KardexPEPS>();
+            for (KardexPEPS kardexPEPSCollectionNewKardexPEPSToAttach : kardexPEPSCollectionNew) {
+                kardexPEPSCollectionNewKardexPEPSToAttach = em.getReference(kardexPEPSCollectionNewKardexPEPSToAttach.getClass(), kardexPEPSCollectionNewKardexPEPSToAttach.getId());
+                attachedKardexPEPSCollectionNew.add(kardexPEPSCollectionNewKardexPEPSToAttach);
+            }
+            kardexPEPSCollectionNew = attachedKardexPEPSCollectionNew;
+            venta.setKardexPEPSCollection(kardexPEPSCollectionNew);
             venta = em.merge(venta);
-            if (productoOld != null && !productoOld.equals(productoNew)) {
-                productoOld.getVentaCollection().remove(venta);
-                productoOld = em.merge(productoOld);
+            for (DetalleVenta detalleVentaCollectionNewDetalleVenta : detalleVentaCollectionNew) {
+                if (!detalleVentaCollectionOld.contains(detalleVentaCollectionNewDetalleVenta)) {
+                    Venta oldIdVentaOfDetalleVentaCollectionNewDetalleVenta = detalleVentaCollectionNewDetalleVenta.getIdVenta();
+                    detalleVentaCollectionNewDetalleVenta.setIdVenta(venta);
+                    detalleVentaCollectionNewDetalleVenta = em.merge(detalleVentaCollectionNewDetalleVenta);
+                    if (oldIdVentaOfDetalleVentaCollectionNewDetalleVenta != null && !oldIdVentaOfDetalleVentaCollectionNewDetalleVenta.equals(venta)) {
+                        oldIdVentaOfDetalleVentaCollectionNewDetalleVenta.getDetalleVentaCollection().remove(detalleVentaCollectionNewDetalleVenta);
+                        oldIdVentaOfDetalleVentaCollectionNewDetalleVenta = em.merge(oldIdVentaOfDetalleVentaCollectionNewDetalleVenta);
+                    }
+                }
             }
-            if (productoNew != null && !productoNew.equals(productoOld)) {
-                productoNew.getVentaCollection().add(venta);
-                productoNew = em.merge(productoNew);
+            for (KardexPEPS kardexPEPSCollectionNewKardexPEPS : kardexPEPSCollectionNew) {
+                if (!kardexPEPSCollectionOld.contains(kardexPEPSCollectionNewKardexPEPS)) {
+                    Venta oldIdVentaOfKardexPEPSCollectionNewKardexPEPS = kardexPEPSCollectionNewKardexPEPS.getIdVenta();
+                    kardexPEPSCollectionNewKardexPEPS.setIdVenta(venta);
+                    kardexPEPSCollectionNewKardexPEPS = em.merge(kardexPEPSCollectionNewKardexPEPS);
+                    if (oldIdVentaOfKardexPEPSCollectionNewKardexPEPS != null && !oldIdVentaOfKardexPEPSCollectionNewKardexPEPS.equals(venta)) {
+                        oldIdVentaOfKardexPEPSCollectionNewKardexPEPS.getKardexPEPSCollection().remove(kardexPEPSCollectionNewKardexPEPS);
+                        oldIdVentaOfKardexPEPSCollectionNewKardexPEPS = em.merge(oldIdVentaOfKardexPEPSCollectionNewKardexPEPS);
+                    }
+                }
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
@@ -98,7 +175,7 @@ public class VentaJpaController implements Serializable {
         }
     }
 
-    public void destroy(String id) throws NonexistentEntityException {
+    public void destroy(String id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -110,10 +187,23 @@ public class VentaJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The venta with id " + id + " no longer exists.", enfe);
             }
-            Producto producto = venta.getProducto();
-            if (producto != null) {
-                producto.getVentaCollection().remove(venta);
-                producto = em.merge(producto);
+            List<String> illegalOrphanMessages = null;
+            Collection<DetalleVenta> detalleVentaCollectionOrphanCheck = venta.getDetalleVentaCollection();
+            for (DetalleVenta detalleVentaCollectionOrphanCheckDetalleVenta : detalleVentaCollectionOrphanCheck) {
+                if (illegalOrphanMessages == null) {
+                    illegalOrphanMessages = new ArrayList<String>();
+                }
+                illegalOrphanMessages.add("This Venta (" + venta + ") cannot be destroyed since the DetalleVenta " + detalleVentaCollectionOrphanCheckDetalleVenta + " in its detalleVentaCollection field has a non-nullable idVenta field.");
+            }
+            Collection<KardexPEPS> kardexPEPSCollectionOrphanCheck = venta.getKardexPEPSCollection();
+            for (KardexPEPS kardexPEPSCollectionOrphanCheckKardexPEPS : kardexPEPSCollectionOrphanCheck) {
+                if (illegalOrphanMessages == null) {
+                    illegalOrphanMessages = new ArrayList<String>();
+                }
+                illegalOrphanMessages.add("This Venta (" + venta + ") cannot be destroyed since the KardexPEPS " + kardexPEPSCollectionOrphanCheckKardexPEPS + " in its kardexPEPSCollection field has a non-nullable idVenta field.");
+            }
+            if (illegalOrphanMessages != null) {
+                throw new IllegalOrphanException(illegalOrphanMessages);
             }
             em.remove(venta);
             em.getTransaction().commit();

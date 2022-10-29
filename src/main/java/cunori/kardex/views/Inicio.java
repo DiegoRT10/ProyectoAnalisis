@@ -1,6 +1,10 @@
 package cunori.kardex.views;
 
+import cunori.kardex.controller.UsuarioJpaController;
+import cunori.kardex.dao.Usuario;
 import java.awt.Color;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
 import javax.swing.JScrollBar;
 import javax.swing.JTabbedPane;
@@ -12,13 +16,19 @@ import javax.swing.JTabbedPane;
  */
 public class Inicio extends javax.swing.JFrame {
     Integer estadoSet;
+    EntityManagerFactory emf;
+    UsuarioJpaController UsuarioEntityManager;
+    public static String SesionUsuario;
     
     public Inicio() {
         initComponents();
         getContentPane().setBackground(new Color(0, 255, 51));
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
-
+        emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
+        UsuarioEntityManager = new UsuarioJpaController(emf);
+        InicioSecion();
+        
         tpnlContenedor.setEnabledAt(0, false);
         tpnlContenedor.setEnabledAt(1, false);
         tpnlContenedor.setEnabledAt(2, false);
@@ -87,6 +97,7 @@ public class Inicio extends javax.swing.JFrame {
         tpnlContenedor = new javax.swing.JTabbedPane();
         pnlSeccionInicio = new javax.swing.JPanel();
         jSeparator2 = new javax.swing.JSeparator();
+        lblBienvenida = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         lblInfoInicio = new javax.swing.JLabel();
         pnlSeccionUsuario = new javax.swing.JPanel();
@@ -293,6 +304,7 @@ public class Inicio extends javax.swing.JFrame {
         pnlLeft.add(pnlInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 270, 60));
 
         imageAvatar1.setGradientColor1(new java.awt.Color(51, 51, 255));
+        imageAvatar1.setImage(new javax.swing.ImageIcon(getClass().getResource("/usuarioimg.png"))); // NOI18N
         pnlLeft.add(imageAvatar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 140, 120));
 
         pnlClientes.setBackground(new java.awt.Color(129, 164, 220));
@@ -329,7 +341,7 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(pnlClientesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pnlLeft.add(pnlClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 270, 50));
@@ -367,7 +379,7 @@ public class Inicio extends javax.swing.JFrame {
             pnlFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFacturacionLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -446,7 +458,7 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(pnlProveedoresLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pnlLeft.add(pnlProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 270, 50));
@@ -484,7 +496,7 @@ public class Inicio extends javax.swing.JFrame {
             pnlServiciosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlServiciosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -495,6 +507,9 @@ public class Inicio extends javax.swing.JFrame {
         pnlSeccionInicio.setBackground(new java.awt.Color(255, 255, 255));
         pnlSeccionInicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         pnlSeccionInicio.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 200, -1));
+
+        lblBienvenida.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        pnlSeccionInicio.add(lblBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 370, 40));
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0home_icon-icons.com_73532.png"))); // NOI18N
@@ -821,7 +836,7 @@ public class Inicio extends javax.swing.JFrame {
         pnlSeccionProveedores.setLayout(pnlSeccionProveedoresLayout);
         pnlSeccionProveedoresLayout.setHorizontalGroup(
             pnlSeccionProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 970, Short.MAX_VALUE)
         );
         pnlSeccionProveedoresLayout.setVerticalGroup(
             pnlSeccionProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1333,6 +1348,13 @@ public class Inicio extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblKardexMouseClicked
 
+    public void InicioSecion(){
+        System.out.println("id usuario "+Login.idUsuario);
+    SesionUsuario = Login.idUsuario;    
+    Usuario usuario =  UsuarioEntityManager.findUsuario(Login.idUsuario);    
+    lblBienvenida.setText("Bienvenido "+usuario.getNombre()+" "+usuario.getApellidos());
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -1397,6 +1419,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    public static javax.swing.JLabel lblBienvenida;
     private javax.swing.JLabel lblComprar;
     private javax.swing.JLabel lblConsulta;
     private javax.swing.JLabel lblConsulta1;

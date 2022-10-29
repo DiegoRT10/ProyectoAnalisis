@@ -1,9 +1,25 @@
 package cunori.kardex.views;
 
 import cunori.kardex.controller.ClienteJpaController;
+import cunori.kardex.controller.CompraJpaController;
+import cunori.kardex.controller.DetalleCompraJpaController;
+import cunori.kardex.controller.FacturaCompraJpaController;
+import cunori.kardex.controller.ProductoJpaController;
+import cunori.kardex.controller.ProveedorJpaController;
+import cunori.kardex.controller.UsuarioJpaController;
 import cunori.kardex.dao.Cliente;
+import cunori.kardex.dao.FacturaCompra;
+import cunori.kardex.dao.Proveedor;
+import cunori.kardex.dao.Usuario;
+
 import cunori.kardex.encrypt.Hash;
+
+import static cunori.kardex.views.Inicio.lblBienvenida;
 import java.awt.Font;
+import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,8 +37,14 @@ import javax.swing.table.TableRowSorter;
  */
 public class FormCrearCompra extends javax.swing.JFrame {
 
-    //EntityManagerFactory emf;
-    //ClienteJpaController ClienteEntityManager;
+    EntityManagerFactory emf;
+    FacturaCompraJpaController FacturaCompraEntityManager;
+    ProveedorJpaController ProveedorEntityManager;
+    UsuarioJpaController UsuarioEntityManager;
+    CompraJpaController CompraEntityManager;
+    DetalleCompraJpaController DetalleCompraEntityManager;
+    ProductoJpaController ProductoEntityManager;
+    
     //public static TableRowSorter<DefaultTableModel> sorter;
 
     public FormCrearCompra() {
@@ -30,9 +52,17 @@ public class FormCrearCompra extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
         //this.setExtendedState(MAXIMIZED_BOTH);
-
-       // emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
-       // ClienteEntityManager = new ClienteJpaController(emf);
+        
+       emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
+       FacturaCompraEntityManager = new FacturaCompraJpaController(emf);
+       ProveedorEntityManager = new ProveedorJpaController(emf);
+       UsuarioEntityManager = new UsuarioJpaController(emf);
+       CompraEntityManager = new CompraJpaController(emf);
+       DetalleCompraEntityManager = new DetalleCompraJpaController(emf);
+       ProductoEntityManager = new ProductoJpaController(emf);
+       
+       InicioSesion();
+       
     }
 
     /**
@@ -202,7 +232,7 @@ public class FormCrearCompra extends javax.swing.JFrame {
                         .addComponent(btnSeleccionarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(113, 113, 113))
                     .addGroup(jPnlProductosLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPnlProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDescuento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -257,7 +287,7 @@ public class FormCrearCompra extends javax.swing.JFrame {
                     .addComponent(btnCrearCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRegresarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlLeftLayout.setVerticalGroup(
             pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -499,21 +529,16 @@ public class FormCrearCompra extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(jPnlUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
-                .addComponent(jPnlProductos, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE))
+                .addComponent(jPnlProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 320, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCompraActionPerformed
-       /* if (CrearCliente()) {
-            JOptionPane.showMessageDialog(null, "El Cliente " + txtDireccion.getText() + " "+ txtTelefono.getText() +" se creó correctamente");
-            ListarClientes lc = new ListarClientes();
-            lc.setVisible(true);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "No se pudo crear el Cliente");
-        }*/
+        if(!Vacio()){
+            SetDatosCompra();
+        }
 
     }//GEN-LAST:event_btnCrearCompraActionPerformed
 
@@ -535,11 +560,13 @@ public class FormCrearCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarProdActionPerformed
 
     private void btnAgregarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProvActionPerformed
-        // TODO add your handling code here:
+     FormCrearProveedorCompra fcp = new FormCrearProveedorCompra(this, true);
+     fcp.setVisible(true);
     }//GEN-LAST:event_btnAgregarProvActionPerformed
 
     private void btnSeleccionarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarProvActionPerformed
-        // TODO add your handling code here:
+      ListarProveedoresCompra lpc = new ListarProveedoresCompra(this, true);
+     lpc.setVisible(true);
     }//GEN-LAST:event_btnSeleccionarProvActionPerformed
 
     private void btnCancelarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCompraActionPerformed
@@ -578,6 +605,59 @@ public class FormCrearCompra extends javax.swing.JFrame {
                 && txtTelefono.getText().isEmpty() && txtCorreo.getText().isEmpty() 
                 && txtNumCompra.getText().isEmpty() && txtNombreProducto.getText().isEmpty();
     }*/
+    
+    private Boolean Vacio(){
+    return txtNoSerie.getText().isEmpty() && txtFechaRegistro.getText().isEmpty() && txtNITProveedor.getText().isEmpty() &&
+           txtNombreProveedor.getText().isEmpty() && txtNITUsuario.getText().isEmpty() && txtNombreUsuario.getText().isEmpty() &&
+           txtDescuento.getText().isEmpty() && txtTotalPagar.getText().isEmpty() &&  tblProductos.getRowCount() != 0;
+    }
+    
+    public void InicioSesion(){
+        System.out.println("id usuario desde compra inicio"+Inicio.SesionUsuario);   
+    Usuario u = UsuarioEntityManager.findUsuario(Inicio.SesionUsuario);
+    txtNITUsuario.setText(u.getNit());
+    txtNombreUsuario.setText(u.getNombre());
+    }
+    
+    private void SetDatosCompra(){
+        DatosFactura();//seteando datos factura
+    }
+   
+    private void DatosFactura(){
+    FacturaCompra fc = new FacturaCompra();        
+
+        fc.setNoSerie(txtNoSerie.getText());
+        Integer opTipo = cbxTipo.getSelectedIndex();
+        fc.setTipo(opTipo.toString());
+        
+        //seteando Fecha
+        try {
+            //seteando la fecha
+            Date dt = new SimpleDateFormat("dd/MM/yyyy")
+                    .parse(txtFechaRegistro.getText());
+            fc.setFechaEmision(dt);
+        } catch (ParseException ex) {
+            //Logger.getLogger(CrearFactura.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Fecha mal ingresada");
+        }
+        BigDecimal descuento = new BigDecimal(txtDescuento.getText());
+        fc.setDescuento(descuento);
+        
+        try {
+            FacturaCompraEntityManager.create(fc);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo crear la factura");
+            //Logger.getLogger(FormCrearCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+   
+    public static void DatosProveedor(String idProveedor, String nitProveedor, String nombreProveedor){
+        txtNITProveedor.setText(nitProveedor);
+        txtNombreProveedor.setText(nombreProveedor);
+    }
+    private void DatosUsuario(){}
+    private void DatosProducto(){}
+    private void DatosDetalleCompra(){}
     /**
      * @param args the command line arguments
      */
@@ -638,11 +718,11 @@ public class FormCrearCompra extends javax.swing.JFrame {
     private javax.swing.JTable tblProductos;
     private javax.swing.JTextField txtDescuento;
     private javax.swing.JTextField txtFechaRegistro;
-    private javax.swing.JTextField txtNITProveedor;
-    private javax.swing.JTextField txtNITUsuario;
+    public static javax.swing.JTextField txtNITProveedor;
+    public static javax.swing.JTextField txtNITUsuario;
     private javax.swing.JTextField txtNoSerie;
-    private javax.swing.JTextField txtNombreProveedor;
-    private javax.swing.JTextField txtNombreUsuario;
+    public static javax.swing.JTextField txtNombreProveedor;
+    public static javax.swing.JTextField txtNombreUsuario;
     private javax.swing.JTextField txtTotalPagar;
     // End of variables declaration//GEN-END:variables
 }

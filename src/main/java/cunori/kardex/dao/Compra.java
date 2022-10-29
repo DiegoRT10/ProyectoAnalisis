@@ -32,6 +32,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Compra.findAll", query = "SELECT c FROM Compra c"),
     @NamedQuery(name = "Compra.findById", query = "SELECT c FROM Compra c WHERE c.id = :id"),
     @NamedQuery(name = "Compra.findByFechaCompra", query = "SELECT c FROM Compra c WHERE c.fechaCompra = :fechaCompra"),
+    @NamedQuery(name = "Compra.findByCantProductos", query = "SELECT c FROM Compra c WHERE c.cantProductos = :cantProductos"),
     @NamedQuery(name = "Compra.findByTotal", query = "SELECT c FROM Compra c WHERE c.total = :total")})
 public class Compra implements Serializable {
 
@@ -40,26 +41,41 @@ public class Compra implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private String id;
+    @Basic(optional = false)
     @Column(name = "fechaCompra")
     @Temporal(TemporalType.DATE)
     private Date fechaCompra;
+    @Basic(optional = false)
+    @Column(name = "cantProductos")
+    private int cantProductos;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "total")
     private BigDecimal total;
-    @JoinColumn(name = "producto", referencedColumnName = "codigo")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCompra")
+    private Collection<KardexPEPS> kardexPEPSCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCompra")
+    private Collection<DetalleCompra> detalleCompraCollection;
+    @JoinColumn(name = "idFactura", referencedColumnName = "noSerie")
+    @ManyToOne(optional = false)
+    private FacturaCompra idFactura;
+    @JoinColumn(name = "idProveedor", referencedColumnName = "id")
     @ManyToOne
-    private Producto producto;
-    @JoinColumn(name = "proveedor", referencedColumnName = "id")
-    @ManyToOne
-    private Proveedor proveedor;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "detalleCompra")
-//    private Collection<Factura> facturaCollection;
+    private Proveedor idProveedor;
+    @JoinColumn(name = "idUsuario", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Usuario idUsuario;
 
     public Compra() {
     }
 
     public Compra(String id) {
         this.id = id;
+    }
+
+    public Compra(String id, Date fechaCompra, int cantProductos) {
+        this.id = id;
+        this.fechaCompra = fechaCompra;
+        this.cantProductos = cantProductos;
     }
 
     public String getId() {
@@ -78,6 +94,14 @@ public class Compra implements Serializable {
         this.fechaCompra = fechaCompra;
     }
 
+    public int getCantProductos() {
+        return cantProductos;
+    }
+
+    public void setCantProductos(int cantProductos) {
+        this.cantProductos = cantProductos;
+    }
+
     public BigDecimal getTotal() {
         return total;
     }
@@ -86,29 +110,45 @@ public class Compra implements Serializable {
         this.total = total;
     }
 
-    public Producto getProducto() {
-        return producto;
+    public Collection<KardexPEPS> getKardexPEPSCollection() {
+        return kardexPEPSCollection;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setKardexPEPSCollection(Collection<KardexPEPS> kardexPEPSCollection) {
+        this.kardexPEPSCollection = kardexPEPSCollection;
     }
 
-    public Proveedor getProveedor() {
-        return proveedor;
+    public Collection<DetalleCompra> getDetalleCompraCollection() {
+        return detalleCompraCollection;
     }
 
-    public void setProveedor(Proveedor proveedor) {
-        this.proveedor = proveedor;
+    public void setDetalleCompraCollection(Collection<DetalleCompra> detalleCompraCollection) {
+        this.detalleCompraCollection = detalleCompraCollection;
     }
 
-//    public Collection<Factura> getFacturaCollection() {
-//        return facturaCollection;
-//    }
-//
-//    public void setFacturaCollection(Collection<Factura> facturaCollection) {
-//        this.facturaCollection = facturaCollection;
-//    }
+    public FacturaCompra getIdFactura() {
+        return idFactura;
+    }
+
+    public void setIdFactura(FacturaCompra idFactura) {
+        this.idFactura = idFactura;
+    }
+
+    public Proveedor getIdProveedor() {
+        return idProveedor;
+    }
+
+    public void setIdProveedor(Proveedor idProveedor) {
+        this.idProveedor = idProveedor;
+    }
+
+    public Usuario getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
     @Override
     public int hashCode() {

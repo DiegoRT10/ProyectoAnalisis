@@ -7,6 +7,7 @@ package cunori.kardex.dao;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,6 +19,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -28,7 +31,8 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Venta.findAll", query = "SELECT v FROM Venta v"),
     @NamedQuery(name = "Venta.findById", query = "SELECT v FROM Venta v WHERE v.id = :id"),
-    @NamedQuery(name = "Venta.findByCantidad", query = "SELECT v FROM Venta v WHERE v.cantidad = :cantidad"),
+    @NamedQuery(name = "Venta.findByFechaVenta", query = "SELECT v FROM Venta v WHERE v.fechaVenta = :fechaVenta"),
+    @NamedQuery(name = "Venta.findByCantProducto", query = "SELECT v FROM Venta v WHERE v.cantProducto = :cantProducto"),
     @NamedQuery(name = "Venta.findByTotal", query = "SELECT v FROM Venta v WHERE v.total = :total")})
 public class Venta implements Serializable {
 
@@ -38,23 +42,29 @@ public class Venta implements Serializable {
     @Column(name = "id")
     private String id;
     @Basic(optional = false)
-    @Column(name = "cantidad")
-    private int cantidad;
+    @Column(name = "fechaVenta")
+    @Temporal(TemporalType.DATE)
+    private Date fechaVenta;
+    @Basic(optional = false)
+    @Column(name = "cantProducto")
+    private int cantProducto;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @Column(name = "total")
     private BigDecimal total;
-    @JoinColumn(name = "cliente", referencedColumnName = "id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVenta")
+    private Collection<DetalleVenta> detalleVentaCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVenta")
+    private Collection<KardexPEPS> kardexPEPSCollection;
+    @JoinColumn(name = "idCliente", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Cliente cliente;
-    @JoinColumn(name = "producto", referencedColumnName = "codigo")
+    private Cliente idCliente;
+    @JoinColumn(name = "idFactura", referencedColumnName = "noSerie")
     @ManyToOne(optional = false)
-    private Producto producto;
-    @JoinColumn(name = "vendedor", referencedColumnName = "id")
+    private FacturaVenta idFactura;
+    @JoinColumn(name = "idUsuario", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Usuario vendedor;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "detalleVenta")
-//    private Collection<Factura> facturaCollection;
+    private Usuario idUsuario;
 
     public Venta() {
     }
@@ -63,9 +73,10 @@ public class Venta implements Serializable {
         this.id = id;
     }
 
-    public Venta(String id, int cantidad, BigDecimal total) {
+    public Venta(String id, Date fechaVenta, int cantProducto, BigDecimal total) {
         this.id = id;
-        this.cantidad = cantidad;
+        this.fechaVenta = fechaVenta;
+        this.cantProducto = cantProducto;
         this.total = total;
     }
 
@@ -77,12 +88,20 @@ public class Venta implements Serializable {
         this.id = id;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public Date getFechaVenta() {
+        return fechaVenta;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public void setFechaVenta(Date fechaVenta) {
+        this.fechaVenta = fechaVenta;
+    }
+
+    public int getCantProducto() {
+        return cantProducto;
+    }
+
+    public void setCantProducto(int cantProducto) {
+        this.cantProducto = cantProducto;
     }
 
     public BigDecimal getTotal() {
@@ -93,37 +112,45 @@ public class Venta implements Serializable {
         this.total = total;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Collection<DetalleVenta> getDetalleVentaCollection() {
+        return detalleVentaCollection;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setDetalleVentaCollection(Collection<DetalleVenta> detalleVentaCollection) {
+        this.detalleVentaCollection = detalleVentaCollection;
     }
 
-    public Producto getProducto() {
-        return producto;
+    public Collection<KardexPEPS> getKardexPEPSCollection() {
+        return kardexPEPSCollection;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setKardexPEPSCollection(Collection<KardexPEPS> kardexPEPSCollection) {
+        this.kardexPEPSCollection = kardexPEPSCollection;
     }
 
-    public Usuario getVendedor() {
-        return vendedor;
+    public Cliente getIdCliente() {
+        return idCliente;
     }
 
-    public void setVendedor(Usuario vendedor) {
-        this.vendedor = vendedor;
+    public void setIdCliente(Cliente idCliente) {
+        this.idCliente = idCliente;
     }
 
-//    public Collection<Factura> getFacturaCollection() {
-//        return facturaCollection;
-//    }
-//
-//    public void setFacturaCollection(Collection<Factura> facturaCollection) {
-//        this.facturaCollection = facturaCollection;
-//    }
+    public FacturaVenta getIdFactura() {
+        return idFactura;
+    }
+
+    public void setIdFactura(FacturaVenta idFactura) {
+        this.idFactura = idFactura;
+    }
+
+    public Usuario getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
     @Override
     public int hashCode() {

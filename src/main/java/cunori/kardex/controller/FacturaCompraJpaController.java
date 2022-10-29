@@ -6,7 +6,7 @@ package cunori.kardex.controller;
 
 import cunori.kardex.controller.exceptions.NonexistentEntityException;
 import cunori.kardex.controller.exceptions.PreexistingEntityException;
-import cunori.kardex.dao.Producto;
+import cunori.kardex.dao.FacturaCompra;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -20,9 +20,9 @@ import javax.persistence.criteria.Root;
  *
  * @author Diego Ramos
  */
-public class ProductoJpaController implements Serializable {
+public class FacturaCompraJpaController implements Serializable {
 
-    public ProductoJpaController(EntityManagerFactory emf) {
+    public FacturaCompraJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,16 +31,16 @@ public class ProductoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Producto producto) throws PreexistingEntityException, Exception {
+    public void create(FacturaCompra facturaCompra) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(producto);
+            em.persist(facturaCompra);
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findProducto(producto.getCodigo()) != null) {
-                throw new PreexistingEntityException("Producto " + producto + " already exists.", ex);
+            if (findFacturaCompra(facturaCompra.getNoSerie()) != null) {
+                throw new PreexistingEntityException("FacturaCompra " + facturaCompra + " already exists.", ex);
             }
             throw ex;
         } finally {
@@ -50,19 +50,19 @@ public class ProductoJpaController implements Serializable {
         }
     }
 
-    public void edit(Producto producto) throws NonexistentEntityException, Exception {
+    public void edit(FacturaCompra facturaCompra) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            producto = em.merge(producto);
+            facturaCompra = em.merge(facturaCompra);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                String id = producto.getCodigo();
-                if (findProducto(id) == null) {
-                    throw new NonexistentEntityException("The producto with id " + id + " no longer exists.");
+                String id = facturaCompra.getNoSerie();
+                if (findFacturaCompra(id) == null) {
+                    throw new NonexistentEntityException("The facturaCompra with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -78,14 +78,14 @@ public class ProductoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Producto producto;
+            FacturaCompra facturaCompra;
             try {
-                producto = em.getReference(Producto.class, id);
-                producto.getCodigo();
+                facturaCompra = em.getReference(FacturaCompra.class, id);
+                facturaCompra.getNoSerie();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The producto with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The facturaCompra with id " + id + " no longer exists.", enfe);
             }
-            em.remove(producto);
+            em.remove(facturaCompra);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -94,19 +94,19 @@ public class ProductoJpaController implements Serializable {
         }
     }
 
-    public List<Producto> findProductoEntities() {
-        return findProductoEntities(true, -1, -1);
+    public List<FacturaCompra> findFacturaCompraEntities() {
+        return findFacturaCompraEntities(true, -1, -1);
     }
 
-    public List<Producto> findProductoEntities(int maxResults, int firstResult) {
-        return findProductoEntities(false, maxResults, firstResult);
+    public List<FacturaCompra> findFacturaCompraEntities(int maxResults, int firstResult) {
+        return findFacturaCompraEntities(false, maxResults, firstResult);
     }
 
-    private List<Producto> findProductoEntities(boolean all, int maxResults, int firstResult) {
+    private List<FacturaCompra> findFacturaCompraEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Producto.class));
+            cq.select(cq.from(FacturaCompra.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -118,20 +118,20 @@ public class ProductoJpaController implements Serializable {
         }
     }
 
-    public Producto findProducto(String id) {
+    public FacturaCompra findFacturaCompra(String id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Producto.class, id);
+            return em.find(FacturaCompra.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getProductoCount() {
+    public int getFacturaCompraCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Producto> rt = cq.from(Producto.class);
+            Root<FacturaCompra> rt = cq.from(FacturaCompra.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

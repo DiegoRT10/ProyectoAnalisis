@@ -18,7 +18,7 @@ public class Login extends javax.swing.JFrame {
 
     EntityManagerFactory emf;
     UsuarioJpaController UsuarioEntityManager;
-    
+    public static String idUsuario="";
     public Login() {
         initComponents(); 
         this.setLocationRelativeTo(null);
@@ -173,7 +173,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
- 
+       
      String user = txtUsuario.getText();
      String pasword = txtContraseña.getText();
 
@@ -181,6 +181,7 @@ public class Login extends javax.swing.JFrame {
     if(ComprobarUsuario(user,pasword)){
 //     PedidosViews pedido = new PedidosViews();
 //     pedido.setVisible(true);
+     //Inicio.LoginUsuario=user;   
      Inicio i = new Inicio();
      i.setVisible(true);
      this.dispose();
@@ -207,6 +208,7 @@ public class Login extends javax.swing.JFrame {
     
      Usuario usuario =  UsuarioEntityManager.findUsuario("77d830a4-ae16-4a87-bb3e-d854e93e7b58");
      if(user.equals(usuario.getUsuario())&& usuario.getContrasena().equals(Hash.sha1(pasword))){
+     idUsuario = usuario.getId();
      return true;
      }else{JOptionPane.showMessageDialog(null,"No se encontro el usuario");
      return false;}

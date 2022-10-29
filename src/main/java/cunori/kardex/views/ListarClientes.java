@@ -253,7 +253,7 @@ public class ListarClientes extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
             .addComponent(pnlLeft, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -341,11 +341,13 @@ public class ListarClientes extends javax.swing.JFrame {
                 ClienteEntityManager.destroy(id);
                 JOptionPane.showMessageDialog(null, "El Cliente se ha eliminado correctamente");
                 return true;
-            } catch (NonexistentEntityException ex) {
+            }catch (NonexistentEntityException ex) {
                 //Logger.getLogger(ListarClientes.class.getName()).log(Level.SEVERE, null, ex);
                  JOptionPane.showMessageDialog(null, "Error, no se puede eliminar");
                 return false;
             }
+            //Logger.getLogger(ListarClientes.class.getName()).log(Level.SEVERE, null, ex);
+            
 
         }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
          return false;

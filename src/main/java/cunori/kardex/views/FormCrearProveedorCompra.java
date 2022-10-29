@@ -1,12 +1,12 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ */
 package cunori.kardex.views;
 
 import cunori.kardex.controller.ProveedorJpaController;
 import cunori.kardex.dao.Proveedor;
-import cunori.kardex.encrypt.Hash;
-import java.awt.Font;
 import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
@@ -17,15 +17,19 @@ import javax.swing.table.TableRowSorter;
 /**
  *
  * @author Diego Ramos
- * @author Hermas Ramirez
  */
-public class FormCrearProveedor extends javax.swing.JFrame {
+public class FormCrearProveedorCompra extends javax.swing.JDialog {
 
     EntityManagerFactory emf;
     ProveedorJpaController ProveedorEntityManager;
+    String idProveedor;
     public static TableRowSorter<DefaultTableModel> sorter;
-
-    public FormCrearProveedor() {
+    /**
+     * Creates new form FormCrearProveedorCompra
+     */
+    
+    public FormCrearProveedorCompra(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
@@ -64,10 +68,7 @@ public class FormCrearProveedor extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1230, 712));
-        setPreferredSize(new java.awt.Dimension(1230, 712));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(129, 164, 220));
         jPanel1.setPreferredSize(new java.awt.Dimension(931, 522));
@@ -164,7 +165,7 @@ public class FormCrearProveedor extends javax.swing.JFrame {
                                 .addComponent(lblCodin8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtNIT, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(257, Short.MAX_VALUE))
+                .addContainerGap(251, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,8 +198,6 @@ public class FormCrearProveedor extends javax.swing.JFrame {
                     .addComponent(cbxRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 0, 1230, 690));
 
         pnlLeft.setBackground(new java.awt.Color(129, 164, 220));
 
@@ -271,10 +270,27 @@ public class FormCrearProveedor extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
-        getContentPane().add(pnlLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 690));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1230, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(pnlLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlLeft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cbxRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxRolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxRolActionPerformed
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
 
@@ -287,13 +303,11 @@ public class FormCrearProveedor extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (CrearProveedor()) {
             JOptionPane.showMessageDialog(null, "El Proveedor " + txtNombre.getText() + " se creó correctamente");
-            ListarProveedores lp = new ListarProveedores();
-            lp.setVisible(true);
+            FormCrearCompra.DatosProveedor(idProveedor, txtNIT.getText(), txtNombre.getText());
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "No se pudo crear el Proveedor");
         }
-
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -302,13 +316,11 @@ public class FormCrearProveedor extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void cbxRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxRolActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxRolActionPerformed
-
+    
     private Boolean CrearProveedor() {
         if (!Vacio()) {
             String id = UUID.randomUUID().toString();
+            idProveedor = id;
             Proveedor p = new Proveedor();
             p.setId(id);
             p.setNit(txtNIT.getText());
@@ -335,7 +347,6 @@ public class FormCrearProveedor extends javax.swing.JFrame {
         return txtNIT.getText().isEmpty() && txtNombre.getText().isEmpty() && txtDireccion.getText().isEmpty()
                 && txtCorreo.getText().isEmpty() && txtTelefono.getText().isEmpty();
     }
-
     /**
      * @param args the command line arguments
      */
@@ -353,20 +364,27 @@ public class FormCrearProveedor extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormCrearProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormCrearProveedorCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormCrearProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormCrearProveedorCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormCrearProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormCrearProveedorCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormCrearProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormCrearProveedorCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormCrearProveedor().setVisible(true);
+                FormCrearProveedorCompra dialog = new FormCrearProveedorCompra(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }

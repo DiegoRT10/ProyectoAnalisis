@@ -33,7 +33,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Producto.findByPesoNeto", query = "SELECT p FROM Producto p WHERE p.pesoNeto = :pesoNeto"),
     @NamedQuery(name = "Producto.findByPrecioCompra", query = "SELECT p FROM Producto p WHERE p.precioCompra = :precioCompra"),
     @NamedQuery(name = "Producto.findByPrecioVenta", query = "SELECT p FROM Producto p WHERE p.precioVenta = :precioVenta"),
-    @NamedQuery(name = "Producto.findByCantidad", query = "SELECT p FROM Producto p WHERE p.cantidad = :cantidad")})
+    @NamedQuery(name = "Producto.findByStock", query = "SELECT p FROM Producto p WHERE p.stock = :stock")})
 public class Producto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -64,12 +64,12 @@ public class Producto implements Serializable {
     @Column(name = "precioVenta")
     private BigDecimal precioVenta;
     @Basic(optional = false)
-    @Column(name = "cantidad")
-    private int cantidad;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
-    private Collection<Venta> ventaCollection;
-//    @OneToMany(mappedBy = "producto")
-//    private Collection<Compra> compraCollection;
+    @Column(name = "stock")
+    private int stock;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigoProducto")
+//    private Collection<DetalleVenta> detalleVentaCollection;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigoProducto")
+//    private Collection<DetalleCompra> detalleCompraCollection;
 
     public Producto() {
     }
@@ -78,7 +78,7 @@ public class Producto implements Serializable {
         this.codigo = codigo;
     }
 
-    public Producto(String codigo, String nombre, String categoria, String marca, String unidad, String pesoNeto, BigDecimal precioCompra, BigDecimal precioVenta, int cantidad) {
+    public Producto(String codigo, String nombre, String categoria, String marca, String unidad, String pesoNeto, BigDecimal precioCompra, BigDecimal precioVenta, int stock) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.categoria = categoria;
@@ -87,7 +87,7 @@ public class Producto implements Serializable {
         this.pesoNeto = pesoNeto;
         this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
-        this.cantidad = cantidad;
+        this.stock = stock;
     }
 
     public String getCodigo() {
@@ -154,28 +154,28 @@ public class Producto implements Serializable {
         this.precioVenta = precioVenta;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public int getStock() {
+        return stock;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
-    public Collection<Venta> getVentaCollection() {
-        return ventaCollection;
-    }
-
-    public void setVentaCollection(Collection<Venta> ventaCollection) {
-        this.ventaCollection = ventaCollection;
-    }
-
-//    public Collection<Compra> getCompraCollection() {
-//        return compraCollection;
+//    public Collection<DetalleVenta> getDetalleVentaCollection() {
+//        return detalleVentaCollection;
 //    }
 //
-//    public void setCompraCollection(Collection<Compra> compraCollection) {
-//        this.compraCollection = compraCollection;
+//    public void setDetalleVentaCollection(Collection<DetalleVenta> detalleVentaCollection) {
+//        this.detalleVentaCollection = detalleVentaCollection;
+//    }
+//
+//    public Collection<DetalleCompra> getDetalleCompraCollection() {
+//        return detalleCompraCollection;
+//    }
+//
+//    public void setDetalleCompraCollection(Collection<DetalleCompra> detalleCompraCollection) {
+//        this.detalleCompraCollection = detalleCompraCollection;
 //    }
 
     @Override

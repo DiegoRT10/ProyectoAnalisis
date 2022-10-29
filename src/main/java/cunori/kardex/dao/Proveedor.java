@@ -51,7 +51,7 @@ public class Proveedor implements Serializable {
     @Basic(optional = false)
     @Column(name = "telefono")
     private String telefono;
-//    @OneToMany(mappedBy = "proveedor")
+//    @OneToMany(mappedBy = "idProveedor")
 //    private Collection<Compra> compraCollection;
 
     public Proveedor() {
