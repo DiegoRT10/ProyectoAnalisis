@@ -8,7 +8,10 @@ import cunori.kardex.controller.ProductoJpaController;
 import cunori.kardex.controller.ProveedorJpaController;
 import cunori.kardex.controller.UsuarioJpaController;
 import cunori.kardex.dao.Cliente;
+import cunori.kardex.dao.Compra;
+import cunori.kardex.dao.DetalleCompra;
 import cunori.kardex.dao.FacturaCompra;
+import cunori.kardex.dao.Producto;
 import cunori.kardex.dao.Proveedor;
 import cunori.kardex.dao.Usuario;
 
@@ -45,24 +48,27 @@ public class FormCrearCompra extends javax.swing.JFrame {
     DetalleCompraJpaController DetalleCompraEntityManager;
     ProductoJpaController ProductoEntityManager;
     
-    //public static TableRowSorter<DefaultTableModel> sorter;
+    public static String idProveedor="";
+    String idCompra = "";
 
+    //public static TableRowSorter<DefaultTableModel> sorter;
     public FormCrearCompra() {
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
         //this.setExtendedState(MAXIMIZED_BOTH);
-        
-       emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
-       FacturaCompraEntityManager = new FacturaCompraJpaController(emf);
-       ProveedorEntityManager = new ProveedorJpaController(emf);
-       UsuarioEntityManager = new UsuarioJpaController(emf);
-       CompraEntityManager = new CompraJpaController(emf);
-       DetalleCompraEntityManager = new DetalleCompraJpaController(emf);
-       ProductoEntityManager = new ProductoJpaController(emf);
-       
-       InicioSesion();
-       
+        DefaultTableModel model = (DefaultTableModel) tblProductos.getModel();
+        model.setRowCount(0); //eliminar filas existentes
+        emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
+        FacturaCompraEntityManager = new FacturaCompraJpaController(emf);
+        ProveedorEntityManager = new ProveedorJpaController(emf);
+        UsuarioEntityManager = new UsuarioJpaController(emf);
+        CompraEntityManager = new CompraJpaController(emf);
+        DetalleCompraEntityManager = new DetalleCompraJpaController(emf);
+        ProductoEntityManager = new ProductoJpaController(emf);
+
+        InicioSesion();
+
     }
 
     /**
@@ -121,18 +127,18 @@ public class FormCrearCompra extends javax.swing.JFrame {
         tblProductos.setForeground(new java.awt.Color(0, 0, 0));
         tblProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Codigo", "Nombre", "Categoria", "Marca", "Unidad", "Peso Neto", "Precio Compra", "Precio Venta", "Cantidad"
+                "Codigo", "Nombre", "Categoria", "Marca", "Unidad", "Peso Neto", "Precio Compra", "Precio Venta", "Cantidad", "Total Compra"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -185,7 +191,6 @@ public class FormCrearCompra extends javax.swing.JFrame {
         lblDescuento.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDescuento.setText("Descuento:");
 
-        txtDescuento.setEditable(false);
         txtDescuento.setBackground(new java.awt.Color(129, 164, 220));
         txtDescuento.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         txtDescuento.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 153, 255)));
@@ -244,11 +249,9 @@ public class FormCrearCompra extends javax.swing.JFrame {
                         .addGap(4, 4, 4)
                         .addComponent(btnSeleccionarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
-                        .addComponent(btnEliminarFila, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(113, 113, 113))
-                    .addGroup(jPnlProductosLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(btnEliminarFila, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addGroup(jPnlProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDescuento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblTotalPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -307,7 +310,7 @@ public class FormCrearCompra extends javax.swing.JFrame {
         pnlLeftLayout.setVerticalGroup(
             pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlLeftLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(508, Short.MAX_VALUE)
                 .addComponent(btnCrearCompra)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCancelarCompra)
@@ -538,21 +541,25 @@ public class FormCrearCompra extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlLeft, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPnlFactura, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                .addComponent(jPnlFactura, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
-                .addComponent(jPnlProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                .addComponent(jPnlProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
-                .addComponent(jPnlUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                .addComponent(jPnlUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
-                .addComponent(jPnlProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 320, Short.MAX_VALUE))
+                .addComponent(jPnlProductos, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCompraActionPerformed
+        
         if(!Vacio()){
-            SetDatosCompra();
+            DatosFactura();//seteando datos factura
+            Compra();//seteando datos de la compra
+            DatosDetalleCompra();//seteando datos detalleCompra
+            
         }
 
     }//GEN-LAST:event_btnCrearCompraActionPerformed
@@ -565,24 +572,24 @@ public class FormCrearCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarCompraActionPerformed
 
     private void btnSeleccionarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarProdActionPerformed
-        ListarProductoCompra lpc = new ListarProductoCompra(this,true);
+        ListarProductoCompra lpc = new ListarProductoCompra(this, true);
         lpc.setVisible(true);
     }//GEN-LAST:event_btnSeleccionarProdActionPerformed
 
     private void btnAgregarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProdActionPerformed
-       FormCrearProductoCompra fcpc = new FormCrearProductoCompra(this, true);
-       fcpc.setVisible(true);
+        FormCrearProductoCompra fcpc = new FormCrearProductoCompra(this, true);
+        fcpc.setVisible(true);
 
     }//GEN-LAST:event_btnAgregarProdActionPerformed
 
     private void btnAgregarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProvActionPerformed
-     FormCrearProveedorCompra fcp = new FormCrearProveedorCompra(this, true);
-     fcp.setVisible(true);
+        FormCrearProveedorCompra fcp = new FormCrearProveedorCompra(this, true);
+        fcp.setVisible(true);
     }//GEN-LAST:event_btnAgregarProvActionPerformed
 
     private void btnSeleccionarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarProvActionPerformed
-      ListarProveedoresCompra lpc = new ListarProveedoresCompra(this, true);
-     lpc.setVisible(true);
+        ListarProveedoresCompra lpc = new ListarProveedoresCompra(this, true);
+        lpc.setVisible(true);
     }//GEN-LAST:event_btnSeleccionarProvActionPerformed
 
     private void btnCancelarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCompraActionPerformed
@@ -593,64 +600,32 @@ public class FormCrearCompra extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tblProductos.getModel();
         model.removeRow(tblProductos.getSelectedRow());
     }//GEN-LAST:event_btnEliminarFilaActionPerformed
-/*
-    private Boolean CrearCliente() {
-        if (!Vacio()) {
-            String id = UUID.randomUUID().toString();
-            Cliente p = new Cliente();
-            p.setId(id);
-            p.setDpi(txtNombreP.getText());
-            p.setNit(txtNIT.getText());
-            p.setNombre(txtDireccion.getText());
-            p.setApellidos(txtTelefono.getText());
-            p.setDireccion(txtCorreo.getText());
-            p.setCorreo(txtNumCompra.getText());
-            p.setTelefono(txtNombreProducto.getText());
-            
-            try {
-                ClienteEntityManager.create(p);
-                return true;
-            } catch (Exception ex) {
-//            Logger.getLogger(FormUsuario.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, "Datos repetidos o mal ingresados");
-                return false;
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
-        }
-        return false;
-    }
+    
 
     private Boolean Vacio() {
-        return txtNombreP.getText().isEmpty() && txtNIT.getText().isEmpty() && txtDireccion.getText().isEmpty()
-                && txtTelefono.getText().isEmpty() && txtCorreo.getText().isEmpty() 
-                && txtNumCompra.getText().isEmpty() && txtNombreProducto.getText().isEmpty();
-    }*/
-    
-    private Boolean Vacio(){
-    return txtNoSerie.getText().isEmpty() && txtFechaRegistro.getText().isEmpty() && txtNITProveedor.getText().isEmpty() &&
-           txtNombreProveedor.getText().isEmpty() && txtNITUsuario.getText().isEmpty() && txtNombreUsuario.getText().isEmpty() &&
-           txtDescuento.getText().isEmpty() && txtTotalPagar.getText().isEmpty() &&  tblProductos.getRowCount() != 0;
+        return txtNoSerie.getText().isEmpty() && txtFechaRegistro.getText().isEmpty() && txtNITProveedor.getText().isEmpty()
+                && txtNombreProveedor.getText().isEmpty() && txtNITUsuario.getText().isEmpty() && txtNombreUsuario.getText().isEmpty()
+                && txtDescuento.getText().isEmpty() && txtTotalPagar.getText().isEmpty() && tblProductos.getRowCount() != 0;
     }
-    
-    public void InicioSesion(){
-        System.out.println("id usuario desde compra inicio"+Inicio.SesionUsuario);   
-    Usuario u = UsuarioEntityManager.findUsuario(Inicio.SesionUsuario);
-    txtNITUsuario.setText(u.getNit());
-    txtNombreUsuario.setText(u.getNombre());
+
+    public void InicioSesion() {
+        System.out.println("id usuario desde compra inicio" + Inicio.SesionUsuario);
+        Usuario u = UsuarioEntityManager.findUsuario(Inicio.SesionUsuario);
+        txtNITUsuario.setText(u.getNit());
+        txtNombreUsuario.setText(u.getNombre());
     }
+
+
+        
     
-    private void SetDatosCompra(){
-        DatosFactura();//seteando datos factura
-    }
-   
-    private void DatosFactura(){
-    FacturaCompra fc = new FacturaCompra();        
+
+    private void DatosFactura() {
+        FacturaCompra fc = new FacturaCompra();
 
         fc.setNoSerie(txtNoSerie.getText());
         Integer opTipo = cbxTipo.getSelectedIndex();
         fc.setTipo(opTipo.toString());
-        
+
         //seteando Fecha
         try {
             //seteando la fecha
@@ -663,30 +638,124 @@ public class FormCrearCompra extends javax.swing.JFrame {
         }
         BigDecimal descuento = new BigDecimal(txtDescuento.getText());
         fc.setDescuento(descuento);
-        
+
         try {
             FacturaCompraEntityManager.create(fc);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "No se pudo crear la factura");
-            //Logger.getLogger(FormCrearCompra.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormCrearCompra.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-   
-    public static void DatosProveedor(String idProveedor, String nitProveedor, String nombreProveedor){
+
+    public static void DatosProveedor(String id, String nitProveedor, String nombreProveedor) {
+        idProveedor = id;
         txtNITProveedor.setText(nitProveedor);
         txtNombreProveedor.setText(nombreProveedor);
     }
-    private void DatosUsuario(){}
-    
-    public static void DatosProducto(String codigo, String nombre, String categoria, String marca, String unidad, String pesoNeto, Double precioCompra, Double precioVenta, int stock){
-    DefaultTableModel model = (DefaultTableModel) tblProductos.getModel();
-  
-    model.setRowCount(0); //eliminar filas existentes
-    tblProductos.setDefaultRenderer(Object.class, new Render());
-    Object newRow[] = {codigo,nombre,categoria,marca,unidad,pesoNeto,precioCompra,precioVenta,stock};
+
+    public static void DatosProducto(String codigo, String nombre, String categoria, String marca, String unidad, String pesoNeto, Double precioCompra, Double precioVenta, int stock) {
+        DefaultTableModel model = (DefaultTableModel) tblProductos.getModel();
+
+        //model.setRowCount(0); //eliminar filas existentes
+        tblProductos.setDefaultRenderer(Object.class, new Render());
+        Object newRow[] = {codigo, nombre, categoria, marca, unidad, pesoNeto, precioCompra, precioVenta, stock, precioCompra*stock};
         model.addRow(newRow);
     }
-    private void DatosDetalleCompra(){}
+
+    private void Compra(){
+    Integer cant=0;
+    Double total=0.0;
+    Compra c = new Compra();
+    FacturaCompra f = new FacturaCompra();
+    Usuario u = new Usuario();
+    Proveedor p = new Proveedor();
+ 
+    p.setId(idProveedor);
+    u.setId(Inicio.SesionUsuario);   
+    f.setNoSerie(txtNoSerie.getText());
+    
+    String id = UUID.randomUUID().toString();
+    idCompra = id;
+    c.setId(id);
+    c.setIdFactura(f);
+    c.setIdUsuario(u);
+    c.setIdProveedor(p);
+    //seteando Fecha
+        try {
+            //seteando la fecha
+            Date dt = new SimpleDateFormat("dd/MM/yyyy")
+                    .parse(txtFechaRegistro.getText());
+            c.setFechaCompra(dt);;
+        } catch (ParseException ex) {
+            //Logger.getLogger(CrearFactura.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Fecha mal ingresada");
+        }
+        for (int i = 0; i < tblProductos.getRowCount(); i++) {
+            cant += Integer.valueOf(tblProductos.getValueAt(i,8).toString());
+            total += Double.valueOf(tblProductos.getValueAt(i,9).toString());
+        }
+        c.setCantProductos(cant);
+        Double desc = Double.valueOf(txtDescuento.getText());
+        BigDecimal TotalCompra = new BigDecimal(total-desc);
+        c.setTotal(TotalCompra);
+       
+        
+        try {
+            CompraEntityManager.create(c);
+        } catch (Exception ex) {
+            Logger.getLogger(FormCrearCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void DatosDetalleCompra() {
+        Producto p = new Producto();
+
+        for (int i = 0; i < tblProductos.getRowCount(); i++) {
+            String codigo = tblProductos.getValueAt(i, 0).toString();
+            p.setNombre(tblProductos.getValueAt(i, 1).toString());
+            p.setCategoria(tblProductos.getValueAt(i, 2).toString());
+            p.setMarca(tblProductos.getValueAt(i, 3).toString());
+            p.setUnidad(tblProductos.getValueAt(i, 4).toString());
+            p.setPesoNeto(tblProductos.getValueAt(i, 5).toString());
+            Integer stock = Integer.valueOf(tblProductos.getValueAt(i, 8).toString());
+            BigDecimal precioCompra = new BigDecimal(tblProductos.getValueAt(i, 6).toString());
+            BigDecimal precioVenta = new BigDecimal(tblProductos.getValueAt(i, 7).toString());
+            p.setCodigo(codigo);
+            p.setStock(stock);
+            p.setPrecioCompra(precioCompra);
+            p.setPrecioVenta(precioVenta);
+            try {
+                ProductoEntityManager.edit(p);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "No se actualizar el producto");
+                Logger.getLogger(FormCrearCompra.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+            //Seteando datos detalle compra 
+            DetalleCompra dc = new DetalleCompra();
+            Compra c = new Compra();
+            c.setId(idCompra);
+            String id = UUID.randomUUID().toString();
+            dc.setId(id);
+            dc.setIdCompra(c);
+            dc.setCodigoProducto(p);
+            dc.setCantidad(p.getStock());
+            BigDecimal totalIndividual = new BigDecimal(Double.parseDouble(p.getPrecioCompra().toString())*p.getStock());
+            dc.setTotal(totalIndividual);
+            
+            try {
+                DetalleCompraEntityManager.create(dc);
+            } catch (Exception ex) {
+                Logger.getLogger(FormCrearCompra.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        
+            
+
+    }
+
     /**
      * @param args the command line arguments
      */
