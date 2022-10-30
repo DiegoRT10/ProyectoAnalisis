@@ -83,6 +83,7 @@ public class FormCrearCompra extends javax.swing.JFrame {
         txtDescuento = new javax.swing.JTextField();
         lblTotalPagar = new javax.swing.JLabel();
         txtTotalPagar = new javax.swing.JTextField();
+        btnEliminarFila = new javax.swing.JButton();
         pnlLeft = new javax.swing.JPanel();
         btnCrearCompra = new javax.swing.JButton();
         btnCancelarCompra = new javax.swing.JButton();
@@ -199,6 +200,17 @@ public class FormCrearCompra extends javax.swing.JFrame {
         txtTotalPagar.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         txtTotalPagar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 153, 255)));
 
+        btnEliminarFila.setBackground(new java.awt.Color(129, 164, 220));
+        btnEliminarFila.setIcon(new javax.swing.ImageIcon(getClass().getResource("/delFila.png"))); // NOI18N
+        btnEliminarFila.setToolTipText("Seleccionar");
+        btnEliminarFila.setBorder(null);
+        btnEliminarFila.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminarFila.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarFilaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPnlProductosLayout = new javax.swing.GroupLayout(jPnlProductos);
         jPnlProductos.setLayout(jPnlProductosLayout);
         jPnlProductosLayout.setHorizontalGroup(
@@ -207,7 +219,8 @@ public class FormCrearCompra extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(jPnlProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnAgregarProd)
-                    .addComponent(btnSeleccionarProd))
+                    .addComponent(btnSeleccionarProd)
+                    .addComponent(btnEliminarFila))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlProductosLayout.createSequentialGroup()
@@ -230,6 +243,8 @@ public class FormCrearCompra extends javax.swing.JFrame {
                         .addComponent(btnAgregarProd)
                         .addGap(4, 4, 4)
                         .addComponent(btnSeleccionarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(btnEliminarFila, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(113, 113, 113))
                     .addGroup(jPnlProductosLayout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -550,8 +565,8 @@ public class FormCrearCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarCompraActionPerformed
 
     private void btnSeleccionarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarProdActionPerformed
-        DefaultTableModel model = (DefaultTableModel) tblProductos.getModel();
-        model.removeRow(tblProductos.getSelectedRow());
+        ListarProductoCompra lpc = new ListarProductoCompra(this,true);
+        lpc.setVisible(true);
     }//GEN-LAST:event_btnSeleccionarProdActionPerformed
 
     private void btnAgregarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProdActionPerformed
@@ -573,6 +588,11 @@ public class FormCrearCompra extends javax.swing.JFrame {
     private void btnCancelarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCompraActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarCompraActionPerformed
+
+    private void btnEliminarFilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarFilaActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tblProductos.getModel();
+        model.removeRow(tblProductos.getSelectedRow());
+    }//GEN-LAST:event_btnEliminarFilaActionPerformed
 /*
     private Boolean CrearCliente() {
         if (!Vacio()) {
@@ -705,6 +725,7 @@ public class FormCrearCompra extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarProv;
     private javax.swing.JButton btnCancelarCompra;
     private javax.swing.JButton btnCrearCompra;
+    private javax.swing.JButton btnEliminarFila;
     private javax.swing.JButton btnRegresarCompra;
     private javax.swing.JButton btnSeleccionarProd;
     private javax.swing.JButton btnSeleccionarProv;
