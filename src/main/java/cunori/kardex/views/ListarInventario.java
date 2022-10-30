@@ -264,7 +264,7 @@ public class ListarInventario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        FormProducto fp = new FormProducto();
+        FormCrearProducto fp = new FormCrearProducto();
         fp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCrearActionPerformed

@@ -555,7 +555,8 @@ public class FormCrearCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSeleccionarProdActionPerformed
 
     private void btnAgregarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProdActionPerformed
-        
+       FormCrearProductoCompra fcpc = new FormCrearProductoCompra(this, true);
+       fcpc.setVisible(true);
 
     }//GEN-LAST:event_btnAgregarProdActionPerformed
 
@@ -656,7 +657,15 @@ public class FormCrearCompra extends javax.swing.JFrame {
         txtNombreProveedor.setText(nombreProveedor);
     }
     private void DatosUsuario(){}
-    private void DatosProducto(){}
+    
+    public static void DatosProducto(String codigo, String nombre, String categoria, String marca, String unidad, String pesoNeto, Double precioCompra, Double precioVenta, int stock){
+    DefaultTableModel model = (DefaultTableModel) tblProductos.getModel();
+  
+    model.setRowCount(0); //eliminar filas existentes
+    tblProductos.setDefaultRenderer(Object.class, new Render());
+    Object newRow[] = {codigo,nombre,categoria,marca,unidad,pesoNeto,precioCompra,precioVenta,stock};
+        model.addRow(newRow);
+    }
     private void DatosDetalleCompra(){}
     /**
      * @param args the command line arguments
@@ -715,7 +724,7 @@ public class FormCrearCompra extends javax.swing.JFrame {
     private javax.swing.JLabel lblTipo;
     private javax.swing.JLabel lblTotalPagar;
     private javax.swing.JPanel pnlLeft;
-    private javax.swing.JTable tblProductos;
+    public static javax.swing.JTable tblProductos;
     private javax.swing.JTextField txtDescuento;
     private javax.swing.JTextField txtFechaRegistro;
     public static javax.swing.JTextField txtNITProveedor;
