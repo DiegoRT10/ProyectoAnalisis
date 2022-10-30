@@ -50,6 +50,7 @@ public class FormCrearCompra extends javax.swing.JFrame {
     
     public static String idProveedor="";
     String idCompra = "";
+    public static Double TotalCompra = 0.0;
 
     //public static TableRowSorter<DefaultTableModel> sorter;
     public FormCrearCompra() {
@@ -90,6 +91,7 @@ public class FormCrearCompra extends javax.swing.JFrame {
         lblTotalPagar = new javax.swing.JLabel();
         txtTotalPagar = new javax.swing.JTextField();
         btnEliminarFila = new javax.swing.JButton();
+        btnAplicarDescuento = new javax.swing.JButton();
         pnlLeft = new javax.swing.JPanel();
         btnCrearCompra = new javax.swing.JButton();
         btnCancelarCompra = new javax.swing.JButton();
@@ -194,6 +196,11 @@ public class FormCrearCompra extends javax.swing.JFrame {
         txtDescuento.setBackground(new java.awt.Color(129, 164, 220));
         txtDescuento.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         txtDescuento.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 153, 255)));
+        txtDescuento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDescuentoKeyReleased(evt);
+            }
+        });
 
         lblTotalPagar.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         lblTotalPagar.setForeground(new java.awt.Color(0, 0, 0));
@@ -216,6 +223,17 @@ public class FormCrearCompra extends javax.swing.JFrame {
             }
         });
 
+        btnAplicarDescuento.setBackground(new java.awt.Color(129, 164, 220));
+        btnAplicarDescuento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/31-check-solid.gif"))); // NOI18N
+        btnAplicarDescuento.setToolTipText("Seleccionar");
+        btnAplicarDescuento.setBorder(null);
+        btnAplicarDescuento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAplicarDescuento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAplicarDescuentoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPnlProductosLayout = new javax.swing.GroupLayout(jPnlProductos);
         jPnlProductos.setLayout(jPnlProductosLayout);
         jPnlProductosLayout.setHorizontalGroup(
@@ -227,13 +245,15 @@ public class FormCrearCompra extends javax.swing.JFrame {
                     .addComponent(btnSeleccionarProd)
                     .addComponent(btnEliminarFila))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1136, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlProductosLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblDescuento)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAplicarDescuento)
+                .addGap(22, 22, 22)
                 .addComponent(lblTotalPagar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -251,12 +271,17 @@ public class FormCrearCompra extends javax.swing.JFrame {
                         .addGap(4, 4, 4)
                         .addComponent(btnEliminarFila, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(jPnlProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDescuento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblTotalPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPnlProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPnlProductosLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(jPnlProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblDescuento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblTotalPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlProductosLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAplicarDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27))
         );
 
@@ -593,13 +618,41 @@ public class FormCrearCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSeleccionarProvActionPerformed
 
     private void btnCancelarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCompraActionPerformed
-        // TODO add your handling code here:
+      txtNoSerie.setText("");
+      cbxTipo.setSelectedIndex(0);
+      txtFechaRegistro.setText("");
+      txtNITProveedor.setText("");
+      txtNombreProveedor.setText("");
+//      txtNITUsuario.setText("");
+//      txtNombreUsuario.setText("");
+      txtDescuento.setText("");
+      txtTotalPagar.setText("");
+      DefaultTableModel model = (DefaultTableModel) tblProductos.getModel();
+        model.setRowCount(0); //eliminar filas existentes
     }//GEN-LAST:event_btnCancelarCompraActionPerformed
 
     private void btnEliminarFilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarFilaActionPerformed
         DefaultTableModel model = (DefaultTableModel) tblProductos.getModel();
         model.removeRow(tblProductos.getSelectedRow());
     }//GEN-LAST:event_btnEliminarFilaActionPerformed
+
+    private void txtDescuentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescuentoKeyReleased
+//        Double totalP = Double.valueOf(txtTotalPagar.getText());
+//        if(!txtDescuento.getText().isEmpty()){
+//        Double totalR = totalP-Double.valueOf(txtDescuento.getText());
+//        txtTotalPagar.setText(totalR.toString());
+//        }
+        
+    }//GEN-LAST:event_txtDescuentoKeyReleased
+
+    private void btnAplicarDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarDescuentoActionPerformed
+       Double totalP = Double.valueOf(txtTotalPagar.getText());
+        if(!txtDescuento.getText().isEmpty()){
+        Double totalR = totalP-Double.valueOf(txtDescuento.getText());
+        txtTotalPagar.setText(totalR.toString());
+        txtDescuento.setEditable(false);
+        }
+    }//GEN-LAST:event_btnAplicarDescuentoActionPerformed
     
 
     private Boolean Vacio() {
@@ -660,6 +713,12 @@ public class FormCrearCompra extends javax.swing.JFrame {
         tblProductos.setDefaultRenderer(Object.class, new Render());
         Object newRow[] = {codigo, nombre, categoria, marca, unidad, pesoNeto, precioCompra, precioVenta, stock, precioCompra*stock};
         model.addRow(newRow);
+        
+        for (int i = 0; i < tblProductos.getRowCount(); i++){
+        TotalCompra += Double.parseDouble(tblProductos.getValueAt(i,9).toString());
+        }
+        txtTotalPagar.setText(TotalCompra.toString());
+        TotalCompra = 0.0;
     }
 
     private void Compra(){
@@ -698,6 +757,7 @@ public class FormCrearCompra extends javax.swing.JFrame {
         Double desc = Double.valueOf(txtDescuento.getText());
         BigDecimal TotalCompra = new BigDecimal(total-desc);
         c.setTotal(TotalCompra);
+        
        
         
         try {
@@ -792,6 +852,7 @@ public class FormCrearCompra extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarProd;
     private javax.swing.JButton btnAgregarProv;
+    private javax.swing.JButton btnAplicarDescuento;
     private javax.swing.JButton btnCancelarCompra;
     private javax.swing.JButton btnCrearCompra;
     private javax.swing.JButton btnEliminarFila;
@@ -822,6 +883,6 @@ public class FormCrearCompra extends javax.swing.JFrame {
     private javax.swing.JTextField txtNoSerie;
     public static javax.swing.JTextField txtNombreProveedor;
     public static javax.swing.JTextField txtNombreUsuario;
-    private javax.swing.JTextField txtTotalPagar;
+    public static javax.swing.JTextField txtTotalPagar;
     // End of variables declaration//GEN-END:variables
 }
