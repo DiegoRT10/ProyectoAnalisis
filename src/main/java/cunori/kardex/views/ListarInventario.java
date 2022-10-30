@@ -1,12 +1,16 @@
 package cunori.kardex.views;
 
 
+import cunori.kardex.controller.ProductoJpaController;
+import cunori.kardex.controller.exceptions.NonexistentEntityException;
+import cunori.kardex.dao.Producto;
 import java.awt.Font;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -19,7 +23,7 @@ import javax.swing.table.TableRowSorter;
 public class ListarInventario extends javax.swing.JFrame {
 
    EntityManagerFactory emf;
-//   ProductosJpaController ProductosEntityManager;
+   ProductoJpaController ProductoEntityManager;
     public static TableRowSorter<DefaultTableModel> sorter;
 
     public ListarInventario() {
@@ -27,12 +31,12 @@ public class ListarInventario extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
         //this.setExtendedState(MAXIMIZED_BOTH);
-//        tblListarProductos.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
-//
-//        emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
-//        ProductosEntityManager = new ProductosJpaController(emf);
-//        
-//        ListarProductos();
+        tblListarProductos.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
+
+        emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
+        ProductoEntityManager = new ProductoJpaController(emf);
+        
+        ListarProductos();
     }
 
     /**
@@ -126,15 +130,13 @@ public class ListarInventario extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 860, Short.MAX_VALUE))
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 391, Short.MAX_VALUE)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 872, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,15 +202,16 @@ public class ListarInventario extends javax.swing.JFrame {
         pnlLeft.setLayout(pnlLeftLayout);
         pnlLeftLayout.setHorizontalGroup(
             pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlLeftLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlLeftLayout.createSequentialGroup()
-                        .addComponent(btnEliminar)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(btnCrear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnEliminar)
+                            .addComponent(btnCrear)
+                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlLeftLayout.setVerticalGroup(
@@ -255,12 +258,20 @@ public class ListarInventario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-
+        int fila = tblListarProductos.getSelectedRow();
+        if(fila != -1){
+        FormEditarProducto fep = new FormEditarProducto();
+        fep.setVisible(true);
+        setDatosProducto();
+        this.dispose();
+        }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
         
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-     
+             if(DeleteProducto()){
+            ListarProductos();
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
@@ -269,20 +280,57 @@ public class ListarInventario extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCrearActionPerformed
 
-//    private void ListarProductos(){
-//    DefaultTableModel model = (DefaultTableModel) tblListarProductos.getModel();
-//    List<Productos> producto = ProductosEntityManager.findProductosEntities();
-//    model.setRowCount(0); //eliminar filas existentes
-//    tblListarProductos.setDefaultRenderer(Object.class, new Render());
-//    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
-//    
-//    for(Productos p : producto){
-//        
-//        Object newRow[] = {p.getCodigo(),p.getNombre(),p.getCategoria(),p.getMarca(),p.getUnidad(),p.getPesoNeto(),sdf.format(p.getFechaIngreso()),p.getPrecioCompra(),p.getPrecioVenta(),p.getCantidad()};
-//        model.addRow(newRow);
-//        
-//    } 
-//    }
+    private void ListarProductos(){
+    DefaultTableModel model = (DefaultTableModel) tblListarProductos.getModel();
+    List<Producto> producto = ProductoEntityManager.findProductoEntities();
+    model.setRowCount(0); //eliminar filas existentes
+    tblListarProductos.setDefaultRenderer(Object.class, new Render());
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
+    
+    for(Producto p : producto){
+        
+        Object newRow[] = {p.getCodigo(),p.getNombre(),p.getCategoria(),p.getMarca(),p.getUnidad(),p.getPesoNeto(),p.getPrecioCompra(),p.getPrecioVenta(),p.getStock()};
+        model.addRow(newRow);
+        
+    } 
+    }
+    
+    public  void setDatosProducto(){
+    int fila = tblListarProductos.getSelectedRow();
+
+    String codigo = (String) tblListarProductos.getValueAt(fila,0);
+    String nombre = (String) tblListarProductos.getValueAt(fila,1);
+    String categoria = (String) tblListarProductos.getValueAt(fila,2);
+    String marca = (String) tblListarProductos.getValueAt(fila,3);
+    String unidad = (String) tblListarProductos.getValueAt(fila,4);
+    String pesoNeto = (String) tblListarProductos.getValueAt(fila,5); 
+    Double precioCompra = Double.parseDouble(tblListarProductos.getValueAt(fila,6).toString());
+    Double precioVenta = Double.parseDouble(tblListarProductos.getValueAt(fila,7).toString());
+    Integer stock = Integer.parseInt(tblListarProductos.getValueAt(fila,8).toString());
+    
+    FormEditarProducto.setDatosProducto(codigo,nombre,categoria,marca,unidad,pesoNeto,precioCompra,precioVenta,stock);
+    }
+    
+    private boolean DeleteProducto(){
+        int fila = tblListarProductos.getSelectedRow();
+        if(fila != -1){
+        String codigo = (String) tblListarProductos.getValueAt(fila,0);
+
+            try {
+                ProductoEntityManager.destroy(codigo);
+                JOptionPane.showMessageDialog(null, "El Producto se ha eliminado correctamente");
+                return true;
+            }catch (NonexistentEntityException ex) {
+                //Logger.getLogger(ListarClientes.class.getName()).log(Level.SEVERE, null, ex);
+                 JOptionPane.showMessageDialog(null, "Error, no se puede eliminar");
+                return false;
+            }
+            //Logger.getLogger(ListarClientes.class.getName()).log(Level.SEVERE, null, ex);
+            
+
+        }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
+         return false;
+    }
     /**
      * @param args the command line arguments
      */
