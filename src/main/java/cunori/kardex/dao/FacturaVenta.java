@@ -6,16 +6,13 @@ package cunori.kardex.dao;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,7 +31,6 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "FacturaVenta.findByDireccionNegocio", query = "SELECT f FROM FacturaVenta f WHERE f.direccionNegocio = :direccionNegocio"),
     @NamedQuery(name = "FacturaVenta.findByTelefonoNegocio", query = "SELECT f FROM FacturaVenta f WHERE f.telefonoNegocio = :telefonoNegocio"),
     @NamedQuery(name = "FacturaVenta.findByFechaEmision", query = "SELECT f FROM FacturaVenta f WHERE f.fechaEmision = :fechaEmision"),
-    @NamedQuery(name = "FacturaVenta.findByIdCliente", query = "SELECT f FROM FacturaVenta f WHERE f.idCliente = :idCliente"),
     @NamedQuery(name = "FacturaVenta.findByDescuento", query = "SELECT f FROM FacturaVenta f WHERE f.descuento = :descuento")})
 public class FacturaVenta implements Serializable {
 
@@ -59,15 +55,10 @@ public class FacturaVenta implements Serializable {
     @Column(name = "fechaEmision")
     @Temporal(TemporalType.DATE)
     private Date fechaEmision;
-    @Basic(optional = false)
-    @Column(name = "idCliente")
-    private String idCliente;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @Column(name = "descuento")
     private BigDecimal descuento;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFactura")
-//    private Collection<Venta> ventaCollection;
 
     public FacturaVenta() {
     }
@@ -76,14 +67,13 @@ public class FacturaVenta implements Serializable {
         this.noSerie = noSerie;
     }
 
-    public FacturaVenta(String noSerie, String tipo, String nombreNegocio, String direccionNegocio, String telefonoNegocio, Date fechaEmision, String idCliente, BigDecimal descuento) {
+    public FacturaVenta(String noSerie, String tipo, String nombreNegocio, String direccionNegocio, String telefonoNegocio, Date fechaEmision, BigDecimal descuento) {
         this.noSerie = noSerie;
         this.tipo = tipo;
         this.nombreNegocio = nombreNegocio;
         this.direccionNegocio = direccionNegocio;
         this.telefonoNegocio = telefonoNegocio;
         this.fechaEmision = fechaEmision;
-        this.idCliente = idCliente;
         this.descuento = descuento;
     }
 
@@ -135,14 +125,6 @@ public class FacturaVenta implements Serializable {
         this.fechaEmision = fechaEmision;
     }
 
-    public String getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(String idCliente) {
-        this.idCliente = idCliente;
-    }
-
     public BigDecimal getDescuento() {
         return descuento;
     }
@@ -150,14 +132,6 @@ public class FacturaVenta implements Serializable {
     public void setDescuento(BigDecimal descuento) {
         this.descuento = descuento;
     }
-
-//    public Collection<Venta> getVentaCollection() {
-//        return ventaCollection;
-//    }
-//
-//    public void setVentaCollection(Collection<Venta> ventaCollection) {
-//        this.ventaCollection = ventaCollection;
-//    }
 
     @Override
     public int hashCode() {
