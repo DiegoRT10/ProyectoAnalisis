@@ -4,10 +4,9 @@
  */
 package cunori.kardex.views;
 
-import cunori.kardex.controller.ProveedorJpaController;
+import cunori.kardex.controller.ClienteJpaController;
 import cunori.kardex.controller.exceptions.NonexistentEntityException;
-import cunori.kardex.dao.Proveedor;
-import static cunori.kardex.views.ListarProveedores.tblListarProveedores;
+import cunori.kardex.dao.Cliente;
 import java.awt.Font;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
@@ -23,29 +22,29 @@ import javax.swing.table.TableRowSorter;
  * @author Diego Ramos
  * @author Hermas Ramirez
  */
-public class ListarProveedoresCompra extends javax.swing.JDialog {
+public class ListarClientesVenta extends javax.swing.JDialog {
 
     /**
      * Creates new form ListarProveedoresCompra
      */
     
     EntityManagerFactory emf;
-    ProveedorJpaController ProveedorEntityManager;
+    ClienteJpaController ClienteEntityManager;
     public static TableRowSorter<DefaultTableModel> sorter;
     
     
-    public ListarProveedoresCompra(java.awt.Frame parent, boolean modal) {
+    public ListarClientesVenta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-         this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
         //this.setExtendedState(MAXIMIZED_BOTH);
-        tblListarProveedores.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
+        tblListarClientes.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
 
         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
-        ProveedorEntityManager = new ProveedorJpaController(emf);
+        ClienteEntityManager = new ClienteJpaController(emf);
         
-        ListarUsuarios();
+        ListarClientes();
     }
 
     /**
@@ -62,7 +61,7 @@ public class ListarProveedoresCompra extends javax.swing.JDialog {
         txtBuscar = new javax.swing.JTextField();
         jLblBuscar = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblListarProveedores = new javax.swing.JTable();
+        tblListarClientes = new javax.swing.JTable();
         pnlLeft = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JButton();
         btnImprimir = new javax.swing.JButton();
@@ -76,7 +75,7 @@ public class ListarProveedoresCompra extends javax.swing.JDialog {
         jPanel1.setPreferredSize(new java.awt.Dimension(931, 522));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Listado de Proveedores");
+        jLabel1.setText("Listado de Clientes");
 
         txtBuscar.setBackground(new java.awt.Color(129, 164, 220));
         txtBuscar.setToolTipText("Filtrar \"ten en cuenta las mayusculas\"");
@@ -89,36 +88,36 @@ public class ListarProveedoresCompra extends javax.swing.JDialog {
 
         jLblBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0buscar.png"))); // NOI18N
 
-        tblListarProveedores.setBackground(new java.awt.Color(255, 255, 255));
-        tblListarProveedores.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 153, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 102, 255)));
-        tblListarProveedores.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        tblListarProveedores.setForeground(new java.awt.Color(0, 0, 0));
-        tblListarProveedores.setModel(new javax.swing.table.DefaultTableModel(
+        tblListarClientes.setBackground(new java.awt.Color(255, 255, 255));
+        tblListarClientes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 153, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 102, 255)));
+        tblListarClientes.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        tblListarClientes.setForeground(new java.awt.Color(0, 0, 0));
+        tblListarClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "NIT", "Nombre", "Direccion", "Correo", "Telefono", "id"
+                "DPI", "NIT", "Nombre", "Apellidos", "Direccion", "Correo", "Telefono", "id"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tblListarProveedores.setGridColor(new java.awt.Color(153, 255, 153));
-        tblListarProveedores.setSelectionBackground(new java.awt.Color(255, 255, 204));
-        tblListarProveedores.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        tblListarProveedores.setShowGrid(true);
-        tblListarProveedores.setShowVerticalLines(false);
-        jScrollPane1.setViewportView(tblListarProveedores);
+        tblListarClientes.setGridColor(new java.awt.Color(153, 255, 153));
+        tblListarClientes.setSelectionBackground(new java.awt.Color(255, 255, 204));
+        tblListarClientes.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        tblListarClientes.setShowGrid(true);
+        tblListarClientes.setShowVerticalLines(false);
+        jScrollPane1.setViewportView(tblListarClientes);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -129,7 +128,7 @@ public class ListarProveedoresCompra extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 312, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 368, Short.MAX_VALUE)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLblBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -248,48 +247,50 @@ public class ListarProveedoresCompra extends javax.swing.JDialog {
 //        fcp.setVisible(true);
 //        this.dispose();
                                          
-    int fila = tblListarProveedores.getSelectedRow();
+    int fila = tblListarClientes.getSelectedRow();
     if(fila != -1){
-    String idProveedor = (String) tblListarProveedores.getValueAt(fila, 5);
-    String nitProveedor = (String) tblListarProveedores.getValueAt(fila, 0);
-    String nombreProveedor = (String) tblListarProveedores.getValueAt(fila, 1);
+    String idCliente = (String) tblListarClientes.getValueAt(fila, 7);
+    String nitCliente = (String) tblListarClientes.getValueAt(fila, 1);
+    String nombreCliente = (String) tblListarClientes.getValueAt(fila, 2);
     
-    FormCrearCompra.DatosProveedor(idProveedor, nitProveedor, nombreProveedor);
+    FormCrearVenta.DatosCliente(idCliente, nitCliente, nombreCliente);
             this.dispose();
     }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
 
     }//GEN-LAST:event_btnSeleccionarActionPerformed
 
     
-    private void ListarUsuarios(){
-    DefaultTableModel model = (DefaultTableModel) tblListarProveedores.getModel();
-    List<Proveedor> usuario = ProveedorEntityManager.findProveedorEntities();
+    private void ListarClientes(){
+    DefaultTableModel model = (DefaultTableModel) tblListarClientes.getModel();
+    List<Cliente> cli = ClienteEntityManager.findClienteEntities();
     model.setRowCount(0); //eliminar filas existentes
-    tblListarProveedores.setDefaultRenderer(Object.class, new Render());
+    tblListarClientes.setDefaultRenderer(Object.class, new Render());
     
-    for(Proveedor p : usuario){
-        Object newRow[] = {p.getNit(),p.getNombre(),p.getDireccion(),p.getCorreo(),p.getTelefono(),p.getId()};
+    for(Cliente p : cli){
+        Object newRow[] = {p.getDpi(), p.getNit(),p.getNombre(),p.getApellidos(), p.getDireccion(),p.getCorreo(),p.getTelefono(),p.getId()};
         model.addRow(newRow);
     }   
         //Ocultar id
-        TableColumn columna2 = tblListarProveedores.getColumnModel().getColumn(5);
+        TableColumn columna2 = tblListarClientes.getColumnModel().getColumn(7);
         columna2.setMaxWidth(0);
         columna2.setMinWidth(0);
         columna2.setPreferredWidth(0);
-        tblListarProveedores.doLayout();
+        tblListarClientes.doLayout();
     }
     
-    public  void setDatosUsuario(){
-    int fila = tblListarProveedores.getSelectedRow();
-
-    String nit = (String) tblListarProveedores.getValueAt(fila,0);
-    String nombre = (String) tblListarProveedores.getValueAt(fila,1);
-    String direccion = (String) tblListarProveedores.getValueAt(fila,2);
-    String correo = (String) tblListarProveedores.getValueAt(fila,3); 
-    String telefono = (String) tblListarProveedores.getValueAt(fila,4);
-    String id = (String) tblListarProveedores.getValueAt(fila,5);
+    public  void setDatosCliente(){
+    int fila = tblListarClientes.getSelectedRow();
     
-    FormEditarProveedor.setDatosProveedor(nit,nombre,direccion,correo,telefono,id);
+    String dpi = (String) tblListarClientes.getValueAt(fila,0);
+    String nit = (String) tblListarClientes.getValueAt(fila,1);
+    String nombre = (String) tblListarClientes.getValueAt(fila, 2);
+    String apellidos = (String) tblListarClientes.getValueAt(fila, 3);
+    String direccion = (String) tblListarClientes.getValueAt(fila,4);
+    String correo = (String) tblListarClientes.getValueAt(fila,5); 
+    String telefono = (String) tblListarClientes.getValueAt(fila,6);
+    String id = (String) tblListarClientes.getValueAt(fila,7);
+    
+    FormEditarCliente.setDatosCliente(dpi,nit,nombre,apellidos, direccion,correo,telefono,id);
     }
     
     /**
@@ -309,20 +310,21 @@ public class ListarProveedoresCompra extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListarProveedoresCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarClientesVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListarProveedoresCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarClientesVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListarProveedoresCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarClientesVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListarProveedoresCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListarClientesVenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ListarProveedoresCompra dialog = new ListarProveedoresCompra(new javax.swing.JFrame(), true);
+                ListarClientesVenta dialog = new ListarClientesVenta(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -343,7 +345,7 @@ public class ListarProveedoresCompra extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel pnlLeft;
-    public static javax.swing.JTable tblListarProveedores;
+    public static javax.swing.JTable tblListarClientes;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

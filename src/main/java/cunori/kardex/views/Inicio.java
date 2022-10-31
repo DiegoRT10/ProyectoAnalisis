@@ -1313,7 +1313,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_lblConsultar2MouseClicked
 
     private void lblVenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVenderMouseClicked
-        FormCrearVenta2 cV = new FormCrearVenta2();
+        FormCrearVenta cV = new FormCrearVenta();
         cV.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblVenderMouseClicked

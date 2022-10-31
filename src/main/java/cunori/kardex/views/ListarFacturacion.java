@@ -1,19 +1,31 @@
 package cunori.kardex.views;
 
+import cunori.kardex.controller.FacturaCompraJpaController;
+import cunori.kardex.controller.FacturaVentaJpaController;
+import cunori.kardex.controller.exceptions.NonexistentEntityException;
+import cunori.kardex.dao.FacturaCompra;
+import cunori.kardex.dao.FacturaVenta;
 import java.awt.Font;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-
 
 /**
  *
  * @author Diego Ramos
  * @author Hermas Ramirez
  */
-
 public class ListarFacturacion extends javax.swing.JFrame {
-   
+
+    EntityManagerFactory emf;
+    FacturaCompraJpaController FacturaCompraEntityManager;
+    FacturaVentaJpaController FacturaVentaEntityManager;
     public static TableRowSorter<DefaultTableModel> sorter;
 
     /**
@@ -24,7 +36,13 @@ public class ListarFacturacion extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
         //this.setExtendedState(MAXIMIZED_BOTH);
-        tblListarUsuarios.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
+        tblListarFacturas.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
+
+        emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
+        FacturaCompraEntityManager = new FacturaCompraJpaController(emf);
+        FacturaVentaEntityManager = new FacturaVentaJpaController(emf);
+
+        ListarFacturas();
     }
 
     /**
@@ -41,14 +59,13 @@ public class ListarFacturacion extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblListarUsuarios = new javax.swing.JTable();
+        tblListarFacturas = new javax.swing.JTable();
         pnlLeft = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1230, 712));
-        setPreferredSize(new java.awt.Dimension(1230, 712));
 
         jPanel1.setBackground(new java.awt.Color(129, 164, 220));
         jPanel1.setPreferredSize(new java.awt.Dimension(931, 522));
@@ -67,48 +84,45 @@ public class ListarFacturacion extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0buscar.png"))); // NOI18N
 
-        tblListarUsuarios.setBackground(new java.awt.Color(255, 255, 255));
-        tblListarUsuarios.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 153, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 102, 255)));
-        tblListarUsuarios.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        tblListarUsuarios.setForeground(new java.awt.Color(0, 0, 0));
-        tblListarUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+        tblListarFacturas.setBackground(new java.awt.Color(255, 255, 255));
+        tblListarFacturas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 153, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 102, 255)));
+        tblListarFacturas.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        tblListarFacturas.setForeground(new java.awt.Color(0, 0, 0));
+        tblListarFacturas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "No. Serie", "Tipo de Facturación", "Nombre del Negocio", "Dirección", "Teléfono", "Vendedor", "Cliente", "Fecha de Emisión", "Descuento", "Total"
+                "No. Serie", "Tipo de Facturación", "Nombre del Negocio", "Dirección", "Teléfono", "Fecha de Emisión", "Descuento"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tblListarUsuarios.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        tblListarUsuarios.setGridColor(new java.awt.Color(153, 255, 153));
-        tblListarUsuarios.setSelectionBackground(new java.awt.Color(255, 255, 204));
-        tblListarUsuarios.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        tblListarUsuarios.setShowGrid(true);
-        tblListarUsuarios.setShowVerticalLines(false);
-        jScrollPane1.setViewportView(tblListarUsuarios);
-        if (tblListarUsuarios.getColumnModel().getColumnCount() > 0) {
-            tblListarUsuarios.getColumnModel().getColumn(0).setPreferredWidth(150);
-            tblListarUsuarios.getColumnModel().getColumn(1).setPreferredWidth(200);
-            tblListarUsuarios.getColumnModel().getColumn(2).setPreferredWidth(200);
-            tblListarUsuarios.getColumnModel().getColumn(3).setPreferredWidth(200);
-            tblListarUsuarios.getColumnModel().getColumn(4).setPreferredWidth(150);
-            tblListarUsuarios.getColumnModel().getColumn(5).setPreferredWidth(200);
-            tblListarUsuarios.getColumnModel().getColumn(6).setPreferredWidth(200);
-            tblListarUsuarios.getColumnModel().getColumn(7).setPreferredWidth(250);
-            tblListarUsuarios.getColumnModel().getColumn(8).setPreferredWidth(150);
-            tblListarUsuarios.getColumnModel().getColumn(9).setPreferredWidth(100);
+        tblListarFacturas.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tblListarFacturas.setGridColor(new java.awt.Color(153, 255, 153));
+        tblListarFacturas.setSelectionBackground(new java.awt.Color(255, 255, 204));
+        tblListarFacturas.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        tblListarFacturas.setShowGrid(true);
+        tblListarFacturas.setShowVerticalLines(false);
+        jScrollPane1.setViewportView(tblListarFacturas);
+        if (tblListarFacturas.getColumnModel().getColumnCount() > 0) {
+            tblListarFacturas.getColumnModel().getColumn(0).setPreferredWidth(150);
+            tblListarFacturas.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tblListarFacturas.getColumnModel().getColumn(2).setPreferredWidth(200);
+            tblListarFacturas.getColumnModel().getColumn(3).setPreferredWidth(200);
+            tblListarFacturas.getColumnModel().getColumn(4).setPreferredWidth(150);
+            tblListarFacturas.getColumnModel().getColumn(5).setPreferredWidth(250);
+            tblListarFacturas.getColumnModel().getColumn(6).setPreferredWidth(150);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -207,19 +221,63 @@ public class ListarFacturacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-       Inicio i = new Inicio();
-       i.setVisible(true);
-       this.dispose();
+        Inicio i = new Inicio();
+        i.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-       
+
 
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-     
+        if (DeleteFacturas()) {
+            ListarFacturas();
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
+    
+    private void ListarFacturas(){
+    //FacturaCompra    
+    DefaultTableModel modelC = (DefaultTableModel) tblListarFacturas.getModel();
+    List<FacturaCompra> facturaC = FacturaCompraEntityManager.findFacturaCompraEntities();
+    modelC.setRowCount(0); //eliminar filas existentes
+    tblListarFacturas.setDefaultRenderer(Object.class, new Render());
+    
+    for(FacturaCompra f : facturaC){
+        Object newRow[] = {f.getNoSerie(), f.getTipo(), "", "", "", f.getFechaEmision(), f.getDescuento()};
+        modelC.addRow(newRow);
+    }
+    //FacturaVenta
+    DefaultTableModel modelV = (DefaultTableModel) tblListarFacturas.getModel();    
+    List<FacturaVenta> facturaV = FacturaVentaEntityManager.findFacturaVentaEntities();
+    tblListarFacturas.setDefaultRenderer(Object.class, new Render());
+    
+    for(FacturaVenta f : facturaV){
+        Object newRow[] = {f.getNoSerie(), f.getTipo(), f.getNombreNegocio(), f.getDireccionNegocio(), f.getTelefonoNegocio(), f.getFechaEmision(), f.getDescuento()};
+        modelV.addRow(newRow);
+    }
+    }
+    
+    private boolean DeleteFacturas(){
+        int fila = tblListarFacturas.getSelectedRow();
+        if(fila != -1){
+        String id = (String) tblListarFacturas.getValueAt(fila,0);
+            try {
+                FacturaCompraEntityManager.destroy(id);
+                FacturaVentaEntityManager.destroy(id);
+                JOptionPane.showMessageDialog(null, "La Factura se ha eliminado Correctamente");
+                return true;
+            }catch (NonexistentEntityException ex) {
+                //Logger.getLogger(ListarClientes.class.getName()).log(Level.SEVERE, null, ex);
+                 JOptionPane.showMessageDialog(null, "Error, no se puede eliminar");
+                return false;
+            }
+            //Logger.getLogger(ListarClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
+         return false;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -261,7 +319,7 @@ public class ListarFacturacion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel pnlLeft;
-    public static javax.swing.JTable tblListarUsuarios;
+    public static javax.swing.JTable tblListarFacturas;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

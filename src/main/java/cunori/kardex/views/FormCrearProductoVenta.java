@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Diego Ramos
+ * @author Hermas Ramirez
  */
 public class FormCrearProductoVenta extends javax.swing.JDialog {
 
@@ -60,13 +61,17 @@ public class FormCrearProductoVenta extends javax.swing.JDialog {
         txtPrecioCompra = new javax.swing.JTextField();
         lblCodin7 = new javax.swing.JLabel();
         txtPrecioVenta = new javax.swing.JTextField();
-        jSpinnerCantidad = new javax.swing.JSpinner();
-        lblCantidad = new javax.swing.JLabel();
+        lblCodin11 = new javax.swing.JLabel();
+        txtStock = new javax.swing.JTextField();
+        lblCodin12 = new javax.swing.JLabel();
+        jSpnrCantidad = new javax.swing.JSpinner();
         pnlLeft = new javax.swing.JPanel();
         btnGuardar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1230, 712));
+        setPreferredSize(new java.awt.Dimension(1230, 712));
 
         jPanel1.setBackground(new java.awt.Color(129, 164, 220));
         jPanel1.setPreferredSize(new java.awt.Dimension(931, 522));
@@ -148,13 +153,24 @@ public class FormCrearProductoVenta extends javax.swing.JDialog {
         txtPrecioVenta.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         txtPrecioVenta.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 153, 255)));
 
-        jSpinnerCantidad.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jSpinnerCantidad.setToolTipText("");
+        lblCodin11.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        lblCodin11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCodin11.setText("Stock:");
 
-        lblCantidad.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblCantidad.setForeground(new java.awt.Color(0, 0, 0));
-        lblCantidad.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCantidad.setText("Cantidad:");
+        txtStock.setBackground(new java.awt.Color(129, 164, 220));
+        txtStock.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        txtStock.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 153, 255)));
+        txtStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtStockActionPerformed(evt);
+            }
+        });
+
+        lblCodin12.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        lblCodin12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCodin12.setText("Cantidad a Vender:");
+
+        jSpnrCantidad.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -197,13 +213,17 @@ public class FormCrearProductoVenta extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPesoNeto, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(176, 176, 176)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSpinnerCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCantidad))))
-                .addContainerGap(163, Short.MAX_VALUE))
+                                    .addComponent(txtPesoNeto, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblCodin11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblCodin12)
+                                .addGap(18, 18, 18)
+                                .addComponent(jSpnrCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(738, 738, 738)))))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,10 +263,14 @@ public class FormCrearProductoVenta extends javax.swing.JDialog {
                     .addComponent(txtPrecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCodin7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSpinnerCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(155, 155, 155))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCodin11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCodin12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSpnrCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(189, 189, 189))
         );
 
         pnlLeft.setBackground(new java.awt.Color(129, 164, 220));
@@ -282,7 +306,7 @@ public class FormCrearProductoVenta extends javax.swing.JDialog {
                 .addGroup(pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         pnlLeftLayout.setVerticalGroup(
             pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,7 +325,7 @@ public class FormCrearProductoVenta extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1230, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(pnlLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlLeft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,7 +347,7 @@ public class FormCrearProductoVenta extends javax.swing.JDialog {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if(!vacio()){
             if(setDatosProductos()){
-                FormCrearVenta.DatosProducto(txtCodigo.getText(), txtNombre.getText(), txtCategoria.getText(), txtMarca.getText(), txtUnidad.getText(), txtPesoNeto.getText(), Double.valueOf(txtPrecioCompra.getText()), Double.valueOf(txtPrecioVenta.getText()),0);//pendiente paso de cantidad a vender
+                FormCrearVenta.DatosProducto(txtCodigo.getText(), txtNombre.getText(), txtCategoria.getText(), txtMarca.getText(), txtUnidad.getText(), txtPesoNeto.getText(), Double.valueOf(txtPrecioCompra.getText()), Double.valueOf(txtPrecioVenta.getText()), Integer.valueOf(txtStock.getText()), Integer.valueOf(jSpnrCantidad.getValue().toString()));//pendiente paso de cantidad a vender
                 this.dispose();  
             }
 
@@ -335,6 +359,10 @@ public class FormCrearProductoVenta extends javax.swing.JDialog {
         li.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void txtStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStockActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtStockActionPerformed
 
     private Boolean setDatosProductos(){
     Producto p = new Producto(); 
@@ -349,7 +377,7 @@ public class FormCrearProductoVenta extends javax.swing.JDialog {
     BigDecimal precioVenta = new BigDecimal(txtPrecioVenta.getText());
     p.setPrecioCompra(precioCompra);
     p.setPrecioVenta(precioVenta);
-//    p.setStock(Integer.parseInt(txtStock.getText())); aui va ir la resta de la cantidad por el stock
+//    p.setStock(Integer.parseInt(txtStock.getText())); aqui va ir la resta de la cantidad por el stock
     
     
         try {
@@ -425,10 +453,11 @@ public class FormCrearProductoVenta extends javax.swing.JDialog {
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSpinner jSpinnerCantidad;
-    private javax.swing.JLabel lblCantidad;
+    private javax.swing.JSpinner jSpnrCantidad;
     private javax.swing.JLabel lblCodin;
     private javax.swing.JLabel lblCodin1;
+    private javax.swing.JLabel lblCodin11;
+    private javax.swing.JLabel lblCodin12;
     private javax.swing.JLabel lblCodin2;
     private javax.swing.JLabel lblCodin3;
     private javax.swing.JLabel lblCodin4;
@@ -443,6 +472,7 @@ public class FormCrearProductoVenta extends javax.swing.JDialog {
     private javax.swing.JTextField txtPesoNeto;
     private javax.swing.JTextField txtPrecioCompra;
     private javax.swing.JTextField txtPrecioVenta;
+    private javax.swing.JTextField txtStock;
     private javax.swing.JTextField txtUnidad;
     // End of variables declaration//GEN-END:variables
 }

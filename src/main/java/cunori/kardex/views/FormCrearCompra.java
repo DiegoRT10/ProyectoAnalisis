@@ -14,9 +14,7 @@ import cunori.kardex.dao.FacturaCompra;
 import cunori.kardex.dao.Producto;
 import cunori.kardex.dao.Proveedor;
 import cunori.kardex.dao.Usuario;
-
 import cunori.kardex.encrypt.Hash;
-
 import static cunori.kardex.views.Inicio.lblBienvenida;
 import java.awt.Font;
 import java.math.BigDecimal;
@@ -47,8 +45,8 @@ public class FormCrearCompra extends javax.swing.JFrame {
     CompraJpaController CompraEntityManager;
     DetalleCompraJpaController DetalleCompraEntityManager;
     ProductoJpaController ProductoEntityManager;
-    
-    public static String idProveedor="";
+
+    public static String idProveedor = "";
     String idCompra = "";
     public static Double TotalCompra = 0.0;
 
@@ -164,6 +162,7 @@ public class FormCrearCompra extends javax.swing.JFrame {
             tblProductos.getColumnModel().getColumn(6).setPreferredWidth(150);
             tblProductos.getColumnModel().getColumn(7).setPreferredWidth(150);
             tblProductos.getColumnModel().getColumn(8).setPreferredWidth(100);
+            tblProductos.getColumnModel().getColumn(9).setPreferredWidth(150);
         }
 
         btnAgregarProd.setBackground(new java.awt.Color(129, 164, 220));
@@ -211,10 +210,15 @@ public class FormCrearCompra extends javax.swing.JFrame {
         txtTotalPagar.setBackground(new java.awt.Color(129, 164, 220));
         txtTotalPagar.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         txtTotalPagar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 153, 255)));
+        txtTotalPagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTotalPagarActionPerformed(evt);
+            }
+        });
 
         btnEliminarFila.setBackground(new java.awt.Color(129, 164, 220));
         btnEliminarFila.setIcon(new javax.swing.ImageIcon(getClass().getResource("/delFila.png"))); // NOI18N
-        btnEliminarFila.setToolTipText("Seleccionar");
+        btnEliminarFila.setToolTipText("Eliminar");
         btnEliminarFila.setBorder(null);
         btnEliminarFila.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminarFila.addActionListener(new java.awt.event.ActionListener() {
@@ -355,8 +359,12 @@ public class FormCrearCompra extends javax.swing.JFrame {
 
         txtNoSerie.setBackground(new java.awt.Color(129, 164, 220));
         txtNoSerie.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        txtNoSerie.setText("8888888888");
         txtNoSerie.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 153, 255)));
+        txtNoSerie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNoSerieActionPerformed(evt);
+            }
+        });
 
         lblTipo.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         lblTipo.setForeground(new java.awt.Color(0, 0, 0));
@@ -369,8 +377,12 @@ public class FormCrearCompra extends javax.swing.JFrame {
 
         txtFechaRegistro.setBackground(new java.awt.Color(129, 164, 220));
         txtFechaRegistro.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        txtFechaRegistro.setText("28/10/2022");
         txtFechaRegistro.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 153, 255)));
+        txtFechaRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechaRegistroActionPerformed(evt);
+            }
+        });
 
         lblFechaRegistro.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         lblFechaRegistro.setForeground(new java.awt.Color(0, 0, 0));
@@ -384,16 +396,16 @@ public class FormCrearCompra extends javax.swing.JFrame {
             .addGroup(jPnlFacturaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPnlFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNoSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNoSerie))
-                .addGap(104, 104, 104)
+                    .addComponent(lblNoSerie)
+                    .addComponent(txtNoSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
                 .addGroup(jPnlFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTipo)
                     .addComponent(cbxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(74, 74, 74)
                 .addGroup(jPnlFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblFechaRegistro)
-                    .addComponent(txtFechaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFechaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPnlFacturaLayout.setVerticalGroup(
@@ -579,14 +591,17 @@ public class FormCrearCompra extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearCompraActionPerformed
-        
-        if(!Vacio()){
+        if (!Vacio()) {
             DatosFactura();//seteando datos factura
             Compra();//seteando datos de la compra
             DatosDetalleCompra();//seteando datos detalleCompra
-            
+            JOptionPane.showMessageDialog(null, "La Compra se creó correctamente");
+            FormCrearCompra fcc = new FormCrearCompra();
+            fcc.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo crear la Compra");
         }
-
     }//GEN-LAST:event_btnCrearCompraActionPerformed
 
     private void btnRegresarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarCompraActionPerformed
@@ -618,22 +633,28 @@ public class FormCrearCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSeleccionarProvActionPerformed
 
     private void btnCancelarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCompraActionPerformed
-      txtNoSerie.setText("");
-      cbxTipo.setSelectedIndex(0);
-      txtFechaRegistro.setText("");
-      txtNITProveedor.setText("");
-      txtNombreProveedor.setText("");
-//      txtNITUsuario.setText("");
-//      txtNombreUsuario.setText("");
-      txtDescuento.setText("");
-      txtTotalPagar.setText("");
-      DefaultTableModel model = (DefaultTableModel) tblProductos.getModel();
+        txtNoSerie.setText("");
+        cbxTipo.setSelectedIndex(0);
+        txtFechaRegistro.setText("");
+        txtNITProveedor.setText("");
+        txtNombreProveedor.setText("");
+        txtDescuento.setText("");
+        txtTotalPagar.setText("");
+        DefaultTableModel model = (DefaultTableModel) tblProductos.getModel();
         model.setRowCount(0); //eliminar filas existentes
+        JOptionPane.showMessageDialog(null, "La compra se ha cancelado");
     }//GEN-LAST:event_btnCancelarCompraActionPerformed
 
     private void btnEliminarFilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarFilaActionPerformed
         DefaultTableModel model = (DefaultTableModel) tblProductos.getModel();
-        model.removeRow(tblProductos.getSelectedRow());
+        //model.removeRow(tblProductos.getSelectedRow());
+        int fila = tblProductos.getSelectedRow();
+        if (fila != -1) {
+            model.removeRow(tblProductos.getSelectedRow());
+            JOptionPane.showMessageDialog(null, "El Producto se ha eliminado de la Compra");
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ha selccionado ningun Producto");
+        }
     }//GEN-LAST:event_btnEliminarFilaActionPerformed
 
     private void txtDescuentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescuentoKeyReleased
@@ -642,23 +663,34 @@ public class FormCrearCompra extends javax.swing.JFrame {
 //        Double totalR = totalP-Double.valueOf(txtDescuento.getText());
 //        txtTotalPagar.setText(totalR.toString());
 //        }
-        
+
     }//GEN-LAST:event_txtDescuentoKeyReleased
 
     private void btnAplicarDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarDescuentoActionPerformed
-       Double totalP = Double.valueOf(txtTotalPagar.getText());
-        if(!txtDescuento.getText().isEmpty()){
-        Double totalR = totalP-Double.valueOf(txtDescuento.getText());
-        txtTotalPagar.setText(totalR.toString());
-        txtDescuento.setEditable(false);
+        Double totalP = Double.valueOf(txtTotalPagar.getText());
+        if (!txtDescuento.getText().isEmpty()) {
+            Double totalR = totalP - Double.valueOf(txtDescuento.getText());
+            txtTotalPagar.setText(totalR.toString());
+            txtDescuento.setEditable(false);
         }
     }//GEN-LAST:event_btnAplicarDescuentoActionPerformed
-    
+
+    private void txtNoSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoSerieActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNoSerieActionPerformed
+
+    private void txtFechaRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaRegistroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFechaRegistroActionPerformed
+
+    private void txtTotalPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalPagarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalPagarActionPerformed
 
     private Boolean Vacio() {
         return txtNoSerie.getText().isEmpty() && txtFechaRegistro.getText().isEmpty() && txtNITProveedor.getText().isEmpty()
-                && txtNombreProveedor.getText().isEmpty() && txtNITUsuario.getText().isEmpty() && txtNombreUsuario.getText().isEmpty()
-                && txtDescuento.getText().isEmpty() && txtTotalPagar.getText().isEmpty() && tblProductos.getRowCount() != 0;
+                && txtNombreProveedor.getText().isEmpty() && txtDescuento.getText().isEmpty() 
+                && txtTotalPagar.getText().isEmpty() && tblProductos.getRowCount() != 0;
     }
 
     public void InicioSesion() {
@@ -667,10 +699,6 @@ public class FormCrearCompra extends javax.swing.JFrame {
         txtNITUsuario.setText(u.getNit());
         txtNombreUsuario.setText(u.getNombre());
     }
-
-
-        
-    
 
     private void DatosFactura() {
         FacturaCompra fc = new FacturaCompra();
@@ -711,35 +739,35 @@ public class FormCrearCompra extends javax.swing.JFrame {
 
         //model.setRowCount(0); //eliminar filas existentes
         tblProductos.setDefaultRenderer(Object.class, new Render());
-        Object newRow[] = {codigo, nombre, categoria, marca, unidad, pesoNeto, precioCompra, precioVenta, stock, precioCompra*stock};
+        Object newRow[] = {codigo, nombre, categoria, marca, unidad, pesoNeto, precioCompra, precioVenta, stock, precioCompra * stock};
         model.addRow(newRow);
-        
-        for (int i = 0; i < tblProductos.getRowCount(); i++){
-        TotalCompra += Double.parseDouble(tblProductos.getValueAt(i,9).toString());
+
+        for (int i = 0; i < tblProductos.getRowCount(); i++) {
+            TotalCompra += Double.parseDouble(tblProductos.getValueAt(i, 9).toString());
         }
         txtTotalPagar.setText(TotalCompra.toString());
         TotalCompra = 0.0;
     }
 
-    private void Compra(){
-    Integer cant=0;
-    Double total=0.0;
-    Compra c = new Compra();
-    FacturaCompra f = new FacturaCompra();
-    Usuario u = new Usuario();
-    Proveedor p = new Proveedor();
- 
-    p.setId(idProveedor);
-    u.setId(Inicio.SesionUsuario);   
-    f.setNoSerie(txtNoSerie.getText());
-    
-    String id = UUID.randomUUID().toString();
-    idCompra = id;
-    c.setId(id);
-    c.setIdFactura(f);
-    c.setIdUsuario(u);
-    c.setIdProveedor(p);
-    //seteando Fecha
+    private void Compra() {
+        Integer cant = 0;
+        Double total = 0.0;
+        Compra c = new Compra();
+        FacturaCompra f = new FacturaCompra();
+        Usuario u = new Usuario();
+        Proveedor p = new Proveedor();
+
+        p.setId(idProveedor);
+        u.setId(Inicio.SesionUsuario);
+        f.setNoSerie(txtNoSerie.getText());
+
+        String id = UUID.randomUUID().toString();
+        idCompra = id;
+        c.setId(id);
+        c.setIdFactura(f);
+        c.setIdUsuario(u);
+        c.setIdProveedor(p);
+        //seteando Fecha
         try {
             //seteando la fecha
             Date dt = new SimpleDateFormat("dd/MM/yyyy")
@@ -750,23 +778,22 @@ public class FormCrearCompra extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Fecha mal ingresada");
         }
         for (int i = 0; i < tblProductos.getRowCount(); i++) {
-            cant += Integer.valueOf(tblProductos.getValueAt(i,8).toString());
-            total += Double.valueOf(tblProductos.getValueAt(i,9).toString());
+            cant += Integer.valueOf(tblProductos.getValueAt(i, 8).toString());
+            total += Double.valueOf(tblProductos.getValueAt(i, 9).toString());
         }
         c.setCantProductos(cant);
         Double desc = Double.valueOf(txtDescuento.getText());
-        BigDecimal TotalCompra = new BigDecimal(total-desc);
+        BigDecimal TotalCompra = new BigDecimal(total - desc);
         c.setTotal(TotalCompra);
-        
-       
-        
+
         try {
             CompraEntityManager.create(c);
         } catch (Exception ex) {
             Logger.getLogger(FormCrearCompra.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
         }
     }
-    
+
     private void DatosDetalleCompra() {
         Producto p = new Producto();
 
@@ -787,11 +814,10 @@ public class FormCrearCompra extends javax.swing.JFrame {
             try {
                 ProductoEntityManager.edit(p);
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "No se actualizar el producto");
+                JOptionPane.showMessageDialog(null, "No se puede actualizar el producto");
                 Logger.getLogger(FormCrearCompra.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            
+
             //Seteando datos detalle compra 
             DetalleCompra dc = new DetalleCompra();
             Compra c = new Compra();
@@ -801,18 +827,15 @@ public class FormCrearCompra extends javax.swing.JFrame {
             dc.setIdCompra(c);
             dc.setCodigoProducto(p);
             dc.setCantidad(p.getStock());
-            BigDecimal totalIndividual = new BigDecimal(Double.parseDouble(p.getPrecioCompra().toString())*p.getStock());
+            BigDecimal totalIndividual = new BigDecimal(Double.parseDouble(p.getPrecioCompra().toString()) * p.getStock());
             dc.setTotal(totalIndividual);
-            
+
             try {
                 DetalleCompraEntityManager.create(dc);
             } catch (Exception ex) {
                 Logger.getLogger(FormCrearCompra.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        
-            
 
     }
 
