@@ -30,6 +30,9 @@ public class ListarProductoVenta extends javax.swing.JDialog {
     EntityManagerFactory emf;
     ProductoJpaController ProductoEntityManager;
     public static TableRowSorter<DefaultTableModel> sorter;
+    
+    public static int cantAgregada = 0;
+    
     public ListarProductoVenta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -40,6 +43,7 @@ public class ListarProductoVenta extends javax.swing.JDialog {
 
         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
         ProductoEntityManager = new ProductoJpaController(emf);
+        
         
         ListarProductos();
     }
@@ -60,7 +64,7 @@ public class ListarProductoVenta extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblListarProductos = new javax.swing.JTable();
         lblCodin7 = new javax.swing.JLabel();
-        jSpnrCantidad = new javax.swing.JSpinner();
+        spnrCantidad = new javax.swing.JSpinner();
         pnlLeft = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
@@ -117,6 +121,11 @@ public class ListarProductoVenta extends javax.swing.JDialog {
         tblListarProductos.setSelectionForeground(new java.awt.Color(0, 0, 0));
         tblListarProductos.setShowGrid(true);
         tblListarProductos.setShowVerticalLines(false);
+        tblListarProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblListarProductosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblListarProductos);
         if (tblListarProductos.getColumnModel().getColumnCount() > 0) {
             tblListarProductos.getColumnModel().getColumn(0).setPreferredWidth(150);
@@ -134,7 +143,7 @@ public class ListarProductoVenta extends javax.swing.JDialog {
         lblCodin7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblCodin7.setText("Cantidad a Vender:");
 
-        jSpnrCantidad.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        spnrCantidad.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -155,7 +164,7 @@ public class ListarProductoVenta extends javax.swing.JDialog {
                 .addGap(368, 368, 368)
                 .addComponent(lblCodin7)
                 .addGap(18, 18, 18)
-                .addComponent(jSpnrCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(spnrCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -172,7 +181,7 @@ public class ListarProductoVenta extends javax.swing.JDialog {
                 .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCodin7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpnrCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spnrCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(171, Short.MAX_VALUE))
         );
 
@@ -209,7 +218,7 @@ public class ListarProductoVenta extends javax.swing.JDialog {
             .addGroup(pnlLeftLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+                    .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlLeftLayout.createSequentialGroup()
                         .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -231,12 +240,18 @@ public class ListarProductoVenta extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        Producto p = new Producto();
         int fila = tblListarProductos.getSelectedRow();
         if(fila != -1){
-            if(jSpnrCantidad.getValue().toString().isEmpty()){
+            if(spnrCantidad.getValue().toString().isEmpty()){
                 JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
             }else{
                 setSeleccionProducto();
+//                Integer stockOld = Integer.valueOf(tblListarProductos.getValueAt(fila, 8).toString());
+//                cantAgregada=Integer.parseInt(spnrCantidad.getValue().toString());
+//                Integer stockNew = stockOld-cantAgregada;
+//                p.setStock(stockNew);
+//                tblListarProductos.setValueAt(p.getStock(),fila,8);
                 this.dispose();
             }
         }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
@@ -251,6 +266,10 @@ public class ListarProductoVenta extends javax.swing.JDialog {
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
 
     }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void tblListarProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListarProductosMouseClicked
+       SetCantidad();
+    }//GEN-LAST:event_tblListarProductosMouseClicked
     
    public  void setSeleccionProducto(){
     int fila = tblListarProductos.getSelectedRow();
@@ -265,12 +284,8 @@ public class ListarProductoVenta extends javax.swing.JDialog {
     Double precioVenta = Double.valueOf(tblListarProductos.getValueAt(fila,7).toString());
     Integer stock = Integer.valueOf(tblListarProductos.getValueAt(fila,8).toString());
     
-    SpinnerNumberModel nm = new SpinnerNumberModel();
-    nm.setMaximum(10);
-    nm.setMinimum(0);
-    nm.setStepSize(1);
-    jSpnrCantidad.setModel(nm);
-    Integer cantidad = Integer.valueOf(jSpnrCantidad.getValue().toString());
+   
+    Integer cantidad = Integer.valueOf(spnrCantidad.getValue().toString());
     
     FormCrearVenta.DatosProducto(codigo,nombre,categoria,marca,unidad,pesoNeto,precioCompra,precioVenta,stock, cantidad);
     }
@@ -288,7 +303,23 @@ public class ListarProductoVenta extends javax.swing.JDialog {
         model.addRow(newRow);
         
     } 
+     
     }
+   
+   private void SetCantidad(){
+   SpinnerNumberModel nm = new SpinnerNumberModel();
+     int filaS = 1;
+     Integer stockSeleccion;
+    int fila = tblListarProductos.getSelectedRow();
+        if(fila != -1){
+    filaS = tblListarProductos.getSelectedRow();
+    stockSeleccion = Integer.valueOf(tblListarProductos.getValueAt(filaS, 8).toString());
+    nm.setMaximum(stockSeleccion);
+    nm.setMinimum(0);
+    nm.setStepSize(1);
+    spnrCantidad.setModel(nm);
+        }
+   }
     /**
      * @param args the command line arguments
      */
@@ -339,10 +370,10 @@ public class ListarProductoVenta extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpnrCantidad;
     private javax.swing.JLabel lblCodin7;
     private javax.swing.JPanel pnlLeft;
-    private javax.swing.JTable tblListarProductos;
+    private javax.swing.JSpinner spnrCantidad;
+    public static javax.swing.JTable tblListarProductos;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

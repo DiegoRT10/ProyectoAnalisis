@@ -49,6 +49,7 @@ public class FormCrearCompra extends javax.swing.JFrame {
     public static String idProveedor = "";
     String idCompra = "";
     public static Double TotalCompra = 0.0;
+    Boolean banderaDescuento = true;
 
     //public static TableRowSorter<DefaultTableModel> sorter;
     public FormCrearCompra() {
@@ -600,7 +601,7 @@ public class FormCrearCompra extends javax.swing.JFrame {
             fcc.setVisible(true);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "No se pudo crear la Compra");
+            JOptionPane.showMessageDialog(null, "Campos vacios, no se pudo crear la compra");
         }
     }//GEN-LAST:event_btnCrearCompraActionPerformed
 
@@ -648,8 +649,14 @@ public class FormCrearCompra extends javax.swing.JFrame {
     private void btnEliminarFilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarFilaActionPerformed
         DefaultTableModel model = (DefaultTableModel) tblProductos.getModel();
         //model.removeRow(tblProductos.getSelectedRow());
+       
         int fila = tblProductos.getSelectedRow();
         if (fila != -1) {
+            Double cantEliminada = Double.valueOf(tblProductos.getValueAt(fila, 9).toString());
+            TotalCompra = Double.valueOf(txtTotalPagar.getText());
+            TotalCompra = TotalCompra-cantEliminada;
+            txtTotalPagar.setText(TotalCompra.toString());
+            TotalCompra = 0.0;
             model.removeRow(tblProductos.getSelectedRow());
             JOptionPane.showMessageDialog(null, "El Producto se ha eliminado de la Compra");
         } else {
@@ -668,10 +675,11 @@ public class FormCrearCompra extends javax.swing.JFrame {
 
     private void btnAplicarDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarDescuentoActionPerformed
         Double totalP = Double.valueOf(txtTotalPagar.getText());
-        if (!txtDescuento.getText().isEmpty()) {
+        if (!txtDescuento.getText().isEmpty() && banderaDescuento) {
             Double totalR = totalP - Double.valueOf(txtDescuento.getText());
             txtTotalPagar.setText(totalR.toString());
             txtDescuento.setEditable(false);
+            banderaDescuento=false;
         }
     }//GEN-LAST:event_btnAplicarDescuentoActionPerformed
 
@@ -690,7 +698,7 @@ public class FormCrearCompra extends javax.swing.JFrame {
     private Boolean Vacio() {
         return txtNoSerie.getText().isEmpty() && txtFechaRegistro.getText().isEmpty() && txtNITProveedor.getText().isEmpty()
                 && txtNombreProveedor.getText().isEmpty() && txtDescuento.getText().isEmpty() 
-                && txtTotalPagar.getText().isEmpty() && tblProductos.getRowCount() != 0;
+                && txtTotalPagar.getText().isEmpty() && tblProductos.getRowCount() == 0;
     }
 
     public void InicioSesion() {

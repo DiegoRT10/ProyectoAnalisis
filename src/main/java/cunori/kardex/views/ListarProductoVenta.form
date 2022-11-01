@@ -67,7 +67,7 @@
                   <EmptySpace min="-2" pref="368" max="-2" attributes="0"/>
                   <Component id="lblCodin7" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jSpnrCantidad" min="-2" pref="73" max="-2" attributes="0"/>
+                  <Component id="spnrCantidad" min="-2" pref="73" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -88,7 +88,7 @@
                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblCodin7" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="jSpnrCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="spnrCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="171" max="32767" attributes="0"/>
               </Group>
@@ -238,6 +238,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblListarProductosMouseClicked"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
               </AuxValues>
@@ -253,7 +256,7 @@
             <Property name="text" type="java.lang.String" value="Cantidad a Vender:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JSpinner" name="jSpnrCantidad">
+        <Component class="javax.swing.JSpinner" name="spnrCantidad">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
@@ -280,7 +283,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnRegresar" pref="68" max="32767" attributes="0"/>
+                      <Component id="btnRegresar" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="btnGuardar" min="-2" pref="56" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>

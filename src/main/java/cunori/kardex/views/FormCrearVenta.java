@@ -21,8 +21,10 @@ import cunori.kardex.dao.Proveedor;
 import cunori.kardex.dao.Usuario;
 
 import cunori.kardex.encrypt.Hash;
+import static cunori.kardex.views.FormCrearCompra.txtTotalPagar;
 
 import static cunori.kardex.views.Inicio.lblBienvenida;
+import java.awt.Color;
 import java.awt.Font;
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -56,6 +58,8 @@ public class FormCrearVenta extends javax.swing.JFrame {
     public static String idCliente = "";
     String idVenta = "";
     public static Double TotalVenta = 0.0;
+    Boolean banderaDescuento = true;
+    Double cambio = 0.0;
 
     //public static TableRowSorter<DefaultTableModel> sorter;
     public FormCrearVenta() {
@@ -89,7 +93,6 @@ public class FormCrearVenta extends javax.swing.JFrame {
         jPnlProductos = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblProductos = new javax.swing.JTable();
-        btnAgregarProd = new javax.swing.JButton();
         btnSeleccionarProd = new javax.swing.JButton();
         lblDescuento = new javax.swing.JLabel();
         txtDescuento = new javax.swing.JTextField();
@@ -175,17 +178,6 @@ public class FormCrearVenta extends javax.swing.JFrame {
             tblProductos.getColumnModel().getColumn(9).setPreferredWidth(100);
         }
 
-        btnAgregarProd.setBackground(new java.awt.Color(129, 164, 220));
-        btnAgregarProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0prod_add.png"))); // NOI18N
-        btnAgregarProd.setToolTipText("Agregar");
-        btnAgregarProd.setBorder(null);
-        btnAgregarProd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAgregarProd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarProdActionPerformed(evt);
-            }
-        });
-
         btnSeleccionarProd.setBackground(new java.awt.Color(129, 164, 220));
         btnSeleccionarProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0select_110958.png"))); // NOI18N
         btnSeleccionarProd.setToolTipText("Seleccionar");
@@ -248,10 +240,14 @@ public class FormCrearVenta extends javax.swing.JFrame {
         lblPaga.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblPaga.setText("Paga con:");
 
-        txtPaga.setEditable(false);
         txtPaga.setBackground(new java.awt.Color(129, 164, 220));
         txtPaga.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         txtPaga.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 153, 255)));
+        txtPaga.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPagaKeyReleased(evt);
+            }
+        });
 
         lblCambio.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         lblCambio.setForeground(new java.awt.Color(0, 0, 0));
@@ -262,6 +258,11 @@ public class FormCrearVenta extends javax.swing.JFrame {
         txtCambio.setBackground(new java.awt.Color(129, 164, 220));
         txtCambio.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         txtCambio.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 153, 255)));
+        txtCambio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCambioKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPnlProductosLayout = new javax.swing.GroupLayout(jPnlProductos);
         jPnlProductos.setLayout(jPnlProductosLayout);
@@ -272,7 +273,6 @@ public class FormCrearVenta extends javax.swing.JFrame {
                     .addGroup(jPnlProductosLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(jPnlProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnAgregarProd)
                             .addComponent(btnSeleccionarProd)
                             .addComponent(btnEliminarFila))
                         .addGap(18, 18, 18)
@@ -304,28 +304,27 @@ public class FormCrearVenta extends javax.swing.JFrame {
             .addGroup(jPnlProductosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPnlProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPnlProductosLayout.createSequentialGroup()
-                        .addComponent(btnAgregarProd)
-                        .addGap(4, 4, 4)
                         .addComponent(btnSeleccionarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
-                        .addComponent(btnEliminarFila, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnEliminarFila, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(29, 29, 29)
                 .addGroup(jPnlProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnAplicarDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPnlProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPnlProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblTotalPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPnlProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPnlProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblCambio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtCambio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPnlProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblPaga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtPaga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPnlProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblCambio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtCambio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addComponent(txtPaga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPnlProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTotalPagar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
 
         pnlLeft.setBackground(new java.awt.Color(129, 164, 220));
@@ -639,7 +638,7 @@ public class FormCrearVenta extends javax.swing.JFrame {
             fcc.setVisible(true);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "No se pudo crear la Venta");
+            JOptionPane.showMessageDialog(null, "Campos vacios, no se pudo crear la venta");
         }
     }//GEN-LAST:event_btnCrearCompraActionPerformed
 
@@ -654,12 +653,6 @@ public class FormCrearVenta extends javax.swing.JFrame {
         ListarProductoVenta lpv = new ListarProductoVenta(this, true);
         lpv.setVisible(true);
     }//GEN-LAST:event_btnSeleccionarProdActionPerformed
-
-    private void btnAgregarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProdActionPerformed
-        FormCrearProductoVenta fcpv = new FormCrearProductoVenta(this, true);
-        fcpv.setVisible(true);
-
-    }//GEN-LAST:event_btnAgregarProdActionPerformed
 
     private void btnAgregarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProvActionPerformed
         FormCrearClienteVenta fcv = new FormCrearClienteVenta(this, true);
@@ -687,8 +680,21 @@ public class FormCrearVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarCompraActionPerformed
 
     private void btnEliminarFilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarFilaActionPerformed
-        DefaultTableModel model = (DefaultTableModel) tblProductos.getModel();
-        model.removeRow(tblProductos.getSelectedRow());
+         DefaultTableModel model = (DefaultTableModel) tblProductos.getModel();
+        //model.removeRow(tblProductos.getSelectedRow());
+       
+        int fila = tblProductos.getSelectedRow();
+        if (fila != -1) {
+            Double cantEliminada = Double.valueOf(tblProductos.getValueAt(fila, 10).toString());
+            TotalVenta = Double.valueOf(txtTotalPagar.getText());
+            TotalVenta = TotalVenta-cantEliminada;
+            txtTotalPagar.setText(TotalVenta.toString());
+            TotalVenta = 0.0;
+            model.removeRow(tblProductos.getSelectedRow());
+            JOptionPane.showMessageDialog(null, "El Producto se ha eliminado de la Venta");
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ha selccionado ningun Producto");
+        }
     }//GEN-LAST:event_btnEliminarFilaActionPerformed
 
     private void txtDescuentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescuentoKeyReleased
@@ -702,10 +708,11 @@ public class FormCrearVenta extends javax.swing.JFrame {
 
     private void btnAplicarDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarDescuentoActionPerformed
         Double totalP = Double.valueOf(txtTotalPagar.getText());
-        if (!txtDescuento.getText().isEmpty()) {
+        if (!txtDescuento.getText().isEmpty() && banderaDescuento) {
             Double totalR = totalP - Double.valueOf(txtDescuento.getText());
             txtTotalPagar.setText(totalR.toString());
             txtDescuento.setEditable(false);
+            banderaDescuento=false;
         }
     }//GEN-LAST:event_btnAplicarDescuentoActionPerformed
 
@@ -717,10 +724,29 @@ public class FormCrearVenta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNITClienteActionPerformed
 
+    private void txtCambioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCambioKeyReleased
+       
+    }//GEN-LAST:event_txtCambioKeyReleased
+
+    private void txtPagaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPagaKeyReleased
+       if(!txtPaga.getText().isEmpty() && !txtPaga.getText().isBlank()){
+        Double pag = Double.valueOf(txtPaga.getText());
+       Double totPag = Double.valueOf(txtTotalPagar.getText());
+        if(pag>=totPag){
+            txtPaga.setCaretColor(Color.BLACK);
+            txtPaga.setForeground(Color.BLACK);
+            cambio = Double.valueOf(txtPaga.getText())-Double.valueOf(txtTotalPagar.getText());
+            txtCambio.setText(cambio.toString());
+       }else{txtPaga.setCaretColor(Color.red);
+       txtPaga.setForeground(Color.red);
+        txtCambio.setText("");}
+       }
+    }//GEN-LAST:event_txtPagaKeyReleased
+
     private Boolean Vacio() {
         return txtNoSerie.getText().isEmpty() && txtFechaRegistro.getText().isEmpty() && txtNITCliente.getText().isEmpty()
                 && txtNombreCliente.getText().isEmpty() && txtNITUsuario.getText().isEmpty() && txtNombreUsuario.getText().isEmpty()
-                && txtDescuento.getText().isEmpty() && txtTotalPagar.getText().isEmpty() && tblProductos.getRowCount() != 0;
+                && txtDescuento.getText().isEmpty() && txtTotalPagar.getText().isEmpty() && tblProductos.getRowCount() == 0;
     }
 
     public void InicioSesion() {
@@ -912,7 +938,6 @@ public class FormCrearVenta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarProd;
     private javax.swing.JButton btnAgregarProv;
     private javax.swing.JButton btnAplicarDescuento;
     private javax.swing.JButton btnCancelarCompra;
