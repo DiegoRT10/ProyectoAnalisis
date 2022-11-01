@@ -139,7 +139,7 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Resumen Compras">
+                <TitledBorder title="Resumen Ventas">
                   <Font PropertyName="font" name="Dialog" size="24" style="1"/>
                 </TitledBorder>
               </Border>
@@ -159,16 +159,16 @@
                       <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblNoSerie" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtPrecioNeto" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
+                          <Component id="txtNoSerie" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblTipo" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtIVA" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
+                          <Component id="txtNoSerie1" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtPrecioTotal" min="-2" pref="163" max="-2" attributes="0"/>
+                          <Component id="txtFechaRegistro" min="-2" pref="163" max="-2" attributes="0"/>
                           <Component id="lblFechaRegistro" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -181,7 +181,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblFechaRegistro" min="-2" pref="34" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtPrecioTotal" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtFechaRegistro" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -192,8 +192,8 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtPrecioNeto" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtIVA" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNoSerie" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNoSerie1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   </Group>
@@ -213,9 +213,8 @@
                 <Property name="text" type="java.lang.String" value="Precio Neto:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtPrecioNeto">
+            <Component class="javax.swing.JTextField" name="txtNoSerie">
               <Properties>
-                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="dc" green="a4" red="81" type="rgb"/>
                 </Property>
@@ -234,7 +233,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPrecioNetoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNoSerieActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblTipo">
@@ -246,12 +245,11 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="IVA Cr&#xe9;dito:"/>
+                <Property name="text" type="java.lang.String" value="IVA D&#xe9;bito:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtPrecioTotal">
+            <Component class="javax.swing.JTextField" name="txtFechaRegistro">
               <Properties>
-                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="dc" green="a4" red="81" type="rgb"/>
                 </Property>
@@ -270,7 +268,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPrecioTotalActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFechaRegistroActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblFechaRegistro">
@@ -285,9 +283,8 @@
                 <Property name="text" type="java.lang.String" value="Precio Total:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtIVA">
+            <Component class="javax.swing.JTextField" name="txtNoSerie1">
               <Properties>
-                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="dc" green="a4" red="81" type="rgb"/>
                 </Property>
@@ -306,7 +303,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIVAActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNoSerie1ActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -318,7 +315,7 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Libro de Compras">
+                <TitledBorder title="Libro de Ventas">
                   <Font PropertyName="font" name="Dialog" size="24" style="1"/>
                 </TitledBorder>
               </Border>
@@ -355,7 +352,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="tblLibroCompras">
+                <Component class="javax.swing.JTable" name="tblListarFacturas">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -383,9 +380,9 @@
                         <Column editable="false" title="No. Documento" type="java.lang.Object"/>
                         <Column editable="false" title="Tipo de Facturaci&#xf3;n" type="java.lang.Object"/>
                         <Column editable="false" title="NIT" type="java.lang.Object"/>
-                        <Column editable="false" title="Nombre del Proveedor" type="java.lang.Object"/>
-                        <Column editable="false" title="Bienes" type="java.lang.Object"/>
-                        <Column editable="false" title="IVA Cr&#xe9;dito" type="java.lang.Object"/>
+                        <Column editable="false" title="Nombre del Cliente" type="java.lang.Object"/>
+                        <Column editable="false" title="Venta Bienes" type="java.lang.Object"/>
+                        <Column editable="false" title="IVA D&#xe9;bito" type="java.lang.Object"/>
                         <Column editable="false" title="Valor Total" type="java.lang.Object"/>
                       </Table>
                     </Property>

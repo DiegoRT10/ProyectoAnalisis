@@ -4,6 +4,7 @@ import cunori.kardex.controller.ClienteJpaController;
 import cunori.kardex.controller.CompraJpaController;
 import cunori.kardex.controller.DetalleCompraJpaController;
 import cunori.kardex.controller.FacturaCompraJpaController;
+import cunori.kardex.controller.LibroCompraJpaController;
 import cunori.kardex.controller.ProductoJpaController;
 import cunori.kardex.controller.ProveedorJpaController;
 import cunori.kardex.controller.UsuarioJpaController;
@@ -46,6 +47,7 @@ public class FormCrearCompra extends javax.swing.JFrame {
     CompraJpaController CompraEntityManager;
     DetalleCompraJpaController DetalleCompraEntityManager;
     ProductoJpaController ProductoEntityManager;
+    LibroCompraJpaController LibroCompraEntityManager;
 
     public static String idProveedor = "";
     String idCompra = "";
@@ -67,7 +69,8 @@ public class FormCrearCompra extends javax.swing.JFrame {
         CompraEntityManager = new CompraJpaController(emf);
         DetalleCompraEntityManager = new DetalleCompraJpaController(emf);
         ProductoEntityManager = new ProductoJpaController(emf);
-
+        LibroCompraEntityManager = new LibroCompraJpaController(emf);
+        
         InicioSesion();
 
     }
@@ -807,6 +810,18 @@ public class FormCrearCompra extends javax.swing.JFrame {
             Logger.getLogger(FormCrearCompra.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
         }
+        
+//        lc.setId("L1");
+//        BigDecimal IVA = new BigDecimal(TotalCompra.doubleValue()*0.12);
+//        lc.setIVAcredito(IVA);
+//        BigDecimal TotalLibroCompra = new BigDecimal(TotalCompra.doubleValue()+IVA.doubleValue());
+//        lc.setTotal(TotalLibroCompra);
+//        
+//        try {
+//            LibroCompraEntityManager.edit(lc);
+//        } catch (Exception ex) {
+//            Logger.getLogger(FormCrearCompra.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     private void DatosDetalleCompra() {

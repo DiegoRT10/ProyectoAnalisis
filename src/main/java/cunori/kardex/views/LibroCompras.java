@@ -51,6 +51,7 @@ public class LibroCompras extends javax.swing.JFrame {
         CompraEntityManager = new CompraJpaController(emf);
 
         ListarLibroCommpra();
+        DatosResumen();
     }
 
     /**
@@ -108,6 +109,7 @@ public class LibroCompras extends javax.swing.JFrame {
         lblNoSerie.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNoSerie.setText("Precio Neto:");
 
+        txtPrecioNeto.setEditable(false);
         txtPrecioNeto.setBackground(new java.awt.Color(129, 164, 220));
         txtPrecioNeto.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         txtPrecioNeto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 153, 255)));
@@ -122,6 +124,7 @@ public class LibroCompras extends javax.swing.JFrame {
         lblTipo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTipo.setText("IVA Crédito:");
 
+        txtPrecioTotal.setEditable(false);
         txtPrecioTotal.setBackground(new java.awt.Color(129, 164, 220));
         txtPrecioTotal.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         txtPrecioTotal.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 153, 255)));
@@ -136,6 +139,7 @@ public class LibroCompras extends javax.swing.JFrame {
         lblFechaRegistro.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFechaRegistro.setText("Precio Total:");
 
+        txtIVA.setEditable(false);
         txtIVA.setBackground(new java.awt.Color(129, 164, 220));
         txtIVA.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         txtIVA.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 153, 255)));
@@ -425,7 +429,9 @@ public class LibroCompras extends javax.swing.JFrame {
     tblLibroCompras.setDefaultRenderer(Object.class, new Render());
     
     for(Compra c : Compra){
-        Object newRow[] = {c.getFechaCompra(),c.getIdFactura().getNoSerie(),c.getIdFactura().getNoDocumento(),c.getIdFactura().getTipo(),c.getIdProveedor().getNit(),c.getIdProveedor().getNombre(),c.getTotal(),c.getIdLibroCompra().getIVAcredito(),c.getIdLibroCompra().getTotal()};
+        Double iva=c.getTotal().doubleValue()*0.12;
+        Double totalLibro = c.getTotal().doubleValue()+iva;
+        Object newRow[] = {c.getFechaCompra(),c.getIdFactura().getNoSerie(),c.getIdFactura().getNoDocumento(),c.getIdFactura().getTipo(),c.getIdProveedor().getNit(),c.getIdProveedor().getNombre(),c.getTotal(),iva,totalLibro};
         model.addRow(newRow);
     }
     }
@@ -436,7 +442,9 @@ public class LibroCompras extends javax.swing.JFrame {
             IVA += Double.valueOf(tblLibroCompras.getValueAt(i,7).toString());
             precioTotal += Double.valueOf(tblLibroCompras.getValueAt(i,8).toString());
         }
-        
+        txtPrecioNeto.setText(precioNeto.toString());
+        txtIVA.setText(IVA.toString());
+        txtPrecioTotal.setText(precioTotal.toString());
     }
     
     /**

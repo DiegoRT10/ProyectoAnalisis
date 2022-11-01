@@ -14,6 +14,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -299,7 +300,7 @@ public class ListarProductoCompra extends javax.swing.JDialog {
             .addGroup(pnlLeftLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
+                    .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlLeftLayout.createSequentialGroup()
                         .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -321,7 +322,7 @@ public class ListarProductoCompra extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-
+         filtrar(txtBuscar.getText());
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
@@ -393,7 +394,17 @@ public class ListarProductoCompra extends javax.swing.JDialog {
         model.addRow(newRow);
         
     } 
+    tblListarProductos.setAutoCreateRowSorter(true);
+    sorter = new TableRowSorter<>(model);
+        tblListarProductos.setRowSorter(sorter);
     }
+   
+    private void filtrar(String cadena) {
+
+        sorter.setRowFilter(RowFilter.regexFilter(cadena.toUpperCase()));
+
+    }
+   
     /**
      * @param args the command line arguments
      */

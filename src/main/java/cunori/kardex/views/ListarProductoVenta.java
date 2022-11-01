@@ -7,6 +7,8 @@ package cunori.kardex.views;
 import cunori.kardex.controller.ProductoJpaController;
 import cunori.kardex.dao.Producto;
 import static cunori.kardex.views.ListarInventario.tblListarProductos;
+import static cunori.kardex.views.ListarProductoCompra.sorter;
+import static cunori.kardex.views.ListarProductoCompra.tblListarProductos;
 import java.awt.Font;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -14,6 +16,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -264,7 +267,7 @@ public class ListarProductoVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-
+  filtrar(txtBuscar.getText());
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void tblListarProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblListarProductosMouseClicked
@@ -303,7 +306,9 @@ public class ListarProductoVenta extends javax.swing.JDialog {
         model.addRow(newRow);
         
     } 
-     
+     tblListarProductos.setAutoCreateRowSorter(true);
+    sorter = new TableRowSorter<>(model);
+        tblListarProductos.setRowSorter(sorter);
     }
    
    private void SetCantidad(){
@@ -320,6 +325,13 @@ public class ListarProductoVenta extends javax.swing.JDialog {
     spnrCantidad.setModel(nm);
         }
    }
+   
+     private void filtrar(String cadena) {
+
+        sorter.setRowFilter(RowFilter.regexFilter(cadena.toUpperCase()));
+
+    }
+   
     /**
      * @param args the command line arguments
      */
