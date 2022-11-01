@@ -73,9 +73,9 @@ public class Usuario implements Serializable {
     @Column(name = "rol")
     private String rol;
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
-//    private Collection<KardexPEPS> kardexPEPSCollection;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
 //    private Collection<Venta> ventaCollection;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
+//    private Collection<KardexPEPS> kardexPEPSCollection;
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
 //    private Collection<Compra> compraCollection;
 
@@ -188,20 +188,20 @@ public class Usuario implements Serializable {
         this.rol = rol;
     }
 
-//    public Collection<KardexPEPS> getKardexPEPSCollection() {
-//        return kardexPEPSCollection;
-//    }
-//
-//    public void setKardexPEPSCollection(Collection<KardexPEPS> kardexPEPSCollection) {
-//        this.kardexPEPSCollection = kardexPEPSCollection;
-//    }
-//
 //    public Collection<Venta> getVentaCollection() {
 //        return ventaCollection;
 //    }
 //
 //    public void setVentaCollection(Collection<Venta> ventaCollection) {
 //        this.ventaCollection = ventaCollection;
+//    }
+//
+//    public Collection<KardexPEPS> getKardexPEPSCollection() {
+//        return kardexPEPSCollection;
+//    }
+//
+//    public void setKardexPEPSCollection(Collection<KardexPEPS> kardexPEPSCollection) {
+//        this.kardexPEPSCollection = kardexPEPSCollection;
 //    }
 //
 //    public Collection<Compra> getCompraCollection() {

@@ -67,9 +67,9 @@ public class Producto implements Serializable {
     @Column(name = "stock")
     private int stock;
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigoProducto")
-//    private Collection<DetalleVenta> detalleVentaCollection;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigoProducto")
 //    private Collection<DetalleCompra> detalleCompraCollection;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigoProducto")
+//    private Collection<DetalleVenta> detalleVentaCollection;
 
     public Producto() {
     }
@@ -162,20 +162,20 @@ public class Producto implements Serializable {
         this.stock = stock;
     }
 
-//    public Collection<DetalleVenta> getDetalleVentaCollection() {
-//        return detalleVentaCollection;
-//    }
-//
-//    public void setDetalleVentaCollection(Collection<DetalleVenta> detalleVentaCollection) {
-//        this.detalleVentaCollection = detalleVentaCollection;
-//    }
-//
 //    public Collection<DetalleCompra> getDetalleCompraCollection() {
 //        return detalleCompraCollection;
 //    }
 //
 //    public void setDetalleCompraCollection(Collection<DetalleCompra> detalleCompraCollection) {
 //        this.detalleCompraCollection = detalleCompraCollection;
+//    }
+//
+//    public Collection<DetalleVenta> getDetalleVentaCollection() {
+//        return detalleVentaCollection;
+//    }
+//
+//    public void setDetalleVentaCollection(Collection<DetalleVenta> detalleVentaCollection) {
+//        this.detalleVentaCollection = detalleVentaCollection;
 //    }
 
     @Override

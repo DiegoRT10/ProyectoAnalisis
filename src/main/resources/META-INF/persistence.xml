@@ -19,6 +19,8 @@
     <class>cunori.kardex.dao.FacturaCompra</class>
     <class>cunori.kardex.dao.DetalleVenta</class>
     <class>cunori.kardex.dao.DetalleCompra</class>
+    <class>cunori.kardex.dao.LibroVenta</class>
+    <class>cunori.kardex.dao.LibroCompra</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://bq2ilywq58idf92jbdck-mysql.services.clever-cloud.com:3306/bq2ilywq58idf92jbdck?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="u0xkyyhkaahho5ue"/>

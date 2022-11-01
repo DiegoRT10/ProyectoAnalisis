@@ -12,7 +12,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import cunori.kardex.dao.Compra;
-import cunori.kardex.dao.KardexPEPS;
+import cunori.kardex.dao.LibroCompra;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -21,9 +21,9 @@ import javax.persistence.EntityManagerFactory;
  *
  * @author Diego Ramos
  */
-public class KardexPEPSJpaController implements Serializable {
+public class LibroCompraJpaController implements Serializable {
 
-    public KardexPEPSJpaController(EntityManagerFactory emf) {
+    public LibroCompraJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -32,25 +32,25 @@ public class KardexPEPSJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(KardexPEPS kardexPEPS) throws PreexistingEntityException, Exception {
+    public void create(LibroCompra libroCompra) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Compra idCompra = kardexPEPS.getIdCompra();
+            Compra idCompra = libroCompra.getIdCompra();
             if (idCompra != null) {
                 idCompra = em.getReference(idCompra.getClass(), idCompra.getId());
-                kardexPEPS.setIdCompra(idCompra);
+                libroCompra.setIdCompra(idCompra);
             }
-            em.persist(kardexPEPS);
+            em.persist(libroCompra);
             if (idCompra != null) {
-                idCompra.getKardexPEPSCollection().add(kardexPEPS);
+                idCompra.getLibroCompraCollection().add(libroCompra);
                 idCompra = em.merge(idCompra);
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findKardexPEPS(kardexPEPS.getId()) != null) {
-                throw new PreexistingEntityException("KardexPEPS " + kardexPEPS + " already exists.", ex);
+            if (findLibroCompra(libroCompra.getId()) != null) {
+                throw new PreexistingEntityException("LibroCompra " + libroCompra + " already exists.", ex);
             }
             throw ex;
         } finally {
@@ -60,34 +60,34 @@ public class KardexPEPSJpaController implements Serializable {
         }
     }
 
-    public void edit(KardexPEPS kardexPEPS) throws NonexistentEntityException, Exception {
+    public void edit(LibroCompra libroCompra) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            KardexPEPS persistentKardexPEPS = em.find(KardexPEPS.class, kardexPEPS.getId());
-            Compra idCompraOld = persistentKardexPEPS.getIdCompra();
-            Compra idCompraNew = kardexPEPS.getIdCompra();
+            LibroCompra persistentLibroCompra = em.find(LibroCompra.class, libroCompra.getId());
+            Compra idCompraOld = persistentLibroCompra.getIdCompra();
+            Compra idCompraNew = libroCompra.getIdCompra();
             if (idCompraNew != null) {
                 idCompraNew = em.getReference(idCompraNew.getClass(), idCompraNew.getId());
-                kardexPEPS.setIdCompra(idCompraNew);
+                libroCompra.setIdCompra(idCompraNew);
             }
-            kardexPEPS = em.merge(kardexPEPS);
+            libroCompra = em.merge(libroCompra);
             if (idCompraOld != null && !idCompraOld.equals(idCompraNew)) {
-                idCompraOld.getKardexPEPSCollection().remove(kardexPEPS);
+                idCompraOld.getLibroCompraCollection().remove(libroCompra);
                 idCompraOld = em.merge(idCompraOld);
             }
             if (idCompraNew != null && !idCompraNew.equals(idCompraOld)) {
-                idCompraNew.getKardexPEPSCollection().add(kardexPEPS);
+                idCompraNew.getLibroCompraCollection().add(libroCompra);
                 idCompraNew = em.merge(idCompraNew);
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                String id = kardexPEPS.getId();
-                if (findKardexPEPS(id) == null) {
-                    throw new NonexistentEntityException("The kardexPEPS with id " + id + " no longer exists.");
+                String id = libroCompra.getId();
+                if (findLibroCompra(id) == null) {
+                    throw new NonexistentEntityException("The libroCompra with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -103,19 +103,19 @@ public class KardexPEPSJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            KardexPEPS kardexPEPS;
+            LibroCompra libroCompra;
             try {
-                kardexPEPS = em.getReference(KardexPEPS.class, id);
-                kardexPEPS.getId();
+                libroCompra = em.getReference(LibroCompra.class, id);
+                libroCompra.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The kardexPEPS with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The libroCompra with id " + id + " no longer exists.", enfe);
             }
-            Compra idCompra = kardexPEPS.getIdCompra();
+            Compra idCompra = libroCompra.getIdCompra();
             if (idCompra != null) {
-                idCompra.getKardexPEPSCollection().remove(kardexPEPS);
+                idCompra.getLibroCompraCollection().remove(libroCompra);
                 idCompra = em.merge(idCompra);
             }
-            em.remove(kardexPEPS);
+            em.remove(libroCompra);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -124,19 +124,19 @@ public class KardexPEPSJpaController implements Serializable {
         }
     }
 
-    public List<KardexPEPS> findKardexPEPSEntities() {
-        return findKardexPEPSEntities(true, -1, -1);
+    public List<LibroCompra> findLibroCompraEntities() {
+        return findLibroCompraEntities(true, -1, -1);
     }
 
-    public List<KardexPEPS> findKardexPEPSEntities(int maxResults, int firstResult) {
-        return findKardexPEPSEntities(false, maxResults, firstResult);
+    public List<LibroCompra> findLibroCompraEntities(int maxResults, int firstResult) {
+        return findLibroCompraEntities(false, maxResults, firstResult);
     }
 
-    private List<KardexPEPS> findKardexPEPSEntities(boolean all, int maxResults, int firstResult) {
+    private List<LibroCompra> findLibroCompraEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(KardexPEPS.class));
+            cq.select(cq.from(LibroCompra.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -148,20 +148,20 @@ public class KardexPEPSJpaController implements Serializable {
         }
     }
 
-    public KardexPEPS findKardexPEPS(String id) {
+    public LibroCompra findLibroCompra(String id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(KardexPEPS.class, id);
+            return em.find(LibroCompra.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getKardexPEPSCount() {
+    public int getLibroCompraCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<KardexPEPS> rt = cq.from(KardexPEPS.class);
+            Root<LibroCompra> rt = cq.from(LibroCompra.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

@@ -6,13 +6,16 @@ package cunori.kardex.dao;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,6 +29,7 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "FacturaVenta.findAll", query = "SELECT f FROM FacturaVenta f"),
     @NamedQuery(name = "FacturaVenta.findByNoSerie", query = "SELECT f FROM FacturaVenta f WHERE f.noSerie = :noSerie"),
+    @NamedQuery(name = "FacturaVenta.findByNoDocumento", query = "SELECT f FROM FacturaVenta f WHERE f.noDocumento = :noDocumento"),
     @NamedQuery(name = "FacturaVenta.findByTipo", query = "SELECT f FROM FacturaVenta f WHERE f.tipo = :tipo"),
     @NamedQuery(name = "FacturaVenta.findByNombreNegocio", query = "SELECT f FROM FacturaVenta f WHERE f.nombreNegocio = :nombreNegocio"),
     @NamedQuery(name = "FacturaVenta.findByDireccionNegocio", query = "SELECT f FROM FacturaVenta f WHERE f.direccionNegocio = :direccionNegocio"),
@@ -39,6 +43,9 @@ public class FacturaVenta implements Serializable {
     @Basic(optional = false)
     @Column(name = "noSerie")
     private String noSerie;
+    @Basic(optional = false)
+    @Column(name = "noDocumento")
+    private String noDocumento;
     @Basic(optional = false)
     @Column(name = "tipo")
     private String tipo;
@@ -59,6 +66,10 @@ public class FacturaVenta implements Serializable {
     @Basic(optional = false)
     @Column(name = "descuento")
     private BigDecimal descuento;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFactura")
+//    private Collection<LibroVenta> libroVentaCollection;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFactura")
+//    private Collection<Venta> ventaCollection;
 
     public FacturaVenta() {
     }
@@ -67,8 +78,9 @@ public class FacturaVenta implements Serializable {
         this.noSerie = noSerie;
     }
 
-    public FacturaVenta(String noSerie, String tipo, String nombreNegocio, String direccionNegocio, String telefonoNegocio, Date fechaEmision, BigDecimal descuento) {
+    public FacturaVenta(String noSerie, String noDocumento, String tipo, String nombreNegocio, String direccionNegocio, String telefonoNegocio, Date fechaEmision, BigDecimal descuento) {
         this.noSerie = noSerie;
+        this.noDocumento = noDocumento;
         this.tipo = tipo;
         this.nombreNegocio = nombreNegocio;
         this.direccionNegocio = direccionNegocio;
@@ -83,6 +95,14 @@ public class FacturaVenta implements Serializable {
 
     public void setNoSerie(String noSerie) {
         this.noSerie = noSerie;
+    }
+
+    public String getNoDocumento() {
+        return noDocumento;
+    }
+
+    public void setNoDocumento(String noDocumento) {
+        this.noDocumento = noDocumento;
     }
 
     public String getTipo() {
@@ -132,6 +152,22 @@ public class FacturaVenta implements Serializable {
     public void setDescuento(BigDecimal descuento) {
         this.descuento = descuento;
     }
+
+//    public Collection<LibroVenta> getLibroVentaCollection() {
+//        return libroVentaCollection;
+//    }
+//
+//    public void setLibroVentaCollection(Collection<LibroVenta> libroVentaCollection) {
+//        this.libroVentaCollection = libroVentaCollection;
+//    }
+//
+//    public Collection<Venta> getVentaCollection() {
+//        return ventaCollection;
+//    }
+//
+//    public void setVentaCollection(Collection<Venta> ventaCollection) {
+//        this.ventaCollection = ventaCollection;
+//    }
 
     @Override
     public int hashCode() {

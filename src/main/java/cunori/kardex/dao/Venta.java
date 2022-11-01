@@ -53,9 +53,7 @@ public class Venta implements Serializable {
     @Column(name = "total")
     private BigDecimal total;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVenta")
-    private Collection<DetalleVenta> detalleVentaCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVenta")
-    private Collection<KardexPEPS> kardexPEPSCollection;
+    private Collection<LibroVenta> libroVentaCollection;
     @JoinColumn(name = "idCliente", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Cliente idCliente;
@@ -65,6 +63,10 @@ public class Venta implements Serializable {
     @JoinColumn(name = "idUsuario", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Usuario idUsuario;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVenta")
+//    private Collection<DetalleVenta> detalleVentaCollection;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVenta")
+//    private Collection<KardexPEPS> kardexPEPSCollection;
 
     public Venta() {
     }
@@ -112,20 +114,12 @@ public class Venta implements Serializable {
         this.total = total;
     }
 
-    public Collection<DetalleVenta> getDetalleVentaCollection() {
-        return detalleVentaCollection;
+    public Collection<LibroVenta> getLibroVentaCollection() {
+        return libroVentaCollection;
     }
 
-    public void setDetalleVentaCollection(Collection<DetalleVenta> detalleVentaCollection) {
-        this.detalleVentaCollection = detalleVentaCollection;
-    }
-
-    public Collection<KardexPEPS> getKardexPEPSCollection() {
-        return kardexPEPSCollection;
-    }
-
-    public void setKardexPEPSCollection(Collection<KardexPEPS> kardexPEPSCollection) {
-        this.kardexPEPSCollection = kardexPEPSCollection;
+    public void setLibroVentaCollection(Collection<LibroVenta> libroVentaCollection) {
+        this.libroVentaCollection = libroVentaCollection;
     }
 
     public Cliente getIdCliente() {
@@ -151,6 +145,22 @@ public class Venta implements Serializable {
     public void setIdUsuario(Usuario idUsuario) {
         this.idUsuario = idUsuario;
     }
+
+//    public Collection<DetalleVenta> getDetalleVentaCollection() {
+//        return detalleVentaCollection;
+//    }
+//
+//    public void setDetalleVentaCollection(Collection<DetalleVenta> detalleVentaCollection) {
+//        this.detalleVentaCollection = detalleVentaCollection;
+//    }
+//
+//    public Collection<KardexPEPS> getKardexPEPSCollection() {
+//        return kardexPEPSCollection;
+//    }
+//
+//    public void setKardexPEPSCollection(Collection<KardexPEPS> kardexPEPSCollection) {
+//        this.kardexPEPSCollection = kardexPEPSCollection;
+//    }
 
     @Override
     public int hashCode() {

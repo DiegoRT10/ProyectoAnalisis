@@ -12,11 +12,10 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import cunori.kardex.dao.DetalleVenta;
+import cunori.kardex.dao.LibroVenta;
+import cunori.kardex.dao.Venta;
 import java.util.ArrayList;
 import java.util.Collection;
-import cunori.kardex.dao.KardexPEPS;
-import cunori.kardex.dao.Venta;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -37,45 +36,27 @@ public class VentaJpaController implements Serializable {
     }
 
     public void create(Venta venta) throws PreexistingEntityException, Exception {
-        if (venta.getDetalleVentaCollection() == null) {
-            venta.setDetalleVentaCollection(new ArrayList<DetalleVenta>());
-        }
-        if (venta.getKardexPEPSCollection() == null) {
-            venta.setKardexPEPSCollection(new ArrayList<KardexPEPS>());
+        if (venta.getLibroVentaCollection() == null) {
+            venta.setLibroVentaCollection(new ArrayList<LibroVenta>());
         }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Collection<DetalleVenta> attachedDetalleVentaCollection = new ArrayList<DetalleVenta>();
-            for (DetalleVenta detalleVentaCollectionDetalleVentaToAttach : venta.getDetalleVentaCollection()) {
-                detalleVentaCollectionDetalleVentaToAttach = em.getReference(detalleVentaCollectionDetalleVentaToAttach.getClass(), detalleVentaCollectionDetalleVentaToAttach.getId());
-                attachedDetalleVentaCollection.add(detalleVentaCollectionDetalleVentaToAttach);
+            Collection<LibroVenta> attachedLibroVentaCollection = new ArrayList<LibroVenta>();
+            for (LibroVenta libroVentaCollectionLibroVentaToAttach : venta.getLibroVentaCollection()) {
+                libroVentaCollectionLibroVentaToAttach = em.getReference(libroVentaCollectionLibroVentaToAttach.getClass(), libroVentaCollectionLibroVentaToAttach.getId());
+                attachedLibroVentaCollection.add(libroVentaCollectionLibroVentaToAttach);
             }
-            venta.setDetalleVentaCollection(attachedDetalleVentaCollection);
-            Collection<KardexPEPS> attachedKardexPEPSCollection = new ArrayList<KardexPEPS>();
-            for (KardexPEPS kardexPEPSCollectionKardexPEPSToAttach : venta.getKardexPEPSCollection()) {
-                kardexPEPSCollectionKardexPEPSToAttach = em.getReference(kardexPEPSCollectionKardexPEPSToAttach.getClass(), kardexPEPSCollectionKardexPEPSToAttach.getId());
-                attachedKardexPEPSCollection.add(kardexPEPSCollectionKardexPEPSToAttach);
-            }
-            venta.setKardexPEPSCollection(attachedKardexPEPSCollection);
+            venta.setLibroVentaCollection(attachedLibroVentaCollection);
             em.persist(venta);
-            for (DetalleVenta detalleVentaCollectionDetalleVenta : venta.getDetalleVentaCollection()) {
-                Venta oldIdVentaOfDetalleVentaCollectionDetalleVenta = detalleVentaCollectionDetalleVenta.getIdVenta();
-                detalleVentaCollectionDetalleVenta.setIdVenta(venta);
-                detalleVentaCollectionDetalleVenta = em.merge(detalleVentaCollectionDetalleVenta);
-                if (oldIdVentaOfDetalleVentaCollectionDetalleVenta != null) {
-                    oldIdVentaOfDetalleVentaCollectionDetalleVenta.getDetalleVentaCollection().remove(detalleVentaCollectionDetalleVenta);
-                    oldIdVentaOfDetalleVentaCollectionDetalleVenta = em.merge(oldIdVentaOfDetalleVentaCollectionDetalleVenta);
-                }
-            }
-            for (KardexPEPS kardexPEPSCollectionKardexPEPS : venta.getKardexPEPSCollection()) {
-                Venta oldIdVentaOfKardexPEPSCollectionKardexPEPS = kardexPEPSCollectionKardexPEPS.getIdVenta();
-                kardexPEPSCollectionKardexPEPS.setIdVenta(venta);
-                kardexPEPSCollectionKardexPEPS = em.merge(kardexPEPSCollectionKardexPEPS);
-                if (oldIdVentaOfKardexPEPSCollectionKardexPEPS != null) {
-                    oldIdVentaOfKardexPEPSCollectionKardexPEPS.getKardexPEPSCollection().remove(kardexPEPSCollectionKardexPEPS);
-                    oldIdVentaOfKardexPEPSCollectionKardexPEPS = em.merge(oldIdVentaOfKardexPEPSCollectionKardexPEPS);
+            for (LibroVenta libroVentaCollectionLibroVenta : venta.getLibroVentaCollection()) {
+                Venta oldIdVentaOfLibroVentaCollectionLibroVenta = libroVentaCollectionLibroVenta.getIdVenta();
+                libroVentaCollectionLibroVenta.setIdVenta(venta);
+                libroVentaCollectionLibroVenta = em.merge(libroVentaCollectionLibroVenta);
+                if (oldIdVentaOfLibroVentaCollectionLibroVenta != null) {
+                    oldIdVentaOfLibroVentaCollectionLibroVenta.getLibroVentaCollection().remove(libroVentaCollectionLibroVenta);
+                    oldIdVentaOfLibroVentaCollectionLibroVenta = em.merge(oldIdVentaOfLibroVentaCollectionLibroVenta);
                 }
             }
             em.getTransaction().commit();
@@ -97,64 +78,36 @@ public class VentaJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Venta persistentVenta = em.find(Venta.class, venta.getId());
-            Collection<DetalleVenta> detalleVentaCollectionOld = persistentVenta.getDetalleVentaCollection();
-            Collection<DetalleVenta> detalleVentaCollectionNew = venta.getDetalleVentaCollection();
-            Collection<KardexPEPS> kardexPEPSCollectionOld = persistentVenta.getKardexPEPSCollection();
-            Collection<KardexPEPS> kardexPEPSCollectionNew = venta.getKardexPEPSCollection();
+            Collection<LibroVenta> libroVentaCollectionOld = persistentVenta.getLibroVentaCollection();
+            Collection<LibroVenta> libroVentaCollectionNew = venta.getLibroVentaCollection();
             List<String> illegalOrphanMessages = null;
-            for (DetalleVenta detalleVentaCollectionOldDetalleVenta : detalleVentaCollectionOld) {
-                if (!detalleVentaCollectionNew.contains(detalleVentaCollectionOldDetalleVenta)) {
+            for (LibroVenta libroVentaCollectionOldLibroVenta : libroVentaCollectionOld) {
+                if (!libroVentaCollectionNew.contains(libroVentaCollectionOldLibroVenta)) {
                     if (illegalOrphanMessages == null) {
                         illegalOrphanMessages = new ArrayList<String>();
                     }
-                    illegalOrphanMessages.add("You must retain DetalleVenta " + detalleVentaCollectionOldDetalleVenta + " since its idVenta field is not nullable.");
-                }
-            }
-            for (KardexPEPS kardexPEPSCollectionOldKardexPEPS : kardexPEPSCollectionOld) {
-                if (!kardexPEPSCollectionNew.contains(kardexPEPSCollectionOldKardexPEPS)) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("You must retain KardexPEPS " + kardexPEPSCollectionOldKardexPEPS + " since its idVenta field is not nullable.");
+                    illegalOrphanMessages.add("You must retain LibroVenta " + libroVentaCollectionOldLibroVenta + " since its idVenta field is not nullable.");
                 }
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
-            Collection<DetalleVenta> attachedDetalleVentaCollectionNew = new ArrayList<DetalleVenta>();
-            for (DetalleVenta detalleVentaCollectionNewDetalleVentaToAttach : detalleVentaCollectionNew) {
-                detalleVentaCollectionNewDetalleVentaToAttach = em.getReference(detalleVentaCollectionNewDetalleVentaToAttach.getClass(), detalleVentaCollectionNewDetalleVentaToAttach.getId());
-                attachedDetalleVentaCollectionNew.add(detalleVentaCollectionNewDetalleVentaToAttach);
+            Collection<LibroVenta> attachedLibroVentaCollectionNew = new ArrayList<LibroVenta>();
+            for (LibroVenta libroVentaCollectionNewLibroVentaToAttach : libroVentaCollectionNew) {
+                libroVentaCollectionNewLibroVentaToAttach = em.getReference(libroVentaCollectionNewLibroVentaToAttach.getClass(), libroVentaCollectionNewLibroVentaToAttach.getId());
+                attachedLibroVentaCollectionNew.add(libroVentaCollectionNewLibroVentaToAttach);
             }
-            detalleVentaCollectionNew = attachedDetalleVentaCollectionNew;
-            venta.setDetalleVentaCollection(detalleVentaCollectionNew);
-            Collection<KardexPEPS> attachedKardexPEPSCollectionNew = new ArrayList<KardexPEPS>();
-            for (KardexPEPS kardexPEPSCollectionNewKardexPEPSToAttach : kardexPEPSCollectionNew) {
-                kardexPEPSCollectionNewKardexPEPSToAttach = em.getReference(kardexPEPSCollectionNewKardexPEPSToAttach.getClass(), kardexPEPSCollectionNewKardexPEPSToAttach.getId());
-                attachedKardexPEPSCollectionNew.add(kardexPEPSCollectionNewKardexPEPSToAttach);
-            }
-            kardexPEPSCollectionNew = attachedKardexPEPSCollectionNew;
-            venta.setKardexPEPSCollection(kardexPEPSCollectionNew);
+            libroVentaCollectionNew = attachedLibroVentaCollectionNew;
+            venta.setLibroVentaCollection(libroVentaCollectionNew);
             venta = em.merge(venta);
-            for (DetalleVenta detalleVentaCollectionNewDetalleVenta : detalleVentaCollectionNew) {
-                if (!detalleVentaCollectionOld.contains(detalleVentaCollectionNewDetalleVenta)) {
-                    Venta oldIdVentaOfDetalleVentaCollectionNewDetalleVenta = detalleVentaCollectionNewDetalleVenta.getIdVenta();
-                    detalleVentaCollectionNewDetalleVenta.setIdVenta(venta);
-                    detalleVentaCollectionNewDetalleVenta = em.merge(detalleVentaCollectionNewDetalleVenta);
-                    if (oldIdVentaOfDetalleVentaCollectionNewDetalleVenta != null && !oldIdVentaOfDetalleVentaCollectionNewDetalleVenta.equals(venta)) {
-                        oldIdVentaOfDetalleVentaCollectionNewDetalleVenta.getDetalleVentaCollection().remove(detalleVentaCollectionNewDetalleVenta);
-                        oldIdVentaOfDetalleVentaCollectionNewDetalleVenta = em.merge(oldIdVentaOfDetalleVentaCollectionNewDetalleVenta);
-                    }
-                }
-            }
-            for (KardexPEPS kardexPEPSCollectionNewKardexPEPS : kardexPEPSCollectionNew) {
-                if (!kardexPEPSCollectionOld.contains(kardexPEPSCollectionNewKardexPEPS)) {
-                    Venta oldIdVentaOfKardexPEPSCollectionNewKardexPEPS = kardexPEPSCollectionNewKardexPEPS.getIdVenta();
-                    kardexPEPSCollectionNewKardexPEPS.setIdVenta(venta);
-                    kardexPEPSCollectionNewKardexPEPS = em.merge(kardexPEPSCollectionNewKardexPEPS);
-                    if (oldIdVentaOfKardexPEPSCollectionNewKardexPEPS != null && !oldIdVentaOfKardexPEPSCollectionNewKardexPEPS.equals(venta)) {
-                        oldIdVentaOfKardexPEPSCollectionNewKardexPEPS.getKardexPEPSCollection().remove(kardexPEPSCollectionNewKardexPEPS);
-                        oldIdVentaOfKardexPEPSCollectionNewKardexPEPS = em.merge(oldIdVentaOfKardexPEPSCollectionNewKardexPEPS);
+            for (LibroVenta libroVentaCollectionNewLibroVenta : libroVentaCollectionNew) {
+                if (!libroVentaCollectionOld.contains(libroVentaCollectionNewLibroVenta)) {
+                    Venta oldIdVentaOfLibroVentaCollectionNewLibroVenta = libroVentaCollectionNewLibroVenta.getIdVenta();
+                    libroVentaCollectionNewLibroVenta.setIdVenta(venta);
+                    libroVentaCollectionNewLibroVenta = em.merge(libroVentaCollectionNewLibroVenta);
+                    if (oldIdVentaOfLibroVentaCollectionNewLibroVenta != null && !oldIdVentaOfLibroVentaCollectionNewLibroVenta.equals(venta)) {
+                        oldIdVentaOfLibroVentaCollectionNewLibroVenta.getLibroVentaCollection().remove(libroVentaCollectionNewLibroVenta);
+                        oldIdVentaOfLibroVentaCollectionNewLibroVenta = em.merge(oldIdVentaOfLibroVentaCollectionNewLibroVenta);
                     }
                 }
             }
@@ -188,19 +141,12 @@ public class VentaJpaController implements Serializable {
                 throw new NonexistentEntityException("The venta with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
-            Collection<DetalleVenta> detalleVentaCollectionOrphanCheck = venta.getDetalleVentaCollection();
-            for (DetalleVenta detalleVentaCollectionOrphanCheckDetalleVenta : detalleVentaCollectionOrphanCheck) {
+            Collection<LibroVenta> libroVentaCollectionOrphanCheck = venta.getLibroVentaCollection();
+            for (LibroVenta libroVentaCollectionOrphanCheckLibroVenta : libroVentaCollectionOrphanCheck) {
                 if (illegalOrphanMessages == null) {
                     illegalOrphanMessages = new ArrayList<String>();
                 }
-                illegalOrphanMessages.add("This Venta (" + venta + ") cannot be destroyed since the DetalleVenta " + detalleVentaCollectionOrphanCheckDetalleVenta + " in its detalleVentaCollection field has a non-nullable idVenta field.");
-            }
-            Collection<KardexPEPS> kardexPEPSCollectionOrphanCheck = venta.getKardexPEPSCollection();
-            for (KardexPEPS kardexPEPSCollectionOrphanCheckKardexPEPS : kardexPEPSCollectionOrphanCheck) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This Venta (" + venta + ") cannot be destroyed since the KardexPEPS " + kardexPEPSCollectionOrphanCheckKardexPEPS + " in its kardexPEPSCollection field has a non-nullable idVenta field.");
+                illegalOrphanMessages.add("This Venta (" + venta + ") cannot be destroyed since the LibroVenta " + libroVentaCollectionOrphanCheckLibroVenta + " in its libroVentaCollection field has a non-nullable idVenta field.");
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);

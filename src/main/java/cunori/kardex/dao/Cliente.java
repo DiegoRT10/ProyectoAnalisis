@@ -60,8 +60,8 @@ public class Cliente implements Serializable {
     @Basic(optional = false)
     @Column(name = "telefono")
     private String telefono;
-   // @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
-    //private Collection<Venta> ventaCollection;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
+//    private Collection<Venta> ventaCollection;
 
     public Cliente() {
     }

@@ -8,14 +8,13 @@ import cunori.kardex.controller.exceptions.NonexistentEntityException;
 import cunori.kardex.controller.exceptions.PreexistingEntityException;
 import cunori.kardex.dao.DetalleVenta;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import cunori.kardex.dao.Venta;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 /**
  *
@@ -37,16 +36,7 @@ public class DetalleVentaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Venta idVenta = detalleVenta.getIdVenta();
-            if (idVenta != null) {
-                idVenta = em.getReference(idVenta.getClass(), idVenta.getId());
-                detalleVenta.setIdVenta(idVenta);
-            }
             em.persist(detalleVenta);
-            if (idVenta != null) {
-                idVenta.getDetalleVentaCollection().add(detalleVenta);
-                idVenta = em.merge(idVenta);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             if (findDetalleVenta(detalleVenta.getId()) != null) {
@@ -65,22 +55,7 @@ public class DetalleVentaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            DetalleVenta persistentDetalleVenta = em.find(DetalleVenta.class, detalleVenta.getId());
-            Venta idVentaOld = persistentDetalleVenta.getIdVenta();
-            Venta idVentaNew = detalleVenta.getIdVenta();
-            if (idVentaNew != null) {
-                idVentaNew = em.getReference(idVentaNew.getClass(), idVentaNew.getId());
-                detalleVenta.setIdVenta(idVentaNew);
-            }
             detalleVenta = em.merge(detalleVenta);
-            if (idVentaOld != null && !idVentaOld.equals(idVentaNew)) {
-                idVentaOld.getDetalleVentaCollection().remove(detalleVenta);
-                idVentaOld = em.merge(idVentaOld);
-            }
-            if (idVentaNew != null && !idVentaNew.equals(idVentaOld)) {
-                idVentaNew.getDetalleVentaCollection().add(detalleVenta);
-                idVentaNew = em.merge(idVentaNew);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -109,11 +84,6 @@ public class DetalleVentaJpaController implements Serializable {
                 detalleVenta.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The detalleVenta with id " + id + " no longer exists.", enfe);
-            }
-            Venta idVenta = detalleVenta.getIdVenta();
-            if (idVenta != null) {
-                idVenta.getDetalleVentaCollection().remove(detalleVenta);
-                idVenta = em.merge(idVenta);
             }
             em.remove(detalleVenta);
             em.getTransaction().commit();
