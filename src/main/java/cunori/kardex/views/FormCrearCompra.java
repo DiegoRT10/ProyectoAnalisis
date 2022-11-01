@@ -712,7 +712,7 @@ public class FormCrearCompra extends javax.swing.JFrame {
         FacturaCompra fc = new FacturaCompra();
 
         fc.setNoSerie(txtNoSerie.getText());
-        Integer opTipo = cbxTipo.getSelectedIndex();
+        Integer opTipo = cbxTipo.getSelectedIndex()+1;
         fc.setTipo(opTipo.toString());
 
         //seteando Fecha

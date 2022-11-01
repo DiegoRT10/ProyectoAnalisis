@@ -760,7 +760,7 @@ public class FormCrearVenta extends javax.swing.JFrame {
         FacturaVenta fv = new FacturaVenta();
 
         fv.setNoSerie(txtNoSerie.getText());
-        Integer opTipo = cbxTipo.getSelectedIndex();
+        Integer opTipo = cbxTipo.getSelectedIndex()+1;
         fv.setTipo(opTipo.toString());
         fv.setNombreNegocio("Mini Despensa Olopa");
         fv.setDireccionNegocio("1ra Calle 3-58 Zona 1, Olopa-Chiquimula");
@@ -835,23 +835,23 @@ public class FormCrearVenta extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Fecha mal ingresada");
         }
         for (int i = 0; i < tblProductos.getRowCount(); i++) {
-            cant += Integer.valueOf(tblProductos.getValueAt(i, 8).toString());
-            total += Double.valueOf(tblProductos.getValueAt(i, 9).toString());
+            cant += Integer.valueOf(tblProductos.getValueAt(i, 9).toString());
+            total += Double.valueOf(tblProductos.getValueAt(i, 10).toString());
         }
         v.setCantProducto(cant);
         Double desc = Double.valueOf(txtDescuento.getText());
         BigDecimal TotalCompra = new BigDecimal(total - desc);
         v.setTotal(TotalCompra);
-        
-        Double paga = Double.valueOf(txtPaga.getText());
-        Double cambio = Double.valueOf(txtCambio.getText());
-        cambio = total - paga;
-        if(paga>total){
-            BigDecimal DevCambio = new BigDecimal(cambio);
-            v.setTotal(DevCambio);
-        }else{
-            JOptionPane.showMessageDialog(null, "El Pago es menor que el Total de la Venta");
-        }
+        System.out.println("este es el Total de la Compra "+TotalCompra);
+//        Double paga = Double.valueOf(txtPaga.getText());
+//        Double cambio = Double.valueOf(txtCambio.getText());
+//        cambio = paga-total;
+//        if(paga>total){
+//            BigDecimal DevCambio = new BigDecimal(cambio);
+//            v.setTotal(DevCambio);
+//        }else{
+//            JOptionPane.showMessageDialog(null, "El Pago es menor que el Total de la Venta");
+//        }
 
         try {
             VentaEntityManager.create(v);
@@ -865,24 +865,24 @@ public class FormCrearVenta extends javax.swing.JFrame {
 
         for (int i = 0; i < tblProductos.getRowCount(); i++) {
             String codigo = tblProductos.getValueAt(i, 0).toString();
-            p.setNombre(tblProductos.getValueAt(i, 1).toString());
-            p.setCategoria(tblProductos.getValueAt(i, 2).toString());
-            p.setMarca(tblProductos.getValueAt(i, 3).toString());
-            p.setUnidad(tblProductos.getValueAt(i, 4).toString());
-            p.setPesoNeto(tblProductos.getValueAt(i, 5).toString());
-            Integer stock = Integer.valueOf(tblProductos.getValueAt(i, 8).toString());
-            BigDecimal precioCompra = new BigDecimal(tblProductos.getValueAt(i, 6).toString());
-            BigDecimal precioVenta = new BigDecimal(tblProductos.getValueAt(i, 7).toString());
+//            p.setNombre(tblProductos.getValueAt(i, 1).toString());
+//            p.setCategoria(tblProductos.getValueAt(i, 2).toString());
+//            p.setMarca(tblProductos.getValueAt(i, 3).toString());
+//            p.setUnidad(tblProductos.getValueAt(i, 4).toString());
+//            p.setPesoNeto(tblProductos.getValueAt(i, 5).toString());
+//            Integer stock = Integer.valueOf(tblProductos.getValueAt(i, 8).toString());
+//            BigDecimal precioCompra = new BigDecimal(tblProductos.getValueAt(i, 6).toString());
+           BigDecimal precioVenta = new BigDecimal(tblProductos.getValueAt(i, 7).toString());
             p.setCodigo(codigo);
-            p.setStock(stock);
-            p.setPrecioCompra(precioCompra);
-            p.setPrecioVenta(precioVenta);
-            try {
-                ProductoEntityManager.edit(p);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "No se actualizar el producto");
-                Logger.getLogger(FormCrearVenta.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//            p.setStock(stock);
+//            p.setPrecioCompra(precioCompra);
+           p.setPrecioVenta(precioVenta);
+//            try {
+//                ProductoEntityManager.edit(p);
+//            } catch (Exception ex) {
+//                JOptionPane.showMessageDialog(null, "No se actualizar el producto");
+//                Logger.getLogger(FormCrearVenta.class.getName()).log(Level.SEVERE, null, ex);
+//            }
             //Seteando datos detalle compra 
             DetalleVenta dv = new DetalleVenta();
             Venta v = new Venta();
@@ -891,8 +891,8 @@ public class FormCrearVenta extends javax.swing.JFrame {
             dv.setId(id);
             dv.setIdVenta(v);
             dv.setCodigoProducto(p);
-            dv.setCantidad(p.getStock());
-            BigDecimal totalIndividual = new BigDecimal(Double.parseDouble(p.getPrecioCompra().toString()) * p.getStock());
+            dv.setCantidad(Integer.parseInt(tblProductos.getValueAt(i, 9).toString()));
+            BigDecimal totalIndividual = new BigDecimal(Double.parseDouble(p.getPrecioVenta().toString()) *dv.getCantidad());
             dv.setTotal(totalIndividual);
 
             try {
