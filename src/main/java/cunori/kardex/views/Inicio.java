@@ -24,7 +24,7 @@ public class Inicio extends javax.swing.JFrame {
         initComponents();
         getContentPane().setBackground(new Color(0, 255, 51));
         this.setLocationRelativeTo(null);
-        setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/usuarioimg.png")).getImage());
         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
         UsuarioEntityManager = new UsuarioJpaController(emf);
         InicioSecion();
