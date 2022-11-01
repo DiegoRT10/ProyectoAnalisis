@@ -21,7 +21,7 @@ import javax.swing.table.TableRowSorter;
  * @author Diego Ramos
  * @author Hermas Ramirez
  */
-public class ListarFacturacion extends javax.swing.JFrame {
+public class LibroCompras extends javax.swing.JFrame {
 
     EntityManagerFactory emf;
     FacturaCompraJpaController FacturaCompraEntityManager;
@@ -31,7 +31,7 @@ public class ListarFacturacion extends javax.swing.JFrame {
     /**
      * Creates new form ListarCreadosCheques
      */
-    public ListarFacturacion() {
+    public LibroCompras() {
         initComponents();
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
@@ -58,6 +58,14 @@ public class ListarFacturacion extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jPnlFactura = new javax.swing.JPanel();
+        lblNoSerie = new javax.swing.JLabel();
+        txtNoSerie = new javax.swing.JTextField();
+        lblTipo = new javax.swing.JLabel();
+        txtFechaRegistro = new javax.swing.JTextField();
+        lblFechaRegistro = new javax.swing.JLabel();
+        txtNoSerie1 = new javax.swing.JTextField();
+        jPnlFactura1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblListarFacturas = new javax.swing.JTable();
         pnlLeft = new javax.swing.JPanel();
@@ -66,12 +74,12 @@ public class ListarFacturacion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1230, 712));
+        setPreferredSize(new java.awt.Dimension(1230, 712));
 
         jPanel1.setBackground(new java.awt.Color(129, 164, 220));
         jPanel1.setPreferredSize(new java.awt.Dimension(931, 522));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setText("Lista de Facturas");
 
         txtBuscar.setBackground(new java.awt.Color(129, 164, 220));
         txtBuscar.setToolTipText("Filtrar \"ten en cuenta las mayusculas\"");
@@ -84,24 +92,113 @@ public class ListarFacturacion extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/0buscar.png"))); // NOI18N
 
+        jPnlFactura.setBackground(new java.awt.Color(129, 164, 220));
+        jPnlFactura.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Resumen Compras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 24))); // NOI18N
+        jPnlFactura.setPreferredSize(new java.awt.Dimension(931, 522));
+
+        lblNoSerie.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        lblNoSerie.setForeground(new java.awt.Color(0, 0, 0));
+        lblNoSerie.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblNoSerie.setText("Precio Neto:");
+
+        txtNoSerie.setBackground(new java.awt.Color(129, 164, 220));
+        txtNoSerie.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        txtNoSerie.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 153, 255)));
+        txtNoSerie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNoSerieActionPerformed(evt);
+            }
+        });
+
+        lblTipo.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        lblTipo.setForeground(new java.awt.Color(0, 0, 0));
+        lblTipo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTipo.setText("IVA Crédito:");
+
+        txtFechaRegistro.setBackground(new java.awt.Color(129, 164, 220));
+        txtFechaRegistro.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        txtFechaRegistro.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 153, 255)));
+        txtFechaRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechaRegistroActionPerformed(evt);
+            }
+        });
+
+        lblFechaRegistro.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        lblFechaRegistro.setForeground(new java.awt.Color(0, 0, 0));
+        lblFechaRegistro.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblFechaRegistro.setText("Precio Total:");
+
+        txtNoSerie1.setBackground(new java.awt.Color(129, 164, 220));
+        txtNoSerie1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        txtNoSerie1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 153, 255)));
+        txtNoSerie1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNoSerie1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPnlFacturaLayout = new javax.swing.GroupLayout(jPnlFactura);
+        jPnlFactura.setLayout(jPnlFacturaLayout);
+        jPnlFacturaLayout.setHorizontalGroup(
+            jPnlFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlFacturaLayout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addGroup(jPnlFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNoSerie)
+                    .addComponent(txtNoSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(66, 66, 66)
+                .addGroup(jPnlFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTipo)
+                    .addComponent(txtNoSerie1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(91, 91, 91)
+                .addGroup(jPnlFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtFechaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFechaRegistro))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPnlFacturaLayout.setVerticalGroup(
+            jPnlFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlFacturaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblFechaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtFechaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPnlFacturaLayout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addGroup(jPnlFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNoSerie)
+                    .addComponent(lblTipo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPnlFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNoSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNoSerie1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14))
+        );
+
+        jPnlFactura1.setBackground(new java.awt.Color(129, 164, 220));
+        jPnlFactura1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Libro de Compras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 24))); // NOI18N
+        jPnlFactura1.setPreferredSize(new java.awt.Dimension(931, 522));
+
         tblListarFacturas.setBackground(new java.awt.Color(255, 255, 255));
         tblListarFacturas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 153, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 102, 255)));
         tblListarFacturas.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         tblListarFacturas.setForeground(new java.awt.Color(0, 0, 0));
         tblListarFacturas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "No. Serie", "Tipo de Facturación", "Nombre del Negocio", "Dirección", "Teléfono", "Fecha de Emisión", "Descuento"
+                "Fecha", "No. Serie", "No. Documento", "Tipo de Facturación", "NIT", "Nombre del Proveedor", "Bienes", "IVA Crédito", "Valor Total"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -116,14 +213,32 @@ public class ListarFacturacion extends javax.swing.JFrame {
         tblListarFacturas.setShowVerticalLines(false);
         jScrollPane1.setViewportView(tblListarFacturas);
         if (tblListarFacturas.getColumnModel().getColumnCount() > 0) {
-            tblListarFacturas.getColumnModel().getColumn(0).setPreferredWidth(150);
-            tblListarFacturas.getColumnModel().getColumn(1).setPreferredWidth(200);
-            tblListarFacturas.getColumnModel().getColumn(2).setPreferredWidth(200);
+            tblListarFacturas.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tblListarFacturas.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tblListarFacturas.getColumnModel().getColumn(2).setPreferredWidth(150);
             tblListarFacturas.getColumnModel().getColumn(3).setPreferredWidth(200);
             tblListarFacturas.getColumnModel().getColumn(4).setPreferredWidth(150);
-            tblListarFacturas.getColumnModel().getColumn(5).setPreferredWidth(250);
+            tblListarFacturas.getColumnModel().getColumn(5).setPreferredWidth(200);
             tblListarFacturas.getColumnModel().getColumn(6).setPreferredWidth(150);
+            tblListarFacturas.getColumnModel().getColumn(7).setPreferredWidth(150);
+            tblListarFacturas.getColumnModel().getColumn(8).setPreferredWidth(150);
         }
+
+        javax.swing.GroupLayout jPnlFactura1Layout = new javax.swing.GroupLayout(jPnlFactura1);
+        jPnlFactura1.setLayout(jPnlFactura1Layout);
+        jPnlFactura1Layout.setHorizontalGroup(
+            jPnlFactura1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlFactura1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+        );
+        jPnlFactura1Layout.setVerticalGroup(
+            jPnlFactura1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlFactura1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -134,11 +249,15 @@ public class ListarFacturacion extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 327, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 768, Short.MAX_VALUE)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPnlFactura, javax.swing.GroupLayout.DEFAULT_SIZE, 1141, Short.MAX_VALUE)
+                            .addComponent(jPnlFactura1, javax.swing.GroupLayout.DEFAULT_SIZE, 1141, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -151,9 +270,13 @@ public class ListarFacturacion extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
-                .addGap(6, 6, 6))
+                .addComponent(jPnlFactura1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jPnlFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(113, Short.MAX_VALUE))
         );
+
+        jPnlFactura.getAccessibleContext().setAccessibleName("Resumen");
 
         pnlLeft.setBackground(new java.awt.Color(129, 164, 220));
 
@@ -208,12 +331,12 @@ public class ListarFacturacion extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(71, 71, 71)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 872, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1159, Short.MAX_VALUE))
             .addComponent(pnlLeft, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
             .addComponent(pnlLeft, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -236,6 +359,18 @@ public class ListarFacturacion extends javax.swing.JFrame {
             ListarFacturas();
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtNoSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoSerieActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNoSerieActionPerformed
+
+    private void txtFechaRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaRegistroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFechaRegistroActionPerformed
+
+    private void txtNoSerie1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoSerie1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNoSerie1ActionPerformed
     
     private void ListarFacturas(){
     //FacturaCompra    
@@ -295,18 +430,18 @@ public class ListarFacturacion extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListarFacturacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LibroCompras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListarFacturacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LibroCompras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListarFacturacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LibroCompras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListarFacturacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LibroCompras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListarFacturacion().setVisible(true);
+                new LibroCompras().setVisible(true);
             }
         });
     }
@@ -317,9 +452,17 @@ public class ListarFacturacion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPnlFactura;
+    private javax.swing.JPanel jPnlFactura1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblFechaRegistro;
+    private javax.swing.JLabel lblNoSerie;
+    private javax.swing.JLabel lblTipo;
     private javax.swing.JPanel pnlLeft;
     public static javax.swing.JTable tblListarFacturas;
     private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField txtFechaRegistro;
+    private javax.swing.JTextField txtNoSerie;
+    private javax.swing.JTextField txtNoSerie1;
     // End of variables declaration//GEN-END:variables
 }
