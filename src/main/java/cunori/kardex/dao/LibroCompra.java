@@ -6,14 +6,15 @@ package cunori.kardex.dao;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -41,12 +42,8 @@ public class LibroCompra implements Serializable {
     @Basic(optional = false)
     @Column(name = "total")
     private BigDecimal total;
-    @JoinColumn(name = "idCompra", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Compra idCompra;
-    @JoinColumn(name = "idFactura", referencedColumnName = "noSerie")
-    @ManyToOne(optional = false)
-    private FacturaCompra idFactura;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idLibroCompra")
+//    private Collection<Compra> compraCollection;
 
     public LibroCompra() {
     }
@@ -85,21 +82,13 @@ public class LibroCompra implements Serializable {
         this.total = total;
     }
 
-    public Compra getIdCompra() {
-        return idCompra;
-    }
-
-    public void setIdCompra(Compra idCompra) {
-        this.idCompra = idCompra;
-    }
-
-    public FacturaCompra getIdFactura() {
-        return idFactura;
-    }
-
-    public void setIdFactura(FacturaCompra idFactura) {
-        this.idFactura = idFactura;
-    }
+//    public Collection<Compra> getCompraCollection() {
+//        return compraCollection;
+//    }
+//
+//    public void setCompraCollection(Collection<Compra> compraCollection) {
+//        this.compraCollection = compraCollection;
+//    }
 
     @Override
     public int hashCode() {

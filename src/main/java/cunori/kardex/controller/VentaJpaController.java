@@ -4,21 +4,17 @@
  */
 package cunori.kardex.controller;
 
-import cunori.kardex.controller.exceptions.IllegalOrphanException;
 import cunori.kardex.controller.exceptions.NonexistentEntityException;
 import cunori.kardex.controller.exceptions.PreexistingEntityException;
+import cunori.kardex.dao.Venta;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import cunori.kardex.dao.LibroVenta;
-import cunori.kardex.dao.Venta;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 /**
  *
@@ -36,29 +32,11 @@ public class VentaJpaController implements Serializable {
     }
 
     public void create(Venta venta) throws PreexistingEntityException, Exception {
-        if (venta.getLibroVentaCollection() == null) {
-            venta.setLibroVentaCollection(new ArrayList<LibroVenta>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Collection<LibroVenta> attachedLibroVentaCollection = new ArrayList<LibroVenta>();
-            for (LibroVenta libroVentaCollectionLibroVentaToAttach : venta.getLibroVentaCollection()) {
-                libroVentaCollectionLibroVentaToAttach = em.getReference(libroVentaCollectionLibroVentaToAttach.getClass(), libroVentaCollectionLibroVentaToAttach.getId());
-                attachedLibroVentaCollection.add(libroVentaCollectionLibroVentaToAttach);
-            }
-            venta.setLibroVentaCollection(attachedLibroVentaCollection);
             em.persist(venta);
-            for (LibroVenta libroVentaCollectionLibroVenta : venta.getLibroVentaCollection()) {
-                Venta oldIdVentaOfLibroVentaCollectionLibroVenta = libroVentaCollectionLibroVenta.getIdVenta();
-                libroVentaCollectionLibroVenta.setIdVenta(venta);
-                libroVentaCollectionLibroVenta = em.merge(libroVentaCollectionLibroVenta);
-                if (oldIdVentaOfLibroVentaCollectionLibroVenta != null) {
-                    oldIdVentaOfLibroVentaCollectionLibroVenta.getLibroVentaCollection().remove(libroVentaCollectionLibroVenta);
-                    oldIdVentaOfLibroVentaCollectionLibroVenta = em.merge(oldIdVentaOfLibroVentaCollectionLibroVenta);
-                }
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             if (findVenta(venta.getId()) != null) {
@@ -72,45 +50,12 @@ public class VentaJpaController implements Serializable {
         }
     }
 
-    public void edit(Venta venta) throws IllegalOrphanException, NonexistentEntityException, Exception {
+    public void edit(Venta venta) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Venta persistentVenta = em.find(Venta.class, venta.getId());
-            Collection<LibroVenta> libroVentaCollectionOld = persistentVenta.getLibroVentaCollection();
-            Collection<LibroVenta> libroVentaCollectionNew = venta.getLibroVentaCollection();
-            List<String> illegalOrphanMessages = null;
-            for (LibroVenta libroVentaCollectionOldLibroVenta : libroVentaCollectionOld) {
-                if (!libroVentaCollectionNew.contains(libroVentaCollectionOldLibroVenta)) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("You must retain LibroVenta " + libroVentaCollectionOldLibroVenta + " since its idVenta field is not nullable.");
-                }
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
-            }
-            Collection<LibroVenta> attachedLibroVentaCollectionNew = new ArrayList<LibroVenta>();
-            for (LibroVenta libroVentaCollectionNewLibroVentaToAttach : libroVentaCollectionNew) {
-                libroVentaCollectionNewLibroVentaToAttach = em.getReference(libroVentaCollectionNewLibroVentaToAttach.getClass(), libroVentaCollectionNewLibroVentaToAttach.getId());
-                attachedLibroVentaCollectionNew.add(libroVentaCollectionNewLibroVentaToAttach);
-            }
-            libroVentaCollectionNew = attachedLibroVentaCollectionNew;
-            venta.setLibroVentaCollection(libroVentaCollectionNew);
             venta = em.merge(venta);
-            for (LibroVenta libroVentaCollectionNewLibroVenta : libroVentaCollectionNew) {
-                if (!libroVentaCollectionOld.contains(libroVentaCollectionNewLibroVenta)) {
-                    Venta oldIdVentaOfLibroVentaCollectionNewLibroVenta = libroVentaCollectionNewLibroVenta.getIdVenta();
-                    libroVentaCollectionNewLibroVenta.setIdVenta(venta);
-                    libroVentaCollectionNewLibroVenta = em.merge(libroVentaCollectionNewLibroVenta);
-                    if (oldIdVentaOfLibroVentaCollectionNewLibroVenta != null && !oldIdVentaOfLibroVentaCollectionNewLibroVenta.equals(venta)) {
-                        oldIdVentaOfLibroVentaCollectionNewLibroVenta.getLibroVentaCollection().remove(libroVentaCollectionNewLibroVenta);
-                        oldIdVentaOfLibroVentaCollectionNewLibroVenta = em.merge(oldIdVentaOfLibroVentaCollectionNewLibroVenta);
-                    }
-                }
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -128,7 +73,7 @@ public class VentaJpaController implements Serializable {
         }
     }
 
-    public void destroy(String id) throws IllegalOrphanException, NonexistentEntityException {
+    public void destroy(String id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -139,17 +84,6 @@ public class VentaJpaController implements Serializable {
                 venta.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The venta with id " + id + " no longer exists.", enfe);
-            }
-            List<String> illegalOrphanMessages = null;
-            Collection<LibroVenta> libroVentaCollectionOrphanCheck = venta.getLibroVentaCollection();
-            for (LibroVenta libroVentaCollectionOrphanCheckLibroVenta : libroVentaCollectionOrphanCheck) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This Venta (" + venta + ") cannot be destroyed since the LibroVenta " + libroVentaCollectionOrphanCheckLibroVenta + " in its libroVentaCollection field has a non-nullable idVenta field.");
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
             }
             em.remove(venta);
             em.getTransaction().commit();

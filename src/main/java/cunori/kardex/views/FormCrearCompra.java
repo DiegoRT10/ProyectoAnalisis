@@ -11,6 +11,7 @@ import cunori.kardex.dao.Cliente;
 import cunori.kardex.dao.Compra;
 import cunori.kardex.dao.DetalleCompra;
 import cunori.kardex.dao.FacturaCompra;
+import cunori.kardex.dao.LibroCompra;
 import cunori.kardex.dao.Producto;
 import cunori.kardex.dao.Proveedor;
 import cunori.kardex.dao.Usuario;
@@ -712,9 +713,11 @@ public class FormCrearCompra extends javax.swing.JFrame {
         FacturaCompra fc = new FacturaCompra();
 
         fc.setNoSerie(txtNoSerie.getText());
+        String no = UUID.randomUUID().toString();
+        fc.setNoDocumento(no);
         Integer opTipo = cbxTipo.getSelectedIndex()+1;
         fc.setTipo(opTipo.toString());
-
+        
         //seteando Fecha
         try {
             //seteando la fecha
@@ -764,7 +767,10 @@ public class FormCrearCompra extends javax.swing.JFrame {
         FacturaCompra f = new FacturaCompra();
         Usuario u = new Usuario();
         Proveedor p = new Proveedor();
-
+        LibroCompra lc = new LibroCompra();
+        lc.setId("L1"); //por defecto se estaran agregando al libro de compras 1
+        
+        
         p.setId(idProveedor);
         u.setId(Inicio.SesionUsuario);
         f.setNoSerie(txtNoSerie.getText());
@@ -774,6 +780,7 @@ public class FormCrearCompra extends javax.swing.JFrame {
         c.setId(id);
         c.setIdFactura(f);
         c.setIdUsuario(u);
+        c.setIdLibroCompra(lc);
         c.setIdProveedor(p);
         //seteando Fecha
         try {

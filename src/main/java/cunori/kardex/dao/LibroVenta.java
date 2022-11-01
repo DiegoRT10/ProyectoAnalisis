@@ -6,14 +6,15 @@ package cunori.kardex.dao;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -41,12 +42,8 @@ public class LibroVenta implements Serializable {
     @Basic(optional = false)
     @Column(name = "total")
     private BigDecimal total;
-    @JoinColumn(name = "idFactura", referencedColumnName = "noSerie")
-    @ManyToOne(optional = false)
-    private FacturaVenta idFactura;
-    @JoinColumn(name = "idVenta", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Venta idVenta;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idLibroVenta")
+//    private Collection<Venta> ventaCollection;
 
     public LibroVenta() {
     }
@@ -85,21 +82,13 @@ public class LibroVenta implements Serializable {
         this.total = total;
     }
 
-    public FacturaVenta getIdFactura() {
-        return idFactura;
-    }
-
-    public void setIdFactura(FacturaVenta idFactura) {
-        this.idFactura = idFactura;
-    }
-
-    public Venta getIdVenta() {
-        return idVenta;
-    }
-
-    public void setIdVenta(Venta idVenta) {
-        this.idVenta = idVenta;
-    }
+//    public Collection<Venta> getVentaCollection() {
+//        return ventaCollection;
+//    }
+//
+//    public void setVentaCollection(Collection<Venta> ventaCollection) {
+//        this.ventaCollection = ventaCollection;
+//    }
 
     @Override
     public int hashCode() {

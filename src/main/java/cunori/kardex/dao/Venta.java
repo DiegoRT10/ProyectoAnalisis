@@ -52,14 +52,15 @@ public class Venta implements Serializable {
     @Basic(optional = false)
     @Column(name = "total")
     private BigDecimal total;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idVenta")
-    private Collection<LibroVenta> libroVentaCollection;
     @JoinColumn(name = "idCliente", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Cliente idCliente;
     @JoinColumn(name = "idFactura", referencedColumnName = "noSerie")
     @ManyToOne(optional = false)
     private FacturaVenta idFactura;
+    @JoinColumn(name = "idLibroVenta", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private LibroVenta idLibroVenta;
     @JoinColumn(name = "idUsuario", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Usuario idUsuario;
@@ -114,14 +115,6 @@ public class Venta implements Serializable {
         this.total = total;
     }
 
-    public Collection<LibroVenta> getLibroVentaCollection() {
-        return libroVentaCollection;
-    }
-
-    public void setLibroVentaCollection(Collection<LibroVenta> libroVentaCollection) {
-        this.libroVentaCollection = libroVentaCollection;
-    }
-
     public Cliente getIdCliente() {
         return idCliente;
     }
@@ -136,6 +129,14 @@ public class Venta implements Serializable {
 
     public void setIdFactura(FacturaVenta idFactura) {
         this.idFactura = idFactura;
+    }
+
+    public LibroVenta getIdLibroVenta() {
+        return idLibroVenta;
+    }
+
+    public void setIdLibroVenta(LibroVenta idLibroVenta) {
+        this.idLibroVenta = idLibroVenta;
     }
 
     public Usuario getIdUsuario() {

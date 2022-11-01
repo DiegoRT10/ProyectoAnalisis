@@ -17,7 +17,6 @@ import cunori.kardex.dao.DetalleCompra;
 import java.util.ArrayList;
 import java.util.Collection;
 import cunori.kardex.dao.KardexPEPS;
-import cunori.kardex.dao.LibroCompra;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -44,9 +43,6 @@ public class CompraJpaController implements Serializable {
         if (compra.getKardexPEPSCollection() == null) {
             compra.setKardexPEPSCollection(new ArrayList<KardexPEPS>());
         }
-        if (compra.getLibroCompraCollection() == null) {
-            compra.setLibroCompraCollection(new ArrayList<LibroCompra>());
-        }
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -63,12 +59,6 @@ public class CompraJpaController implements Serializable {
                 attachedKardexPEPSCollection.add(kardexPEPSCollectionKardexPEPSToAttach);
             }
             compra.setKardexPEPSCollection(attachedKardexPEPSCollection);
-            Collection<LibroCompra> attachedLibroCompraCollection = new ArrayList<LibroCompra>();
-            for (LibroCompra libroCompraCollectionLibroCompraToAttach : compra.getLibroCompraCollection()) {
-                libroCompraCollectionLibroCompraToAttach = em.getReference(libroCompraCollectionLibroCompraToAttach.getClass(), libroCompraCollectionLibroCompraToAttach.getId());
-                attachedLibroCompraCollection.add(libroCompraCollectionLibroCompraToAttach);
-            }
-            compra.setLibroCompraCollection(attachedLibroCompraCollection);
             em.persist(compra);
             for (DetalleCompra detalleCompraCollectionDetalleCompra : compra.getDetalleCompraCollection()) {
                 Compra oldIdCompraOfDetalleCompraCollectionDetalleCompra = detalleCompraCollectionDetalleCompra.getIdCompra();
@@ -86,15 +76,6 @@ public class CompraJpaController implements Serializable {
                 if (oldIdCompraOfKardexPEPSCollectionKardexPEPS != null) {
                     oldIdCompraOfKardexPEPSCollectionKardexPEPS.getKardexPEPSCollection().remove(kardexPEPSCollectionKardexPEPS);
                     oldIdCompraOfKardexPEPSCollectionKardexPEPS = em.merge(oldIdCompraOfKardexPEPSCollectionKardexPEPS);
-                }
-            }
-            for (LibroCompra libroCompraCollectionLibroCompra : compra.getLibroCompraCollection()) {
-                Compra oldIdCompraOfLibroCompraCollectionLibroCompra = libroCompraCollectionLibroCompra.getIdCompra();
-                libroCompraCollectionLibroCompra.setIdCompra(compra);
-                libroCompraCollectionLibroCompra = em.merge(libroCompraCollectionLibroCompra);
-                if (oldIdCompraOfLibroCompraCollectionLibroCompra != null) {
-                    oldIdCompraOfLibroCompraCollectionLibroCompra.getLibroCompraCollection().remove(libroCompraCollectionLibroCompra);
-                    oldIdCompraOfLibroCompraCollectionLibroCompra = em.merge(oldIdCompraOfLibroCompraCollectionLibroCompra);
                 }
             }
             em.getTransaction().commit();
@@ -120,8 +101,6 @@ public class CompraJpaController implements Serializable {
             Collection<DetalleCompra> detalleCompraCollectionNew = compra.getDetalleCompraCollection();
             Collection<KardexPEPS> kardexPEPSCollectionOld = persistentCompra.getKardexPEPSCollection();
             Collection<KardexPEPS> kardexPEPSCollectionNew = compra.getKardexPEPSCollection();
-            Collection<LibroCompra> libroCompraCollectionOld = persistentCompra.getLibroCompraCollection();
-            Collection<LibroCompra> libroCompraCollectionNew = compra.getLibroCompraCollection();
             List<String> illegalOrphanMessages = null;
             for (DetalleCompra detalleCompraCollectionOldDetalleCompra : detalleCompraCollectionOld) {
                 if (!detalleCompraCollectionNew.contains(detalleCompraCollectionOldDetalleCompra)) {
@@ -137,14 +116,6 @@ public class CompraJpaController implements Serializable {
                         illegalOrphanMessages = new ArrayList<String>();
                     }
                     illegalOrphanMessages.add("You must retain KardexPEPS " + kardexPEPSCollectionOldKardexPEPS + " since its idCompra field is not nullable.");
-                }
-            }
-            for (LibroCompra libroCompraCollectionOldLibroCompra : libroCompraCollectionOld) {
-                if (!libroCompraCollectionNew.contains(libroCompraCollectionOldLibroCompra)) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("You must retain LibroCompra " + libroCompraCollectionOldLibroCompra + " since its idCompra field is not nullable.");
                 }
             }
             if (illegalOrphanMessages != null) {
@@ -164,13 +135,6 @@ public class CompraJpaController implements Serializable {
             }
             kardexPEPSCollectionNew = attachedKardexPEPSCollectionNew;
             compra.setKardexPEPSCollection(kardexPEPSCollectionNew);
-            Collection<LibroCompra> attachedLibroCompraCollectionNew = new ArrayList<LibroCompra>();
-            for (LibroCompra libroCompraCollectionNewLibroCompraToAttach : libroCompraCollectionNew) {
-                libroCompraCollectionNewLibroCompraToAttach = em.getReference(libroCompraCollectionNewLibroCompraToAttach.getClass(), libroCompraCollectionNewLibroCompraToAttach.getId());
-                attachedLibroCompraCollectionNew.add(libroCompraCollectionNewLibroCompraToAttach);
-            }
-            libroCompraCollectionNew = attachedLibroCompraCollectionNew;
-            compra.setLibroCompraCollection(libroCompraCollectionNew);
             compra = em.merge(compra);
             for (DetalleCompra detalleCompraCollectionNewDetalleCompra : detalleCompraCollectionNew) {
                 if (!detalleCompraCollectionOld.contains(detalleCompraCollectionNewDetalleCompra)) {
@@ -191,17 +155,6 @@ public class CompraJpaController implements Serializable {
                     if (oldIdCompraOfKardexPEPSCollectionNewKardexPEPS != null && !oldIdCompraOfKardexPEPSCollectionNewKardexPEPS.equals(compra)) {
                         oldIdCompraOfKardexPEPSCollectionNewKardexPEPS.getKardexPEPSCollection().remove(kardexPEPSCollectionNewKardexPEPS);
                         oldIdCompraOfKardexPEPSCollectionNewKardexPEPS = em.merge(oldIdCompraOfKardexPEPSCollectionNewKardexPEPS);
-                    }
-                }
-            }
-            for (LibroCompra libroCompraCollectionNewLibroCompra : libroCompraCollectionNew) {
-                if (!libroCompraCollectionOld.contains(libroCompraCollectionNewLibroCompra)) {
-                    Compra oldIdCompraOfLibroCompraCollectionNewLibroCompra = libroCompraCollectionNewLibroCompra.getIdCompra();
-                    libroCompraCollectionNewLibroCompra.setIdCompra(compra);
-                    libroCompraCollectionNewLibroCompra = em.merge(libroCompraCollectionNewLibroCompra);
-                    if (oldIdCompraOfLibroCompraCollectionNewLibroCompra != null && !oldIdCompraOfLibroCompraCollectionNewLibroCompra.equals(compra)) {
-                        oldIdCompraOfLibroCompraCollectionNewLibroCompra.getLibroCompraCollection().remove(libroCompraCollectionNewLibroCompra);
-                        oldIdCompraOfLibroCompraCollectionNewLibroCompra = em.merge(oldIdCompraOfLibroCompraCollectionNewLibroCompra);
                     }
                 }
             }
@@ -248,13 +201,6 @@ public class CompraJpaController implements Serializable {
                     illegalOrphanMessages = new ArrayList<String>();
                 }
                 illegalOrphanMessages.add("This Compra (" + compra + ") cannot be destroyed since the KardexPEPS " + kardexPEPSCollectionOrphanCheckKardexPEPS + " in its kardexPEPSCollection field has a non-nullable idCompra field.");
-            }
-            Collection<LibroCompra> libroCompraCollectionOrphanCheck = compra.getLibroCompraCollection();
-            for (LibroCompra libroCompraCollectionOrphanCheckLibroCompra : libroCompraCollectionOrphanCheck) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This Compra (" + compra + ") cannot be destroyed since the LibroCompra " + libroCompraCollectionOrphanCheckLibroCompra + " in its libroCompraCollection field has a non-nullable idCompra field.");
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);

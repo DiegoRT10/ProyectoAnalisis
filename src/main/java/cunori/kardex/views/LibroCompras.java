@@ -1,10 +1,14 @@
 package cunori.kardex.views;
 
+import cunori.kardex.controller.CompraJpaController;
 import cunori.kardex.controller.FacturaCompraJpaController;
 import cunori.kardex.controller.FacturaVentaJpaController;
+import cunori.kardex.controller.LibroCompraJpaController;
 import cunori.kardex.controller.exceptions.NonexistentEntityException;
+import cunori.kardex.dao.Compra;
 import cunori.kardex.dao.FacturaCompra;
 import cunori.kardex.dao.FacturaVenta;
+import cunori.kardex.dao.LibroCompra;
 import java.awt.Font;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,10 +28,13 @@ import javax.swing.table.TableRowSorter;
 public class LibroCompras extends javax.swing.JFrame {
 
     EntityManagerFactory emf;
+    LibroCompraJpaController LibroCompraEntityManager;
     FacturaCompraJpaController FacturaCompraEntityManager;
-    FacturaVentaJpaController FacturaVentaEntityManager;
+    CompraJpaController CompraEntityManager;
     public static TableRowSorter<DefaultTableModel> sorter;
-
+    Double precioNeto=0.0;
+    Double IVA=0.0;
+    Double precioTotal=0.0;
     /**
      * Creates new form ListarCreadosCheques
      */
@@ -36,13 +43,14 @@ public class LibroCompras extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
         //this.setExtendedState(MAXIMIZED_BOTH);
-        tblListarFacturas.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
+        tblLibroCompras.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
 
         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
+        LibroCompraEntityManager = new LibroCompraJpaController(emf);
         FacturaCompraEntityManager = new FacturaCompraJpaController(emf);
-        FacturaVentaEntityManager = new FacturaVentaJpaController(emf);
+        CompraEntityManager = new CompraJpaController(emf);
 
-        ListarFacturas();
+        ListarLibroCommpra();
     }
 
     /**
@@ -60,21 +68,20 @@ public class LibroCompras extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPnlFactura = new javax.swing.JPanel();
         lblNoSerie = new javax.swing.JLabel();
-        txtNoSerie = new javax.swing.JTextField();
+        txtPrecioNeto = new javax.swing.JTextField();
         lblTipo = new javax.swing.JLabel();
-        txtFechaRegistro = new javax.swing.JTextField();
+        txtPrecioTotal = new javax.swing.JTextField();
         lblFechaRegistro = new javax.swing.JLabel();
-        txtNoSerie1 = new javax.swing.JTextField();
+        txtIVA = new javax.swing.JTextField();
         jPnlFactura1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblListarFacturas = new javax.swing.JTable();
+        tblLibroCompras = new javax.swing.JTable();
         pnlLeft = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1230, 712));
-        setPreferredSize(new java.awt.Dimension(1230, 712));
 
         jPanel1.setBackground(new java.awt.Color(129, 164, 220));
         jPanel1.setPreferredSize(new java.awt.Dimension(931, 522));
@@ -101,12 +108,12 @@ public class LibroCompras extends javax.swing.JFrame {
         lblNoSerie.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblNoSerie.setText("Precio Neto:");
 
-        txtNoSerie.setBackground(new java.awt.Color(129, 164, 220));
-        txtNoSerie.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        txtNoSerie.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 153, 255)));
-        txtNoSerie.addActionListener(new java.awt.event.ActionListener() {
+        txtPrecioNeto.setBackground(new java.awt.Color(129, 164, 220));
+        txtPrecioNeto.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        txtPrecioNeto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 153, 255)));
+        txtPrecioNeto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNoSerieActionPerformed(evt);
+                txtPrecioNetoActionPerformed(evt);
             }
         });
 
@@ -115,12 +122,12 @@ public class LibroCompras extends javax.swing.JFrame {
         lblTipo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTipo.setText("IVA Crédito:");
 
-        txtFechaRegistro.setBackground(new java.awt.Color(129, 164, 220));
-        txtFechaRegistro.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        txtFechaRegistro.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 153, 255)));
-        txtFechaRegistro.addActionListener(new java.awt.event.ActionListener() {
+        txtPrecioTotal.setBackground(new java.awt.Color(129, 164, 220));
+        txtPrecioTotal.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        txtPrecioTotal.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 153, 255)));
+        txtPrecioTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFechaRegistroActionPerformed(evt);
+                txtPrecioTotalActionPerformed(evt);
             }
         });
 
@@ -129,12 +136,12 @@ public class LibroCompras extends javax.swing.JFrame {
         lblFechaRegistro.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFechaRegistro.setText("Precio Total:");
 
-        txtNoSerie1.setBackground(new java.awt.Color(129, 164, 220));
-        txtNoSerie1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        txtNoSerie1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 153, 255)));
-        txtNoSerie1.addActionListener(new java.awt.event.ActionListener() {
+        txtIVA.setBackground(new java.awt.Color(129, 164, 220));
+        txtIVA.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        txtIVA.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 153, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 153, 255)));
+        txtIVA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNoSerie1ActionPerformed(evt);
+                txtIVAActionPerformed(evt);
             }
         });
 
@@ -146,14 +153,14 @@ public class LibroCompras extends javax.swing.JFrame {
                 .addGap(80, 80, 80)
                 .addGroup(jPnlFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNoSerie)
-                    .addComponent(txtNoSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPrecioNeto, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(66, 66, 66)
                 .addGroup(jPnlFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTipo)
-                    .addComponent(txtNoSerie1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIVA, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(91, 91, 91)
                 .addGroup(jPnlFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtFechaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPrecioTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblFechaRegistro))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -163,17 +170,17 @@ public class LibroCompras extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblFechaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFechaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPrecioTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPnlFacturaLayout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPnlFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNoSerie)
                     .addComponent(lblTipo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPnlFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNoSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNoSerie1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPrecioNeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIVA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14))
         );
 
@@ -181,11 +188,11 @@ public class LibroCompras extends javax.swing.JFrame {
         jPnlFactura1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Libro de Compras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 24))); // NOI18N
         jPnlFactura1.setPreferredSize(new java.awt.Dimension(931, 522));
 
-        tblListarFacturas.setBackground(new java.awt.Color(255, 255, 255));
-        tblListarFacturas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 153, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 102, 255)));
-        tblListarFacturas.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        tblListarFacturas.setForeground(new java.awt.Color(0, 0, 0));
-        tblListarFacturas.setModel(new javax.swing.table.DefaultTableModel(
+        tblLibroCompras.setBackground(new java.awt.Color(255, 255, 255));
+        tblLibroCompras.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 153, 255), new java.awt.Color(51, 204, 255), new java.awt.Color(51, 51, 255), new java.awt.Color(51, 102, 255)));
+        tblLibroCompras.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        tblLibroCompras.setForeground(new java.awt.Color(0, 0, 0));
+        tblLibroCompras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -205,23 +212,23 @@ public class LibroCompras extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblListarFacturas.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        tblListarFacturas.setGridColor(new java.awt.Color(153, 255, 153));
-        tblListarFacturas.setSelectionBackground(new java.awt.Color(255, 255, 204));
-        tblListarFacturas.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        tblListarFacturas.setShowGrid(true);
-        tblListarFacturas.setShowVerticalLines(false);
-        jScrollPane1.setViewportView(tblListarFacturas);
-        if (tblListarFacturas.getColumnModel().getColumnCount() > 0) {
-            tblListarFacturas.getColumnModel().getColumn(0).setPreferredWidth(100);
-            tblListarFacturas.getColumnModel().getColumn(1).setPreferredWidth(100);
-            tblListarFacturas.getColumnModel().getColumn(2).setPreferredWidth(150);
-            tblListarFacturas.getColumnModel().getColumn(3).setPreferredWidth(200);
-            tblListarFacturas.getColumnModel().getColumn(4).setPreferredWidth(150);
-            tblListarFacturas.getColumnModel().getColumn(5).setPreferredWidth(200);
-            tblListarFacturas.getColumnModel().getColumn(6).setPreferredWidth(150);
-            tblListarFacturas.getColumnModel().getColumn(7).setPreferredWidth(150);
-            tblListarFacturas.getColumnModel().getColumn(8).setPreferredWidth(150);
+        tblLibroCompras.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tblLibroCompras.setGridColor(new java.awt.Color(153, 255, 153));
+        tblLibroCompras.setSelectionBackground(new java.awt.Color(255, 255, 204));
+        tblLibroCompras.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        tblLibroCompras.setShowGrid(true);
+        tblLibroCompras.setShowVerticalLines(false);
+        jScrollPane1.setViewportView(tblLibroCompras);
+        if (tblLibroCompras.getColumnModel().getColumnCount() > 0) {
+            tblLibroCompras.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tblLibroCompras.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tblLibroCompras.getColumnModel().getColumn(2).setPreferredWidth(150);
+            tblLibroCompras.getColumnModel().getColumn(3).setPreferredWidth(200);
+            tblLibroCompras.getColumnModel().getColumn(4).setPreferredWidth(150);
+            tblLibroCompras.getColumnModel().getColumn(5).setPreferredWidth(200);
+            tblLibroCompras.getColumnModel().getColumn(6).setPreferredWidth(150);
+            tblLibroCompras.getColumnModel().getColumn(7).setPreferredWidth(150);
+            tblLibroCompras.getColumnModel().getColumn(8).setPreferredWidth(150);
         }
 
         javax.swing.GroupLayout jPnlFactura1Layout = new javax.swing.GroupLayout(jPnlFactura1);
@@ -236,7 +243,7 @@ public class LibroCompras extends javax.swing.JFrame {
         jPnlFactura1Layout.setVerticalGroup(
             jPnlFactura1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlFactura1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -256,8 +263,8 @@ public class LibroCompras extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPnlFactura, javax.swing.GroupLayout.DEFAULT_SIZE, 1141, Short.MAX_VALUE)
-                            .addComponent(jPnlFactura1, javax.swing.GroupLayout.DEFAULT_SIZE, 1141, Short.MAX_VALUE))))
+                            .addComponent(jPnlFactura, javax.swing.GroupLayout.DEFAULT_SIZE, 1129, Short.MAX_VALUE)
+                            .addComponent(jPnlFactura1, javax.swing.GroupLayout.DEFAULT_SIZE, 1129, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -355,62 +362,81 @@ public class LibroCompras extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        if (DeleteFacturas()) {
-            ListarFacturas();
-        }
+     
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void txtNoSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoSerieActionPerformed
+    private void txtPrecioNetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioNetoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNoSerieActionPerformed
+    }//GEN-LAST:event_txtPrecioNetoActionPerformed
 
-    private void txtFechaRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaRegistroActionPerformed
+    private void txtPrecioTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioTotalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtFechaRegistroActionPerformed
+    }//GEN-LAST:event_txtPrecioTotalActionPerformed
 
-    private void txtNoSerie1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoSerie1ActionPerformed
+    private void txtIVAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIVAActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNoSerie1ActionPerformed
+    }//GEN-LAST:event_txtIVAActionPerformed
     
-    private void ListarFacturas(){
-    //FacturaCompra    
-    DefaultTableModel modelC = (DefaultTableModel) tblListarFacturas.getModel();
-    List<FacturaCompra> facturaC = FacturaCompraEntityManager.findFacturaCompraEntities();
-    modelC.setRowCount(0); //eliminar filas existentes
-    tblListarFacturas.setDefaultRenderer(Object.class, new Render());
+//    private void ListarFacturas(){
+//    //FacturaCompra    
+//    DefaultTableModel modelC = (DefaultTableModel) tblListarFacturas.getModel();
+//    List<FacturaCompra> facturaC = FacturaCompraEntityManager.findFacturaCompraEntities();
+//    modelC.setRowCount(0); //eliminar filas existentes
+//    tblListarFacturas.setDefaultRenderer(Object.class, new Render());
+//    
+//    for(FacturaCompra f : facturaC){
+//        Object newRow[] = {f.getNoSerie(), f.getTipo(), "", "", "", f.getFechaEmision(), f.getDescuento()};
+//        modelC.addRow(newRow);
+//    }
+//    //FacturaVenta
+//    DefaultTableModel modelV = (DefaultTableModel) tblListarFacturas.getModel();    
+//    List<FacturaVenta> facturaV = FacturaVentaEntityManager.findFacturaVentaEntities();
+//    tblListarFacturas.setDefaultRenderer(Object.class, new Render());
+//    
+//    for(FacturaVenta f : facturaV){
+//        Object newRow[] = {f.getNoSerie(), f.getTipo(), f.getNombreNegocio(), f.getDireccionNegocio(), f.getTelefonoNegocio(), f.getFechaEmision(), f.getDescuento()};
+//        modelV.addRow(newRow);
+//    }
+//    }
+//    
+//    private boolean DeleteFacturas(){
+//        int fila = tblListarFacturas.getSelectedRow();
+//        if(fila != -1){
+//        String id = (String) tblListarFacturas.getValueAt(fila,0);
+//            try {
+//                FacturaCompraEntityManager.destroy(id);
+//                FacturaVentaEntityManager.destroy(id);
+//                JOptionPane.showMessageDialog(null, "La Factura se ha eliminado Correctamente");
+//                return true;
+//            }catch (NonexistentEntityException ex) {
+//                //Logger.getLogger(ListarClientes.class.getName()).log(Level.SEVERE, null, ex);
+//                 JOptionPane.showMessageDialog(null, "Error, no se puede eliminar");
+//                return false;
+//            }
+//            //Logger.getLogger(ListarClientes.class.getName()).log(Level.SEVERE, null, ex);
+//        }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
+//         return false;
+//    }
     
-    for(FacturaCompra f : facturaC){
-        Object newRow[] = {f.getNoSerie(), f.getTipo(), "", "", "", f.getFechaEmision(), f.getDescuento()};
-        modelC.addRow(newRow);
+    private void ListarLibroCommpra(){
+    DefaultTableModel model = (DefaultTableModel) tblLibroCompras.getModel();
+    List<Compra> Compra = CompraEntityManager.findCompraEntities();
+    model.setRowCount(0); //eliminar filas existentes
+    tblLibroCompras.setDefaultRenderer(Object.class, new Render());
+    
+    for(Compra c : Compra){
+        Object newRow[] = {c.getFechaCompra(),c.getIdFactura().getNoSerie(),c.getIdFactura().getNoDocumento(),c.getIdFactura().getTipo(),c.getIdProveedor().getNit(),c.getIdProveedor().getNombre(),c.getTotal(),c.getIdLibroCompra().getIVAcredito(),c.getIdLibroCompra().getTotal()};
+        model.addRow(newRow);
     }
-    //FacturaVenta
-    DefaultTableModel modelV = (DefaultTableModel) tblListarFacturas.getModel();    
-    List<FacturaVenta> facturaV = FacturaVentaEntityManager.findFacturaVentaEntities();
-    tblListarFacturas.setDefaultRenderer(Object.class, new Render());
-    
-    for(FacturaVenta f : facturaV){
-        Object newRow[] = {f.getNoSerie(), f.getTipo(), f.getNombreNegocio(), f.getDireccionNegocio(), f.getTelefonoNegocio(), f.getFechaEmision(), f.getDescuento()};
-        modelV.addRow(newRow);
-    }
     }
     
-    private boolean DeleteFacturas(){
-        int fila = tblListarFacturas.getSelectedRow();
-        if(fila != -1){
-        String id = (String) tblListarFacturas.getValueAt(fila,0);
-            try {
-                FacturaCompraEntityManager.destroy(id);
-                FacturaVentaEntityManager.destroy(id);
-                JOptionPane.showMessageDialog(null, "La Factura se ha eliminado Correctamente");
-                return true;
-            }catch (NonexistentEntityException ex) {
-                //Logger.getLogger(ListarClientes.class.getName()).log(Level.SEVERE, null, ex);
-                 JOptionPane.showMessageDialog(null, "Error, no se puede eliminar");
-                return false;
-            }
-            //Logger.getLogger(ListarClientes.class.getName()).log(Level.SEVERE, null, ex);
-        }else{JOptionPane.showMessageDialog(null, "No se ha selccionado nada");}
-         return false;
+    private void DatosResumen(){
+        for (int i = 0; i < tblLibroCompras.getRowCount(); i++) {
+            precioNeto += Double.valueOf(tblLibroCompras.getValueAt(i,6).toString());
+            IVA += Double.valueOf(tblLibroCompras.getValueAt(i,7).toString());
+            precioTotal += Double.valueOf(tblLibroCompras.getValueAt(i,8).toString());
+        }
+        
     }
     
     /**
@@ -459,10 +485,10 @@ public class LibroCompras extends javax.swing.JFrame {
     private javax.swing.JLabel lblNoSerie;
     private javax.swing.JLabel lblTipo;
     private javax.swing.JPanel pnlLeft;
-    public static javax.swing.JTable tblListarFacturas;
+    public static javax.swing.JTable tblLibroCompras;
     private javax.swing.JTextField txtBuscar;
-    private javax.swing.JTextField txtFechaRegistro;
-    private javax.swing.JTextField txtNoSerie;
-    private javax.swing.JTextField txtNoSerie1;
+    private javax.swing.JTextField txtIVA;
+    private javax.swing.JTextField txtPrecioNeto;
+    private javax.swing.JTextField txtPrecioTotal;
     // End of variables declaration//GEN-END:variables
 }

@@ -55,8 +55,6 @@ public class FacturaCompra implements Serializable {
     @Column(name = "descuento")
     private BigDecimal descuento;
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFactura")
-//    private Collection<LibroCompra> libroCompraCollection;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFactura")
 //    private Collection<Compra> compraCollection;
 
     public FacturaCompra() {
@@ -114,14 +112,6 @@ public class FacturaCompra implements Serializable {
         this.descuento = descuento;
     }
 
-//    public Collection<LibroCompra> getLibroCompraCollection() {
-//        return libroCompraCollection;
-//    }
-//
-//    public void setLibroCompraCollection(Collection<LibroCompra> libroCompraCollection) {
-//        this.libroCompraCollection = libroCompraCollection;
-//    }
-//
 //    public Collection<Compra> getCompraCollection() {
 //        return compraCollection;
 //    }

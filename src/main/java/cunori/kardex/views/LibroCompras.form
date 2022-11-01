@@ -6,9 +6,6 @@
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[1230, 712]"/>
     </Property>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1230, 712]"/>
-    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -70,8 +67,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jPnlFactura" pref="1141" max="32767" attributes="0"/>
-                              <Component id="jPnlFactura1" pref="1141" max="32767" attributes="0"/>
+                              <Component id="jPnlFactura" pref="1129" max="32767" attributes="0"/>
+                              <Component id="jPnlFactura1" pref="1129" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -162,16 +159,16 @@
                       <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblNoSerie" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtNoSerie" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
+                          <Component id="txtPrecioNeto" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblTipo" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtNoSerie1" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
+                          <Component id="txtIVA" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtFechaRegistro" min="-2" pref="163" max="-2" attributes="0"/>
+                          <Component id="txtPrecioTotal" min="-2" pref="163" max="-2" attributes="0"/>
                           <Component id="lblFechaRegistro" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -184,19 +181,19 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblFechaRegistro" min="-2" pref="34" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtFechaRegistro" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtPrecioTotal" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <EmptySpace pref="13" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblNoSerie" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lblTipo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtNoSerie" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtNoSerie1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtPrecioNeto" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtIVA" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   </Group>
@@ -216,7 +213,7 @@
                 <Property name="text" type="java.lang.String" value="Precio Neto:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtNoSerie">
+            <Component class="javax.swing.JTextField" name="txtPrecioNeto">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="dc" green="a4" red="81" type="rgb"/>
@@ -236,7 +233,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNoSerieActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPrecioNetoActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblTipo">
@@ -251,7 +248,7 @@
                 <Property name="text" type="java.lang.String" value="IVA Cr&#xe9;dito:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtFechaRegistro">
+            <Component class="javax.swing.JTextField" name="txtPrecioTotal">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="dc" green="a4" red="81" type="rgb"/>
@@ -271,7 +268,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFechaRegistroActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPrecioTotalActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblFechaRegistro">
@@ -286,7 +283,7 @@
                 <Property name="text" type="java.lang.String" value="Precio Total:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtNoSerie1">
+            <Component class="javax.swing.JTextField" name="txtIVA">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="dc" green="a4" red="81" type="rgb"/>
@@ -306,7 +303,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNoSerie1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIVAActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -341,7 +338,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jScrollPane1" pref="335" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="329" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -355,7 +352,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="tblListarFacturas">
+                <Component class="javax.swing.JTable" name="tblLibroCompras">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>

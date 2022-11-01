@@ -8,14 +8,13 @@ import cunori.kardex.controller.exceptions.NonexistentEntityException;
 import cunori.kardex.controller.exceptions.PreexistingEntityException;
 import cunori.kardex.dao.LibroVenta;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import cunori.kardex.dao.Venta;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 /**
  *
@@ -37,16 +36,7 @@ public class LibroVentaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Venta idVenta = libroVenta.getIdVenta();
-            if (idVenta != null) {
-                idVenta = em.getReference(idVenta.getClass(), idVenta.getId());
-                libroVenta.setIdVenta(idVenta);
-            }
             em.persist(libroVenta);
-            if (idVenta != null) {
-                idVenta.getLibroVentaCollection().add(libroVenta);
-                idVenta = em.merge(idVenta);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             if (findLibroVenta(libroVenta.getId()) != null) {
@@ -65,22 +55,7 @@ public class LibroVentaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            LibroVenta persistentLibroVenta = em.find(LibroVenta.class, libroVenta.getId());
-            Venta idVentaOld = persistentLibroVenta.getIdVenta();
-            Venta idVentaNew = libroVenta.getIdVenta();
-            if (idVentaNew != null) {
-                idVentaNew = em.getReference(idVentaNew.getClass(), idVentaNew.getId());
-                libroVenta.setIdVenta(idVentaNew);
-            }
             libroVenta = em.merge(libroVenta);
-            if (idVentaOld != null && !idVentaOld.equals(idVentaNew)) {
-                idVentaOld.getLibroVentaCollection().remove(libroVenta);
-                idVentaOld = em.merge(idVentaOld);
-            }
-            if (idVentaNew != null && !idVentaNew.equals(idVentaOld)) {
-                idVentaNew.getLibroVentaCollection().add(libroVenta);
-                idVentaNew = em.merge(idVentaNew);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -109,11 +84,6 @@ public class LibroVentaJpaController implements Serializable {
                 libroVenta.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The libroVenta with id " + id + " no longer exists.", enfe);
-            }
-            Venta idVenta = libroVenta.getIdVenta();
-            if (idVenta != null) {
-                idVenta.getLibroVentaCollection().remove(libroVenta);
-                idVenta = em.merge(idVenta);
             }
             em.remove(libroVenta);
             em.getTransaction().commit();

@@ -55,11 +55,12 @@ public class Compra implements Serializable {
     private Collection<DetalleCompra> detalleCompraCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCompra")
     private Collection<KardexPEPS> kardexPEPSCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCompra")
-    private Collection<LibroCompra> libroCompraCollection;
     @JoinColumn(name = "idFactura", referencedColumnName = "noSerie")
     @ManyToOne(optional = false)
     private FacturaCompra idFactura;
+    @JoinColumn(name = "idLibroCompra", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private LibroCompra idLibroCompra;
     @JoinColumn(name = "idProveedor", referencedColumnName = "id")
     @ManyToOne
     private Proveedor idProveedor;
@@ -128,20 +129,20 @@ public class Compra implements Serializable {
         this.kardexPEPSCollection = kardexPEPSCollection;
     }
 
-    public Collection<LibroCompra> getLibroCompraCollection() {
-        return libroCompraCollection;
-    }
-
-    public void setLibroCompraCollection(Collection<LibroCompra> libroCompraCollection) {
-        this.libroCompraCollection = libroCompraCollection;
-    }
-
     public FacturaCompra getIdFactura() {
         return idFactura;
     }
 
     public void setIdFactura(FacturaCompra idFactura) {
         this.idFactura = idFactura;
+    }
+
+    public LibroCompra getIdLibroCompra() {
+        return idLibroCompra;
+    }
+
+    public void setIdLibroCompra(LibroCompra idLibroCompra) {
+        this.idLibroCompra = idLibroCompra;
     }
 
     public Proveedor getIdProveedor() {

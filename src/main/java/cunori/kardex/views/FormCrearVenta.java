@@ -16,6 +16,7 @@ import cunori.kardex.dao.DetalleCompra;
 import cunori.kardex.dao.DetalleVenta;
 import cunori.kardex.dao.FacturaCompra;
 import cunori.kardex.dao.FacturaVenta;
+import cunori.kardex.dao.LibroVenta;
 import cunori.kardex.dao.Producto;
 import cunori.kardex.dao.Proveedor;
 import cunori.kardex.dao.Usuario;
@@ -760,6 +761,9 @@ public class FormCrearVenta extends javax.swing.JFrame {
         FacturaVenta fv = new FacturaVenta();
 
         fv.setNoSerie(txtNoSerie.getText());
+        String no = UUID.randomUUID().toString();
+        fv.setNoDocumento(no);
+        
         Integer opTipo = cbxTipo.getSelectedIndex()+1;
         fv.setTipo(opTipo.toString());
         fv.setNombreNegocio("Mini Despensa Olopa");
@@ -813,7 +817,8 @@ public class FormCrearVenta extends javax.swing.JFrame {
         FacturaVenta fv = new FacturaVenta();
         Usuario u = new Usuario();
         Cliente cli = new Cliente();
-
+        LibroVenta lv = new LibroVenta();
+        lv.setId("L1"); //por defecto se estaran agregando al libro de ventas 1
         cli.setId(idCliente);
         u.setId(Inicio.SesionUsuario);
         fv.setNoSerie(txtNoSerie.getText());
@@ -822,6 +827,7 @@ public class FormCrearVenta extends javax.swing.JFrame {
         idVenta = id;
         v.setId(id);
         v.setIdFactura(fv);
+        v.setIdLibroVenta(lv);
         v.setIdUsuario(u);
         v.setIdCliente(cli);
         //seteando Fecha

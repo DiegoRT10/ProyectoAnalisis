@@ -6,16 +6,15 @@ package cunori.kardex.controller;
 
 import cunori.kardex.controller.exceptions.NonexistentEntityException;
 import cunori.kardex.controller.exceptions.PreexistingEntityException;
+import cunori.kardex.dao.LibroCompra;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import cunori.kardex.dao.Compra;
-import cunori.kardex.dao.LibroCompra;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 /**
  *
@@ -37,16 +36,7 @@ public class LibroCompraJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Compra idCompra = libroCompra.getIdCompra();
-            if (idCompra != null) {
-                idCompra = em.getReference(idCompra.getClass(), idCompra.getId());
-                libroCompra.setIdCompra(idCompra);
-            }
             em.persist(libroCompra);
-            if (idCompra != null) {
-                idCompra.getLibroCompraCollection().add(libroCompra);
-                idCompra = em.merge(idCompra);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             if (findLibroCompra(libroCompra.getId()) != null) {
@@ -65,22 +55,7 @@ public class LibroCompraJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            LibroCompra persistentLibroCompra = em.find(LibroCompra.class, libroCompra.getId());
-            Compra idCompraOld = persistentLibroCompra.getIdCompra();
-            Compra idCompraNew = libroCompra.getIdCompra();
-            if (idCompraNew != null) {
-                idCompraNew = em.getReference(idCompraNew.getClass(), idCompraNew.getId());
-                libroCompra.setIdCompra(idCompraNew);
-            }
             libroCompra = em.merge(libroCompra);
-            if (idCompraOld != null && !idCompraOld.equals(idCompraNew)) {
-                idCompraOld.getLibroCompraCollection().remove(libroCompra);
-                idCompraOld = em.merge(idCompraOld);
-            }
-            if (idCompraNew != null && !idCompraNew.equals(idCompraOld)) {
-                idCompraNew.getLibroCompraCollection().add(libroCompra);
-                idCompraNew = em.merge(idCompraNew);
-            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -109,11 +84,6 @@ public class LibroCompraJpaController implements Serializable {
                 libroCompra.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The libroCompra with id " + id + " no longer exists.", enfe);
-            }
-            Compra idCompra = libroCompra.getIdCompra();
-            if (idCompra != null) {
-                idCompra.getLibroCompraCollection().remove(libroCompra);
-                idCompra = em.merge(idCompra);
             }
             em.remove(libroCompra);
             em.getTransaction().commit();
