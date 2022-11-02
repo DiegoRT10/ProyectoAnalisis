@@ -12,6 +12,36 @@
             <url>file:${project.basedir}/lib</url>
         </repository>
     </repositories>
+     <build>
+         <finalName>kardexAnalisis2022</finalName>
+         
+         <plugins>
+             <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>3.3.0</version>
+            <configuration>            
+                <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>           
+                <archive>
+                    <manifest>
+                        <mainClass>cunori.kardex.Kardex</mainClass>
+                    </manifest>
+                </archive>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>make-assembly</id>
+                    <phase>package</phase> 
+                    <goals>
+                        <goal>single</goal>
+                    </goals>
+                </execution>
+            </executions>
+            </plugin>
+         </plugins>
+      </build>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
         <dependency>
