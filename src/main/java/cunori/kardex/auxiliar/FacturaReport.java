@@ -22,6 +22,7 @@ public class FacturaReport implements JRDataSource{
     private int index; 
     
     public static String NombreNegocio;
+    public static String Direccion;
     public static String NoSerie;
     public static String NoDocumento;
     public static String Fecha;
@@ -29,6 +30,7 @@ public class FacturaReport implements JRDataSource{
     public static String Telefono;
     public static String Descripcion;
     public static String Cantidad;
+    public static Double Descuento;
     public static String SubTotal;
     ArrayList<PojoFactura> detalleVenta = new ArrayList<PojoFactura>();
 
@@ -73,29 +75,39 @@ public class FacturaReport implements JRDataSource{
         String fieldName = jrf.getName();
         
         switch(fieldName){
+            
+            case "NombreNegocio" -> value = NombreNegocio;
+            
+            case "Direccion" -> value = Direccion;
+            
+            case "NoSerie" -> value = NoSerie;
+            
+            case "NoDocumento" -> value = NoDocumento;
+            
+            case "Fecha" -> value = Fecha;
+            
+            case "Tipo" -> value = Tipo;
+            
+            case "Telefono" -> value = Telefono;
+            
             case "Descripcion" -> value = detalleVenta.get(index).getDescripcion();
+            
+            case "Precio" -> value = detalleVenta.get(index).getPrecio();
             
             case "Cantidad" -> value = detalleVenta.get(index).getCantidad();
             
             case "SubTotal" -> value = detalleVenta.get(index).getSubTotal();
-//            case "NombreNegocio" -> value = listadoFactura[index][0];
-//            
-//            case "NoSerie" -> value = listadoFactura[index][1];
-//            
-//            case "NoDocumento" -> value = listadoFactura[index][2];
-//            
-//            case "Fecha" -> value = listadoFactura[index][3];
-//            
-//            case "Tipo" -> value = listadoFactura[index][4];
-//            
-//            case "Telefono" -> value = listadoFactura[index][5];
-//            
-//            case "Descripcion" -> value = listadoFactura[index][6];
-//            
-//            case "Cantidad" -> value = listadoFactura[index][7];
-//            
-//            case "SubTotal" -> value = listadoFactura[index][8];
             
+            case "TotalPagar" -> value = detalleVenta.get(index).getTotalPagar();
+            
+            case "Descuento" -> value = Descuento;
+            
+            case "Efectivo" -> value = detalleVenta.get(index).getEfectivo();
+            
+            case "Vuelto" -> value = detalleVenta.get(index).getVuelto();
+            
+            
+             
             
         }
         

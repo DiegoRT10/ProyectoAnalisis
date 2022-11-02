@@ -10,7 +10,9 @@ package cunori.kardex.dao;
  */
 public class PojoFactura {
   
+    
    String Descripcion;
+   Double Precio;
    Integer Cantidad;
    Double SubTotal;
    Double TotalPagar;
@@ -20,8 +22,9 @@ public class PojoFactura {
     public PojoFactura() {
     }
 
-    public PojoFactura(String Descripcion, Integer Cantidad, Double SubTotal, Double TotalPagar, Double Efectivo, Double Vuelto) {
+    public PojoFactura(String Descripcion, Double Precio, Integer Cantidad, Double SubTotal, Double TotalPagar, Double Efectivo, Double Vuelto) {
         this.Descripcion = Descripcion;
+        this.Precio = Precio;
         this.Cantidad = Cantidad;
         this.SubTotal = SubTotal;
         this.TotalPagar = TotalPagar;
@@ -35,6 +38,14 @@ public class PojoFactura {
 
     public void setDescripcion(String Descripcion) {
         this.Descripcion = Descripcion;
+    }
+
+    public Double getPrecio() {
+        return Precio;
+    }
+
+    public void setPrecio(Double Precio) {
+        this.Precio = Precio;
     }
 
     public Integer getCantidad() {
@@ -76,6 +87,7 @@ public class PojoFactura {
     public void setVuelto(Double Vuelto) {
         this.Vuelto = Vuelto;
     }
-    
+
+   
     
 }

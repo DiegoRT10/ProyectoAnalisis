@@ -70,6 +70,7 @@ public class FormCrearVenta extends javax.swing.JFrame {
     public static String idCliente = "";
     String idVenta = "";
     public static Double TotalVenta = 0.0;
+    public static Double TotalVenta2 = 0.0;
     Boolean banderaDescuento = true;
     Double cambio = 0.0;
     String noDoc = "";
@@ -813,6 +814,7 @@ public class FormCrearVenta extends javax.swing.JFrame {
             TotalVenta += Double.parseDouble(tblProductos.getValueAt(i, 10).toString());
         }
         txtTotalPagar.setText(TotalVenta.toString());
+        TotalVenta2=TotalVenta; 
         TotalVenta = 0.0;
     }
 
@@ -920,6 +922,7 @@ public class FormCrearVenta extends javax.swing.JFrame {
         int fila = tblProductos.getSelectedRow();
         FacturaVenta fv = new FacturaVenta();
         FacturaReport.NombreNegocio = "Mini Despensa Olopa";
+        FacturaReport.Direccion="1ra Calle 3-58 Zona 1, Olopa-Chiquimula";
         FacturaReport.NoSerie = txtNoSerie.getText();
         FacturaReport.NoDocumento = noDoc;
         SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/YYYY");
@@ -927,6 +930,7 @@ public class FormCrearVenta extends javax.swing.JFrame {
         Integer opTipo = cbxTipo.getSelectedIndex() + 1;
         FacturaReport.Tipo = opTipo.toString();
         FacturaReport.Telefono = "44632548";
+        FacturaReport.Descuento = Double.valueOf(txtDescuento.getText());
 
         Object[][] listadoFactura;
 
@@ -955,13 +959,14 @@ public class FormCrearVenta extends javax.swing.JFrame {
 
             String Descripcion = tblProductos.getValueAt(i, 1).toString();
             Integer Cantidad = Integer.valueOf(tblProductos.getValueAt(i, 9).toString());
+            Double Precio = Double.valueOf(tblProductos.getValueAt(i, 7).toString());
             Double SubTotal = Double.valueOf(tblProductos.getValueAt(i, 10).toString());
-            Double TotalPagar = Double.valueOf(txtTotalPagar.getText());
+            Double TotalPagar = TotalVenta2;
             Double Efectivo = Double.valueOf(txtPaga.getText());
             Double Vuelto = Double.valueOf(txtCambio.getText());
 
             PedidoHallado
-                    = new PojoFactura(Descripcion, Cantidad, SubTotal, TotalPagar, Efectivo, Vuelto);
+                    = new PojoFactura(Descripcion, Precio, Cantidad,SubTotal, TotalPagar, Efectivo, Vuelto);
             detallePedido.add(PedidoHallado);
         }
 
