@@ -21,7 +21,8 @@ public class Login extends javax.swing.JFrame {
     public static String idUsuario="";
     public Login() {
         initComponents(); 
-        this.setLocationRelativeTo(null);
+         this.setLocationRelativeTo(null);
+        setIconImage(new ImageIcon(getClass().getResource("/pngwing.png")).getImage());
         //setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
         
         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
@@ -122,7 +123,7 @@ public class Login extends javax.swing.JFrame {
                                 .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addGap(74, 74, 74))
                     .addGroup(jPanel1Layout.createSequentialGroup()

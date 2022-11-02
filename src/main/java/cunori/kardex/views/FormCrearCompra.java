@@ -58,7 +58,7 @@ public class FormCrearCompra extends javax.swing.JFrame {
     public FormCrearCompra() {
         initComponents();
         this.setLocationRelativeTo(null);
-        setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/pngwing.png")).getImage());
         //this.setExtendedState(MAXIMIZED_BOTH);
         DefaultTableModel model = (DefaultTableModel) tblProductos.getModel();
         model.setRowCount(0); //eliminar filas existentes

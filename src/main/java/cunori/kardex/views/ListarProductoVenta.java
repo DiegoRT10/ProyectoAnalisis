@@ -40,7 +40,7 @@ public class ListarProductoVenta extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/pngwing.png")).getImage());
         //this.setExtendedState(MAXIMIZED_BOTH);
         tblListarProductos.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
 

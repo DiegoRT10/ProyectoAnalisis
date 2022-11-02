@@ -45,12 +45,12 @@
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/logo_1.png"/>
+              <Image iconType="3" name="/LogoMiniDespensaOlopa.png"/>
             </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="1040" y="0" width="190" height="90"/>
+              <AbsoluteConstraints x="1030" y="0" width="190" height="90"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -259,7 +259,7 @@
                   <Color blue="ff" green="33" red="33" type="rgb"/>
                 </Property>
                 <Property name="image" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/usuarioimg.png"/>
+                  <Image iconType="3" name="/UsuarioMiniOlopa.png"/>
                 </Property>
               </Properties>
               <Constraints>

@@ -41,7 +41,7 @@ public class LibroCompras extends javax.swing.JFrame {
     public LibroCompras() {
         initComponents();
         this.setLocationRelativeTo(null);
-        setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/pngwing.png")).getImage());
         //this.setExtendedState(MAXIMIZED_BOTH);
         tblLibroCompras.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
 

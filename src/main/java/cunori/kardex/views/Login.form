@@ -60,7 +60,7 @@
                               <Component id="jLabel2" alignment="0" min="-2" pref="297" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="250" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                       </Group>

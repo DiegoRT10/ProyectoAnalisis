@@ -36,7 +36,7 @@ public class ListarUsuarios extends javax.swing.JFrame {
     public ListarUsuarios() {
         initComponents();
         this.setLocationRelativeTo(null);
-        setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/pngwing.png")).getImage());
         //this.setExtendedState(MAXIMIZED_BOTH);
         tblListarUsuarios.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
 

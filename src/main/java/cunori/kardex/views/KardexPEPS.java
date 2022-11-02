@@ -25,7 +25,7 @@ public class KardexPEPS extends javax.swing.JFrame {
     public KardexPEPS() {
         initComponents();
         this.setLocationRelativeTo(null);
-        setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/pngwing.png")).getImage());
         //this.setExtendedState(MAXIMIZED_BOTH);
 //        tblListarProductos.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
 //

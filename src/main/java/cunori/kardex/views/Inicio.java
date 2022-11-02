@@ -24,7 +24,7 @@ public class Inicio extends javax.swing.JFrame {
         initComponents();
         getContentPane().setBackground(new Color(0, 255, 51));
         this.setLocationRelativeTo(null);
-        setIconImage(new ImageIcon(getClass().getResource("/usuarioimg.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/pngwing.png")).getImage());
         emf = Persistence.createEntityManagerFactory("cunori_kardex_jar_1.0-SNAPSHOTPU");
         UsuarioEntityManager = new UsuarioJpaController(emf);
         InicioSecion();
@@ -178,8 +178,8 @@ public class Inicio extends javax.swing.JFrame {
 
         pnlFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo_1.png"))); // NOI18N
-        pnlFondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 0, 190, 90));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoMiniDespensaOlopa.png"))); // NOI18N
+        pnlFondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 0, 190, 90));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/head.jpg"))); // NOI18N
         pnlFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, 970, 90));
@@ -308,7 +308,7 @@ public class Inicio extends javax.swing.JFrame {
         pnlLeft.add(pnlInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 270, 60));
 
         imageAvatar1.setGradientColor1(new java.awt.Color(51, 51, 255));
-        imageAvatar1.setImage(new javax.swing.ImageIcon(getClass().getResource("/usuarioimg.png"))); // NOI18N
+        imageAvatar1.setImage(new javax.swing.ImageIcon(getClass().getResource("/UsuarioMiniOlopa.png"))); // NOI18N
         pnlLeft.add(imageAvatar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 140, 120));
 
         pnlClientes.setBackground(new java.awt.Color(129, 164, 220));

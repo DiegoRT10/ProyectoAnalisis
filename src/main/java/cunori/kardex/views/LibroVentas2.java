@@ -34,7 +34,7 @@ public class LibroVentas2 extends javax.swing.JFrame {
     public LibroVentas2() {
         initComponents();
         this.setLocationRelativeTo(null);
-        setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/pngwing.png")).getImage());
         //this.setExtendedState(MAXIMIZED_BOTH);
         tblListarFacturas.getTableHeader().setFont(new Font("Arial", Font.PLAIN, 20));
 
