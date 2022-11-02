@@ -1,5 +1,6 @@
 package cunori.kardex.views;
 
+import cunori.kardex.auxiliar.FacturaReport;
 import cunori.kardex.controller.ClienteJpaController;
 import cunori.kardex.controller.CompraJpaController;
 import cunori.kardex.controller.DetalleCompraJpaController;
@@ -17,6 +18,7 @@ import cunori.kardex.dao.DetalleVenta;
 import cunori.kardex.dao.FacturaCompra;
 import cunori.kardex.dao.FacturaVenta;
 import cunori.kardex.dao.LibroVenta;
+import cunori.kardex.dao.PojoFactura;
 import cunori.kardex.dao.Producto;
 import cunori.kardex.dao.Proveedor;
 import cunori.kardex.dao.Usuario;
@@ -30,7 +32,9 @@ import java.awt.Font;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,8 +42,15 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -61,6 +72,7 @@ public class FormCrearVenta extends javax.swing.JFrame {
     public static Double TotalVenta = 0.0;
     Boolean banderaDescuento = true;
     Double cambio = 0.0;
+    String noDoc = "";
 
     //public static TableRowSorter<DefaultTableModel> sorter;
     public FormCrearVenta() {
@@ -635,9 +647,11 @@ public class FormCrearVenta extends javax.swing.JFrame {
             Venta();//seteando datos de la venta
             DatosDetalleVenta();//seteando datos detalleVenta
             JOptionPane.showMessageDialog(null, "La Venta se creó correctamente");
-            FormCrearVenta fcc = new FormCrearVenta();
-            fcc.setVisible(true);
-            this.dispose();
+            Imprimir();
+            //limpiar();
+//            FormCrearVenta fcc = new FormCrearVenta();
+//            fcc.setVisible(true);
+//            this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Campos vacios, no se pudo crear la venta");
         }
@@ -666,29 +680,19 @@ public class FormCrearVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSeleccionarProvActionPerformed
 
     private void btnCancelarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCompraActionPerformed
-        txtNoSerie.setText("");
-        cbxTipo.setSelectedIndex(0);
-        txtFechaRegistro.setText("");
-        txtNITCliente.setText("");
-        txtNombreCliente.setText("");
-        txtDescuento.setText("");
-        txtTotalPagar.setText("");
-        txtPaga.setText("");
-        txtCambio.setText("");
-        DefaultTableModel model = (DefaultTableModel) tblProductos.getModel();
-        model.setRowCount(0); //eliminar filas existentes
+        limpiar();
         JOptionPane.showMessageDialog(null, "La venta se ha cancelado");
     }//GEN-LAST:event_btnCancelarCompraActionPerformed
 
     private void btnEliminarFilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarFilaActionPerformed
-         DefaultTableModel model = (DefaultTableModel) tblProductos.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblProductos.getModel();
         //model.removeRow(tblProductos.getSelectedRow());
-       
+
         int fila = tblProductos.getSelectedRow();
         if (fila != -1) {
             Double cantEliminada = Double.valueOf(tblProductos.getValueAt(fila, 10).toString());
             TotalVenta = Double.valueOf(txtTotalPagar.getText());
-            TotalVenta = TotalVenta-cantEliminada;
+            TotalVenta = TotalVenta - cantEliminada;
             txtTotalPagar.setText(TotalVenta.toString());
             TotalVenta = 0.0;
             model.removeRow(tblProductos.getSelectedRow());
@@ -713,7 +717,7 @@ public class FormCrearVenta extends javax.swing.JFrame {
             Double totalR = totalP - Double.valueOf(txtDescuento.getText());
             txtTotalPagar.setText(totalR.toString());
             txtDescuento.setEditable(false);
-            banderaDescuento=false;
+            banderaDescuento = false;
         }
     }//GEN-LAST:event_btnAplicarDescuentoActionPerformed
 
@@ -726,22 +730,24 @@ public class FormCrearVenta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNITClienteActionPerformed
 
     private void txtCambioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCambioKeyReleased
-       
+
     }//GEN-LAST:event_txtCambioKeyReleased
 
     private void txtPagaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPagaKeyReleased
-       if(!txtPaga.getText().isEmpty() && !txtPaga.getText().isBlank()){
-        Double pag = Double.valueOf(txtPaga.getText());
-       Double totPag = Double.valueOf(txtTotalPagar.getText());
-        if(pag>=totPag){
-            txtPaga.setCaretColor(Color.BLACK);
-            txtPaga.setForeground(Color.BLACK);
-            cambio = Double.valueOf(txtPaga.getText())-Double.valueOf(txtTotalPagar.getText());
-            txtCambio.setText(cambio.toString());
-       }else{txtPaga.setCaretColor(Color.red);
-       txtPaga.setForeground(Color.red);
-        txtCambio.setText("");}
-       }
+        if (!txtPaga.getText().isEmpty() && !txtPaga.getText().isBlank()) {
+            Double pag = Double.valueOf(txtPaga.getText());
+            Double totPag = Double.valueOf(txtTotalPagar.getText());
+            if (pag >= totPag) {
+                txtPaga.setCaretColor(Color.BLACK);
+                txtPaga.setForeground(Color.BLACK);
+                cambio = Double.valueOf(txtPaga.getText()) - Double.valueOf(txtTotalPagar.getText());
+                txtCambio.setText(cambio.toString());
+            } else {
+                txtPaga.setCaretColor(Color.red);
+                txtPaga.setForeground(Color.red);
+                txtCambio.setText("");
+            }
+        }
     }//GEN-LAST:event_txtPagaKeyReleased
 
     private Boolean Vacio() {
@@ -761,10 +767,10 @@ public class FormCrearVenta extends javax.swing.JFrame {
         FacturaVenta fv = new FacturaVenta();
 
         fv.setNoSerie(txtNoSerie.getText());
-        String no = UUID.randomUUID().toString();
-        fv.setNoDocumento(no);
-        
-        Integer opTipo = cbxTipo.getSelectedIndex()+1;
+        noDoc = UUID.randomUUID().toString();
+        fv.setNoDocumento(noDoc);
+
+        Integer opTipo = cbxTipo.getSelectedIndex() + 1;
         fv.setTipo(opTipo.toString());
         fv.setNombreNegocio("Mini Despensa Olopa");
         fv.setDireccionNegocio("1ra Calle 3-58 Zona 1, Olopa-Chiquimula");
@@ -800,7 +806,7 @@ public class FormCrearVenta extends javax.swing.JFrame {
 
         //model.setRowCount(0); //eliminar filas existentes
         tblProductos.setDefaultRenderer(Object.class, new Render());
-        Object newRow[] = {codigo, nombre, categoria, marca, unidad, pesoNeto, precioCompra, precioVenta, stock, cantidad, precioVenta*cantidad};
+        Object newRow[] = {codigo, nombre, categoria, marca, unidad, pesoNeto, precioCompra, precioVenta, stock, cantidad, precioVenta * cantidad};
         model.addRow(newRow);
 
         for (int i = 0; i < tblProductos.getRowCount(); i++) {
@@ -848,7 +854,7 @@ public class FormCrearVenta extends javax.swing.JFrame {
         Double desc = Double.valueOf(txtDescuento.getText());
         BigDecimal TotalCompra = new BigDecimal(total - desc);
         v.setTotal(TotalCompra);
-        System.out.println("este es el Total de la Compra "+TotalCompra);
+        System.out.println("este es el Total de la Compra " + TotalCompra);
 //        Double paga = Double.valueOf(txtPaga.getText());
 //        Double cambio = Double.valueOf(txtCambio.getText());
 //        cambio = paga-total;
@@ -878,11 +884,11 @@ public class FormCrearVenta extends javax.swing.JFrame {
 //            p.setPesoNeto(tblProductos.getValueAt(i, 5).toString());
 //            Integer stock = Integer.valueOf(tblProductos.getValueAt(i, 8).toString());
 //            BigDecimal precioCompra = new BigDecimal(tblProductos.getValueAt(i, 6).toString());
-           BigDecimal precioVenta = new BigDecimal(tblProductos.getValueAt(i, 7).toString());
+            BigDecimal precioVenta = new BigDecimal(tblProductos.getValueAt(i, 7).toString());
             p.setCodigo(codigo);
 //            p.setStock(stock);
 //            p.setPrecioCompra(precioCompra);
-           p.setPrecioVenta(precioVenta);
+            p.setPrecioVenta(precioVenta);
 //            try {
 //                ProductoEntityManager.edit(p);
 //            } catch (Exception ex) {
@@ -898,7 +904,7 @@ public class FormCrearVenta extends javax.swing.JFrame {
             dv.setIdVenta(v);
             dv.setCodigoProducto(p);
             dv.setCantidad(Integer.parseInt(tblProductos.getValueAt(i, 9).toString()));
-            BigDecimal totalIndividual = new BigDecimal(Double.parseDouble(p.getPrecioVenta().toString()) *dv.getCantidad());
+            BigDecimal totalIndividual = new BigDecimal(Double.parseDouble(p.getPrecioVenta().toString()) * dv.getCantidad());
             dv.setTotal(totalIndividual);
 
             try {
@@ -908,6 +914,72 @@ public class FormCrearVenta extends javax.swing.JFrame {
             }
         }
 
+    }
+
+    private void Imprimir() {
+        int fila = tblProductos.getSelectedRow();
+        FacturaVenta fv = new FacturaVenta();
+        FacturaReport.NombreNegocio = "Mini Despensa Olopa";
+        FacturaReport.NoSerie = txtNoSerie.getText();
+        FacturaReport.NoDocumento = noDoc;
+        SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/YYYY");
+        FacturaReport.Fecha = txtFechaRegistro.getText();
+        Integer opTipo = cbxTipo.getSelectedIndex() + 1;
+        FacturaReport.Tipo = opTipo.toString();
+        FacturaReport.Telefono = "44632548";
+
+        Object[][] listadoFactura;
+
+        int cantRow = tblProductos.getRowCount();
+
+        try {
+
+            JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("/factura.jasper"));
+            JasperPrint jprint = JasperFillManager.fillReport(report, null, FacturaReport.getDataSource());
+
+            JasperViewer view = new JasperViewer(jprint, false);
+            view.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            view.setVisible(true);
+
+        } catch (JRException ex) {
+            ex.getMessage();
+        }
+
+    }
+
+    public static ArrayList<PojoFactura> detalleVenta() {
+        ArrayList<PojoFactura> detallePedido = new ArrayList<PojoFactura>();
+        PojoFactura PedidoHallado;
+
+        for (int i = 0; i < tblProductos.getRowCount(); i++) {
+
+            String Descripcion = tblProductos.getValueAt(i, 1).toString();
+            Integer Cantidad = Integer.valueOf(tblProductos.getValueAt(i, 9).toString());
+            Double SubTotal = Double.valueOf(tblProductos.getValueAt(i, 10).toString());
+            Double TotalPagar = Double.valueOf(txtTotalPagar.getText());
+            Double Efectivo = Double.valueOf(txtPaga.getText());
+            Double Vuelto = Double.valueOf(txtCambio.getText());
+
+            PedidoHallado
+                    = new PojoFactura(Descripcion, Cantidad, SubTotal, TotalPagar, Efectivo, Vuelto);
+            detallePedido.add(PedidoHallado);
+        }
+
+        return detallePedido;
+    }
+
+    private void limpiar() {
+        txtNoSerie.setText("");
+        cbxTipo.setSelectedIndex(0);
+        txtFechaRegistro.setText("");
+        txtNITCliente.setText("");
+        txtNombreCliente.setText("");
+        txtDescuento.setText("");
+        txtTotalPagar.setText("");
+        txtPaga.setText("");
+        txtCambio.setText("");
+        DefaultTableModel model = (DefaultTableModel) tblProductos.getModel();
+        model.setRowCount(0); //eliminar filas existentes
     }
 
     /**
@@ -971,7 +1043,7 @@ public class FormCrearVenta extends javax.swing.JFrame {
     private javax.swing.JLabel lblTotalPagar;
     private javax.swing.JPanel pnlLeft;
     public static javax.swing.JTable tblProductos;
-    private javax.swing.JTextField txtCambio;
+    public static javax.swing.JTextField txtCambio;
     private javax.swing.JTextField txtDescuento;
     private javax.swing.JTextField txtFechaRegistro;
     public static javax.swing.JTextField txtNITCliente;
@@ -979,7 +1051,7 @@ public class FormCrearVenta extends javax.swing.JFrame {
     private javax.swing.JTextField txtNoSerie;
     public static javax.swing.JTextField txtNombreCliente;
     public static javax.swing.JTextField txtNombreUsuario;
-    private javax.swing.JTextField txtPaga;
+    public static javax.swing.JTextField txtPaga;
     public static javax.swing.JTextField txtTotalPagar;
     // End of variables declaration//GEN-END:variables
 }
